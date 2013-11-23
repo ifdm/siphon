@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 	void Awake()
 	{
 		// Setting up references.
-		groundCheck = transform.Find("groundCheck");
+		groundCheck = transform.Find("Player Feet");
 	}
 	
 	
