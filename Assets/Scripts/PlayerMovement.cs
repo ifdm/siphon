@@ -15,7 +15,22 @@ public class PlayerMovement : MonoBehaviour
 
 	private Transform groundCheck;   // A position marking where to check if the player is grounded.
 	private bool grounded = false;   // Whether or not the player is grounded.
+
+
+	bool bounced = false;
+	float bounce1 = 750f;
+	float bounce2 = 1020f;
 	
+	void MushroomBounceEvent(){
+		if (bounced) {
+			rigidbody2D.AddForce (new Vector2 (0, bounce2));
+		} 
+		else {
+			rigidbody2D.AddForce(new Vector2(0, bounce1));
+			bounced = true;
+		}
+	}
+
 	
 	void Awake()
 	{
@@ -32,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
 		// If the jump button is pressed and the player is grounded then the player should jump.
 		if(Input.GetButtonDown("Jump") && grounded)
 			jump = true;
+
+		if (grounded)
+						bounced = false;
 	}
 	
 	
