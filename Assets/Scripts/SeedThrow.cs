@@ -5,13 +5,11 @@ public class SeedThrow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		rigidbody2D.AddForce(new Vector2(1000, 30)); 
+		//rigidbody2D.AddForce(new Vector2(1000, 30)); 
 	}
 	
 	void OnCollisionEnter2D (Collision2D col) {
-		Debug.Log (col.gameObject.tag);
 		if(col.gameObject.tag == "Ground") {
-			Debug.Log ("Collided");
 			DestroyObject(gameObject);
 		}
 	}
@@ -19,5 +17,9 @@ public class SeedThrow : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 		
+	}
+
+	void launch(Vector3 src, Vector3 dst) {
+
 	}
 }
