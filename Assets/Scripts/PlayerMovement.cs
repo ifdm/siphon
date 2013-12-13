@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
 
 	bool bounced = false;
-	float bounce1 = 750f;
-	float bounce2 = 1500f;
+	float bounce1 = 875f;
+	float bounce2 = 975f;
 	
 	void MushroomBounceEvent(){
 		if (bounced) {
