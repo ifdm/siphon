@@ -3,9 +3,8 @@ using System.Collections;
 
 public class NoClipLine : MonoBehaviour {
 
-	public GameObject line;
-
-	void OnCollisionEnter2D(Collision2D col) {
+	void OnTriggerEnter2D(Collider2D col) {
+		Debug.Log (col.gameObject.tag);
 		if(col.gameObject.tag == "Player") {
 			if(col.gameObject.rigidbody2D.velocity.y > 0) {
 				col.gameObject.layer = LayerMask.NameToLayer("Ghost Player");
@@ -13,7 +12,8 @@ public class NoClipLine : MonoBehaviour {
 		}
 	}
 	
-	void OnCollisionExit2D(Collision2D col) {
+	void OnTriggerExit2D(Collider2D col) {
+		Debug.Log (col.gameObject.tag);
 		if(col.gameObject.tag == "Player") {
 			col.gameObject.layer = LayerMask.NameToLayer("Player");
 		}
