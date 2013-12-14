@@ -18,13 +18,13 @@ public class PlayerMovement : MonoBehaviour
 
 
 	bool bounced = false;
-	float bounce1 = 875f;
-	float bounce2 = 975f;
+	float bounce1 = 175f;
+	float bounce2 = 275f;
 	
 	void MushroomBounceEvent(){
 		if (bounced) {
 			rigidbody2D.AddForce (new Vector2 (0, bounce2));
-		} 
+		}
 		else {
 			rigidbody2D.AddForce(new Vector2(0, bounce1));
 			bounced = true;
