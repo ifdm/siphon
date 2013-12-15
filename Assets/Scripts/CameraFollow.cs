@@ -34,7 +34,7 @@ public class CameraFollow : MonoBehaviour
 		return Mathf.Abs(transform.position.y - player.position.y) > yMargin;
 	}
 
-	void OnPreRender() {
+	void Update() {
 		TrackPlayer();
 	}
 	
@@ -45,14 +45,14 @@ public class CameraFollow : MonoBehaviour
 		float targetY = transform.position.y;
 		
 		// If the player has moved beyond the x margin...
-		if (CheckXMargin ())
+		if (true || CheckXMargin ())
 			// ... the target x coordinate should be a Lerp between the camera's current x position and the player's current x position.
-						targetX = Mathf.Lerp (transform.position.x, player.position.x, xSmooth * Time.deltaTime);
+						targetX = Mathf.Lerp (transform.position.x, player.position.x, Mathf.Clamp(xSmooth * Time.deltaTime, 0.0f, 1.0f));
 		
 		// If the player has moved beyond the y margin...
-		if (CheckYMargin ())
+		if (true || CheckYMargin ())
 			// ... the target y coordinate should be a Lerp between the camera's current y position and the player's current y position.
-						targetY = Mathf.Lerp (transform.position.y, player.position.y, ySmooth * Time.deltaTime);
+						targetY = Mathf.Lerp (transform.position.y, player.position.y, Mathf.Clamp(ySmooth * Time.deltaTime, 0.0f, 1.0f));
 		
 		// The target x and y coordinates should not be larger than the maximum or smaller than the minimum.
 		targetX = Mathf.Clamp(targetX, minXAndY.x, maxXAndY.x);

@@ -12,10 +12,8 @@ public class PlayerMovement : MonoBehaviour
 	public float maxSpeed = 5f;
 	public float jumpForce = 1000f;
 
-	private Transform feet;
-
-	enum PlayerState {WALKING, JUMPING, LEDGING, CLIMBING};
-	private PlayerState state;
+	public enum PlayerState {WALKING, JUMPING, LEDGING, CLIMBING};
+	public PlayerState state;
 
 	bool bounced = false;
 	float bounce1 = 875f;
@@ -33,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
 
 	void Awake() {
 		state = PlayerState.WALKING;
-		feet = transform.Find("Player Feet");
 	}
 	
 	void Update() {
@@ -42,15 +39,17 @@ public class PlayerMovement : MonoBehaviour
 				rigidbody2D.isKinematic = false;
 				bounced = false;
 				
-				if(!Physics2D.Linecast(transform.position, feet.position, 1 << LayerMask.NameToLayer("Ground"))) {
+				if(!isGrounded()) {
 					state = PlayerState.JUMPING;
 				}
+				
+				if(Input.GetButtonDown("Jump")){jump = true;}
 			break;
 
 			case PlayerState.JUMPING:
 				rigidbody2D.isKinematic = false;
 			
-				if(Physics2D.Linecast(transform.position, feet.position, 1 << LayerMask.NameToLayer("Ground"))) {
+				if(isGrounded()) {
 					state = PlayerState.WALKING;
 				}
 				
@@ -65,17 +64,29 @@ public class PlayerMovement : MonoBehaviour
 					Debug.DrawLine(eye1, eye2, Color.blue);
 					
 					if(Physics2D.Linecast(eye1, eye2, 1 << LayerMask.NameToLayer("Ground"))) {
-						state = PlayerState.LEDGING;
+						eye1.y += 0.1f;
+						eye2.y += 0.1f;
+						if(!Physics2D.Linecast(eye1, eye2, 1 << LayerMask.NameToLayer("Ground"))) {
+							state = PlayerState.LEDGING;
+						}
+					}
+					else {
+						eye1.y += 0.2f;
+						eye2.y += 0.2f;
+					
+						Debug.DrawLine(eye1, eye2, Color.blue);
 					}
 				}
 			break;
 
 			case PlayerState.LEDGING:
 				rigidbody2D.isKinematic = true;
+				if(Input.GetButtonDown("Jump")){jump = true;}
 			break;
 			
 			case PlayerState.CLIMBING:
 				rigidbody2D.isKinematic = true;
+				if(Input.GetButtonDown("Jump")){jump = true;}
 			break;
 		}
 	}	
@@ -104,7 +115,10 @@ public class PlayerMovement : MonoBehaviour
 	
 	void Move() {
 		float h = Input.GetAxis("Horizontal");
-				
+		
+		if(Input.GetKeyDown(KeyCode.A)){h = -1;}
+		else if(Input.GetKeyDown(KeyCode.D)){h = 1;}
+		
 		if(h * rigidbody2D.velocity.x < maxSpeed) {
 			rigidbody2D.AddForce(Vector2.right * h * moveForce);
 		}
@@ -122,14 +136,37 @@ public class PlayerMovement : MonoBehaviour
 	}
 	
 	void Climb() {
-		//
+		float v = Input.GetAxis("Vertical");
+		
+		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * maxSpeed));
 	}
 	
 	void Jump() {
-		if(Input.GetButtonDown("Jump")) {
+		if(jump) {
 			rigidbody2D.isKinematic = false;
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 			state = PlayerState.JUMPING;
+			jump = false;
 		}
+	}
+	
+	bool isGrounded() {
+		// Can probably cache most of this (sans raycasts)
+		Vector3 p1 = transform.position;
+		Vector3 p2 = transform.position;
+		Vector3 extents = GetComponent<BoxCollider2D>().size * .5f;
+		extents.y += GetComponent<CircleCollider2D>().radius * .5f;
+		extents.x *= transform.lossyScale.x;
+		extents.y *= transform.lossyScale.y;
+		p1.x -= extents.x;
+		p2.x -= extents.x;
+		p2.y -= extents.y;
+		Debug.DrawLine(p1, p2, Color.red);
+		bool left = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
+		p1.x += (2 * extents.x);
+		p2.x += (2 * extents.x);
+		Debug.DrawLine(p1, p2, Color.red);
+		bool right = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
+		return left || right;
 	}
 }
