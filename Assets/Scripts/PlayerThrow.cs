@@ -16,13 +16,12 @@ public class PlayerThrow : MonoBehaviour {
 	void Update () {
 		if(Input.GetMouseButtonDown(0)) {
 			// Throw seed
-			/*var thrownSeed = (GameObject) Instantiate(this.seed, transform.position, Quaternion.identity);
-			var p = camera.ScreenToWorldPoint(Input.mousePosition);
-			var v = (p - transform.position);
-			v.Normalize();
-			thrownSeed.rigidbody2D.AddForce(v * 1000);*/
+			GameObject thrownSeed = (GameObject)Instantiate(this.seed, transform.position, Quaternion.identity);
+			Vector2 p = camera.ScreenToWorldPoint(Input.mousePosition);
+			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
+			thrownSeed.rigidbody2D.AddForce(v.normalized * 700);
 
-			var worldCoords = camera.ScreenToWorldPoint (Input.mousePosition);
+			/*var worldCoords = camera.ScreenToWorldPoint (Input.mousePosition);
 			var x = worldCoords.x;
 			var y = worldCoords.y;
 			var v = initialSpeed;
@@ -36,9 +35,9 @@ public class PlayerThrow : MonoBehaviour {
 			var sqr = Mathf.Sqrt (fac);
 			var num = (v * v) + sqr;
 			var den = (g * x);
-			Debug.Log("sqr: " + sqr + " num: " + num + " den: " + den + " fac: " + fac + " g: " + g + " x: " + x + " y: " + y);
+			//Debug.Log("sqr: " + sqr + " num: " + num + " den: " + den + " fac: " + fac + " g: " + g + " x: " + x + " y: " + y);
 			var theet = Mathf.Atan (num / den);
-			//Debug.Log(theet);
+			Debug.Log(theet);*/
 		}
 	}
 }
