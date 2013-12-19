@@ -75,8 +75,8 @@ public class PlayerMovement : MonoBehaviour {
 						}
 					}
 					else {
-						eye1.y += 0.2f;
-						eye2.y += 0.2f;
+						eye1.y += 0.1f;
+						eye2.y += 0.1f;
 					
 						Debug.DrawLine(eye1, eye2, Color.blue);
 					}

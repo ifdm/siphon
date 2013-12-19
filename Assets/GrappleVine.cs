@@ -19,9 +19,6 @@ public class GrappleVine : MonoBehaviour {
 			DestroyObject(gameObject);
 		}
 		
-		Debug.Log(startPoint);
-		Debug.Log(endPoint);
-		
 		dirty = false;
 	}
 	
