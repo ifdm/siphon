@@ -13,9 +13,11 @@ public class PlayerMovement : MonoBehaviour {
 	public enum PlayerState {WALKING, JUMPING, LEDGING, CLIMBING};
 	public PlayerState state;
 
-	bool bounced = false;
-	float bounce1 = 875f;
-	float bounce2 = 975f;
+	private bool bounced = false;
+	private float bounce1 = 875f;
+	private float bounce2 = 975f;
+	
+	private float canLedge = 0;
 	
 	void MushroomBounceEvent() {
 		if (bounced) {
@@ -51,13 +53,17 @@ public class PlayerMovement : MonoBehaviour {
 					state = PlayerState.WALKING;
 				}
 				
-				else if(rigidbody2D.velocity.y < 0) {
+				else if(rigidbody2D.velocity.y < 0 && canLedge == 0) {
 					Vector3 eye1 = transform.position;
 					Vector3 eye2 = transform.position;
-					eye1.y += 0.5f;
-					eye2.y += 0.5f;
-					if(facingRight){eye2.x += 0.7f;}
-					else{eye2.x -= 0.7f;}
+					Vector3 extents = GetComponent<BoxCollider2D>().size * .5f;
+					extents.x *= transform.lossyScale.x;
+					extents.y *= transform.lossyScale.y;
+					eye1.y += (extents.y * .75f);
+					eye2.y += (extents.y * .75f);
+					eye2.x += extents.x;
+					if(facingRight){eye2.x += .08f;}
+					else{eye2.x -= .08f;}
 					
 					Debug.DrawLine(eye1, eye2, Color.blue);
 					
@@ -87,6 +93,8 @@ public class PlayerMovement : MonoBehaviour {
 				if(Input.GetButtonDown("Jump")){jump = true;}
 			break;
 		}
+		
+		if(canLedge > 0){canLedge -= Mathf.Min(Time.deltaTime, canLedge);}
 	}	
 	
 	void FixedUpdate() {
@@ -101,7 +109,7 @@ public class PlayerMovement : MonoBehaviour {
 			break;
 			
 			case PlayerState.LEDGING:
-				Jump();
+				Ledge();
 			break;
 			
 			case PlayerState.CLIMBING:
@@ -131,6 +139,15 @@ public class PlayerMovement : MonoBehaviour {
 			theScale.x *= -1;
 			transform.localScale = theScale;
 		}
+	}
+	
+	void Ledge() {
+		canLedge = .1f;
+		Jump();
+		
+		if(Input.GetAxis("Vertical") < 0) {
+			state = PlayerState.JUMPING;
+		}	
 	}
 	
 	void Climb() {
