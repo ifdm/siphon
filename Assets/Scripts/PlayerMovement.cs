@@ -167,6 +167,10 @@ public class PlayerMovement : MonoBehaviour
 		p2.x += (2 * extents.x);
 		Debug.DrawLine(p1, p2, Color.red);
 		bool right = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
-		return left || right;
+		p1.x -= (extents.x);
+		p2.x -= (extents.x);
+		Debug.DrawLine(p1, p2, Color.red);
+		bool center = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
+		return left || right || center;
 	}
 }
