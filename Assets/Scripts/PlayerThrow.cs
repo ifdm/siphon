@@ -5,21 +5,21 @@ public class PlayerThrow : MonoBehaviour {
 
 	public GameObject seed;
 	public Camera camera;
-	public float initialSpeed;
-
-	// Use this for initialization
-	void Start() {
-
-	}
 	
-	// Update is called once per frame
+	public GameObject slot1;
+	public GameObject slot2;
+	
+	private int activeSlot;
+	
 	void Update () {
 		if(Input.GetMouseButtonDown(0)) {
-			// Throw seed
 			GameObject thrownSeed = (GameObject)Instantiate(this.seed, transform.position, Quaternion.identity);
 			Vector2 p = camera.ScreenToWorldPoint(Input.mousePosition);
 			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
 			thrownSeed.rigidbody2D.AddForce(v.normalized * 700);
+			
+			if(activeSlot == 0){thrownSeed.GetComponent<SeedThrow>().destiny = slot1;}
+			else if(activeSlot == 1){thrownSeed.GetComponent<SeedThrow>().destiny = slot2;}
 
 			/*var worldCoords = camera.ScreenToWorldPoint (Input.mousePosition);
 			var x = worldCoords.x;
@@ -39,5 +39,8 @@ public class PlayerThrow : MonoBehaviour {
 			var theet = Mathf.Atan (num / den);
 			Debug.Log(theet);*/
 		}
+		
+		if(Input.GetKeyDown(KeyCode.Alpha1)){activeSlot = 0;}
+		else if(Input.GetKeyDown(KeyCode.Alpha2)){activeSlot = 1;}
 	}
 }

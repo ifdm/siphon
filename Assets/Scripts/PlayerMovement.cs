@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
-{
-	[HideInInspector]
-	public bool facingRight = true;
-	[HideInInspector]
-	public bool jump = false;
+public class PlayerMovement : MonoBehaviour {
+	
+	[HideInInspector] public bool facingRight = true;
+	[HideInInspector] public bool jump = false;
 	
 	public float moveForce = 190f;
 	public float maxSpeed = 5f;

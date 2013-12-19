@@ -9,11 +9,19 @@ public class GrappleVine : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		startPoint = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+		startPoint = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
 		Vector3 up = transform.position;
 		up.y += 1000;
 		RaycastHit2D cast = Physics2D.Linecast(transform.position, up, 1 << LayerMask.NameToLayer("Ground"));
-		if(cast){endPoint = cast.point;}
+		endPoint = cast.point;
+		
+		if(!cast || Vector3.Distance(startPoint, endPoint) > 10) {
+			DestroyObject(gameObject);
+		}
+		
+		Debug.Log(startPoint);
+		Debug.Log(endPoint);
+		
 		dirty = false;
 	}
 	

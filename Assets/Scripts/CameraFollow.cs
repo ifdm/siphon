@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraFollow : MonoBehaviour 
-{
+public class CameraFollow : MonoBehaviour {
+	
 	public float smooth = 16;
 	public GameObject player;
 
