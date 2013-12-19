@@ -19,8 +19,8 @@ public class BoulderThrow : MonoBehaviour {
 		if(timer >= boulderRate) {
 			timer = 0;
 			var instance = (GameObject)Instantiate(boulder);
-			instance.transform.position = transform.position;
-			instance.rigidbody2D.AddForce(new Vector2(-10, 20));
+			instance.transform.position = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z);
+			instance.rigidbody2D.AddForce(new Vector2(-350, 20));
 		}
 	}
 }
