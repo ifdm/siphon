@@ -62,21 +62,21 @@ public class PlayerMovement : MonoBehaviour {
 					eye1.y += (extents.y * .75f);
 					eye2.y += (extents.y * .75f);
 					eye2.x += extents.x;
-					if(facingRight){eye2.x += .08f;}
-					else{eye2.x -= .08f;}
+					if(facingRight){eye2.x += .09f;}
+					else{eye2.x -= .09f;}
 					
 					Debug.DrawLine(eye1, eye2, Color.blue);
 					
 					if(Physics2D.Linecast(eye1, eye2, 1 << LayerMask.NameToLayer("Ground"))) {
-						eye1.y += 0.1f;
-						eye2.y += 0.1f;
+						eye1.y += 0.25f;
+						eye2.y += 0.25f;
 						if(!Physics2D.Linecast(eye1, eye2, 1 << LayerMask.NameToLayer("Ground"))) {
 							state = PlayerState.LEDGING;
 						}
 					}
 					else {
-						eye1.y += 0.1f;
-						eye2.y += 0.1f;
+						eye1.y += 0.25f;
+						eye2.y += 0.25f;
 					
 						Debug.DrawLine(eye1, eye2, Color.blue);
 					}
