@@ -8,6 +8,7 @@ public class PlayerThrow : MonoBehaviour {
 	
 	public GameObject slot1;
 	public GameObject slot2;
+	public GameObject slot3;
 	
 	private int activeSlot;
 	
@@ -20,6 +21,7 @@ public class PlayerThrow : MonoBehaviour {
 			
 			if(activeSlot == 0){thrownSeed.GetComponent<SeedThrow>().destiny = slot1;}
 			else if(activeSlot == 1){thrownSeed.GetComponent<SeedThrow>().destiny = slot2;}
+			else if(activeSlot == 2){thrownSeed.GetComponent<SeedThrow>().destiny = slot3;}
 
 			/*var worldCoords = camera.ScreenToWorldPoint (Input.mousePosition);
 			var x = worldCoords.x;
@@ -42,5 +44,6 @@ public class PlayerThrow : MonoBehaviour {
 		
 		if(Input.GetKeyDown(KeyCode.Alpha1)){activeSlot = 0;}
 		else if(Input.GetKeyDown(KeyCode.Alpha2)){activeSlot = 1;}
+		else if(Input.GetKeyDown(KeyCode.Alpha3)){activeSlot = 2;}
 	}
 }
