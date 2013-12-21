@@ -17,15 +17,19 @@ public class PlayerMovement : MonoBehaviour {
 	private float bounce1 = 875f;
 	private float bounce2 = 975f;
 	
-	private float canLedge = 0;
+	private float ledgeTimer = 0;
+	private float bounceTimer = 0;
 	
 	void MushroomBounceEvent() {
-		if (bounced) {
-			rigidbody2D.AddForce (new Vector2 (0, bounce2));
-		}
-		else {
-			rigidbody2D.AddForce(new Vector2(0, bounce1));
-			bounced = true;
+		if(bounceTimer == 0) {
+			if(bounced) {
+				rigidbody2D.AddForce(new Vector2 (0, bounce2));
+			}
+			else {
+				rigidbody2D.AddForce(new Vector2(0, bounce1));
+				bounced = true;
+			}
+			bounceTimer = .1f;
 		}
 	}
 
@@ -53,7 +57,7 @@ public class PlayerMovement : MonoBehaviour {
 					state = PlayerState.WALKING;
 				}
 				
-				else if(rigidbody2D.velocity.y < 0 && canLedge == 0) {
+				else if(rigidbody2D.velocity.y < 0 && ledgeTimer == 0) {
 					Vector3 eye1 = transform.position;
 					Vector3 eye2 = transform.position;
 					Vector3 extents = GetComponent<BoxCollider2D>().size * .5f;
@@ -94,7 +98,8 @@ public class PlayerMovement : MonoBehaviour {
 			break;
 		}
 		
-		if(canLedge > 0){canLedge -= Mathf.Min(Time.deltaTime, canLedge);}
+		if(ledgeTimer > 0){ledgeTimer -= Mathf.Min(Time.deltaTime, ledgeTimer);}
+		if(bounceTimer > 0){bounceTimer -= Mathf.Min(Time.deltaTime, bounceTimer);}
 	}	
 	
 	void FixedUpdate() {
@@ -142,7 +147,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	void Ledge() {
-		canLedge = .1f;
+		ledgeTimer = .1f;
 		Jump();
 		
 		if(Input.GetAxis("Vertical") < 0) {
