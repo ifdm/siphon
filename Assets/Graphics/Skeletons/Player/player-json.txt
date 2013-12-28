@@ -2,36 +2,36 @@
 "bones": [
 	{ "name": "root", "y": 10.01, "rotation": -0.45 },
 	{ "name": "hip", "parent": "root", "x": -10.91, "y": 146.82, "rotation": -0.16 },
-	{ "name": "left_thigh", "parent": "hip", "length": 73.83, "x": 32.84, "y": 7.62, "rotation": -63.19 },
-	{ "name": "right_thigh", "parent": "hip", "length": 88.97, "x": -21.38, "y": -6.26, "rotation": -112.12 },
+	{ "name": "thigh1", "parent": "hip", "length": 88.97, "x": -21.38, "y": -6.26, "rotation": -112.12 },
+	{ "name": "thigh2", "parent": "hip", "length": 73.83, "x": 32.84, "y": 7.62, "rotation": -63.19 },
 	{ "name": "torso_bottom", "parent": "hip", "length": 52.17, "x": -6.99, "y": 22.03, "rotation": 80.89 },
-	{ "name": "left_shin", "parent": "left_thigh", "length": 84.88, "x": 74.32, "y": -1.57, "rotation": -29.92 },
-	{ "name": "right_shin", "parent": "right_thigh", "length": 71.38, "x": 83.87, "y": -0.2, "rotation": -8.53 },
+	{ "name": "left_shin", "parent": "thigh2", "length": 84.88, "x": 74.32, "y": -1.57, "rotation": -29.92 },
+	{ "name": "right_shin", "parent": "thigh1", "length": 71.38, "x": 83.87, "y": -0.2, "rotation": -8.53 },
 	{ "name": "torso_top", "parent": "torso_bottom", "length": 72.6, "x": 53.62, "y": -0.3, "rotation": 4.62 },
-	{ "name": "left_bicep", "parent": "torso_top", "length": 114.83, "x": 71.29, "y": -26.07, "rotation": 159.94 },
+	{ "name": "humerus1", "parent": "torso_top", "length": 129.21, "x": 74.15, "y": 47.37, "rotation": 134.68 },
+	{ "name": "humerus2", "parent": "torso_top", "length": 114.83, "x": 71.29, "y": -26.07, "rotation": 159.94 },
 	{ "name": "left_foot", "parent": "left_shin", "length": 28.01, "x": 85.4, "y": 0.37, "rotation": 85.87 },
 	{ "name": "neck", "parent": "torso_top", "length": 43.57, "x": 72.05, "y": 0.41, "rotation": -3.4 },
-	{ "name": "right_bicep", "parent": "torso_top", "length": 129.21, "x": 74.15, "y": 47.37, "rotation": 134.68 },
 	{ "name": "right_foot", "parent": "right_shin", "length": 26.36, "x": 73.12, "y": 1.88, "rotation": 106.81 },
+	{ "name": "forearm1", "parent": "humerus1", "length": 63.13, "x": 129.6, "y": 6.59, "rotation": -4.23 },
+	{ "name": "forearm2", "parent": "humerus2", "length": 44.93, "x": 123.37, "y": -4.98, "rotation": -34.77 },
 	{ "name": "head", "parent": "neck", "length": 113.33, "x": 41.63, "y": 0.01, "rotation": 0.91 },
-	{ "name": "left_forearm", "parent": "left_bicep", "length": 44.93, "x": 123.37, "y": -4.98, "rotation": -34.77 },
-	{ "name": "right_forearm", "parent": "right_bicep", "length": 63.13, "x": 129.6, "y": 6.59, "rotation": -4.23 },
-	{ "name": "wrist_left", "parent": "left_forearm", "length": 52.42, "x": 49, "y": 2.45, "rotation": 1.81 },
-	{ "name": "wrist_right", "parent": "right_forearm", "length": 49.2, "x": 63.52, "y": 0.25, "rotation": -5.61 }
+	{ "name": "wrist_left", "parent": "forearm2", "length": 52.42, "x": 49, "y": 2.45, "rotation": 1.81 },
+	{ "name": "wrist_right", "parent": "forearm1", "length": 49.2, "x": 63.52, "y": 0.25, "rotation": -5.61 }
 ],
 "slots": [
-	{ "name": "left_bicep", "bone": "left_bicep", "attachment": "humerus2" },
-	{ "name": "left_forearm", "bone": "left_forearm", "attachment": "forearm2" },
+	{ "name": "humerus2", "bone": "humerus2", "attachment": "humerus2" },
+	{ "name": "forearm2", "bone": "forearm2", "attachment": "forearm2" },
 	{ "name": "wrist_left", "bone": "wrist_left", "attachment": "wrist_left" },
-	{ "name": "left_index", "bone": "wrist_left", "attachment": "clawindex2" },
-	{ "name": "left_pinky", "bone": "wrist_left", "attachment": "clawpinky2" },
-	{ "name": "left_thumb", "bone": "wrist_left", "attachment": "clawthumb2" },
-	{ "name": "left_sleeve", "bone": "left_bicep", "attachment": "leftsleeve" },
+	{ "name": "clawindex2", "bone": "wrist_left", "attachment": "clawindex2" },
+	{ "name": "clawpinky2", "bone": "wrist_left", "attachment": "clawpinky2" },
+	{ "name": "clawthumb2", "bone": "wrist_left", "attachment": "clawthumb2" },
+	{ "name": "leftsleeve", "bone": "humerus2", "attachment": "leftsleeve" },
 	{ "name": "hips", "bone": "hip", "attachment": "hips" },
-	{ "name": "thigh2", "bone": "left_thigh", "attachment": "thigh2" },
+	{ "name": "thigh2", "bone": "thigh2", "attachment": "thigh2" },
 	{ "name": "calf2", "bone": "left_shin", "attachment": "calf2" },
 	{ "name": "left_foot", "bone": "left_foot", "attachment": "foot2" },
-	{ "name": "thigh1", "bone": "right_thigh", "attachment": "thigh1" },
+	{ "name": "thigh1", "bone": "thigh1", "attachment": "thigh1" },
 	{ "name": "calf1", "bone": "right_shin", "attachment": "calf1" },
 	{ "name": "right_foot", "bone": "right_foot", "attachment": "right_foot" },
 	{ "name": "petal10", "bone": "head", "attachment": "petal10" },
@@ -48,9 +48,9 @@
 	{ "name": "petal7", "bone": "head", "attachment": "petal7" },
 	{ "name": "petal6", "bone": "head", "attachment": "petal6" },
 	{ "name": "head", "bone": "head", "attachment": "head" },
-	{ "name": "right_bicep", "bone": "right_bicep", "attachment": "humerus1" },
-	{ "name": "right_sleeve", "bone": "right_bicep", "attachment": "rightsleeve" },
-	{ "name": "right_forearm", "bone": "right_forearm", "attachment": "forearm1" },
+	{ "name": "humerus1", "bone": "humerus1", "attachment": "humerus1" },
+	{ "name": "rightsleeve", "bone": "humerus1", "attachment": "rightsleeve" },
+	{ "name": "forearm1", "bone": "forearm1", "attachment": "forearm1" },
 	{ "name": "wrist_right", "bone": "wrist_right", "attachment": "wrist_right" },
 	{ "name": "right_index", "bone": "wrist_right", "attachment": "clawindex1" },
 	{ "name": "right_pinky", "bone": "wrist_right", "attachment": "clawpinky1" },
@@ -66,35 +66,41 @@
 		"calf2": {
 			"calf2": { "x": 28.73, "y": 1.1, "rotation": 94.42, "width": 56, "height": 106 }
 		},
+		"clawindex2": {
+			"clawindex2": { "x": 62.83, "y": -4.19, "rotation": 57.96, "width": 17, "height": 41 }
+		},
+		"clawpinky2": {
+			"clawpinky2": { "x": 60.83, "y": 14.89, "rotation": 57.96, "width": 17, "height": 41 }
+		},
+		"clawthumb2": {
+			"clawthumb2": { "x": 48.77, "y": -20.68, "rotation": 57.96, "width": 26, "height": 38 }
+		},
 		"face": {
 			"face": { "x": 18.2, "y": 412.66, "rotation": 24.78, "width": 110, "height": 72 }
+		},
+		"forearm1": {
+			"forearm1": { "x": 31.5, "y": 5.52, "rotation": 106.94, "width": 81, "height": 117 }
+		},
+		"forearm2": {
+			"forearm2": { "x": 20.86, "y": 2.52, "rotation": 49.58, "width": 85, "height": 100 }
 		},
 		"head": {
 			"head": { "x": 49.31, "y": 30.12, "rotation": -61.7, "width": 211, "height": 135 }
 		},
 		"hips": {
-			"hips": { "x": 1.27, "y": 7.02, "rotation": 0.16, "width": 117, "height": 86 }
+			"hips": { "x": 1.27, "y": 7.02, "rotation": 0.16, "width": 127, "height": 92 }
 		},
-		"left_bicep": {
+		"humerus1": {
+			"humerus1": { "x": 68.38, "y": 6.24, "rotation": 147.74, "width": 103, "height": 102 }
+		},
+		"humerus2": {
 			"humerus2": { "x": 63.89, "y": 1.1, "rotation": 63.61, "width": 59, "height": 112 }
 		},
 		"left_foot": {
 			"foot2": { "x": 8.59, "y": 1.61, "rotation": 7.86, "width": 36, "height": 17 }
 		},
-		"left_forearm": {
-			"forearm2": { "x": 20.86, "y": 2.52, "rotation": 49.58, "width": 85, "height": 100 }
-		},
-		"left_index": {
-			"clawindex2": { "x": 62.83, "y": -4.19, "rotation": 57.96, "width": 17, "height": 41 }
-		},
-		"left_pinky": {
-			"clawpinky2": { "x": 60.83, "y": 14.89, "rotation": 57.96, "width": 17, "height": 41 }
-		},
-		"left_sleeve": {
+		"leftsleeve": {
 			"leftsleeve": { "x": 11.65, "y": 10.02, "rotation": 63.61, "width": 36, "height": 31 }
-		},
-		"left_thumb": {
-			"clawthumb2": { "x": 48.77, "y": -20.68, "rotation": 57.96, "width": 26, "height": 38 }
 		},
 		"neck": {
 			"neck": { "x": 27.06, "y": 5.04, "rotation": -69.59, "width": 50, "height": 57 }
@@ -132,14 +138,8 @@
 		"pupils": {
 			"pupils": { "x": 74.88, "y": -16.71, "rotation": -57.17, "width": 87, "height": 41 }
 		},
-		"right_bicep": {
-			"humerus1": { "x": 68.38, "y": 6.24, "rotation": 147.74, "width": 103, "height": 102 }
-		},
 		"right_foot": {
 			"right_foot": { "path": "foot2", "x": 12.71, "y": -0.06, "rotation": 14.46, "width": 36, "height": 17 }
-		},
-		"right_forearm": {
-			"forearm1": { "x": 31.5, "y": 5.52, "rotation": 106.94, "width": 81, "height": 117 }
 		},
 		"right_index": {
 			"clawindex1": { "x": 78.68, "y": -1.93, "rotation": 107.4, "width": 22, "height": 47 }
@@ -147,23 +147,23 @@
 		"right_pinky": {
 			"clawpinky1": { "x": 65.63, "y": -23.28, "rotation": 107.4, "width": 20, "height": 38 }
 		},
-		"right_sleeve": {
-			"rightsleeve": { "x": 13.77, "y": -7.84, "rotation": 131.13, "width": 38, "height": 46 }
-		},
 		"right_thumb": {
 			"clawthumb1": { "x": 56.54, "y": 23.57, "rotation": 107.4, "width": 27, "height": 53 }
 		},
+		"rightsleeve": {
+			"rightsleeve": { "x": 13.77, "y": -7.84, "rotation": 131.13, "width": 38, "height": 46 }
+		},
 		"thigh1": {
-			"thigh1": { "x": 31.3, "y": -7.73, "rotation": 112.26, "width": 62, "height": 101 }
+			"thigh1": { "x": 31.3, "y": -7.73, "rotation": 112.26, "width": 62, "height": 93 }
 		},
 		"thigh2": {
-			"thigh2": { "x": 31.98, "y": 0.1, "rotation": 66.09, "width": 82, "height": 111 }
+			"thigh2": { "x": 31.98, "y": 0.1, "rotation": 66.09, "width": 66, "height": 92 }
 		},
 		"torso_bottom": {
 			"torso_bottom": { "x": 39.87, "y": -0.02, "rotation": -91.61, "width": 131, "height": 105 }
 		},
 		"torso_top": {
-			"torso_top": { "x": 32.53, "y": 2.41, "rotation": -82.76, "width": 108, "height": 125 }
+			"torso_top": { "x": 32.53, "y": 2.41, "rotation": -82.76, "width": 108, "height": 128 }
 		},
 		"wrist_left": {
 			"wrist_left": { "x": 17.61, "y": 0.4, "rotation": 57.51, "width": 76, "height": 77 }
@@ -212,7 +212,7 @@
 					{ "time": 0.8666, "x": 331.47, "y": -22.09 }
 				]
 			},
-			"left_thigh": {
+			"thigh2": {
 				"rotate": [
 					{
 						"time": 0,
@@ -233,7 +233,7 @@
 					{ "time": 1, "x": 0, "y": 0 }
 				]
 			},
-			"right_thigh": {
+			"thigh1": {
 				"rotate": [
 					{
 						"time": 0,
@@ -412,7 +412,7 @@
 					{ "time": 0.9333, "x": 0, "y": 0 }
 				]
 			},
-			"left_bicep": {
+			"humerus2": {
 				"rotate": [
 					{
 						"time": 0,
@@ -466,7 +466,7 @@
 					{ "time": 0.9666, "x": 0, "y": 0 }
 				]
 			},
-			"right_bicep": {
+			"humerus1": {
 				"rotate": [
 					{
 						"time": 0,
@@ -515,7 +515,7 @@
 					{ "time": 1, "x": 0, "y": 0 }
 				]
 			},
-			"left_forearm": {
+			"forearm2": {
 				"rotate": [
 					{
 						"time": 0,
@@ -545,7 +545,7 @@
 					{ "time": 1, "x": 0, "y": 0 }
 				]
 			},
-			"right_forearm": {
+			"forearm1": {
 				"rotate": [
 					{
 						"time": 0,
@@ -641,7 +641,7 @@
 	},
 	"Run": {
 		"bones": {
-			"right_thigh": {
+			"thigh1": {
 				"rotate": [
 					{
 						"time": 0,
@@ -903,7 +903,7 @@
 					{ "time": 0.8333, "x": 9.9, "y": -11.58 }
 				]
 			},
-			"left_thigh": {
+			"thigh2": {
 				"rotate": [
 					{
 						"time": 0,
@@ -1005,7 +1005,7 @@
 					{ "time": 0.8333, "x": 3.72, "y": 1.88 }
 				]
 			},
-			"left_bicep": {
+			"humerus2": {
 				"rotate": [
 					{
 						"time": 0,
@@ -1055,7 +1055,7 @@
 					{ "time": 0.8333, "x": -6.13, "y": -0.09 }
 				]
 			},
-			"right_bicep": {
+			"humerus1": {
 				"rotate": [
 					{
 						"time": 0,
@@ -1094,7 +1094,7 @@
 					{ "time": 0.8333, "x": 0, "y": 0 }
 				]
 			},
-			"left_forearm": {
+			"forearm2": {
 				"rotate": [
 					{
 						"time": 0,
@@ -1114,7 +1114,7 @@
 					{ "time": 0.8333, "angle": 127.3 }
 				]
 			},
-			"right_forearm": {
+			"forearm1": {
 				"rotate": [
 					{
 						"time": 0,
@@ -1226,7 +1226,7 @@
 					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
-			"left_thigh": {
+			"thigh2": {
 				"rotate": [
 					{
 						"time": 0,
@@ -1252,7 +1252,7 @@
 					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
-			"right_thigh": {
+			"thigh1": {
 				"rotate": [
 					{
 						"time": 0,
@@ -1354,7 +1354,7 @@
 					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
-			"left_bicep": {
+			"humerus2": {
 				"rotate": [
 					{
 						"time": 0,
@@ -1413,7 +1413,7 @@
 					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
-			"right_bicep": {
+			"humerus1": {
 				"rotate": [
 					{
 						"time": 0,
@@ -1481,7 +1481,7 @@
 					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
-			"left_forearm": {
+			"forearm2": {
 				"rotate": [
 					{
 						"time": 0,
@@ -1497,7 +1497,7 @@
 					{ "time": 0, "x": 1, "y": 1 }
 				]
 			},
-			"right_forearm": {
+			"forearm1": {
 				"rotate": [
 					{
 						"time": 0,

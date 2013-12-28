@@ -13,6 +13,10 @@ public class PlayerThrow : MonoBehaviour {
 	private int activeSlot;
 	
 	void Start() {
+		AdjustSlotQueues();
+	}
+
+	public void AdjustSlotQueues() {
 		slotQueues = new List<Queue>();
 		for(int i = 0; i < slots.Length; i++) {
 			slotQueues.Add(new Queue());
