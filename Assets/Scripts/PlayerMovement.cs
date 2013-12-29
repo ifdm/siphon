@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Spine;
 
 public class PlayerMovement : MonoBehaviour {
 	
 	[HideInInspector] public bool facingRight = true;
 	[HideInInspector] public bool jump = false;
+
+	[HideInInspector] public SkeletonAnimation skeletonAnimation;
 	
 	public float moveForce = 190f;
 	public float maxSpeed = 5f;
 	public float jumpForce = 1000f;
 
-	public enum PlayerState {WALKING, JUMPING, LEDGING, CLIMBING};
+	public enum PlayerState {WALKING, JUMPING, LEDGING, CLIMBING, IDLING};
 	public PlayerState state;
 
 	private bool bounced = false;
@@ -33,18 +36,37 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
+	void Start() {
+		skeletonAnimation = GetComponent<SkeletonAnimation>();
+		skeletonAnimation.state.AddAnimation(0, "idle", false, 0);
+	}
+
 	void Awake() {
-		state = PlayerState.WALKING;
+		state = PlayerState.IDLING;
 	}
 	
 	void Update() {
 		switch(state) {
+			case PlayerState.IDLING:
+				if(!isIdle()) {
+					if(!isGrounded()) {
+						state = PlayerState.JUMPING;
+					}
+					else {
+						state = PlayerState.WALKING;
+					}
+				}
+			break;
+
 			case PlayerState.WALKING:
 				rigidbody2D.isKinematic = false;
 				bounced = false;
 				
 				if(!isGrounded()) {
 					state = PlayerState.JUMPING;
+				}
+				else if(isIdle()) {
+					state = PlayerState.IDLING;
 				}
 				
 				if(Input.GetButtonDown("Jump")){jump = true;}
@@ -55,6 +77,9 @@ public class PlayerMovement : MonoBehaviour {
 			
 				if(isGrounded()) {
 					state = PlayerState.WALKING;
+				}
+				else if(isIdle()) {
+					state = PlayerState.IDLING;
 				}
 				
 				else if(rigidbody2D.velocity.y < 0 && ledgeTimer == 0) {
@@ -104,6 +129,12 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void FixedUpdate() {
 		switch(state) {
+			case PlayerState.IDLING:
+				Idle();
+				Move();
+				Jump();
+			break;
+
 			case PlayerState.WALKING:
 				Move();
 				Jump();
@@ -123,12 +154,20 @@ public class PlayerMovement : MonoBehaviour {
 			break;
 		}
 	}
+
+	void Idle() {
+		skeletonAnimation.state.AddAnimation(0, "idle", false, 0);
+	}
 	
 	void Move() {
 		float h = Input.GetAxis("Horizontal");
 		
 		if(Input.GetKeyDown(KeyCode.A)){h = -1;}
 		else if(Input.GetKeyDown(KeyCode.D)){h = 1;}
+
+		if(h != 0) {
+	        skeletonAnimation.state.AddAnimation(0, "Run", false, 0);
+		}
 		
 		if(h * rigidbody2D.velocity.x < maxSpeed) {
 			rigidbody2D.AddForce(Vector2.right * h * moveForce);
@@ -192,5 +231,9 @@ public class PlayerMovement : MonoBehaviour {
 		Debug.DrawLine(p1, p2, Color.red);
 		bool center = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
 		return left || right || center;
+	}
+
+	bool isIdle() {
+		return rigidbody2D.velocity.x == 0 && !jump;
 	}
 }

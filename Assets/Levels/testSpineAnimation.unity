@@ -334,30 +334,6 @@ Prefab:
   m_RootGameObject: {fileID: 135351668}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!212 &898975660
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 21200000, guid: 4d85ecd396e1292468f18ac765d8660f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1532549733}
-  m_GameObject: {fileID: 1806353006}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 06aa7a1bd2c94400f976836cd82893fb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: .784313738}
 --- !u!1001 &1170744981
 Prefab:
   m_ObjectHideFlags: 0
@@ -393,6 +369,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1806353006}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
   m_RootGameObject: {fileID: 1992078988}
@@ -433,7 +413,56 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 21200000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_LocalScale.x
+      value: .00652447529
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_LocalScale.y
+      value: .00652447529
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_LocalScale.z
+      value: .0130489506
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_Size.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_Size.y
+      value: 325
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_Center.y
+      value: 275
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_Center.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_Radius
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_Center.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_Center.y
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1992078993}
+    m_RemovedComponents:
+    - {fileID: 21200000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
   m_RootGameObject: {fileID: 1806353006}
   m_IsPrefabParent: 0
@@ -446,7 +475,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1806353011}
-  - 212: {fileID: 898975660}
   - 50: {fileID: 1806353010}
   - 61: {fileID: 1806353009}
   - 58: {fileID: 1806353008}
@@ -476,6 +504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingRight: 1
   jump: 0
+  skeletonAnimation: {fileID: 0}
   moveForce: 80
   maxSpeed: 3.25
   jumpForce: 575
@@ -490,8 +519,8 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 6200000, guid: eb5448cdc3ac2427d95c42e5b7d9d260, type: 2}
   m_IsTrigger: 0
-  m_Radius: .925000012
-  m_Center: {x: 0, y: -1}
+  m_Radius: 100
+  m_Center: {x: 50, y: 95}
 --- !u!61 &1806353009
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -502,8 +531,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 6200000, guid: eb5448cdc3ac2427d95c42e5b7d9d260, type: 2}
   m_IsTrigger: 0
-  m_Size: {x: 1.85000002, y: 3}
-  m_Center: {x: 0, y: .5}
+  m_Size: {x: 200, y: 325}
+  m_Center: {x: 50, y: 275}
 --- !u!50 &1806353010
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -528,7 +557,7 @@ Transform:
   m_GameObject: {fileID: 1806353006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.38547659, y: -3.18581438, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_LocalScale: {x: .00652447529, y: .00652447529, z: .0130489506}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &1806353012
@@ -543,12 +572,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: 4f064e87e957040cd9b9271cb11add83, type: 2}
-  initialSkinName: 
-  timeScale: 1
+  initialSkinName: default
+  timeScale: 1.10000002
   calculateNormals: 0
   calculateTangents: 0
-  loop: 0
-  _animationName: 
+  loop: 1
+  _animationName: idle
 --- !u!23 &1806353013
 Renderer:
   m_ObjectHideFlags: 0
@@ -561,7 +590,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 2f22f72c62b8c4352b5ddf9582a0b7ff, type: 2}
+  - {fileID: 2100000, guid: a3a6def11d9d3481a9eac1cd819664d7, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -590,9 +619,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
-  camera: {fileID: 0}
-  slot1: {fileID: 0}
-  slot2: {fileID: 0}
+  camera: {fileID: 1992078993}
+  slots: []
 --- !u!1 &1992078988
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +654,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smooth: 16
-  player: {fileID: 0}
+  player: {fileID: 1806353006}
+  mouseThreshold: 5
 --- !u!81 &1992078990
 AudioListener:
   m_ObjectHideFlags: 0
