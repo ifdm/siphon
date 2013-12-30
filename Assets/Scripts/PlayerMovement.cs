@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour {
 	
 	[HideInInspector] public bool facingRight = true;
 	[HideInInspector] public bool jump = false;
+	[HideInInspector] public bool animateIdle = true;
+	[HideInInspector] public bool animateJump = false;
 
 	[HideInInspector] public SkeletonAnimation skeletonAnimation;
 	
@@ -38,7 +40,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Start() {
 		skeletonAnimation = GetComponent<SkeletonAnimation>();
-		skeletonAnimation.state.AddAnimation(0, "idle", false, 0);
 	}
 
 	void Awake() {
@@ -56,6 +57,17 @@ public class PlayerMovement : MonoBehaviour {
 						state = PlayerState.WALKING;
 					}
 				}
+				
+				if(animateIdle) {
+					skeletonAnimation.state.ClearTracks();
+					skeletonAnimation.state.AddAnimation(0, "idle", false, 0);
+					animateIdle = false;
+				}
+
+				if(Input.GetButtonDown("Jump")){
+					jump = true;
+					animateJump = true;
+				}
 			break;
 
 			case PlayerState.WALKING:
@@ -67,9 +79,15 @@ public class PlayerMovement : MonoBehaviour {
 				}
 				else if(isIdle()) {
 					state = PlayerState.IDLING;
+					animateIdle = true;
 				}
+		        
+		        skeletonAnimation.state.AddAnimation(0, "run", false, 0);
 				
-				if(Input.GetButtonDown("Jump")){jump = true;}
+				if(Input.GetButtonDown("Jump")){
+					jump = true;
+					animateJump = true;
+				}
 			break;
 
 			case PlayerState.JUMPING:
@@ -80,8 +98,8 @@ public class PlayerMovement : MonoBehaviour {
 				}
 				else if(isIdle()) {
 					state = PlayerState.IDLING;
+					animateIdle = true;
 				}
-				
 				else if(rigidbody2D.velocity.y < 0 && ledgeTimer == 0) {
 					Vector3 eye1 = transform.position;
 					Vector3 eye2 = transform.position;
@@ -91,8 +109,8 @@ public class PlayerMovement : MonoBehaviour {
 					eye1.y += (extents.y * .75f);
 					eye2.y += (extents.y * .75f);
 					eye2.x += extents.x;
-					if(facingRight){eye2.x += .09f;}
-					else{eye2.x -= .09f;}
+					if(facingRight){eye2.x += 0.15f;}
+					else{eye2.x -= 0.15f;}
 					
 					Debug.DrawLine(eye1, eye2, Color.blue);
 					
@@ -109,6 +127,12 @@ public class PlayerMovement : MonoBehaviour {
 					
 						Debug.DrawLine(eye1, eye2, Color.blue);
 					}
+				}
+
+				if(animateJump) {
+					skeletonAnimation.state.ClearTracks();
+					skeletonAnimation.state.AddAnimation(1, "jump", false, 0);
+					animateJump = false;
 				}
 			break;
 
@@ -136,11 +160,13 @@ public class PlayerMovement : MonoBehaviour {
 			break;
 
 			case PlayerState.WALKING:
+				Idle();
 				Move();
 				Jump();
 			break;
 			
 			case PlayerState.JUMPING:
+				Idle();
 				Move();
 			break;
 			
@@ -156,7 +182,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Idle() {
-		skeletonAnimation.state.AddAnimation(0, "idle", false, 0);
+		// For future physics.
 	}
 	
 	void Move() {
@@ -164,10 +190,6 @@ public class PlayerMovement : MonoBehaviour {
 		
 		if(Input.GetKeyDown(KeyCode.A)){h = -1;}
 		else if(Input.GetKeyDown(KeyCode.D)){h = 1;}
-
-		if(h != 0) {
-	        skeletonAnimation.state.AddAnimation(0, "Run", false, 0);
-		}
 		
 		if(h * rigidbody2D.velocity.x < maxSpeed) {
 			rigidbody2D.AddForce(Vector2.right * h * moveForce);
