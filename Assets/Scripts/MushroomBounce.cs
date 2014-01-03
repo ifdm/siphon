@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MushroomBounce : MonoBehaviour {
 
-	void Awake() {
+	void Awake() {		
 		RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position - (Vector3.up * 100), 1 << LayerMask.NameToLayer("Ground"));
 		if(hit) {
 			transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);

@@ -10,7 +10,7 @@ public class PlayerThrow : MonoBehaviour {
 	public GameObject[] slots;
 	private List<Queue> slotQueues;
 	
-	private int activeSlot;
+	public int activeSlot;
 	
 	void Start() {
 		AdjustSlotQueues();
