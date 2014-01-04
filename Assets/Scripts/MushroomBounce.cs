@@ -6,7 +6,6 @@ public class MushroomBounce : MonoBehaviour {
 	public float firstBounce = 875f;
 	public float secondBounce = 950f;
 
-	private bool bounced = false;
 	private float bounceTimer = 0;
 
 	void Awake() {		

@@ -23,7 +23,6 @@ public class Porter : MonoBehaviour {
 		if((Time.time - timer) > (gracePeriod + delay)) {
 			destination = false;
 			timer = Time.time;
-			Debug.Log(destination);
 		}
 	}
 

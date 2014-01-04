@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PlayerThrow : MonoBehaviour {
 
 	public GameObject seed;
-	[HideInInspector] public Camera camera;
+	[HideInInspector] public Camera mainCamera;
 	
 	public GameObject[] slots;
 	private List<Queue> slotQueues;
@@ -14,7 +14,7 @@ public class PlayerThrow : MonoBehaviour {
 	[HideInInspector] public bool throwable = true;
 	
 	void Start() {
-		camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		
 		AdjustSlotQueues();
 	}
@@ -35,7 +35,7 @@ public class PlayerThrow : MonoBehaviour {
 
 			GameObject thrownSeed = (GameObject)Instantiate(this.seed, playerPos, Quaternion.identity);
 			thrownSeed.name = "Seed";
-			Vector2 p = camera.ScreenToWorldPoint(Input.mousePosition);
+			Vector2 p = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
 			thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
 			while(slotQueues[activeSlot].Count > 0) {
