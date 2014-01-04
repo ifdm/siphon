@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class PlayerThrow : MonoBehaviour {
 
-	public GameObject seed;
-	public Camera camera;
+	[HideInInspector] public GameObject seed;
+	[HideInInspector] public Camera camera;
 	
 	public GameObject[] slots;
 	private List<Queue> slotQueues;
@@ -14,6 +14,9 @@ public class PlayerThrow : MonoBehaviour {
 	[HideInInspector] public bool throwable = true;
 	
 	void Start() {
+		seed = GameObject.Find("Seed");
+		camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+		
 		AdjustSlotQueues();
 	}
 
