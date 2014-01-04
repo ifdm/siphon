@@ -90,15 +90,14 @@ public class PlayerMovement : MonoBehaviour {
 					p2 += Vector2.Scale(box.center, scale);
 					p1.y += box.size.y * scale.y * .3f;
 					p2.y += box.size.y * scale.y * .3f;
-					p2.x += box.size.x * scale.x * 1.0f;
+					p2.x += box.size.x * scale.x * .55f;
 
 					Debug.DrawLine(p1, p2, Color.blue);
 					
 					if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
 						p1.y += box.size.y * scale.y * .1f;
 						p2.y += box.size.y * scale.y * .1f;
-						Debug.Log("It's a girl!");
-						if(true || !Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+						if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
 							state = PlayerState.LEDGING;
 						}
 					}
@@ -237,6 +236,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	bool isIdle() {
-		return rigidbody2D.velocity.x == 0 && !jump;
+		return rigidbody2D.velocity.x == 0 && isGrounded();
 	}
 }
