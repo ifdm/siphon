@@ -17,26 +17,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	public enum PlayerState {WALKING, JUMPING, LEDGING, CLIMBING, IDLING};
 	public PlayerState state;
-
-	private bool bounced = false;
-	private float bounce1 = 875f;
-	private float bounce2 = 975f;
 	
 	private float ledgeTimer = 0;
-	private float bounceTimer = 0;
-	
-	void MushroomBounceEvent() {
-		if(bounceTimer == 0) {
-			if(bounced) {
-				rigidbody2D.AddForce(new Vector2 (0, bounce2));
-			}
-			else {
-				rigidbody2D.AddForce(new Vector2(0, bounce1));
-				bounced = true;
-			}
-			bounceTimer = .1f;
-		}
-	}
 
 	void Start() {
 		skeletonAnimation = GetComponent<SkeletonAnimation>();
@@ -72,7 +54,6 @@ public class PlayerMovement : MonoBehaviour {
 
 			case PlayerState.WALKING:
 				rigidbody2D.isKinematic = false;
-				bounced = false;
 				
 				if(!isGrounded()) {
 					state = PlayerState.JUMPING;
@@ -148,7 +129,6 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		
 		if(ledgeTimer > 0){ledgeTimer -= Mathf.Min(Time.deltaTime, ledgeTimer);}
-		if(bounceTimer > 0){bounceTimer -= Mathf.Min(Time.deltaTime, bounceTimer);}
 	}	
 	
 	void FixedUpdate() {
