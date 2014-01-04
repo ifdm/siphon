@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -25,8 +25,14 @@ public class PlayerThrow : MonoBehaviour {
 	}
 	
 	void Update () {
-		if(Input.GetMouseButtonDown(0) && throwable) {
-			GameObject thrownSeed = (GameObject)Instantiate(this.seed, transform.position, Quaternion.identity);
+		if(Input.GetMouseButtonDown(0) && throwable && !GameObject.Find("Seed")) {
+			Vector3 playerPos = transform.position;
+			BoxCollider2D box = GetComponent<BoxCollider2D>();
+			playerPos.x += box.center.x * transform.lossyScale.x;
+			playerPos.y += box.center.y * transform.lossyScale.y;
+
+			GameObject thrownSeed = (GameObject)Instantiate(this.seed, playerPos, Quaternion.identity);
+			thrownSeed.name = "Seed";
 			Vector2 p = camera.ScreenToWorldPoint(Input.mousePosition);
 			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
 			thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
