@@ -198,7 +198,29 @@ public class PlayerMovement : MonoBehaviour {
 	void Climb() {
 		float v = Input.GetAxis("Vertical");
 		
-		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * maxSpeed));
+		Vector2 p1 = (Vector2)transform.position;
+		Vector2 p2 = (Vector2)transform.position;
+		Vector2 scale = (Vector2)transform.lossyScale;
+		BoxCollider2D box = GetComponent<BoxCollider2D>();
+		CircleCollider2D circle = GetComponent<CircleCollider2D>();
+
+		p1 += Vector2.Scale(box.center, scale);
+		p2 += Vector2.Scale(box.center, scale);
+		p1.x -= box.size.x * scale.x * 0.5f;
+		p2.x += box.size.x * scale.x * 0.5f;
+
+		if(Mathf.Sign(v) > 0) {
+			p1.y += box.size.y * scale.y * 0.5f;
+			p2.y += box.size.y * scale.y * 0.5f;
+		}
+		else {
+			p1.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
+			p2.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
+		}
+
+		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * maxSpeed));
+		}
 	}
 	
 	void Jump() {
