@@ -101,31 +101,31 @@ public class PlayerMovement : MonoBehaviour {
 					animateIdle = true;
 				}
 				else if(rigidbody2D.velocity.y < 0 && ledgeTimer == 0) {
-					Vector3 eye1 = transform.position;
-					Vector3 eye2 = transform.position;
-					Vector3 extents = GetComponent<BoxCollider2D>().size * .5f;
-					extents.x *= transform.lossyScale.x;
-					extents.y *= transform.lossyScale.y;
-					eye1.y += (extents.y * .75f);
-					eye2.y += (extents.y * .75f);
-					eye2.x += extents.x;
-					if(facingRight){eye2.x += 0.15f;}
-					else{eye2.x -= 0.15f;}
+					Vector2 p1 = (Vector2)transform.position;
+					Vector2 p2 = (Vector2)transform.position;
+					Vector2 scale = (Vector2)transform.lossyScale;
+					BoxCollider2D box = GetComponent<BoxCollider2D>();
+					p1 += Vector2.Scale(box.center, scale);
+					p2 += Vector2.Scale(box.center, scale);
+					p1.y += box.size.y * scale.y * .3f;
+					p2.y += box.size.y * scale.y * .3f;
+					p2.x += box.size.x * scale.x * 1.0f;
+
+					Debug.DrawLine(p1, p2, Color.blue);
 					
-					Debug.DrawLine(eye1, eye2, Color.blue);
-					
-					if(Physics2D.Linecast(eye1, eye2, 1 << LayerMask.NameToLayer("Ground"))) {
-						eye1.y += 0.25f;
-						eye2.y += 0.25f;
-						if(!Physics2D.Linecast(eye1, eye2, 1 << LayerMask.NameToLayer("Ground"))) {
+					if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+						p1.y += box.size.y * scale.y * .1f;
+						p2.y += box.size.y * scale.y * .1f;
+						Debug.Log("It's a girl!");
+						if(true || !Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
 							state = PlayerState.LEDGING;
 						}
 					}
 					else {
-						eye1.y += 0.25f;
-						eye2.y += 0.25f;
+						p1.y += box.size.y * scale.y * .1f;
+						p2.y += box.size.y * scale.y * .1f;
 					
-						Debug.DrawLine(eye1, eye2, Color.blue);
+						Debug.DrawLine(p1, p2, Color.blue);
 					}
 				}
 
@@ -233,26 +233,27 @@ public class PlayerMovement : MonoBehaviour {
 	
 	bool isGrounded() {
 		// Can probably cache most of this (sans raycasts)
-		Vector3 p1 = transform.position;
-		Vector3 p2 = transform.position;
-		Vector3 extents = GetComponent<BoxCollider2D>().size * .5f;
-		extents.y += GetComponent<CircleCollider2D>().radius * .5f;
-		extents.x *= transform.lossyScale.x;
-		extents.y *= transform.lossyScale.y;
-		p1.x -= extents.x;
-		p2.x -= extents.x;
-		p2.y -= extents.y;
+		Vector2 p1 = (Vector2)transform.position;
+		Vector2 p2 = (Vector2)transform.position;
+		Vector2 scale = (Vector2)transform.lossyScale;
+		BoxCollider2D box = GetComponent<BoxCollider2D>();
+		CircleCollider2D circle = GetComponent<CircleCollider2D>();
+		p1 += Vector2.Scale(box.center, scale) - Vector2.Scale(box.size, scale / 2);
+		p2 += Vector2.Scale(box.center, scale) - Vector2.Scale(box.size, scale / 2);
+		p2.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
+		p1.x += box.size.x * scale.x * 0.1f;
+		p2.x += box.size.x * scale.x * 0.1f;
 		Debug.DrawLine(p1, p2, Color.red);
 		bool left = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
-		p1.x += (2 * extents.x);
-		p2.x += (2 * extents.x);
-		Debug.DrawLine(p1, p2, Color.red);
-		bool right = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
-		p1.x -= (extents.x);
-		p2.x -= (extents.x);
+		p1.x += box.size.x * scale.x * 0.4f;
+		p2.x += box.size.x * scale.x * 0.4f;
 		Debug.DrawLine(p1, p2, Color.red);
 		bool center = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
-		return left || right || center;
+		p1.x += box.size.x * scale.x * 0.4f;
+		p2.x += box.size.x * scale.x * 0.4f;
+		Debug.DrawLine(p1, p2, Color.red);
+		bool right = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
+		return left || center || right;
 	}
 
 	bool isIdle() {
