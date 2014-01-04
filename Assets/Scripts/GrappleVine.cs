@@ -7,10 +7,6 @@ public class GrappleVine : MonoBehaviour {
 	private Vector3 endPoint;
 	private bool dirty;
 
-	void Awake() {
-		gameObject.guiText.text = "Grappling Vine";
-	}
-
 	// Use this for initialization
 	void Start () {
 		startPoint = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);

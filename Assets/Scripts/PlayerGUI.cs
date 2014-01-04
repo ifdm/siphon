@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 public class PlayerGUI : MonoBehaviour {
 
+	public GUIStyle style;
 	[HideInInspector] public PlayerThrow script;
 
 	private Rect[] buttons;
 	private Rect[] activeButtons;
 
-	// Use this for initialization
 	void Start () {
 		script = GameObject.Find("Player").GetComponent<PlayerThrow>();
 		buttons = new Rect[script.slots.Length];
@@ -28,9 +28,21 @@ public class PlayerGUI : MonoBehaviour {
 			x += width + padding;
 		}
 	}
+
+	void Update() {
+		Vector2 mousePos = new Vector2(Input.mousePosition.x,Screen.height - Input.mousePosition.y);
+		foreach(var button in buttons) {
+			if(button.Contains(mousePos)) {
+				script.throwable = false;
+				break;
+			}
+			else {
+				script.throwable = true;
+			}
+		}
+	}
 	
 	void OnGUI() {
-
 		for(int key = 0; key < script.slots.Length; key++) {
 			if(key == script.activeSlot) {
 				GUI.Button(activeButtons[key], script.slots[key].name + "!");
