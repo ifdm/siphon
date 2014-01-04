@@ -10,7 +10,8 @@ public class PlayerThrow : MonoBehaviour {
 	public GameObject[] slots;
 	private List<Queue> slotQueues;
 	
-	private int activeSlot;
+	[HideInInspector] public int activeSlot;
+	[HideInInspector] public bool throwable = true;
 	
 	void Start() {
 		AdjustSlotQueues();
@@ -24,7 +25,7 @@ public class PlayerThrow : MonoBehaviour {
 	}
 	
 	void Update () {
-		if(Input.GetMouseButtonDown(0)) {
+		if(Input.GetMouseButtonDown(0) && throwable) {
 			GameObject thrownSeed = (GameObject)Instantiate(this.seed, transform.position, Quaternion.identity);
 			Vector2 p = camera.ScreenToWorldPoint(Input.mousePosition);
 			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
