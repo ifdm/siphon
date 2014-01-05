@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
 	public PlayerState state;
 	
 	private float ledgeTimer = 0;
+	private float debugTimer = 0;
 
 	void Start() {
 		skeletonAnimation = GetComponent<SkeletonAnimation>();
@@ -82,6 +83,8 @@ public class PlayerMovement : MonoBehaviour {
 					animateIdle = true;
 				}
 				else if(rigidbody2D.velocity.y < 0 && ledgeTimer == 0) {
+					Debug.Log(Time.time - debugTimer);
+				
 					Vector2 p1 = (Vector2)transform.position;
 					Vector2 p2 = (Vector2)transform.position;
 					Vector2 scale = (Vector2)transform.lossyScale;
@@ -111,7 +114,8 @@ public class PlayerMovement : MonoBehaviour {
 
 				if(animateJump) {
 					skeletonAnimation.state.ClearTracks();
-					skeletonAnimation.state.AddAnimation(1, "jump", false, 0);
+					skeletonAnimation.state.TimeScale = 1.5f;
+					skeletonAnimation.state.AddAnimation(1, "jump2", false, 0);
 					animateJump = false;
 				}
 			break;
@@ -225,6 +229,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void Jump() {
 		if(jump) {
+			debugTimer = Time.time;
 			rigidbody2D.isKinematic = false;
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 			state = PlayerState.JUMPING;
