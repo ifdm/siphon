@@ -106,9 +106,9 @@ MonoBehaviour:
   next: {fileID: 1582041881}
   previous: {fileID: 1499255410}
   delay: 1
+  gracePeriod: .5
   direction: 2
   forward: 1
-  porting: 0
 --- !u!61 &133570164
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -416,9 +416,9 @@ MonoBehaviour:
   next: {fileID: 0}
   previous: {fileID: 1582041881}
   delay: 1
+  gracePeriod: .5
   direction: 2
   forward: 1
-  porting: 0
 --- !u!61 &1120734411
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -518,6 +518,7 @@ GameObject:
   - 4: {fileID: 1317087454}
   - 212: {fileID: 1317087453}
   - 61: {fileID: 1317087452}
+  - 114: {fileID: 1317087455}
   m_Layer: 0
   m_Name: Fly Trap
   m_TagString: Untagged
@@ -568,8 +569,20 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.95883846, y: -3.07527423, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1412709618}
   m_Father: {fileID: 0}
+--- !u!114 &1317087455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1317087451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e12a29223646492d8d69d2b3ee664b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1380594236
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,10 +671,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1412709616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.66382074, y: -2.58290195, z: 0}
-  m_LocalScale: {x: .150000006, y: .150000006, z: 1}
+  m_LocalPosition: {x: 2.01423502, y: 1.40677798, z: 0}
+  m_LocalScale: {x: .428571463, y: .428571463, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1317087454}
 --- !u!114 &1412709619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343ccf2db60bc4a8eb72388c49b3424f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 5, y: 0}
+  velocity: {x: -5, y: 0}
 --- !u!50 &1412709620
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -777,9 +790,9 @@ MonoBehaviour:
   next: {fileID: 133570162}
   previous: {fileID: 0}
   delay: 5
+  gracePeriod: .5
   direction: 2
   forward: 1
-  porting: 0
 --- !u!1 &1582041881
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,9 +870,9 @@ MonoBehaviour:
   next: {fileID: 1120734409}
   previous: {fileID: 133570162}
   delay: 1
+  gracePeriod: .5
   direction: 3
   forward: 1
-  porting: 0
 --- !u!1 &1685676461
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,23 +6,21 @@ public class Porter : MonoBehaviour {
 
 	public GameObject next;
 	public GameObject previous;
+	
 	public float delay = 1f;
+	public float gracePeriod = 0.5f;
+	
 	public enum Directions {UP, DOWN, LEFT, RIGHT};
 	public Directions direction;
 
 	// Next is true, previous is false
 	[HideInInspector] public bool forward;
-	[HideInInspector] public bool porting;
 
 	private Porter nextScript;
 	private Porter previousScript;
 
-	private GameObject item;
-	private float gracePeriod = 0.5f;
-
 	void Start() {
 		forward = true;
-
 		nextScript = (next) ? next.GetComponent<Porter>() : null;
 		previousScript = (previous) ? previous.GetComponent<Porter>() : null;
 	}
@@ -56,31 +54,37 @@ public class Porter : MonoBehaviour {
 					y = 0;
 					break;
 			}
+			// Stop object anticipating a delay
+			path.velocity = new Vector2(0, 0);
 			// Set velocity
-			path.velocity = new Vector2(x, y);
+			Debug.Log("Hello?");
+			StartCoroutine(SetVelocity(path, x, y, delay));
+			// Change kinematic back to normal
+			StartCoroutine(SetKinematic(other, gracePeriod + delay));
 			// Decide next portal
 			forward = script.forward = (forward) ? false : true;
-			// Change kinematic back to normal
-			Invoke("SetKinematic", gracePeriod);
 		}
 		else {
 			Debug.Log("No portal attached. Not porting.");
 		}
 	}
 	
-	void SetKinematic() {
-		if(item) {
-			Debug.Log("Kinematic false");
-			item.rigidbody2D.isKinematic = false;
-		}
+	IEnumerator SetVelocity(FlyPath path, float x, float y, float delay) {
+		Debug.Log(Time.time);
+		yield return new WaitForSeconds(delay);
+		Debug.Log(Time.time);
+		path.velocity = new Vector2(x, y);
+	}
+	
+	IEnumerator SetKinematic(GameObject other, float delay) {
+		yield return new WaitForSeconds(delay);
+		other.rigidbody2D.isKinematic = false;
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
-		item = col.gameObject;
 		if(col.gameObject.GetComponent<FlyPath>()) {
-			Debug.Log("Kinematic true");
-			item.rigidbody2D.isKinematic = true;
-			Port(item);
+			col.gameObject.rigidbody2D.isKinematic = true;
+			Port(col.gameObject);
 		}
 	}
 }
