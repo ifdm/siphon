@@ -10,4 +10,17 @@ public class FlyPath : MonoBehaviour {
 	void FixedUpdate() {
 		rigidbody2D.velocity = velocity;
 	}
+	
+	void OnTriggerEnter2D(Collider2D col) {
+		if(!entered) {
+			if(col.gameObject.tag == "Ground") {
+				velocity = -velocity;
+				entered = true;
+			}
+		}
+	}
+	
+	void OnTriggerExit2D(Collider2D col) {
+		entered = false;
+	}
 }

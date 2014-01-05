@@ -7,8 +7,8 @@ public class Porter : MonoBehaviour {
 	public GameObject next;
 	public GameObject previous;
 	public float delay = 1f;
-	public enum directions {Up, Down, Left, Right};
-	public directions direction;
+	public enum Directions {UP, DOWN, LEFT, RIGHT};
+	public Directions direction;
 
 	// Next is true, previous is false
 	[HideInInspector] public bool forward;
@@ -18,10 +18,10 @@ public class Porter : MonoBehaviour {
 	private Porter previousScript;
 
 	private GameObject item;
+	private float gracePeriod = 0.5f;
 
 	void Start() {
 		forward = true;
-		porting = false;
 
 		nextScript = (next) ? next.GetComponent<Porter>() : null;
 		previousScript = (previous) ? previous.GetComponent<Porter>() : null;
@@ -38,19 +38,19 @@ public class Porter : MonoBehaviour {
 			other.transform.position = portal.transform.position;
 			// Resolve direction
 			switch(script.direction) {
-				case directions.Up:
+				case Directions.UP:
 					x = 0;
 					y = 2;
 					break;
-				case directions.Down:
+				case Directions.DOWN:
 					x = 0;
 					y = -2;
 					break;
-				case directions.Right:
+				case Directions.RIGHT:
 					x = 2;
 					y = 0;
 					break;
-				case directions.Left:
+				case Directions.LEFT:
 				default:
 					x = -2;
 					y = 0;
@@ -60,17 +60,27 @@ public class Porter : MonoBehaviour {
 			path.velocity = new Vector2(x, y);
 			// Decide next portal
 			forward = script.forward = (forward) ? false : true;
-			// 
+			// Change kinematic back to normal
+			Invoke("SetKinematic", gracePeriod);
 		}
 		else {
 			Debug.Log("No portal attached. Not porting.");
 		}
 	}
+	
+	void SetKinematic() {
+		if(item) {
+			Debug.Log("Kinematic false");
+			item.rigidbody2D.isKinematic = false;
+		}
+	}
 
 	void OnTriggerEnter2D(Collider2D col) {
+		item = col.gameObject;
 		if(col.gameObject.GetComponent<FlyPath>()) {
-			col.gameObject.rigidbody2D.isKinematic = true;
-			Port(col.gameObject);
+			Debug.Log("Kinematic true");
+			item.rigidbody2D.isKinematic = true;
+			Port(item);
 		}
 	}
 }
