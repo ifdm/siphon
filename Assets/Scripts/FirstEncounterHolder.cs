@@ -9,15 +9,13 @@ public class FirstEncounterHolder : MonoBehaviour {
 	private bool destroyed = false;
 	
 	void Update() {
-		if(Input.GetButtonUp("Action") && !interacted) {
+		if(!interacted) {
 			// Check to see if children triggers have been activated -- the player is within range
 			foreach(Transform child in transform) {
 				// Each trigger contains a script that keeps triggered state
 				FirstEncounterTrigger script = child.gameObject.GetComponent<FirstEncounterTrigger>();
 				// Check if we have a child with the script and a triggered state
 				if(script && script.triggered) {
-					// Add plant to Player's inventory
-					Debug.Log("Adding Plant");
 					// Find the player
 					GameObject player = GameObject.Find("Player");
 					// Grab the PlayerThrow script
