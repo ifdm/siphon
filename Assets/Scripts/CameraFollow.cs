@@ -4,8 +4,12 @@ using System.Collections;
 public class CameraFollow : MonoBehaviour {
 	
 	public float smooth = 16;
-	public GameObject player;
+	[HideInInspector] public GameObject player;
 	public float mouseThreshold = 5;
+
+	void Start() {
+		player = GameObject.Find("Player");
+	}
 
 	void Update() {
 		Vector3 mouse = camera.ScreenToWorldPoint(Input.mousePosition);

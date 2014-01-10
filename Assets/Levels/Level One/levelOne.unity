@@ -5724,6 +5724,45 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .00999999978, y: 2}
   m_Center: {x: -.995000005, y: 0}
+--- !u!1 &349126751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 7d8074614d31c5e4e823e91057722b1a, type: 2}
+  m_PrefabInternal: {fileID: 898213087}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 349126753}
+  - 61: {fileID: 349126752}
+  m_Layer: 8
+  m_Name: IceCube
+  m_TagString: Ground
+  m_Icon: {fileID: -1016138426, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &349126752
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6100000, guid: 7d8074614d31c5e4e823e91057722b1a,
+    type: 2}
+  m_PrefabInternal: {fileID: 898213087}
+  m_GameObject: {fileID: 349126751}
+  m_Enabled: 1
+  m_Material: {fileID: 6200000, guid: 65da33d8ab8bea342919749e6a92414e, type: 2}
+  m_IsTrigger: 0
+  m_Size: {x: .100000001, y: .100000001}
+  m_Center: {x: 0, y: 0}
+--- !u!4 &349126753
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 7d8074614d31c5e4e823e91057722b1a, type: 2}
+  m_PrefabInternal: {fileID: 898213087}
+  m_GameObject: {fileID: 349126751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 51.2133369, y: 5.65418053, z: -.009765625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &350550156
 GameObject:
   m_ObjectHideFlags: 0
@@ -14466,6 +14505,46 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4282336a4c353044c9e64647a0317967, type: 2}
   m_RootGameObject: {fileID: 209551273}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1001 &898213087
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 7d8074614d31c5e4e823e91057722b1a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 51.2133369
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7d8074614d31c5e4e823e91057722b1a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5.65418053
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7d8074614d31c5e4e823e91057722b1a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -.009765625
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7d8074614d31c5e4e823e91057722b1a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7d8074614d31c5e4e823e91057722b1a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7d8074614d31c5e4e823e91057722b1a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7d8074614d31c5e4e823e91057722b1a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7d8074614d31c5e4e823e91057722b1a, type: 2}
+  m_RootGameObject: {fileID: 349126751}
   m_IsPrefabParent: 0
   m_IsExploded: 1
 --- !u!1 &903068384
@@ -23880,7 +23959,7 @@ GameObject:
   - 61: {fileID: 1508984153}
   m_Layer: 8
   m_Name: Mushroom
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23894,7 +23973,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1508984152}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 180, y: 250.003906}
   m_Center: {x: 17.4902344, y: 126.993797}
 --- !u!114 &1508984154
@@ -23958,6 +24037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f48b5d30513d6b4a9f931343ed15640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstBounce: 875
+  secondBounce: 950
 --- !u!4 &1508984158
 Transform:
   m_ObjectHideFlags: 0
@@ -25848,6 +25929,7 @@ GameObject:
   - 33: {fileID: 1655108294}
   - 23: {fileID: 1655108293}
   - 114: {fileID: 1655108292}
+  - 114: {fileID: 1655108301}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -25917,9 +25999,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
-  camera: {fileID: 2044080528}
+  mainCamera: {fileID: 0}
   slots:
   - {fileID: 100002, guid: 6a6952dacada032418785151069c880a, type: 2}
+  activeSlot: 0
+  throwable: 1
 --- !u!114 &1655108296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25992,6 +26076,19 @@ Transform:
   m_LocalScale: {x: .00402447488, y: .00402447488, z: .0130489506}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1655108301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400006, guid: 4d85ecd396e1292468f18ac765d8660f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1933266698}
+  m_GameObject: {fileID: 1655108291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c41d571acfe4c1e8a291417b8b19a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounced: 0
 --- !u!1001 &1657079880
 Prefab:
   m_ObjectHideFlags: 0

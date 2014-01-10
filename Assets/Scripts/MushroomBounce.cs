@@ -6,7 +6,6 @@ public class MushroomBounce : MonoBehaviour {
 	public float firstBounce = 875f;
 	public float secondBounce = 950f;
 
-	private bool bounced = false;
 	private float bounceTimer = 0;
 
 	void Awake() {		
@@ -20,23 +19,33 @@ public class MushroomBounce : MonoBehaviour {
 		if(bounceTimer > 0){bounceTimer -= Mathf.Min(Time.deltaTime, bounceTimer);}
 	}
 
-	void OnCollisionEnter2D(Collision2D col) {
-		foreach (ContactPoint2D contact in col.contacts) {
-			if(contact.collider.name.Equals("Player") && contact.normal.y < 0){
-				Bounce(col.gameObject);
-				break;
-			}
-		}
-	}
+	void OnTriggerEnter2D(Collider2D col) {
+		if(col.gameObject.rigidbody2D && bounceTimer == 0) {
+			float bounce;
+			Bounceable script = col.gameObject.GetComponent<Bounceable>();
 
-	void Bounce(GameObject other) {
-		if(other.rigidbody2D) {
-			if(bounced) {
-				other.rigidbody2D.AddForce(new Vector2 (0, secondBounce));
+			if(script) {
+				if(script.bounced) {
+					bounce = secondBounce;
+				}
+				else {
+					bounce = firstBounce;
+				}
 			}
 			else {
-				other.rigidbody2D.AddForce(new Vector2(0, firstBounce));
-				bounced = true;
+				bounce = firstBounce;
+			}
+
+			if(col.gameObject.rigidbody2D.velocity.y < 0) {
+				if(col.gameObject.rigidbody2D.velocity.y > -(bounce / 35)) {
+					col.gameObject.rigidbody2D.velocity = new Vector2(col.gameObject.rigidbody2D.velocity.x, (bounce / 35));
+				}
+				else {
+					col.gameObject.rigidbody2D.velocity = new Vector2(col.gameObject.rigidbody2D.velocity.x, -col.gameObject.rigidbody2D.velocity.y * 35);
+				}
+
+				col.gameObject.SendMessage("Bounce");
+				bounceTimer = 0.1f;
 			}
 		}
 	}

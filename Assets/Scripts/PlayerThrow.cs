@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PlayerThrow : MonoBehaviour {
 
 	public GameObject seed;
-	public Camera camera;
+	[HideInInspector] public Camera mainCamera;
 	
 	public GameObject[] slots;
 	private List<Queue> slotQueues;
@@ -14,6 +14,8 @@ public class PlayerThrow : MonoBehaviour {
 	[HideInInspector] public bool throwable = true;
 	
 	void Start() {
+		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+		
 		AdjustSlotQueues();
 	}
 
@@ -25,7 +27,7 @@ public class PlayerThrow : MonoBehaviour {
 	}
 	
 	void Update () {
-		if(Input.GetMouseButtonDown(0) && throwable && !GameObject.Find("Seed")) {
+		if(Input.GetMouseButtonDown(0) && throwable && !GameObject.Find("Seed") && slots.Length > 0) {
 			Vector3 playerPos = transform.position;
 			BoxCollider2D box = GetComponent<BoxCollider2D>();
 			playerPos.x += box.center.x * transform.lossyScale.x;
@@ -33,7 +35,7 @@ public class PlayerThrow : MonoBehaviour {
 
 			GameObject thrownSeed = (GameObject)Instantiate(this.seed, playerPos, Quaternion.identity);
 			thrownSeed.name = "Seed";
-			Vector2 p = camera.ScreenToWorldPoint(Input.mousePosition);
+			Vector2 p = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
 			thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
 			while(slotQueues[activeSlot].Count > 0) {
