@@ -20,8 +20,13 @@ public class PlayerMovement : MonoBehaviour {
 	
 	private float ledgeTimer = 0;
 
+	[HideInInspector] public static Vector3 checkpoint;
+
 	void Start() {
 		skeletonAnimation = GetComponent<SkeletonAnimation>();
+		if(PlayerMovement.checkpoint != Vector3.zero) {
+			transform.position = PlayerMovement.checkpoint;
+		}
 	}
 
 	void Awake() {
