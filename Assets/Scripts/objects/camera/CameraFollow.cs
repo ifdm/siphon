@@ -9,6 +9,9 @@ public class CameraFollow : MonoBehaviour {
 
 	void Start() {
 		player = GameObject.Find("Player");
+		float z = transform.position.z;
+		transform.position = player.transform.position;
+		transform.position = new Vector3(transform.position.x, transform.position.y, z);
 	}
 
 	void Update() {

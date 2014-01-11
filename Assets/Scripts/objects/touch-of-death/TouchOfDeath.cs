@@ -6,5 +6,8 @@ public class TouchOfDeath : MonoBehaviour {
 		if(col.gameObject.tag == "Player") {
 			Application.LoadLevel(Application.loadedLevel);
 		}
+		else if(col.gameObject.tag == "Seed") {
+			Destroy(col.gameObject);
+		}
 	}
 }

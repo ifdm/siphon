@@ -6,6 +6,7 @@ public class GrappleVine : MonoBehaviour {
 	private Vector3 startPoint;
 	private Vector3 endPoint;
 	private bool dirty;
+	private PlayerMovement climbing = null;
 
 	// Use this for initialization
 	void Start () {
@@ -25,15 +26,29 @@ public class GrappleVine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Debug.DrawLine(startPoint, endPoint, Color.red);
-		RaycastHit2D cast = Physics2D.Linecast(startPoint, endPoint, 1 << LayerMask.NameToLayer("Player"));
-		if(cast) {
-			PlayerMovement player = cast.rigidbody.gameObject.GetComponent("PlayerMovement") as PlayerMovement;
-			if(!dirty) {
-				player.state = PlayerMovement.PlayerState.CLIMBING;
-				dirty = true;
+		if(climbing == null) {
+			RaycastHit2D cast = Physics2D.Linecast(startPoint, endPoint, 1 << LayerMask.NameToLayer("Player"));
+			if(cast) {
+				PlayerMovement player = cast.rigidbody.gameObject.GetComponent("PlayerMovement") as PlayerMovement;
+				if(!dirty) {
+					player.state = PlayerMovement.PlayerState.CLIMBING;
+					climbing = player;
+					dirty = true;
+				}
 			}
-			else if(player.rigidbody2D.velocity.y < 0){dirty = false;}
 		}
-		else{dirty = false;}
+		else {
+			RaycastHit2D cast = Physics2D.Linecast(startPoint, endPoint, 1 << LayerMask.NameToLayer("Player"));
+			PlayerMovement player = climbing.gameObject.rigidbody2D.GetComponent("PlayerMovement") as PlayerMovement;
+			if(!cast) {
+				player.state = PlayerMovement.PlayerState.JUMPING;
+				climbing = null;
+				dirty = false;
+			}
+			else if(player.gameObject.rigidbody2D.velocity.y < 0) {
+				dirty = false;
+				climbing = null;
+			}
+		}
 	}
 }
