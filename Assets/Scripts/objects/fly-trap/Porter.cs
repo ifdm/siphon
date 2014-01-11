@@ -29,35 +29,37 @@ public class Porter : MonoBehaviour {
 		GameObject portal = (forward) ? next : previous;
 		Porter script = (forward) ? nextScript : previousScript;
 		FlyPath path = other.GetComponent<FlyPath>();
-		float x, y;
+		float x, y, current;
 
 		if(portal) {
 			// Resolve position
 			other.transform.position = portal.transform.position;
+			// Resolve current velocity
+			current = Mathf.Abs(path.velocity.x) > Mathf.Abs(path.velocity.y) ? Mathf.Abs(path.velocity.x) : Mathf.Abs(path.velocity.y);
+			Debug.Log(current);
 			// Resolve direction
 			switch(script.direction) {
 				case Directions.UP:
 					x = 0;
-					y = 2;
+					y = current;
 					break;
 				case Directions.DOWN:
 					x = 0;
-					y = -2;
+					y = -current;
 					break;
 				case Directions.RIGHT:
-					x = 2;
+					x = current;
 					y = 0;
 					break;
 				case Directions.LEFT:
 				default:
-					x = -2;
+					x = -current;
 					y = 0;
 					break;
 			}
 			// Stop object anticipating a delay
 			path.velocity = new Vector2(0, 0);
 			// Set velocity
-			Debug.Log("Hello?");
 			StartCoroutine(SetVelocity(path, x, y, delay));
 			// Change kinematic back to normal
 			StartCoroutine(SetKinematic(other, gracePeriod + delay));
@@ -70,9 +72,7 @@ public class Porter : MonoBehaviour {
 	}
 	
 	IEnumerator SetVelocity(FlyPath path, float x, float y, float delay) {
-		Debug.Log(Time.time);
 		yield return new WaitForSeconds(delay);
-		Debug.Log(Time.time);
 		path.velocity = new Vector2(x, y);
 	}
 	
