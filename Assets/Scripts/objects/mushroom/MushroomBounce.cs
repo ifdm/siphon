@@ -3,8 +3,8 @@ using System.Collections;
 
 public class MushroomBounce : MonoBehaviour {
 
-	public float firstBounce = 875f;
-	public float secondBounce = 950f;
+	public float firstBounce = 20f;
+	public float secondBounce = 24f;
 
 	private float bounceTimer = 0;
 
@@ -37,11 +37,11 @@ public class MushroomBounce : MonoBehaviour {
 			}
 
 			if(col.gameObject.rigidbody2D.velocity.y < 0) {
-				if(col.gameObject.rigidbody2D.velocity.y > -(bounce / 35)) {
-					col.gameObject.rigidbody2D.velocity = new Vector2(col.gameObject.rigidbody2D.velocity.x, (bounce / 35));
+				if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounce) {
+					col.gameObject.rigidbody2D.velocity = new Vector2(col.gameObject.rigidbody2D.velocity.x, bounce);
 				}
 				else {
-					col.gameObject.rigidbody2D.velocity = new Vector2(col.gameObject.rigidbody2D.velocity.x, -col.gameObject.rigidbody2D.velocity.y * 35);
+					col.gameObject.rigidbody2D.velocity = new Vector2(col.gameObject.rigidbody2D.velocity.x, -col.gameObject.rigidbody2D.velocity.y);
 				}
 
 				col.gameObject.SendMessage("Bounce");

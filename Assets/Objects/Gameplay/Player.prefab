@@ -12,11 +12,11 @@ GameObject:
   - 61: {fileID: 6100000}
   - 58: {fileID: 5800000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400008}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -31,7 +31,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0445393585, y: -2.33832121, z: 0}
+  m_LocalPosition: {x: 6.17335796, y: 7.92689705, z: 0}
   m_LocalScale: {x: .00402447488, y: .00402447488, z: .0130489506}
   m_Children: []
   m_Father: {fileID: 0}
@@ -70,7 +70,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
   m_FixedAngle: 1
@@ -108,35 +108,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e539022d7b0a41d4b2f6138d54da661, type: 3}
+  m_Script: {fileID: 11500000, guid: 971bdddd1410d2b44be752d7e4a38b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingRight: 1
-  jump: 0
-  animateIdle: 1
-  animateJump: 0
-  skeletonAnimation: {fileID: 0}
-  moveForce: 80
-  maxSpeed: 3.25
-  jumpForce: 575
-  state: 0
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93f64da278f664f4f8e58e4622ea2772, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
-  camera: {fileID: 0}
-  slots:
-  - {fileID: 100002, guid: 6a6952dacada032418785151069c880a, type: 2}
-  activeSlot: 0
-  throwable: 1
+  bounced: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -163,10 +138,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c41d571acfe4c1e8a291417b8b19a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e8211c516f45dc4285fe3370bf186ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounced: 0
+  facingRight: 1
+  jump: 0
+  animateIdle: 1
+  animateJump: 0
+  skeletonAnimation: {fileID: 0}
+  moveForce: 80
+  maxSpeed: 3.25
+  jumpForce: 575
+  state: 0
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e7aa29052bf42c4a983509d33d1fa36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
+  mainCamera: {fileID: 0}
+  slots: []
+  activeSlot: 0
+  throwable: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
