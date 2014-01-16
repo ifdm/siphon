@@ -1,0 +1,70 @@
+using UnityEngine;
+using System;
+
+public class Controllable : MonoBehaviour {
+	[HideInInspector] public bool facingRight = true;
+	[HideInInspector] public bool jump = false;
+
+	public float moveForce = 190f;
+	public float maxSpeed = 5f;
+	public float jumpForce = 575f;
+
+	public void Move() {
+		float h = Input.GetAxis("Horizontal");
+		
+		if(Input.GetKeyDown(KeyCode.A)){h = -1;}
+		else if(Input.GetKeyDown(KeyCode.D)){h = 1;}
+		
+		if(h * rigidbody2D.velocity.x < maxSpeed) {
+			rigidbody2D.AddForce(Vector2.right * h * moveForce);
+		}
+		
+		if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed) {
+			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
+		}
+		
+		if((h > 0 && !facingRight) || (h < 0 && facingRight)) {
+			facingRight = !facingRight;
+			Vector3 theScale = transform.localScale;
+			theScale.x *= -1;
+			transform.localScale = theScale;
+		}
+	}
+	
+	public void Ledge() {
+		Jump();
+	}
+	
+	public void Climb() {
+		float v = Input.GetAxis("Vertical");
+		
+		Vector2 p1 = (Vector2)transform.position;
+		Vector2 p2 = (Vector2)transform.position;
+		Vector2 scale = (Vector2)transform.lossyScale;
+		BoxCollider2D box = GetComponent<BoxCollider2D>();
+		CircleCollider2D circle = GetComponent<CircleCollider2D>();
+
+		p1 += Vector2.Scale(box.center, scale);
+		p2 += Vector2.Scale(box.center, scale);
+		p1.x -= box.size.x * scale.x * 0.5f;
+		p2.x += box.size.x * scale.x * 0.5f;
+
+		if(Mathf.Sign(v) > 0) {
+			p1.y += box.size.y * scale.y * 0.5f;
+			p2.y += box.size.y * scale.y * 0.5f;
+		}
+		else {
+			p1.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
+			p2.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
+		}
+
+		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * maxSpeed));
+		}
+	}
+	
+	public void Jump() {
+		rigidbody2D.isKinematic = false;
+		rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+	}
+}
