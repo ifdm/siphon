@@ -8,11 +8,11 @@ public class JumpingState : PlayerState {
 
 		player.rigidbody2D.isKinematic = false;
 	
-		if(movement.isGrounded()) {
-			movement.ChangeState(PlayerState.Running);
-		}
-		else if(movement.isIdle()) {
+		if(movement.isIdle()) {
 			movement.ChangeState(PlayerState.Idling);
+		}
+		else if(movement.isGrounded()) {
+			movement.ChangeState(PlayerState.Running);
 		}
 		else if(player.rigidbody2D.velocity.y < 0) {				
 			Vector2 p1 = (Vector2)player.transform.position;
@@ -41,12 +41,20 @@ public class JumpingState : PlayerState {
 				Debug.DrawLine(p1, p2, Color.blue);
 			}
 		}
+	}
 
-		movement.animator.Jump();
+	public override void Update(GameObject player) {
+		PlayerMovement movement = player.GetComponent<PlayerMovement>();
+		movement.control.Move();
 	}
 
 	public override void Enter(GameObject player) {
-		PlayerMovement movement = player.GetComponent<PlayerMovement>();
-		movement.control.Jump();
+		if(Input.GetButtonDown("Jump")) {
+			PlayerMovement movement = player.GetComponent<PlayerMovement>();
+			player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.1f);
+
+			movement.control.Jump();
+			movement.animator.Jump();
+		}
 	}
 }

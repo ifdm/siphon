@@ -5198,7 +5198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87cef5db65778484488b44290e846984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plant: {fileID: 0}
+  plant: {fileID: 100002, guid: 6a6952dacada032418785151069c880a, type: 2}
 --- !u!50 &887226826
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -7136,6 +7136,10 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: moveForce
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
   m_RootGameObject: {fileID: 1655108291}
@@ -7960,13 +7964,13 @@ Transform:
   - {fileID: 131564134}
   - {fileID: 222845917}
   - {fileID: 849527370}
-  - {fileID: 108702354}
-  - {fileID: 660547555}
-  - {fileID: 439893384}
-  - {fileID: 1328451426}
-  - {fileID: 1383690496}
-  - {fileID: 593360096}
   - {fileID: 273197376}
+  - {fileID: 1328451426}
+  - {fileID: 593360096}
+  - {fileID: 660547555}
+  - {fileID: 108702354}
+  - {fileID: 1383690496}
+  - {fileID: 439893384}
   - {fileID: 494913021}
   m_Father: {fileID: 0}
 --- !u!1 &1477006152
@@ -9206,7 +9210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingRight: 1
   jump: 0
-  moveForce: 190
+  moveForce: 50
   maxSpeed: 5
   jumpForce: 575
 --- !u!1 &1655150175
@@ -10517,6 +10521,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9988eea5238dc44c487eb51462e4cc1b, type: 2}
+      propertyPath: plant
+      value: 
+      objectReference: {fileID: 100002, guid: 6a6952dacada032418785151069c880a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9988eea5238dc44c487eb51462e4cc1b, type: 2}
   m_RootGameObject: {fileID: 887226824}
@@ -10687,10 +10695,10 @@ Transform:
   - {fileID: 228395941}
   - {fileID: 705105272}
   - {fileID: 1072418122}
-  - {fileID: 1206085911}
-  - {fileID: 921123385}
   - {fileID: 265025745}
   - {fileID: 2071347143}
+  - {fileID: 1206085911}
+  - {fileID: 921123385}
   m_Father: {fileID: 0}
 --- !u!1 &1861467891
 GameObject:
@@ -12356,10 +12364,10 @@ Transform:
   - {fileID: 1558394038}
   - {fileID: 270984202}
   - {fileID: 517548916}
-  - {fileID: 2034295724}
-  - {fileID: 298214048}
   - {fileID: 1277652295}
   - {fileID: 1352735829}
+  - {fileID: 298214048}
+  - {fileID: 2034295724}
   m_Father: {fileID: 0}
 --- !u!1001 &2141334392
 Prefab:

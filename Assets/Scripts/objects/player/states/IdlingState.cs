@@ -11,6 +11,15 @@ public class IdlingState : PlayerState {
 	}
 
 	public override void Update(GameObject player) {
+		PlayerMovement movement = player.GetComponent<PlayerMovement>();
+		movement.animator.Idle();
+		
+		if(!movement.isGrounded() || Input.GetButtonDown("Jump")) {
+			movement.ChangeState(PlayerState.Jumping);
+		}
+	}
+
+	public override void Enter(GameObject player) {
 
 	}
 }

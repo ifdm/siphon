@@ -31,10 +31,6 @@ public class Controllable : MonoBehaviour {
 		}
 	}
 	
-	public void Ledge() {
-		Jump();
-	}
-	
 	public void Climb() {
 		float v = Input.GetAxis("Vertical");
 		

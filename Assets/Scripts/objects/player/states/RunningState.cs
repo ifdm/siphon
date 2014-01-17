@@ -4,8 +4,6 @@ using System.Collections;
 public class RunningState : PlayerState {
 	public override void HandleInput(GameObject player) {
 		PlayerMovement movement = player.GetComponent<PlayerMovement>();
-
-		player.rigidbody2D.isKinematic = false;
 		
 		if(!movement.isGrounded() || Input.GetButtonDown("Jump")) {
 			movement.ChangeState(PlayerState.Jumping);
