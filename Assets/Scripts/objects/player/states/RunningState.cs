@@ -2,21 +2,18 @@ using UnityEngine;
 using System.Collections;
 
 public class RunningState : PlayerState {
-	public override void HandleInput(GameObject player) {
-		PlayerMovement movement = player.GetComponent<PlayerMovement>();
-		
-		if(!movement.isGrounded() || Input.GetButtonDown("Jump")) {
-			movement.ChangeState(PlayerState.Jumping);
+	public override void HandleInput(PlayerControl player) {
+		if(!player.isGrounded() || Input.GetButtonDown("Jump")) {
+			player.ChangeState(PlayerState.Jumping);
 		}
-		else if(movement.isIdle()) {
-			movement.ChangeState(PlayerState.Idling);
+		else if(player.isIdle()) {
+			player.ChangeState(PlayerState.Idling);
 		}
 		
-		movement.animator.Run();
+		player.animator.Run();
 	}
 
-	public override void Update(GameObject player) {
-		PlayerMovement movement = player.GetComponent<PlayerMovement>();
-		movement.control.Move();
+	public override void Update(PlayerControl player) {
+		player.physics.Move();
 	}
 }

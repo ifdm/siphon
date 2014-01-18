@@ -3,20 +3,21 @@ using System.Collections;
 
 public class FallingState : PlayerState {
 
-	public override void Update(GameObject player) {
-		PlayerMovement movement = player.GetComponent<PlayerMovement>();
-		movement.control.Move();
+	public override void Update(PlayerControl player) {
+		player.physics.Move();
 
-		if(movement.canLedgeGrab()) {
-			movement.ChangeState(PlayerState.Ledging);
+		if(player.canLedgeGrab()) {
+			player.ChangeState(PlayerState.Ledging);
 		}
-		else if(movement.isGrounded()) {
-			movement.ChangeState(PlayerState.Idling);
+		else if(player.isGrounded()) {
+			player.ChangeState(PlayerState.Idling);
+		}
+		else if(player.canClimb()) {
+			player.ChangeState(PlayerState.Climbing);
 		}
 	}
 
-	public override void Enter(GameObject player) {
-		PlayerMovement movement = player.GetComponent<PlayerMovement>();
-		movement.animator.Fall();
+	public override void Enter(PlayerControl player) {
+		player.animator.Fall();
 	}
 }

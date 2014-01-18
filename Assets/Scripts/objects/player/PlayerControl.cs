@@ -2,44 +2,46 @@
 using System.Collections;
 using Spine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerControl : MonoBehaviour {
 
 	[HideInInspector] public static Vector3 checkpoint;
 	[HideInInspector] public SkeletonAnimation skeletonAnimation;
-	[HideInInspector] public bool climbable = true;
+	[HideInInspector] public GameObject climbing = null;
 
 	[HideInInspector] public PlayerAnimation animator;
 	[HideInInspector] public PlayerState state;
-	[HideInInspector] public Controllable control;
+	[HideInInspector] public PlayerPhysics physics;
+	
+	private bool climbFlag = true;
 
 
 	void Start() {
-		control = GetComponent<Controllable>();
+		physics = GetComponent<PlayerPhysics>();
 		animator = GetComponent<PlayerAnimation>();
 
 		ChangeState(PlayerState.Idling);
 
-		if(PlayerMovement.checkpoint != Vector3.zero) {
-			transform.position = PlayerMovement.checkpoint;
+		if(PlayerControl.checkpoint != Vector3.zero) {
+			transform.position = PlayerControl.checkpoint;
 		}
 	}
 
 	void Update() {
-		state.HandleInput(gameObject);
+		state.HandleInput(this);
 	}
 
 	void FixedUpdate() {
-		state.Update(gameObject);
+		state.Update(this);
 	}
 
 	public void ChangeState(PlayerState state) {
 		if(this.state != null) {
-			this.state.Exit(gameObject);
+			this.state.Exit(this);
 		}
 
 		this.state = state;
 		Debug.Log(this.state);
-		this.state.Enter(gameObject);
+		this.state.Enter(this);
 	}
 	
 	public bool isGrounded() {
@@ -101,5 +103,26 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		return false;
+	}
+	
+	public bool canClimb() {
+		GameObject[] ladders = GameObject.FindGameObjectsWithTag("Ladder");
+		bool ladder = false;
+		foreach(GameObject obj in ladders) {
+			Climbable climbable = obj.GetComponent<Climbable>();
+			RaycastHit2D cast = Physics2D.Linecast(climbable.startPoint, climbable.endPoint, 1 << LayerMask.NameToLayer("Player"));
+			if(cast) {
+				ladder = true;
+				break;
+			}
+		}
+		
+		if(!ladder){climbFlag = true; return false;}
+		else {
+			if(state == PlayerState.Climbing){return true;}
+			if(rigidbody2D.velocity.y < 0){climbFlag = true;}
+			if(climbFlag){climbFlag = false; return true;}
+			return false;
+		}
 	}
 }

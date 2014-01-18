@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class Controllable : MonoBehaviour {
+public class PlayerPhysics : MonoBehaviour {
 	[HideInInspector] public bool facingRight = true;
 	[HideInInspector] public bool jump = false;
 
@@ -46,16 +46,21 @@ public class Controllable : MonoBehaviour {
 		p2.x += box.size.x * scale.x * 0.5f;
 
 		if(Mathf.Sign(v) > 0) {
-			p1.y += box.size.y * scale.y * 0.5f;
-			p2.y += box.size.y * scale.y * 0.5f;
+			p1.y += box.size.y * scale.y;
+			p2.y += box.size.y * scale.y;
 		}
 		else {
 			p1.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
 			p2.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
 		}
+		
+		Debug.DrawLine(p1, p2, Color.green);
 
 		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
 			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * maxSpeed));
+		}
+		else {
+			rigidbody2D.velocity = Vector2.zero;
 		}
 	}
 	

@@ -3,23 +3,21 @@ using System.Collections;
 
 public class IdlingState : PlayerState {
 
-	public override void HandleInput(GameObject player) {
-		PlayerMovement movement = player.GetComponent<PlayerMovement>();
+	public override void HandleInput(PlayerControl player) {
 		if(Input.GetAxis("Horizontal") != 0) {
-			movement.ChangeState(PlayerState.Running);
+			player.ChangeState(PlayerState.Running);
 		}
 	}
 
-	public override void Update(GameObject player) {
-		PlayerMovement movement = player.GetComponent<PlayerMovement>();
-		movement.animator.Idle();
+	public override void Update(PlayerControl player) {
+		player.animator.Idle();
 		
-		if(!movement.isGrounded() || Input.GetButtonDown("Jump")) {
-			movement.ChangeState(PlayerState.Jumping);
+		if(!player.isGrounded() || Input.GetButtonDown("Jump")) {
+			player.ChangeState(PlayerState.Jumping);
 		}
 	}
 
-	public override void Enter(GameObject player) {
+	public override void Enter(PlayerControl player) {
 
 	}
 }
