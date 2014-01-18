@@ -9,6 +9,10 @@ public class RunningState : PlayerState {
 		else if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}
+
+		if(Input.GetAxis("Horizontal") == 0) {
+			player.rigidbody2D.velocity = new Vector2(0, player.rigidbody2D.velocity.y);
+		}
 		
 		player.animator.Run();
 	}
