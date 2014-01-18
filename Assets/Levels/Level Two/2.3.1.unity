@@ -1193,6 +1193,10 @@ Prefab:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 999938045}
+    - target: {fileID: 23200000, guid: 805831a091812784896994881642863e, type: 2}
+      propertyPath: m_Anchor.x
+      value: 1.60000002
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 805831a091812784896994881642863e, type: 2}
   m_RootGameObject: {fileID: 544004780}
@@ -1729,7 +1733,7 @@ DistanceJoint2D:
   m_Enabled: 1
   m_CollideConnected: 0
   m_ConnectedRigidBody: {fileID: 999938045}
-  m_Anchor: {x: -1.60000002, y: 0}
+  m_Anchor: {x: 1.60000002, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_Distance: 1
 --- !u!61 &544004783
@@ -6933,6 +6937,8 @@ GameObject:
   - 114: {fileID: 1937394323}
   - 114: {fileID: 1937394322}
   - 114: {fileID: 1937394321}
+  - 114: {fileID: 1937394332}
+  - 114: {fileID: 1937394331}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -6969,15 +6975,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8211c516f45dc4285fe3370bf186ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingRight: 1
-  jump: 0
-  animateIdle: 1
-  animateJump: 0
   skeletonAnimation: {fileID: 0}
-  moveForce: 80
-  maxSpeed: 3.25
-  jumpForce: 575
-  state: 0
+  animator: {fileID: 0}
+  control: {fileID: 0}
 --- !u!114 &1937394323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7091,6 +7091,36 @@ Transform:
   m_LocalScale: {x: .00402447488, y: .00402447488, z: .0130489506}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1937394331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 4d85ecd396e1292468f18ac765d8660f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1286750256}
+  m_GameObject: {fileID: 1937394320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93a5d13c8b8640c9a295d0606590ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingRight: 1
+  jump: 0
+  moveForce: 50
+  maxSpeed: 5
+  jumpForce: 575
+--- !u!114 &1937394332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400010, guid: 4d85ecd396e1292468f18ac765d8660f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1286750256}
+  m_GameObject: {fileID: 1937394320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868baa65a3c76494db0b6d7b17eb1417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 0}
 --- !u!1 &1970072797
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class PlayerThrow : MonoBehaviour {
 	
 	void Update () {
 		PlayerMovement player = gameObject.GetComponent("PlayerMovement") as PlayerMovement;
-		if(Input.GetMouseButtonDown(0) && player.state != PlayerMovement.PlayerState.LEDGING && throwable && !GameObject.Find("Seed") && slots.Length > 0) {
+		if(Input.GetMouseButtonDown(0) && player.state != PlayerState.Ledging && throwable && !GameObject.Find("Seed") && slots.Length > 0) {
 			Vector3 playerPos = transform.position;
 			BoxCollider2D box = GetComponent<BoxCollider2D>();
 			playerPos.x += box.center.x * transform.lossyScale.x;

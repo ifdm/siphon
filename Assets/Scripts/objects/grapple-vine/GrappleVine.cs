@@ -29,23 +29,23 @@ public class GrappleVine : MonoBehaviour {
 		if(climbing == null) {
 			RaycastHit2D cast = Physics2D.Linecast(startPoint, endPoint, 1 << LayerMask.NameToLayer("Player"));
 			if(cast) {
-				PlayerMovement player = cast.rigidbody.gameObject.GetComponent("PlayerMovement") as PlayerMovement;
+				PlayerMovement movement = cast.rigidbody.gameObject.GetComponent<PlayerMovement>();
 				if(!dirty) {
-					player.state = PlayerMovement.PlayerState.CLIMBING;
-					climbing = player;
+					movement.state = PlayerState.Climbing;
+					climbing = movement;
 					dirty = true;
 				}
 			}
 		}
 		else {
 			RaycastHit2D cast = Physics2D.Linecast(startPoint, endPoint, 1 << LayerMask.NameToLayer("Player"));
-			PlayerMovement player = climbing.gameObject.rigidbody2D.GetComponent("PlayerMovement") as PlayerMovement;
+			PlayerMovement movement = climbing.gameObject.GetComponent<PlayerMovement>();
 			if(!cast) {
-				player.state = PlayerMovement.PlayerState.JUMPING;
+				movement.state = PlayerState.Jumping;
 				climbing = null;
 				dirty = false;
 			}
-			else if(player.gameObject.rigidbody2D.velocity.y < 0) {
+			else if(movement.gameObject.rigidbody2D.velocity.y < 0) {
 				dirty = false;
 				climbing = null;
 			}
