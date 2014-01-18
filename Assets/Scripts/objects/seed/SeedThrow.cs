@@ -8,10 +8,8 @@ public class SeedThrow : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.tag == "Ground") {
-			if(col.gameObject.GetComponent<Unplantable>() == null) {
-				if(col.transform.parent != null && col.transform.parent.gameObject.GetComponent<Unplantable>() == null) {
-					queue.Enqueue(Instantiate(destiny, transform.position, Quaternion.identity));
-				}
+			if(col.gameObject.GetComponent<Unplantable>() == null && (col.transform.parent == null || col.transform.parent.gameObject.GetComponent<Unplantable>() == null)) {
+				queue.Enqueue(Instantiate(destiny, transform.position, Quaternion.identity));
 			}
 			
 			DestroyObject(gameObject);
