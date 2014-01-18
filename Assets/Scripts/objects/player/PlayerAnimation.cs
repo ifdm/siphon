@@ -14,9 +14,10 @@ public class PlayerAnimation : MonoBehaviour {
 	}
 
 	public void Jump() {
+		Normalize();
+
 		state.ClearTracks();
-		state.TimeScale = 2.0f;
-		state.AddAnimation(1, "jump2", false, 0);
+		state.AddAnimation(1, "jump-up", false, 0);
 	}
 
 	public void Run() {
@@ -25,7 +26,10 @@ public class PlayerAnimation : MonoBehaviour {
 	}
 
 	public void Fall() {
-
+		Normalize();
+		
+		state.ClearTracks();
+        state.AddAnimation(0, "fall", false, 0);
 	}
 
 	public void Ledging() {
@@ -39,6 +43,10 @@ public class PlayerAnimation : MonoBehaviour {
 	public void Idle() {
 		state.ClearTracks();
 		state.AddAnimation(0, "idle", false, 0);
+	}
+
+	private void Normalize() {
+		state.TimeScale = 1f;
 	}
 
 }

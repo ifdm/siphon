@@ -6,10 +6,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	[HideInInspector] public static Vector3 checkpoint;
 	[HideInInspector] public SkeletonAnimation skeletonAnimation;
+	[HideInInspector] public bool climbable = true;
 
-	public PlayerAnimation animator;
-	public PlayerState state;
-	public Controllable control;
+	[HideInInspector] public PlayerAnimation animator;
+	[HideInInspector] public PlayerState state;
+	[HideInInspector] public Controllable control;
 
 
 	void Start() {
@@ -70,5 +71,35 @@ public class PlayerMovement : MonoBehaviour {
 
 	public bool isIdle() {
 		return rigidbody2D.velocity.x == 0 && isGrounded() && Input.GetAxis("Horizontal") == 0;
+	}
+
+	public bool canLedgeGrab() {
+		Vector2 p1 = (Vector2) transform.position;
+		Vector2 p2 = (Vector2) transform.position;
+		Vector2 scale = (Vector2) transform.lossyScale;
+		BoxCollider2D box = GetComponent<BoxCollider2D>();
+		p1 += Vector2.Scale(box.center, scale);
+		p2 += Vector2.Scale(box.center, scale);
+		p1.y += box.size.y * scale.y * .3f;
+		p2.y += box.size.y * scale.y * .3f;
+		p2.x += box.size.x * scale.x * .8f;
+
+		Debug.DrawLine(p1, p2, Color.blue);
+		
+		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+			p1.y += box.size.y * scale.y * .25f;
+			p2.y += box.size.y * scale.y * .25f;
+			if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+				return true;
+			}
+		}
+		else {
+			p1.y += box.size.y * scale.y * .25f;
+			p2.y += box.size.y * scale.y * .25f;
+		
+			Debug.DrawLine(p1, p2, Color.blue);
+		}
+
+		return false;
 	}
 }

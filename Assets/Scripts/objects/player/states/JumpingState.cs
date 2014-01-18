@@ -14,7 +14,9 @@ public class JumpingState : PlayerState {
 		else if(movement.isGrounded()) {
 			movement.ChangeState(PlayerState.Running);
 		}
-		else if(player.rigidbody2D.velocity.y < 0) {				
+		else if(player.rigidbody2D.velocity.y < 0) {
+			movement.ChangeState(PlayerState.Falling);
+						
 			Vector2 p1 = (Vector2)player.transform.position;
 			Vector2 p2 = (Vector2)player.transform.position;
 			Vector2 scale = (Vector2)player.transform.lossyScale;
