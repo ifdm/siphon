@@ -4,8 +4,12 @@ using System.Collections;
 public class CameraFollow : MonoBehaviour {
 	
 	public float smooth = 16;
+	public float mouselookSmooth = 8;
 	[HideInInspector] public GameObject player;
-	public float mouseThreshold = 5;
+	public float padding = 1;
+	public float mouselookDelay = .5f;
+	public float mouselookForgive = .5f;
+	[HideInInspector] public float mouseTimer = 0;
 
 	void Start() {
 		player = GameObject.Find("Player");
@@ -15,16 +19,44 @@ public class CameraFollow : MonoBehaviour {
 	}
 
 	void Update() {
+		Vector3 my = transform.position;
 		Vector3 mouse = camera.ScreenToWorldPoint(Input.mousePosition);
-		Vector3 p = player.transform.position;
-		mouse.z = 0;
-		p.z = 0;
+		Vector2 p2d = (Vector2)player.transform.position;
+		Vector2 scale = (Vector2)player.transform.lossyScale;
+		BoxCollider2D box = player.GetComponent<BoxCollider2D>();
+		p2d += Vector2.Scale(box.center, scale);
+		Vector3 p = new Vector3(p2d.x, p2d.y, my.z);
+		mouse.z = my.z;
 		
-		Vector3 target;
-		if(Mathf.Abs(mouse.x - p.x) > mouseThreshold || Mathf.Abs(mouse.y - p.y) > mouseThreshold){target = Vector3.Lerp(mouse, p, .5f);}
-		else{target = p;}
+		float h = camera.orthographicSize - padding;
+		float w = (camera.orthographicSize * camera.aspect) - padding;
+
+		Vector3 target = transform.position;
+		PlayerState state = player.GetComponent<PlayerControl>().state;
+		if((Mathf.Abs(mouse.x - my.x) > w || Mathf.Abs(mouse.y - my.y) > h) && state == PlayerState.Idling){mouseTimer += Time.deltaTime;}
+		else {
+			mouseTimer = Mathf.Min(mouseTimer, mouselookDelay + mouselookForgive);
+			mouseTimer = Mathf.Max(mouseTimer - Time.deltaTime, 0.0f);
+		}
+		if(state != PlayerState.Idling){mouseTimer = 0;}
 		
-		target.z = transform.position.z;
+		if(mouseTimer > mouselookDelay) {
+			Vector3 m = mouse;
+			if(p.x - m.x > w){m.x = p.x - w;}
+			if(m.x - p.x > w){m.x = p.x + w;}
+			if(p.y - m.y > h){m.y = p.y - h;}
+			if(m.y - p.y > h){m.y = p.y + h;}
+			target = Vector3.Lerp(target, m, Mathf.Clamp(mouselookSmooth * Time.deltaTime, 0.0f, 1.0f));
+		}
+		else {
+			target = Vector3.Lerp(target, p, Mathf.Clamp(mouselookSmooth * Time.deltaTime, 0.0f, 1.0f));
+		}
+
+		if(p.x - target.x > w){target.x = p.x - w;}
+		if(target.x - p.x > w){target.x = p.x + w;}
+		if(p.y - target.y > h){target.y = p.y - h;}
+		if(target.y - p.y > h){target.y = p.y + h;}
+
 		transform.position = Vector3.Lerp(transform.position, target, Mathf.Clamp(smooth * Time.deltaTime, 0.0f, 1.0f));
 	}
 }

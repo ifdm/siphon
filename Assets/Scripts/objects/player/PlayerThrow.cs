@@ -27,7 +27,7 @@ public class PlayerThrow : MonoBehaviour {
 	}
 	
 	void Update () {
-		PlayerMovement player = gameObject.GetComponent("PlayerMovement") as PlayerMovement;
+		PlayerControl player = gameObject.GetComponent<PlayerControl>();
 		if(Input.GetMouseButtonDown(0) && player.state != PlayerState.Ledging && throwable && !GameObject.Find("Seed") && slots.Length > 0) {
 			Vector3 playerPos = transform.position;
 			BoxCollider2D box = GetComponent<BoxCollider2D>();

@@ -9,9 +9,12 @@ public class MushroomBounce : MonoBehaviour {
 	private float bounceTimer = 0;
 
 	void Awake() {		
-		RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position - (Vector3.up * 100), 1 << LayerMask.NameToLayer("Ground"));
+		RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position - (Vector3.up * 0.5f), 1 << LayerMask.NameToLayer("Ground"));
 		if(hit) {
 			transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+		}
+		else {
+			Destroy(gameObject);
 		}
 	}
 
