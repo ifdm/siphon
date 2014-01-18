@@ -8,7 +8,7 @@ public class PlayerAnimation : MonoBehaviour {
 	[HideInInspector] public SkeletonAnimation skeletonAnimation;
 	[HideInInspector] public Spine.AnimationState state;
 
-	void Awake() {
+	void Start() {
 		skeletonAnimation = GetComponent<SkeletonAnimation>();
 		state = skeletonAnimation.state;
 	}
