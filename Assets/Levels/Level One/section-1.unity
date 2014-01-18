@@ -8123,6 +8123,34 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1655108291}
+    - target: {fileID: 11400000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: padding
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: smooth
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: lead
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: threshold
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: directionFactor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: mouselookSmooth
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: mouselookForgive
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
   m_RootGameObject: {fileID: 2044080523}
@@ -8975,6 +9003,7 @@ GameObject:
   - 50: {fileID: 1655108299}
   - 61: {fileID: 1655108298}
   - 58: {fileID: 1655108297}
+  - 68: {fileID: 1655108304}
   - 114: {fileID: 1655108296}
   - 33: {fileID: 1655108294}
   - 23: {fileID: 1655108293}
@@ -9089,7 +9118,7 @@ BoxCollider2D:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1655108291}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 6200000, guid: eb5448cdc3ac2427d95c42e5b7d9d260, type: 2}
   m_IsTrigger: 0
   m_Size: {x: 200, y: 325}
@@ -9117,7 +9146,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1655108291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87.4071121, y: 13.6923599, z: 0}
+  m_LocalPosition: {x: 5.49206209, y: -4.52495575, z: 0}
   m_LocalScale: {x: .00402447488, y: .00402447488, z: .0130489506}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9167,6 +9196,19 @@ MonoBehaviour:
   moveForce: 50
   maxSpeed: 5
   jumpForce: 575
+--- !u!68 &1655108304
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1655108291}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Points:
+  - {x: 18.027153, y: 433.19632}
+  - {x: 149.380768, y: 451.653229}
+  - {x: 149.911697, y: 82.8395004}
 --- !u!1 &1655150175
 GameObject:
   m_ObjectHideFlags: 0
@@ -11842,9 +11884,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32df85e07f8be446b6ea3766421bbaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 16
+  smooth: 12
+  mouselookSmooth: 8
   player: {fileID: 1655108291}
-  mouseThreshold: 5
+  padding: 2
+  mouselookDelay: .5
+  mouselookForgive: .5
+  mouseTimer: 0
 --- !u!81 &2044080525
 AudioListener:
   m_ObjectHideFlags: 0
