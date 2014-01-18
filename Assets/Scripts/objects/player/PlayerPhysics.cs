@@ -9,14 +9,14 @@ public class PlayerPhysics : MonoBehaviour {
 	public float maxSpeed = 5f;
 	public float jumpForce = 575f;
 
-	public void Move() {
+	public void Move(float factor = 1.0f) {
 		float h = Input.GetAxis("Horizontal");
-		
+
 		if(Input.GetKeyDown(KeyCode.A)){h = -1;}
 		else if(Input.GetKeyDown(KeyCode.D)){h = 1;}
 
 		if(h * rigidbody2D.velocity.x < maxSpeed) {
-			rigidbody2D.AddForce(Vector2.right * h * moveForce);
+			rigidbody2D.AddForce(Vector2.right * h * moveForce * factor);
 		}
 		
 		if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed) {

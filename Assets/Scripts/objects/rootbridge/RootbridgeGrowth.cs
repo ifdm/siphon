@@ -3,10 +3,17 @@ using System.Collections;
 
 public class RootbridgeGrowth : MonoBehaviour {
 
+	private Vector3 test1;
+	private Vector3 test2;
+
 	void Start() {
 		if(!safe()) {
 			DestroyObject(gameObject);
 		}
+	}
+
+	void Update() {
+		Debug.DrawLine(test1, test2, Color.red);
 	}
 
 	bool safe() {
@@ -19,6 +26,8 @@ public class RootbridgeGrowth : MonoBehaviour {
 
 		eye1.x += extents.x + .01f;
 		eye2.x += extents.x + .02f;
+		test1 = eye1;
+		test2 = eye2;
 
 		if(Physics2D.Linecast(eye1, eye2, 1 << LayerMask.NameToLayer("Ground"))) {
 			return true;

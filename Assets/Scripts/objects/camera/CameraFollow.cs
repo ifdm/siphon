@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour {
 		transform.position = new Vector3(transform.position.x, transform.position.y, z);
 	}
 
-	void Update() {
+	void OnPreRender() {
 		Vector3 my = transform.position;
 		Vector3 mouse = camera.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 p2d = (Vector2)player.transform.position;

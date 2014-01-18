@@ -21,7 +21,7 @@ public class JumpingState : PlayerState {
 	}
 
 	public override void Update(PlayerControl player) {
-		player.physics.Move();
+		player.physics.Move(.35f);
 	}
 
 	public override void Enter(PlayerControl player) {

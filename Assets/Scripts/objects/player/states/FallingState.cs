@@ -4,7 +4,7 @@ using System.Collections;
 public class FallingState : PlayerState {
 
 	public override void Update(PlayerControl player) {
-		player.physics.Move();
+		player.physics.Move(0.25f);
 
 		if(player.canLedgeGrab()) {
 			player.ChangeState(PlayerState.Ledging);

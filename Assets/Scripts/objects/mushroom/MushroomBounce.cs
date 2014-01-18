@@ -40,11 +40,13 @@ public class MushroomBounce : MonoBehaviour {
 			}
 
 			if(col.gameObject.rigidbody2D.velocity.y < 0) {
+				var component = col.gameObject.rigidbody2D.velocity.x + Input.GetAxis("Horizontal") * 2;
+
 				if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounce) {
-					col.gameObject.rigidbody2D.velocity = new Vector2(col.gameObject.rigidbody2D.velocity.x, bounce);
+					col.gameObject.rigidbody2D.velocity = new Vector2(component, bounce);
 				}
 				else {
-					col.gameObject.rigidbody2D.velocity = new Vector2(col.gameObject.rigidbody2D.velocity.x, -col.gameObject.rigidbody2D.velocity.y);
+					col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
 				}
 
 				col.gameObject.SendMessage("Bounce");
