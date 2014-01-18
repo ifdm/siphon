@@ -14,7 +14,7 @@ public class PlayerPhysics : MonoBehaviour {
 		
 		if(Input.GetKeyDown(KeyCode.A)){h = -1;}
 		else if(Input.GetKeyDown(KeyCode.D)){h = 1;}
-		
+
 		if(h * rigidbody2D.velocity.x < maxSpeed) {
 			rigidbody2D.AddForce(Vector2.right * h * moveForce);
 		}
