@@ -33,11 +33,17 @@ public class PlayerAnimation : MonoBehaviour {
 	}
 
 	public void Ledging() {
+		Normalize();
 
+		state.ClearTracks();
+		state.AddAnimation(0, "ledge-hang", false, 0);
 	}
 
 	public void PullUp() {
+		Normalize();
 
+		state.ClearTracks();
+		state.AddAnimation(0, "ledge-climb", false, 0);
 	}
 
 	public void Idle() {
