@@ -39,19 +39,17 @@ public class MushroomBounce : MonoBehaviour {
 				bounce = firstBounce;
 			}
 
-			if(col.gameObject.rigidbody2D.velocity.y < 0) {
-				var component = col.gameObject.rigidbody2D.velocity.x + Input.GetAxis("Horizontal") * 2;
+			var component = col.gameObject.rigidbody2D.velocity.x + Input.GetAxis("Horizontal") * 200;
 
-				if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounce) {
-					col.gameObject.rigidbody2D.velocity = new Vector2(component, bounce);
-				}
-				else {
-					col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
-				}
-
-				col.gameObject.SendMessage("Bounce");
-				bounceTimer = 0.1f;
+			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounce) {
+				col.gameObject.rigidbody2D.velocity = new Vector2(component, bounce);
 			}
+			else {
+				col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
+			}
+
+			col.gameObject.SendMessage("Bounce");
+			bounceTimer = 0.1f;
 		}
 	}
 }

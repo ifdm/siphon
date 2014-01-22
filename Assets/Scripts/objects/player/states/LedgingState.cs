@@ -16,5 +16,6 @@ public class LedgingState : PlayerState {
 
 	public override void Exit(PlayerControl player) {
 		player.rigidbody2D.isKinematic = false;
+		player.animator.PullingUp();
 	}
 }

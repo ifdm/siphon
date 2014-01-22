@@ -39,7 +39,7 @@ public class PlayerAnimation : MonoBehaviour {
 		state.AddAnimation(0, "ledge-hang", false, 0);
 	}
 
-	public void PullUp() {
+	public void PullingUp() {
 		Normalize();
 
 		state.ClearTracks();
