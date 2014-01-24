@@ -9,8 +9,6 @@ public class RunningState : PlayerState {
 		else if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}
-		
-		player.animator.Run();
 	}
 
 	public override void Update(PlayerControl player) {
