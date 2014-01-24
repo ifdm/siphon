@@ -20,4 +20,8 @@ public class FallingState : PlayerState {
 	public override void Enter(PlayerControl player) {
 		player.animator.Fall();
 	}
+
+	public override void Exit(PlayerControl player) {
+		player.animator.Landing();
+	}
 }

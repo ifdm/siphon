@@ -13,11 +13,13 @@ public class RunningState : PlayerState {
 		if(Input.GetAxis("Horizontal") == 0) {
 			player.rigidbody2D.velocity = new Vector2(0, player.rigidbody2D.velocity.y);
 		}
-		
-		player.animator.Run();
 	}
 
 	public override void Update(PlayerControl player) {
-		player.physics.Move();
+		player.physics.Move();		
+	}
+
+	public override void Enter(PlayerControl player) {
+		player.animator.Run();
 	}
 }
