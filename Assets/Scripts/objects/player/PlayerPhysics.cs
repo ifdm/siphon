@@ -20,10 +20,6 @@ public class PlayerPhysics : MonoBehaviour {
 			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
 		}
 
-		if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
-			rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
-		}
-
 		if((h > 0 && !facingRight) || (h < 0 && facingRight)) {
 			facingRight = !facingRight;
 			Vector3 theScale = transform.localScale;
