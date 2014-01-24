@@ -19,7 +19,7 @@ public class PlayerAnimation : MonoBehaviour {
 	}
 
 	public void Run() {
-		state.TimeScale = 1f;
+		Normalize();
         state.SetAnimation(0, "run", true);
 	}
 
