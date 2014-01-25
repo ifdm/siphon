@@ -3,15 +3,12 @@ using System.Collections;
 
 public class Bounceable : MonoBehaviour {
 
+	public float bounceForce;
 	[HideInInspector] public bool bounced = false;
 
-	void Bounce() {
-		bounced = true;
-	}
-
-	void OnCollisionEnter2D(Collision2D col) {
-		if(col.gameObject.tag == "Ground") {
-			bounced = false;
+	void Bounced() {
+		if(gameObject.tag == "Player") {
+			gameObject.GetComponent<PlayerControl>().ChangeState(PlayerState.Jumping);
 		}
 	}
 }
