@@ -42,13 +42,16 @@ public class CameraFollow : MonoBehaviour {
 		else if(target.y - p.y > h){target.y = p.y + h;}
 
 		if(Mathf.Abs(player.rigidbody2D.velocity.y) > 20 || Input.GetKey(KeyCode.LeftShift)) {
-			float z = 0.5f;
-			fastBall = false;
+			float z = 0.3f;
 			if(Input.GetKey(KeyCode.LeftShift)){z = 0.1f; fastBall = true;}
+			else {
+				fastBall = false;
+				s = smooth * (1 - Mathf.Clamp((Mathf.Abs(player.rigidbody2D.velocity.y) - 20) / 20, 0.0f, 0.75f));
+			}
 			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 10, ref sizeVel, z);
 		}
 		else {
-			float z = 0.5f;
+			float z = 0.65f;
 			if(fastBall){z = 0.1f;}
 			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 5, ref sizeVel, z);
 		}
