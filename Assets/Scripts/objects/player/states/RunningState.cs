@@ -12,6 +12,7 @@ public class RunningState : PlayerState {
 	}
 
 	public override void Update(PlayerControl player) {
+		player.animator.TimeScale = Mathf.Abs(player.rigidbody2D.velocity.x) / 4;
 		player.physics.Move();
 
 		if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {

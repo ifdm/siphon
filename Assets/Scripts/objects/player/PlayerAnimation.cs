@@ -7,10 +7,20 @@ public class PlayerAnimation : MonoBehaviour {
 
 	[HideInInspector] public SkeletonAnimation skeletonAnimation;
 	[HideInInspector] public Spine.AnimationState state;
+	[HideInInspector] public float TimeScale = 1.0f;
 
 	void Start() {
 		skeletonAnimation = GetComponent<SkeletonAnimation>();
 		state = skeletonAnimation.state;
+		state.Event += Event;
+	}
+
+	void Update() {
+		state.TimeScale = TimeScale;
+	}
+
+	public void Event(object sender, EventTriggeredArgs e) {
+		Debug.Log(e.TrackIndex + " " + skeletonAnimation.state.GetCurrent(e.TrackIndex) + ": event " + e.Event + ", " + e.Event.Int);
 	}
 
 	public void Jump() {
@@ -25,7 +35,7 @@ public class PlayerAnimation : MonoBehaviour {
 
 	public void Fall() {
 		Normalize();
-        state.AddAnimation(0, "fall", true, 0);
+        state.SetAnimation(0, "fall", true);
 	}
 
 	public void Ledging() {
@@ -39,6 +49,7 @@ public class PlayerAnimation : MonoBehaviour {
 	}
 
 	public void Idle() {
+		Normalize();
 		state.SetAnimation(0, "idle", true);
 	}
 
@@ -48,7 +59,6 @@ public class PlayerAnimation : MonoBehaviour {
 	}
 
 	private void Normalize() {
-		state.TimeScale = 1f;
+		TimeScale = 1.0f;
 	}
-
 }
