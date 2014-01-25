@@ -26,6 +26,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void Update() {
+		if(Input.GetKeyDown(KeyCode.R)){Application.LoadLevel(Application.loadedLevel);}
 		state.HandleInput(this);
 	}
 
