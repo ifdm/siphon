@@ -44,7 +44,7 @@ public class PlayerAnimation : MonoBehaviour {
 
 	public void Landing() {
 		Normalize();
-		state.AddAnimation(0, "land", false, 0);
+		state.SetAnimation(0, "land", false);
 	}
 
 	private void Normalize() {
