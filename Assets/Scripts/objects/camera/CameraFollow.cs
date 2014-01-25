@@ -59,6 +59,6 @@ public class CameraFollow : MonoBehaviour {
 		if(p.y - target.y > h){target.y = p.y - h;}
 		if(target.y - p.y > h){target.y = p.y + h;}
 
-		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.3f);
+		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.8f);
 	}
 }
