@@ -9,14 +9,14 @@ public class RunningState : PlayerState {
 		else if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}
+	}
+
+	public override void Update(PlayerControl player) {
+		player.physics.Move();
 
 		if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
 			player.rigidbody2D.velocity = new Vector2(0, player.rigidbody2D.velocity.y);
 		}
-	}
-
-	public override void Update(PlayerControl player) {
-		player.physics.Move();		
 	}
 
 	public override void Enter(PlayerControl player) {

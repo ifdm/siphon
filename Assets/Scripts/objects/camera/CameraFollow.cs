@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour {
 		transform.position = new Vector3(transform.position.x, transform.position.y, z);
 	}
 
-	void OnPreRender() {
+	void Update() {
 		Vector3 my = transform.position;
 		Vector3 mouse = camera.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 p2d = (Vector2)player.transform.position;
@@ -59,6 +59,6 @@ public class CameraFollow : MonoBehaviour {
 		if(p.y - target.y > h){target.y = p.y - h;}
 		if(target.y - p.y > h){target.y = p.y + h;}
 
-		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.1f);
+		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.3f);
 	}
 }
