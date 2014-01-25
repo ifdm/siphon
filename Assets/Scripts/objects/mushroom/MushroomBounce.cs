@@ -6,6 +6,8 @@ public class MushroomBounce : MonoBehaviour {
 	public float firstBounce = 20f;
 	public float secondBounce = 24f;
 
+	public float horizontalForce = 0;
+
 	private float bounceTimer = 0;
 
 	void Awake() {		
@@ -31,25 +33,20 @@ public class MushroomBounce : MonoBehaviour {
 			Bounceable script = col.gameObject.GetComponent<Bounceable>();
 
 			if(script) {
-				if(script.bounced) {
-					bounce = secondBounce;
-				}
-				else {
-					bounce = firstBounce;
-				}
+				if(script.bounced){bounce = secondBounce;}
+				else{bounce = firstBounce;}
 			}
 			else {
 				bounce = firstBounce;
 			}
 
-			var component = col.gameObject.rigidbody2D.velocity.x + Input.GetAxis("Horizontal") * 200;
-
+			col.gameObject.rigidbody2D.AddForce(new Vector2(horizontalForce, 0));
 
 			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounce) {
-				col.gameObject.rigidbody2D.velocity = new Vector2(component, bounce);
+				col.gameObject.rigidbody2D.velocity = new Vector2(0, bounce);
 			}
 			else {
-				col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
+				col.gameObject.rigidbody2D.velocity = new Vector2(0, -col.gameObject.rigidbody2D.velocity.y);
 			}
 
 			// Switch to Jump State

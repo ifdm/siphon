@@ -8,6 +8,8 @@ public class PlayerPhysics : MonoBehaviour {
 	public float maxSpeed = 5f;
 	public float jumpForce = 13;
 
+	[HideInInspector] public bool airMove = false;
+
 	public void Move(float factor = 1.0f) {
 		float h = Input.GetAxis("Horizontal");
 
