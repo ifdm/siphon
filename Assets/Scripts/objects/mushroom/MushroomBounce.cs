@@ -40,13 +40,23 @@ public class MushroomBounce : MonoBehaviour {
 				bounce = firstBounce;
 			}
 
-			col.gameObject.rigidbody2D.AddForce(new Vector2(horizontalForce, 0));
+			float component = col.gameObject.rigidbody2D.velocity.x;
 
-			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounce) {
-				col.gameObject.rigidbody2D.velocity = new Vector2(0, bounce);
+			PlayerPhysics playerPhysics = col.gameObject.GetComponent<PlayerPhysics>();
+			if(horizontalForce > 0) {
+				if(playerPhysics){playerPhysics.airMove = false;}
+				col.gameObject.rigidbody2D.AddForce(new Vector2(horizontalForce, 0));
+				component = 0;
 			}
 			else {
-				col.gameObject.rigidbody2D.velocity = new Vector2(0, -col.gameObject.rigidbody2D.velocity.y);
+				if(playerPhysics){playerPhysics.airMove = true;}
+			}
+
+			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounce) {
+				col.gameObject.rigidbody2D.velocity = new Vector2(component, bounce);
+			}
+			else {
+				col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
 			}
 
 			// Switch to Jump State
