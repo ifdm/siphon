@@ -3,7 +3,6 @@ using System;
 
 public class PlayerPhysics : MonoBehaviour {
 	[HideInInspector] public bool facingRight = true;
-	[HideInInspector] public bool jump = false;
 
 	public float moveForce = 190f;
 	public float maxSpeed = 5f;
@@ -20,18 +19,18 @@ public class PlayerPhysics : MonoBehaviour {
 			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
 		}
 
-		if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
-			rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
-		}
-
 		if((h > 0 && !facingRight) || (h < 0 && facingRight)) {
-			facingRight = !facingRight;
-			Vector3 theScale = transform.localScale;
-			theScale.x *= -1;
-			transform.localScale = theScale;
+			ChangeDirection();
 		}
 	}
-	
+
+	public void ChangeDirection(){
+		facingRight = !facingRight;
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+
 	public void Climb() {
 		float v = Input.GetAxis("Vertical");
 		
