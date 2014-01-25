@@ -3,11 +3,8 @@ using System.Collections;
 
 public class MushroomBounce : MonoBehaviour {
 
-	public float firstBounce = 20f;
-	public float secondBounce = 24f;
-
+	public float bounceForce = 20f;
 	public float horizontalForce = 0;
-
 	private float bounceTimer = 0;
 
 	void Awake() {		
@@ -27,42 +24,25 @@ public class MushroomBounce : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
-		if(col.gameObject.rigidbody2D && bounceTimer == 0) {
-			float bounce;
-			PlayerControl control = col.gameObject.GetComponent<PlayerControl>();
-			Bounceable script = col.gameObject.GetComponent<Bounceable>();
+		Bounceable bounceable = col.gameObject.GetComponent<Bounceable>();
 
-			if(script) {
-				if(script.bounced){bounce = secondBounce;}
-				else{bounce = firstBounce;}
-			}
-			else {
-				bounce = firstBounce;
-			}
-
+		if(bounceable && col.gameObject.rigidbody2D && bounceTimer == 0) {
+			bounceForce = (bounceable.bounceForce != 0) ? bounceable.bounceForce : bounceForce;
 			float component = col.gameObject.rigidbody2D.velocity.x;
 
-			PlayerPhysics playerPhysics = col.gameObject.GetComponent<PlayerPhysics>();
 			if(horizontalForce > 0) {
-				if(playerPhysics){playerPhysics.airMove = false;}
-				col.gameObject.rigidbody2D.AddForce(new Vector2(horizontalForce, 0));
+				col.rigidbody2D.AddForce(new Vector2(horizontalForce, 0));
 				component = 0;
 			}
-			else {
-				if(playerPhysics){playerPhysics.airMove = true;}
-			}
-
-			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounce) {
-				col.gameObject.rigidbody2D.velocity = new Vector2(component, bounce);
+			
+			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounceForce) {
+				col.gameObject.rigidbody2D.velocity = new Vector2(component, bounceForce);
 			}
 			else {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
 			}
 
-			// Switch to Jump State
-			control.ChangeState(PlayerState.Jumping);
-
-			col.gameObject.SendMessage("Bounce");
+			col.gameObject.SendMessage("Bounced", this);
 			bounceTimer = 0.1f;
 		}
 	}
