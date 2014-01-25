@@ -87,11 +87,19 @@ public class PlayerControl : MonoBehaviour {
 		BoxCollider2D box = GetComponent<BoxCollider2D>();
 		p1 += Vector2.Scale(box.center, scale);
 		p2 += Vector2.Scale(box.center, scale);
+
+		p2.y -= box.size.y * scale.y * 1.3f;
+		Debug.DrawLine(p1, p2, Color.green);
+		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+			return false;
+		}
+
+		p2.y = p1.y;
 		p1.y += box.size.y * scale.y * .3f;
 		p2.y += box.size.y * scale.y * .3f;
 		p2.x += box.size.x * scale.x * .8f;
 
-		//Debug.DrawLine(p1, p2, Color.blue);
+		Debug.DrawLine(p1, p2, Color.blue);
 		
 		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
 			p1.y += box.size.y * scale.y * .25f;
@@ -104,7 +112,7 @@ public class PlayerControl : MonoBehaviour {
 			p1.y += box.size.y * scale.y * .25f;
 			p2.y += box.size.y * scale.y * .25f;
 		
-			//Debug.DrawLine(p1, p2, Color.blue);
+			Debug.DrawLine(p1, p2, Color.blue);
 		}
 
 		return false;
