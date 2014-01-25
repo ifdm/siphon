@@ -11,6 +11,8 @@ public class CameraFollow : MonoBehaviour {
 	private float sizeVel = 0;
 	private Vector3 vel = Vector3.zero;
 
+	private bool fastBall = false;
+
 	void Start() {
 		player = GameObject.Find("Player");
 		float z = transform.position.z;
@@ -42,7 +44,7 @@ public class CameraFollow : MonoBehaviour {
 		else if(mouse.y - p.y > h){mouse.y = p.y + h;}
 
 		float s = smooth;
-		if(f > 0.5 && player.GetComponent<PlayerControl>().state == PlayerState.Idling) {
+		if(false && f > 0.5 && player.GetComponent<PlayerControl>().state == PlayerState.Idling) {
 			f -= 0.5f;
 			target = p + ((mouse - p) * f);
 		}
@@ -55,13 +57,19 @@ public class CameraFollow : MonoBehaviour {
 		else if(p.y - target.y > h){target.y = p.y - h;}
 		else if(target.y - p.y > h){target.y = p.y + h;}
 
-		if(Mathf.Abs(player.rigidbody2D.velocity.y) > 20) {
-			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 10, ref sizeVel, 0.5f);
+		if(Mathf.Abs(player.rigidbody2D.velocity.y) > 20 || Input.GetKey(KeyCode.LeftShift)) {
+			float z = 0.5f;
+			fastBall = false;
+			if(Input.GetKey(KeyCode.LeftShift)){z = 0.1f; fastBall = true;}
+			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 10, ref sizeVel, z);
 		}
 		else {
-			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 5, ref sizeVel, 0.5f);
+			float z = 0.5f;
+			if(fastBall){z = 0.1f;}
+			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 5, ref sizeVel, z);
 		}
 
+		Debug.Log(s);
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, s);
 	}
 }

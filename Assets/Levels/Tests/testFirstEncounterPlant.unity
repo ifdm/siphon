@@ -222,13 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32df85e07f8be446b6ea3766421bbaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 16
-  mouselookSmooth: 8
+  smooth: .5
   player: {fileID: 2058887245}
   padding: 1
-  mouselookDelay: .5
-  mouselookForgive: .5
-  mouseTimer: 0
 --- !u!81 &99680396
 AudioListener:
   m_ObjectHideFlags: 0
@@ -691,6 +687,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 2058887245}
+    - target: {fileID: 11400000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: smooth
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
   m_RootGameObject: {fileID: 99680394}
@@ -784,10 +784,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   facingRight: 1
-  jump: 0
-  moveForce: 50
+  moveForce: 60
   maxSpeed: 5
-  jumpForce: 575
+  jumpForce: 13
 --- !u!114 &2058887247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -930,6 +929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 0}
+  TimeScale: 1
 --- !u!114 &2058887257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,6 +945,9 @@ MonoBehaviour:
   seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
   mainCamera: {fileID: 0}
   slots: []
+  throwForce: 700
+  topDeadZone: 15
+  bottomDeadZone: 15
   activeSlot: 0
   throwable: 1
 --- !u!68 &2058887258
