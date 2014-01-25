@@ -5,8 +5,9 @@ public class TouchOfDeath : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.tag == "Player") {
-			col.gameObject.GetComponent<PlayerControl>().ChangeState(PlayerState.Dying);
-			Destroy(this);
+			PlayerControl control = col.gameObject.GetComponent<PlayerControl>();
+			if(control.state != PlayerState.Dying){control.ChangeState(PlayerState.Dying);}
+			Destroy(gameObject);
 		}
 		else if(col.gameObject.tag == "Seed") {
 			Destroy(col.gameObject);
