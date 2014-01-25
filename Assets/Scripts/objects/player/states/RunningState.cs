@@ -10,14 +10,16 @@ public class RunningState : PlayerState {
 			player.ChangeState(PlayerState.Idling);
 		}
 
-		if(Input.GetAxis("Horizontal") == 0) {
+		if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
 			player.rigidbody2D.velocity = new Vector2(0, player.rigidbody2D.velocity.y);
 		}
-		
-		player.animator.Run();
 	}
 
 	public override void Update(PlayerControl player) {
-		player.physics.Move();
+		player.physics.Move();		
+	}
+
+	public override void Enter(PlayerControl player) {
+		player.animator.Run();
 	}
 }

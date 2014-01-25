@@ -15,40 +15,36 @@ public class PlayerAnimation : MonoBehaviour {
 
 	public void Jump() {
 		Normalize();
-
-		state.ClearTracks();
-		state.AddAnimation(1, "jump-up", false, 0);
+		state.SetAnimation(0, "jump-up", false);
 	}
 
 	public void Run() {
-		state.TimeScale = Mathf.Abs(gameObject.rigidbody2D.velocity.x) / 4.2f;
-        state.AddAnimation(0, "run", false, 0);
+		Normalize();
+        state.SetAnimation(0, "run", true);
 	}
 
 	public void Fall() {
 		Normalize();
-		
-		state.ClearTracks();
-        state.AddAnimation(0, "fall", false, 0);
+        state.AddAnimation(0, "fall", true, 0);
 	}
 
 	public void Ledging() {
 		Normalize();
-
-		state.ClearTracks();
-		state.AddAnimation(0, "ledge-hang", false, 0);
+		state.SetAnimation(0, "ledge-hang", false);
 	}
 
 	public void PullingUp() {
 		Normalize();
-
-		state.ClearTracks();
-		state.AddAnimation(0, "ledge-climb", false, 0);
+		state.SetAnimation(0, "ledge-climb", false);
 	}
 
 	public void Idle() {
-		state.ClearTracks();
-		state.AddAnimation(0, "idle", false, 0);
+		state.SetAnimation(0, "idle", true);
+	}
+
+	public void Landing() {
+		Normalize();
+		state.AddAnimation(0, "land", false, 0);
 	}
 
 	private void Normalize() {
