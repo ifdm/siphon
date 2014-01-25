@@ -19,10 +19,9 @@ public class MushroomBounce : MonoBehaviour {
 	}
 
 	void Update() {
-		if(bounceTimer > 0){
+		if(bounceTimer > 0) {
 			bounceTimer -= Mathf.Min(Time.deltaTime, bounceTimer);
 		}
-
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
@@ -58,8 +57,6 @@ public class MushroomBounce : MonoBehaviour {
 
 			col.gameObject.SendMessage("Bounce");
 			bounceTimer = 0.1f;
-
-			if(control != null) control.stopJump = true;
 		}
 	}
 }

@@ -11,10 +11,8 @@ public class PlayerControl : MonoBehaviour {
 	[HideInInspector] public PlayerAnimation animator;
 	[HideInInspector] public PlayerState state;
 	[HideInInspector] public PlayerPhysics physics;
-	[HideInInspector] public bool stopJump = false;
 
 	private bool climbFlag = true;
-
 
 	void Start() {
 		physics = GetComponent<PlayerPhysics>();
@@ -27,8 +25,6 @@ public class PlayerControl : MonoBehaviour {
 		}
 	}
 
-
-
 	void Update() {
 		state.HandleInput(this);
 	}
@@ -36,7 +32,6 @@ public class PlayerControl : MonoBehaviour {
 	void FixedUpdate() {
 		state.Update(this);
 	}
-
 
 	public void ChangeState(PlayerState state) {
 		if(this.state != null) {
@@ -48,8 +43,6 @@ public class PlayerControl : MonoBehaviour {
 	}
 	
 	public bool isGrounded() {
-		if (stopJump)
-			return false;
 
 		// Can probably cache most of this (sans raycasts)
 		Vector2 scale = (Vector2) transform.lossyScale;
