@@ -31,6 +31,6 @@ public class FallingState : PlayerState {
 	public override void Exit(PlayerControl player, PlayerState to) {
 		player.animator.TimeScale = 2f;
 		player.animator.Set("Land");
-		if(fallVelocity < -35 && player.isGrounded()){Application.LoadLevel(Application.loadedLevel);}
+		if(fallVelocity < -player.physics.lethalVelocity && player.isGrounded()){Application.LoadLevel(Application.loadedLevel);}
 	}
 }
