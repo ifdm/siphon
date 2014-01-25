@@ -36,7 +36,9 @@ public class OneWay : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D col) {
 		if(col.gameObject.tag == "Player") {
-			inside = false;
+			if((col.gameObject.rigidbody2D.velocity.y > 0 && col is CircleCollider2D) || col is EdgeCollider2D) {
+				inside = false;
+			}
 		}
 	}
 }
