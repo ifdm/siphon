@@ -49,17 +49,12 @@ public class PlayerThrow : MonoBehaviour {
 			Vector2 p = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
 
-
 			float angle = (float)Mathf.Atan2 (v.x, v.y);
 			angle = angle * Mathf.Rad2Deg;
-
-			Debug.Log ("Angle = " + angle);
 
 			//Adjust player rotation
 			if(playerPhysics.facingRight && angle < 0 || !playerPhysics.facingRight && angle > 0)
 				playerPhysics.ChangeDirection();
-
-
 
 			float top = 0;
 			float bottom = 180;
@@ -72,8 +67,6 @@ public class PlayerThrow : MonoBehaviour {
 				v = new Vector2(0, 0);
 			}
 
-			
-
 			thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
 			while(slotQueues[activeSlot].Count > 0) {
 				Destroy((GameObject)slotQueues[activeSlot].Dequeue());
@@ -82,6 +75,7 @@ public class PlayerThrow : MonoBehaviour {
 			thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
 			thrownSeed.GetComponent<SeedThrow>().queue = slotQueues[activeSlot];
 			thrownSeed.rigidbody2D.AddForce(v.normalized * throwForce);
+			player.animator.Set("Throw", false, 1);
 		}
 		
 		for(int i = 0; i < slots.Length; i++) {

@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour {
 		transform.position = new Vector3(transform.position.x, transform.position.y, z);
 	}
 
-	void Update() {
+	void OnPreRender() {
 		Vector3 my = transform.position;
 		Vector3 mouse = camera.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 p2d = (Vector2)player.transform.position;
@@ -69,7 +69,6 @@ public class CameraFollow : MonoBehaviour {
 			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 5, ref sizeVel, z);
 		}
 
-		Debug.Log(s);
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, s);
 	}
 }

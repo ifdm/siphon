@@ -12,7 +12,7 @@ public class RunningState : PlayerState {
 	}
 
 	public override void Update(PlayerControl player) {
-		player.animator.TimeScale = Mathf.Abs(player.rigidbody2D.velocity.x) / 4;
+		//player.animator.TimeScale = Mathf.Abs(player.rigidbody2D.velocity.x) / 4;
 		player.physics.Move();
 
 		if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
@@ -20,7 +20,13 @@ public class RunningState : PlayerState {
 		}
 	}
 
-	public override void Enter(PlayerControl player) {
-		player.animator.Run();
+	public override void Enter(PlayerControl player, PlayerState from) {
+		player.animator.Set("Run", true);
+	}
+
+	public override void Exit(PlayerControl player, PlayerState to) {
+		if(to == PlayerState.Idling) {
+			player.animator.Set("Stop");
+		}
 	}
 }

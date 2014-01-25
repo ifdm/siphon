@@ -4,7 +4,7 @@ using System.Collections;
 public class IdlingState : PlayerState {
 
 	public override void HandleInput(PlayerControl player) {
-		if(Input.GetAxis("Horizontal") != 0) {
+		if(player.isRunning()) {
 			player.ChangeState(PlayerState.Running);
 		}
 
@@ -13,11 +13,7 @@ public class IdlingState : PlayerState {
 		}
 	}
 
-	public override void Update(PlayerControl player) {
-
-	}
-
-	public override void Enter(PlayerControl player) {
-		player.animator.Idle();
+	public override void Enter(PlayerControl player, PlayerState from) {
+		player.animator.Add("Idle", true);
 	}
 }

@@ -13,6 +13,6 @@ public class PlayerState {
 
 	public virtual void HandleInput(PlayerControl player) {}
 	public virtual void Update(PlayerControl player) {}
-	public virtual void Enter(PlayerControl player) {}
-	public virtual void Exit(PlayerControl player) {}
+	public virtual void Enter(PlayerControl player, PlayerState from) {}
+	public virtual void Exit(PlayerControl player, PlayerState to) {}
 }

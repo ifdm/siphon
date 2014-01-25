@@ -2,12 +2,24 @@ using UnityEngine;
 using Spine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerAnimation : MonoBehaviour {
 
 	[HideInInspector] public SkeletonAnimation skeletonAnimation;
 	[HideInInspector] public Spine.AnimationState state;
 	[HideInInspector] public float TimeScale = 1.0f;
+	Dictionary<string, string> actions = new Dictionary<string, string>() {
+		{"Jump", "jump-up"},
+		{"Run", "run"},
+		{"Fall", "fall"},
+		{"Ledge", "ledge-hang"},
+		{"PullUp", "ledge-climb"},
+		{"Stop", "stop"},
+		{"Land", "land"},
+		{"Throw", "throw"},
+		{"Idle", "idle"}
+	};
 
 	void Start() {
 		skeletonAnimation = GetComponent<SkeletonAnimation>();
@@ -23,39 +35,18 @@ public class PlayerAnimation : MonoBehaviour {
 		Debug.Log(e.TrackIndex + " " + skeletonAnimation.state.GetCurrent(e.TrackIndex) + ": event " + e.Event + ", " + e.Event.Int);
 	}
 
-	public void Jump() {
-		Normalize();
-		state.SetAnimation(0, "jump-up", false);
+	public void Set(string animation, bool loop = false, int track = 0) {
+		if(actions.ContainsKey(animation)) {
+			Normalize();
+			state.SetAnimation(track, actions[animation], loop);
+		}
 	}
 
-	public void Run() {
-		Normalize();
-        state.SetAnimation(0, "run", true);
-	}
-
-	public void Fall() {
-		Normalize();
-        state.SetAnimation(0, "fall", true);
-	}
-
-	public void Ledging() {
-		Normalize();
-		state.SetAnimation(0, "ledge-hang", false);
-	}
-
-	public void PullingUp() {
-		Normalize();
-		state.SetAnimation(0, "ledge-climb", false);
-	}
-
-	public void Idle() {
-		Normalize();
-		state.SetAnimation(0, "idle", true);
-	}
-
-	public void Landing() {
-		Normalize();
-		state.SetAnimation(0, "land", false);
+	public void Add(string animation, bool loop = false, int track = 0) {
+		if(actions.ContainsKey(animation)) {
+			Normalize();
+			state.AddAnimation(track, actions[animation], loop, 0);
+		}
 	}
 
 	private void Normalize() {
