@@ -5,19 +5,25 @@ public class CameraFollow : MonoBehaviour {
 	
 	public float smooth = 0.5f;
 	[HideInInspector] public GameObject player;
+	[HideInInspector] public float targetSize;
+	[HideInInspector] public float defaultSize;
+	[HideInInspector] public float sizeSmooth;
+	[HideInInspector] public float defaultSizeSmooth;
 
 	public float padding = 1;
 
 	private float sizeVel = 0;
-	private Vector3 vel = Vector3.zero;
-
-	private bool fastBall = false;
+	private Vector3 posVel = Vector3.zero;
 
 	void Start() {
 		player = GameObject.Find("Player");
 		float z = transform.position.z;
 		transform.position = player.transform.position;
 		transform.position = new Vector3(transform.position.x, transform.position.y, z);
+		defaultSize = camera.orthographicSize;
+		targetSize = defaultSize;
+		sizeSmooth = 0.65f;
+		defaultSizeSmooth = sizeSmooth;
 	}
 
 	void OnPreRender() {
@@ -41,21 +47,17 @@ public class CameraFollow : MonoBehaviour {
 		else if(p.y - target.y > h){target.y = p.y - h;}
 		else if(target.y - p.y > h){target.y = p.y + h;}
 
-		if(Mathf.Abs(player.rigidbody2D.velocity.y) > 20 || Input.GetKey(KeyCode.LeftShift)) {
+		if(Mathf.Abs(player.rigidbody2D.velocity.y) > 20) {
 			float z = 0.3f;
-			if(Input.GetKey(KeyCode.LeftShift)){z = 0.1f; fastBall = true;}
-			else {
-				fastBall = false;
-				s = smooth * (1 - Mathf.Clamp((Mathf.Abs(player.rigidbody2D.velocity.y) - 20) / 20, 0.0f, 0.75f));
-			}
+			s = smooth * (1 - Mathf.Clamp((Mathf.Abs(player.rigidbody2D.velocity.y) - 20) / 20, 0.0f, 0.75f));
 			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 10, ref sizeVel, z);
+			sizeSmooth = 0.65f;
 		}
 		else {
-			float z = 0.65f;
-			if(fastBall){z = 0.1f;}
-			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 5, ref sizeVel, z);
+			float z = sizeSmooth;
+			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, targetSize, ref sizeVel, z);
 		}
 
-		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, s);
+		transform.position = Vector3.SmoothDamp(transform.position, target, ref posVel, s);
 	}
 }
