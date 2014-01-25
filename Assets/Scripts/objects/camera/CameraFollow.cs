@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour {
 	public float mouselookForgive = .5f;
 	[HideInInspector] public float mouseTimer = 0;
 
+	private float sizeVel = 0;
 	private Vector3 vel = Vector3.zero;
 
 	void Start() {
@@ -55,9 +56,16 @@ public class CameraFollow : MonoBehaviour {
 		}
 
 		if(p.x - target.x > w){target.x = p.x - w;}
-		if(target.x - p.x > w){target.x = p.x + w;}
-		if(p.y - target.y > h){target.y = p.y - h;}
-		if(target.y - p.y > h){target.y = p.y + h;}
+		else if(target.x - p.x > w){target.x = p.x + w;}
+		else if(p.y - target.y > h){target.y = p.y - h;}
+		else if(target.y - p.y > h){target.y = p.y + h;}
+
+		if(Mathf.Abs(player.rigidbody2D.velocity.y) > 20) {
+			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 10, ref sizeVel, 0.5f);
+		}
+		else {
+			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 5, ref sizeVel, 0.5f);
+		}
 
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.3f);
 	}
