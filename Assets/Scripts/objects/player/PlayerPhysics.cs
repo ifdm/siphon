@@ -66,6 +66,6 @@ public class PlayerPhysics : MonoBehaviour {
 	
 	public void Jump() {
 		rigidbody2D.isKinematic = false;
-		rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
 	}
 }
