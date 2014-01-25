@@ -24,13 +24,17 @@ public class PlayerPhysics : MonoBehaviour {
 		}
 		
 		if((h > 0 && !facingRight) || (h < 0 && facingRight)) {
-			facingRight = !facingRight;
-			Vector3 theScale = transform.localScale;
-			theScale.x *= -1;
-			transform.localScale = theScale;
+			ChangeDirection();
 		}
 	}
-	
+
+	public void ChangeDirection(){
+		facingRight = !facingRight;
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+
 	public void Climb() {
 		float v = Input.GetAxis("Vertical");
 		
