@@ -3,13 +3,10 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
 	
-	public float smooth = 16;
-	public float mouselookSmooth = 8;
+	public float smooth = 0.5f;
 	[HideInInspector] public GameObject player;
+
 	public float padding = 1;
-	public float mouselookDelay = .5f;
-	public float mouselookForgive = .5f;
-	[HideInInspector] public float mouseTimer = 0;
 
 	private float sizeVel = 0;
 	private Vector3 vel = Vector3.zero;
@@ -36,20 +33,18 @@ public class CameraFollow : MonoBehaviour {
 
 		Vector3 target = transform.position;
 		PlayerState state = player.GetComponent<PlayerControl>().state;
-		if((Mathf.Abs(mouse.x - my.x) > w || Mathf.Abs(mouse.y - my.y) > h) && state == PlayerState.Idling){mouseTimer += Time.deltaTime;}
-		else {
-			mouseTimer = Mathf.Min(mouseTimer, mouselookDelay + mouselookForgive);
-			mouseTimer = Mathf.Max(mouseTimer - Time.deltaTime, 0.0f);
-		}
-		if(true || state != PlayerState.Idling){mouseTimer = 0;}
-		
-		if(mouseTimer > mouselookDelay) {
-			Vector3 m = mouse;
-			if(p.x - m.x > w){m.x = p.x - w;}
-			if(m.x - p.x > w){m.x = p.x + w;}
-			if(p.y - m.y > h){m.y = p.y - h;}
-			if(m.y - p.y > h){m.y = p.y + h;}
-			target = m;
+
+		float f = Mathf.Pow(Mathf.Clamp(Vector3.Distance(p, mouse) / h, 0, 1), 2);
+
+		if(p.x - mouse.x > w){mouse.x = p.x - w;}
+		else if(mouse.x - p.x > w){mouse.x = p.x + w;}
+		else if(p.y - mouse.y > h){mouse.y = p.y - h;}
+		else if(mouse.y - p.y > h){mouse.y = p.y + h;}
+
+		float s = smooth;
+		if(f > 0.5 && player.GetComponent<PlayerControl>().state == PlayerState.Idling) {
+			f -= 0.5f;
+			target = p + ((mouse - p) * f);
 		}
 		else {
 			target = p;
@@ -67,6 +62,6 @@ public class CameraFollow : MonoBehaviour {
 			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 5, ref sizeVel, 0.5f);
 		}
 
-		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.8f);
+		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, s);
 	}
 }
