@@ -3,8 +3,12 @@ using System.Collections;
 
 public class FallingState : PlayerState {
 
+	private float fallVelocity = 0;
+
 	public override void Update(PlayerControl player) {
 		player.physics.Move();
+
+		fallVelocity = player.rigidbody2D.velocity.y == 0 ? fallVelocity : player.rigidbody2D.velocity.y;
 
 		if(player.canLedgeGrab()) {
 			player.ChangeState(PlayerState.Ledging);
@@ -23,5 +27,7 @@ public class FallingState : PlayerState {
 
 	public override void Exit(PlayerControl player) {
 		player.animator.Landing();
+		Debug.Log(fallVelocity);
+		if(fallVelocity < -50){Application.LoadLevel(Application.loadedLevel);}
 	}
 }
