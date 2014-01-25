@@ -7,7 +7,6 @@ public class JumpingState : PlayerState {
 		player.rigidbody2D.isKinematic = false;
 	
 		if(player.isIdle()) {
-			Debug.Log("IDLE");
 			player.ChangeState(PlayerState.Idling);
 		}
 		else if(player.isRunning()) {
@@ -32,6 +31,6 @@ public class JumpingState : PlayerState {
 			player.physics.Jump();
 		}
 
-		player.animator.Jump();
+		player.animator.Set("Jump");
 	}
 }

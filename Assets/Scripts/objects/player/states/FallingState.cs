@@ -25,11 +25,12 @@ public class FallingState : PlayerState {
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
-		player.animator.Fall();
+		player.animator.Set("Fall", true);
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to) {
-		player.animator.Landing();
+		player.animator.TimeScale = 2f;
+		player.animator.Set("Land");
 		if(fallVelocity < -50){Application.LoadLevel(Application.loadedLevel);}
 	}
 }

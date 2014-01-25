@@ -52,8 +52,6 @@ public class PlayerThrow : MonoBehaviour {
 			float angle = (float)Mathf.Atan2 (v.x, v.y);
 			angle = angle * Mathf.Rad2Deg;
 
-			Debug.Log ("Angle = " + angle);
-
 			//Adjust player rotation
 			if(playerPhysics.facingRight && angle < 0 || !playerPhysics.facingRight && angle > 0)
 				playerPhysics.ChangeDirection();
@@ -77,7 +75,7 @@ public class PlayerThrow : MonoBehaviour {
 			thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
 			thrownSeed.GetComponent<SeedThrow>().queue = slotQueues[activeSlot];
 			thrownSeed.rigidbody2D.AddForce(v.normalized * throwForce);
-			player.animator.Throw();
+			player.animator.Set("Throw", false, 1);
 		}
 		
 		for(int i = 0; i < slots.Length; i++) {

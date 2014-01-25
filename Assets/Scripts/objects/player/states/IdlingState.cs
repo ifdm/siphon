@@ -14,6 +14,6 @@ public class IdlingState : PlayerState {
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
-		player.animator.Idle();
+		player.animator.Add("Idle", true);
 	}
 }
