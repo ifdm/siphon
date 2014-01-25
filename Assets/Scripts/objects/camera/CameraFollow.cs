@@ -33,24 +33,7 @@ public class CameraFollow : MonoBehaviour {
 		float h = camera.orthographicSize - padding;
 		float w = (camera.orthographicSize * camera.aspect) - padding;
 
-		Vector3 target = transform.position;
-		PlayerState state = player.GetComponent<PlayerControl>().state;
-
-		float f = Mathf.Pow(Mathf.Clamp(Vector3.Distance(p, mouse) / h, 0, 1), 2);
-
-		if(p.x - mouse.x > w){mouse.x = p.x - w;}
-		else if(mouse.x - p.x > w){mouse.x = p.x + w;}
-		else if(p.y - mouse.y > h){mouse.y = p.y - h;}
-		else if(mouse.y - p.y > h){mouse.y = p.y + h;}
-
-		float s = smooth;
-		if(false && f > 0.5 && player.GetComponent<PlayerControl>().state == PlayerState.Idling) {
-			f -= 0.5f;
-			target = p + ((mouse - p) * f);
-		}
-		else {
-			target = p;
-		}
+		Vector3 target = p;
 
 		if(p.x - target.x > w){target.x = p.x - w;}
 		else if(target.x - p.x > w){target.x = p.x + w;}
