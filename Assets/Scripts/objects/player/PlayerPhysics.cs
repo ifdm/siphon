@@ -8,19 +8,24 @@ public class PlayerPhysics : MonoBehaviour {
 	public float maxSpeed = 5f;
 	public float jumpForce = 13;
 
+	[HideInInspector] public bool airMove = true;
+
 	public void Move(float factor = 1.0f) {
-		float h = Input.GetAxis("Horizontal");
+		if(GetComponent<PlayerControl>().isGrounded()){airMove = true;}
+		if(airMove) {
+			float h = Input.GetAxis("Horizontal");
 
-		if(h * rigidbody2D.velocity.x < maxSpeed && h != 0) {
-			rigidbody2D.AddForce(Vector2.right * Mathf.Sign(h) * moveForce * factor);
-		}
-		
-		if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed) {
-			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
-		}
+			if(h * rigidbody2D.velocity.x < maxSpeed && h != 0) {
+				rigidbody2D.AddForce(Vector2.right * Mathf.Sign(h) * moveForce * factor);
+			}
+			
+			if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed) {
+				rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
+			}
 
-		if((h > 0 && !facingRight) || (h < 0 && facingRight)) {
-			ChangeDirection();
+			if((h > 0 && !facingRight) || (h < 0 && facingRight)) {
+				ChangeDirection();
+			}
 		}
 	}
 

@@ -4,6 +4,7 @@ using System.Collections;
 public class MushroomBounce : MonoBehaviour {
 
 	public float bounceForce = 20f;
+	public float horizontalForce = 0;
 	private float bounceTimer = 0;
 
 	void Awake() {		
@@ -27,8 +28,13 @@ public class MushroomBounce : MonoBehaviour {
 
 		if(bounceable && col.gameObject.rigidbody2D && bounceTimer == 0) {
 			bounceForce = (bounceable.bounceForce != 0) ? bounceable.bounceForce : bounceForce;
-			var component = col.gameObject.rigidbody2D.velocity.x + Input.GetAxis("Horizontal") * 200;
+			float component = col.gameObject.rigidbody2D.velocity.x;
 
+			if(horizontalForce > 0) {
+				col.rigidbody2D.AddForce(new Vector2(horizontalForce, 0));
+				component = 0;
+			}
+			
 			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounceForce) {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, bounceForce);
 			}
@@ -36,7 +42,7 @@ public class MushroomBounce : MonoBehaviour {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
 			}
 
-			col.gameObject.SendMessage("Bounced");
+			col.gameObject.SendMessage("Bounced", this);
 			bounceTimer = 0.1f;
 		}
 	}

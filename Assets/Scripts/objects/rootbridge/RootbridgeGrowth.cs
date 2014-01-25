@@ -36,7 +36,7 @@ public class RootbridgeGrowth : MonoBehaviour {
 			return !isGrounded(transform.position);
 		}
 
-		p1.x -= 0.2f + radius;
+		p1.x -= 0.3f + radius;
 		p2.x -= 0.2f + radius;
 
 		// Left
