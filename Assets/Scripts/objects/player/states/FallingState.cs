@@ -15,7 +15,6 @@ public class FallingState : PlayerState {
 		else if(player.canClimb()) {
 			player.ChangeState(PlayerState.Climbing);
 		}
-		player.stopJump = false;
 	}
 
 	public override void Enter(PlayerControl player) {
