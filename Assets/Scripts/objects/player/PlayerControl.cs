@@ -55,17 +55,17 @@ public class PlayerControl : MonoBehaviour {
 
 		p1.x -= circle.radius * scale.x;
 		p2.x -= circle.radius * scale.x;
-		Debug.DrawLine(p1, p2, Color.red);
+		//Debug.DrawLine(p1, p2, Color.red);
 		bool left = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
 
 		p1.x += circle.radius * scale.x;
 		p2.x += circle.radius * scale.x;
-		Debug.DrawLine(p1, p2, Color.red);
+		//Debug.DrawLine(p1, p2, Color.red);
 		bool center = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
 
 		p1.x += circle.radius * scale.x;
 		p2.x += circle.radius * scale.x;
-		Debug.DrawLine(p1, p2, Color.red);
+		//Debug.DrawLine(p1, p2, Color.red);
 		bool right = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
 
 		return left || center || right;
@@ -90,7 +90,7 @@ public class PlayerControl : MonoBehaviour {
 		p2.y += box.size.y * scale.y * .3f;
 		p2.x += box.size.x * scale.x * .8f;
 
-		Debug.DrawLine(p1, p2, Color.blue);
+		//Debug.DrawLine(p1, p2, Color.blue);
 		
 		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
 			p1.y += box.size.y * scale.y * .25f;
@@ -103,7 +103,7 @@ public class PlayerControl : MonoBehaviour {
 			p1.y += box.size.y * scale.y * .25f;
 			p2.y += box.size.y * scale.y * .25f;
 		
-			Debug.DrawLine(p1, p2, Color.blue);
+			//Debug.DrawLine(p1, p2, Color.blue);
 		}
 
 		return false;
