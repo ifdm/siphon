@@ -11,6 +11,8 @@ public class CameraFollow : MonoBehaviour {
 	public float mouselookForgive = .5f;
 	[HideInInspector] public float mouseTimer = 0;
 
+	private Vector3 vel = Vector3.zero;
+
 	void Start() {
 		player = GameObject.Find("Player");
 		float z = transform.position.z;
@@ -18,7 +20,7 @@ public class CameraFollow : MonoBehaviour {
 		transform.position = new Vector3(transform.position.x, transform.position.y, z);
 	}
 
-	void OnPreRender() {
+	void Update() {
 		Vector3 my = transform.position;
 		Vector3 mouse = camera.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 p2d = (Vector2)player.transform.position;
@@ -38,7 +40,7 @@ public class CameraFollow : MonoBehaviour {
 			mouseTimer = Mathf.Min(mouseTimer, mouselookDelay + mouselookForgive);
 			mouseTimer = Mathf.Max(mouseTimer - Time.deltaTime, 0.0f);
 		}
-		if(state != PlayerState.Idling){mouseTimer = 0;}
+		if(true || state != PlayerState.Idling){mouseTimer = 0;}
 		
 		if(mouseTimer > mouselookDelay) {
 			Vector3 m = mouse;
@@ -46,10 +48,10 @@ public class CameraFollow : MonoBehaviour {
 			if(m.x - p.x > w){m.x = p.x + w;}
 			if(p.y - m.y > h){m.y = p.y - h;}
 			if(m.y - p.y > h){m.y = p.y + h;}
-			target = Vector3.Lerp(target, m, Mathf.Clamp(mouselookSmooth * Time.deltaTime, 0.0f, 1.0f));
+			target = m;
 		}
 		else {
-			target = Vector3.Lerp(target, p, Mathf.Clamp(mouselookSmooth * Time.deltaTime, 0.0f, 1.0f));
+			target = p;
 		}
 
 		if(p.x - target.x > w){target.x = p.x - w;}
@@ -57,6 +59,6 @@ public class CameraFollow : MonoBehaviour {
 		if(p.y - target.y > h){target.y = p.y - h;}
 		if(target.y - p.y > h){target.y = p.y + h;}
 
-		transform.position = Vector3.Lerp(transform.position, target, Mathf.Clamp(smooth * Time.deltaTime, 0.0f, 1.0f));
+		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.3f);
 	}
 }
