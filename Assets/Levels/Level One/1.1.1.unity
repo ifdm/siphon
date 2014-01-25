@@ -311,13 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32df85e07f8be446b6ea3766421bbaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 16
-  mouselookSmooth: 8
+  smooth: .5
   player: {fileID: 0}
   padding: 1
-  mouselookDelay: .5
-  mouselookForgive: .5
-  mouseTimer: 0
 --- !u!81 &237881958
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1120,7 +1116,7 @@ MonoBehaviour:
   facingRight: 1
   moveForce: 60
   maxSpeed: 5
-  jumpForce: 575
+  jumpForce: 13
 --- !u!114 &981426555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1134,6 +1130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 0}
+  TimeScale: 1
 --- !u!114 &981426556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,7 +1145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
   mainCamera: {fileID: 0}
-  slots: []
+  slots:
+  - {fileID: 100002, guid: 6a6952dacada032418785151069c880a, type: 2}
   throwForce: 700
   topDeadZone: 15
   bottomDeadZone: 15
@@ -1170,7 +1168,6 @@ MonoBehaviour:
   climbing: {fileID: 0}
   animator: {fileID: 0}
   physics: {fileID: 0}
-  stopJump: 0
 --- !u!114 &981426558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1209,9 +1206,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayer: 2
+  m_SortingOrder: 1
+  m_SortingLayerID: 1408507349
 --- !u!33 &981426560
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1761,6 +1758,22 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_SortingLayerID
+      value: 1408507349
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
   m_RootGameObject: {fileID: 981426553}
@@ -2128,7 +2141,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_SortingLayerID: 1408507349
   m_Sprite: {fileID: 21300000, guid: 8a34cad7dc4f64815b8ee6c4545e2c5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2139,7 +2152,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1570566155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.22513294, y: -11.2091331, z: 0}
+  m_LocalPosition: {x: -2.29903197, y: -11.6525307, z: 0}
   m_LocalScale: {x: .471577346, y: .471577287, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
