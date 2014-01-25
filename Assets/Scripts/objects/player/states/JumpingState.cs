@@ -29,7 +29,8 @@ public class JumpingState : PlayerState {
 			player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.1f);
 
 			player.physics.Jump();
-			player.animator.Jump();
 		}
+
+		player.animator.Jump();
 	}
 }

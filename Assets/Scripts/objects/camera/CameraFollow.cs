@@ -3,13 +3,15 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
 	
-	public float smooth = 16;
-	public float mouselookSmooth = 8;
+	public float smooth = 0.5f;
 	[HideInInspector] public GameObject player;
+
 	public float padding = 1;
-	public float mouselookDelay = .5f;
-	public float mouselookForgive = .5f;
-	[HideInInspector] public float mouseTimer = 0;
+
+	private float sizeVel = 0;
+	private Vector3 vel = Vector3.zero;
+
+	private bool fastBall = false;
 
 	void Start() {
 		player = GameObject.Find("Player");
@@ -18,7 +20,7 @@ public class CameraFollow : MonoBehaviour {
 		transform.position = new Vector3(transform.position.x, transform.position.y, z);
 	}
 
-	void OnPreRender() {
+	void Update() {
 		Vector3 my = transform.position;
 		Vector3 mouse = camera.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 p2d = (Vector2)player.transform.position;
@@ -33,30 +35,41 @@ public class CameraFollow : MonoBehaviour {
 
 		Vector3 target = transform.position;
 		PlayerState state = player.GetComponent<PlayerControl>().state;
-		if((Mathf.Abs(mouse.x - my.x) > w || Mathf.Abs(mouse.y - my.y) > h) && state == PlayerState.Idling){mouseTimer += Time.deltaTime;}
-		else {
-			mouseTimer = Mathf.Min(mouseTimer, mouselookDelay + mouselookForgive);
-			mouseTimer = Mathf.Max(mouseTimer - Time.deltaTime, 0.0f);
-		}
-		if(state != PlayerState.Idling){mouseTimer = 0;}
-		
-		if(mouseTimer > mouselookDelay) {
-			Vector3 m = mouse;
-			if(p.x - m.x > w){m.x = p.x - w;}
-			if(m.x - p.x > w){m.x = p.x + w;}
-			if(p.y - m.y > h){m.y = p.y - h;}
-			if(m.y - p.y > h){m.y = p.y + h;}
-			target = Vector3.Lerp(target, m, Mathf.Clamp(mouselookSmooth * Time.deltaTime, 0.0f, 1.0f));
+
+		float f = Mathf.Pow(Mathf.Clamp(Vector3.Distance(p, mouse) / h, 0, 1), 2);
+
+		if(p.x - mouse.x > w){mouse.x = p.x - w;}
+		else if(mouse.x - p.x > w){mouse.x = p.x + w;}
+		else if(p.y - mouse.y > h){mouse.y = p.y - h;}
+		else if(mouse.y - p.y > h){mouse.y = p.y + h;}
+
+		float s = smooth;
+		if(false && f > 0.5 && player.GetComponent<PlayerControl>().state == PlayerState.Idling) {
+			f -= 0.5f;
+			target = p + ((mouse - p) * f);
 		}
 		else {
-			target = Vector3.Lerp(target, p, Mathf.Clamp(mouselookSmooth * Time.deltaTime, 0.0f, 1.0f));
+			target = p;
 		}
 
 		if(p.x - target.x > w){target.x = p.x - w;}
-		if(target.x - p.x > w){target.x = p.x + w;}
-		if(p.y - target.y > h){target.y = p.y - h;}
-		if(target.y - p.y > h){target.y = p.y + h;}
+		else if(target.x - p.x > w){target.x = p.x + w;}
+		else if(p.y - target.y > h){target.y = p.y - h;}
+		else if(target.y - p.y > h){target.y = p.y + h;}
 
-		transform.position = Vector3.Lerp(transform.position, target, Mathf.Clamp(smooth * Time.deltaTime, 0.0f, 1.0f));
+		if(Mathf.Abs(player.rigidbody2D.velocity.y) > 20 || Input.GetKey(KeyCode.LeftShift)) {
+			float z = 0.5f;
+			fastBall = false;
+			if(Input.GetKey(KeyCode.LeftShift)){z = 0.1f; fastBall = true;}
+			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 10, ref sizeVel, z);
+		}
+		else {
+			float z = 0.5f;
+			if(fastBall){z = 0.1f;}
+			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 5, ref sizeVel, z);
+		}
+
+		Debug.Log(s);
+		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, s);
 	}
 }

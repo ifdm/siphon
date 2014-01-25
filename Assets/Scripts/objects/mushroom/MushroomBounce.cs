@@ -19,15 +19,15 @@ public class MushroomBounce : MonoBehaviour {
 	}
 
 	void Update() {
-		if(bounceTimer > 0){
+		if(bounceTimer > 0) {
 			bounceTimer -= Mathf.Min(Time.deltaTime, bounceTimer);
 		}
-
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.rigidbody2D && bounceTimer == 0) {
 			float bounce;
+			PlayerControl control = col.gameObject.GetComponent<PlayerControl>();
 			Bounceable script = col.gameObject.GetComponent<Bounceable>();
 
 			if(script) {
@@ -52,12 +52,11 @@ public class MushroomBounce : MonoBehaviour {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
 			}
 
+			// Switch to Jump State
+			control.ChangeState(PlayerState.Jumping);
+
 			col.gameObject.SendMessage("Bounce");
 			bounceTimer = 0.1f;
-
-			PlayerControl control = col.gameObject.GetComponent<PlayerControl>();
-			if(control != null)
-				control.stopJump = true;
 		}
 	}
 }

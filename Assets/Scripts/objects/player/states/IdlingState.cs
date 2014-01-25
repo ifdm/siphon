@@ -7,12 +7,14 @@ public class IdlingState : PlayerState {
 		if(Input.GetAxis("Horizontal") != 0) {
 			player.ChangeState(PlayerState.Running);
 		}
-	}
 
-	public override void Update(PlayerControl player) {		
 		if(!player.isGrounded() || Input.GetButtonDown("Jump")) {
 			player.ChangeState(PlayerState.Jumping);
 		}
+	}
+
+	public override void Update(PlayerControl player) {
+
 	}
 
 	public override void Enter(PlayerControl player) {
