@@ -36,14 +36,14 @@ public class PlayerAnimation : MonoBehaviour {
 	}
 
 	public void Set(string animation, bool loop = false, int track = 0) {
-		if(actions.ContainsKey(animation)) {
+		if(actions.ContainsKey(animation) && state != null) {
 			Normalize();
 			state.SetAnimation(track, actions[animation], loop);
 		}
 	}
 
 	public void Add(string animation, bool loop = false, int track = 0) {
-		if(actions.ContainsKey(animation)) {
+		if(actions.ContainsKey(animation) && state != null) {
 			Normalize();
 			state.AddAnimation(track, actions[animation], loop, 0);
 		}
