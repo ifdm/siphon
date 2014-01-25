@@ -20,7 +20,13 @@ public class RunningState : PlayerState {
 		}
 	}
 
-	public override void Enter(PlayerControl player) {
+	public override void Enter(PlayerControl player, PlayerState from) {
 		player.animator.Run();
+	}
+
+	public override void Exit(PlayerControl player, PlayerState to) {
+		if(to == PlayerState.Idling) {
+			player.animator.Stop();
+		}
 	}
 }

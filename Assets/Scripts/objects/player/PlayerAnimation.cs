@@ -48,6 +48,11 @@ public class PlayerAnimation : MonoBehaviour {
 		state.SetAnimation(0, "ledge-climb", false);
 	}
 
+	public void Stop() {
+		Normalize();
+		state.SetAnimation(0, "stop", false);
+	}
+
 	public void Idle() {
 		Normalize();
 		state.SetAnimation(0, "idle", true);
@@ -56,6 +61,11 @@ public class PlayerAnimation : MonoBehaviour {
 	public void Landing() {
 		Normalize();
 		state.SetAnimation(0, "land", false);
+	}
+
+	public void Throw() {
+		Normalize();
+		state.SetAnimation(1, "throw", false);
 	}
 
 	private void Normalize() {

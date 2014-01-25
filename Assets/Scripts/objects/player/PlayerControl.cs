@@ -33,13 +33,14 @@ public class PlayerControl : MonoBehaviour {
 		state.Update(this);
 	}
 
-	public void ChangeState(PlayerState state) {
-		if(this.state != null) {
-			this.state.Exit(this);
+	public void ChangeState(PlayerState next) {
+		PlayerState previous = this.state;
+		if(previous != null) {
+			previous.Exit(this, next);
 		}
 
-		this.state = state;
-		this.state.Enter(this);
+		this.state = next;
+		this.state.Enter(this, previous);
 	}
 	
 	public bool isGrounded() {
@@ -72,6 +73,10 @@ public class PlayerControl : MonoBehaviour {
 
 	public bool isIdle() {
 		return rigidbody2D.velocity.x == 0 && isGrounded() && Input.GetAxis("Horizontal") == 0;
+	}
+
+	public bool isRunning() {
+		return Input.GetAxis("Horizontal") != 0 && isGrounded();
 	}
 
 	public bool canLedgeGrab() {

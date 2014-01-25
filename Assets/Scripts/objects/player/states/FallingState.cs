@@ -24,13 +24,12 @@ public class FallingState : PlayerState {
 		}
 	}
 
-	public override void Enter(PlayerControl player) {
+	public override void Enter(PlayerControl player, PlayerState from) {
 		player.animator.Fall();
 	}
 
-	public override void Exit(PlayerControl player) {
+	public override void Exit(PlayerControl player, PlayerState to) {
 		player.animator.Landing();
-		Debug.Log(fallVelocity);
 		if(fallVelocity < -50){Application.LoadLevel(Application.loadedLevel);}
 	}
 }

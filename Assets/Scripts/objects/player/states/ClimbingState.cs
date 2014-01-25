@@ -16,11 +16,11 @@ public class ClimbingState : PlayerState {
 		}
 	}
 
-	public override void Enter(PlayerControl player) {
+	public override void Enter(PlayerControl player, PlayerState from) {
 		player.rigidbody2D.isKinematic = true;
 	}
 
-	public override void Exit(PlayerControl player) {
+	public override void Exit(PlayerControl player, PlayerState to) {
 		player.rigidbody2D.isKinematic = false;
 	}
 }

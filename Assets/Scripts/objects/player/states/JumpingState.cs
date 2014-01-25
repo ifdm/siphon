@@ -7,9 +7,10 @@ public class JumpingState : PlayerState {
 		player.rigidbody2D.isKinematic = false;
 	
 		if(player.isIdle()) {
+			Debug.Log("IDLE");
 			player.ChangeState(PlayerState.Idling);
 		}
-		else if(player.isGrounded()) {
+		else if(player.isRunning()) {
 			player.ChangeState(PlayerState.Running);
 		}
 		else if(player.rigidbody2D.velocity.y < 0) {
@@ -24,7 +25,7 @@ public class JumpingState : PlayerState {
 		player.physics.Move();
 	}
 
-	public override void Enter(PlayerControl player) {
+	public override void Enter(PlayerControl player, PlayerState from) {
 		if(Input.GetButtonDown("Jump")) {
 			player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.1f);
 

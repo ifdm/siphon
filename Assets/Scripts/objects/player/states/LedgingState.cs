@@ -9,12 +9,12 @@ public class LedgingState : PlayerState {
 		}
 	}
 
-	public override void Enter(PlayerControl player) {
+	public override void Enter(PlayerControl player, PlayerState from) {
 		player.rigidbody2D.isKinematic = true;
 		player.animator.Ledging();
 	}
 
-	public override void Exit(PlayerControl player) {
+	public override void Exit(PlayerControl player, PlayerState to) {
 		player.rigidbody2D.isKinematic = false;
 		player.animator.PullingUp();
 	}
