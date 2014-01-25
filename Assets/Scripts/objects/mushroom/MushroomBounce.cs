@@ -19,7 +19,10 @@ public class MushroomBounce : MonoBehaviour {
 	}
 
 	void Update() {
-		if(bounceTimer > 0){bounceTimer -= Mathf.Min(Time.deltaTime, bounceTimer);}
+		if(bounceTimer > 0){
+			bounceTimer -= Mathf.Min(Time.deltaTime, bounceTimer);
+		}
+
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
@@ -41,6 +44,7 @@ public class MushroomBounce : MonoBehaviour {
 
 			var component = col.gameObject.rigidbody2D.velocity.x + Input.GetAxis("Horizontal") * 200;
 
+
 			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounce) {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, bounce);
 			}
@@ -50,6 +54,10 @@ public class MushroomBounce : MonoBehaviour {
 
 			col.gameObject.SendMessage("Bounce");
 			bounceTimer = 0.1f;
+
+			PlayerControl control = col.gameObject.GetComponent<PlayerControl>();
+			if(control != null)
+				control.stopJump = true;
 		}
 	}
 }

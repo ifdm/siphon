@@ -3,7 +3,6 @@ using System;
 
 public class PlayerPhysics : MonoBehaviour {
 	[HideInInspector] public bool facingRight = true;
-	[HideInInspector] public bool jump = false;
 
 	public float moveForce = 190f;
 	public float maxSpeed = 5f;

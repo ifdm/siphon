@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour {
 	[HideInInspector] public PlayerAnimation animator;
 	[HideInInspector] public PlayerState state;
 	[HideInInspector] public PlayerPhysics physics;
+	[HideInInspector] public bool stopJump = false;
 
 	private bool climbFlag = true;
 
@@ -48,6 +49,9 @@ public class PlayerControl : MonoBehaviour {
 	}
 	
 	public bool isGrounded() {
+		if (stopJump)
+			return false;
+
 		// Can probably cache most of this (sans raycasts)
 		Vector2 scale = (Vector2) transform.lossyScale;
 		CircleCollider2D circle = GetComponent<CircleCollider2D>();

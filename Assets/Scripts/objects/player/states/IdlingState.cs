@@ -18,6 +18,5 @@ public class IdlingState : PlayerState {
 	}
 
 	public override void Enter(PlayerControl player) {
-
 	}
 }
