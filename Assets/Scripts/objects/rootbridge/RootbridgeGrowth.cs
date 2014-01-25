@@ -3,10 +3,7 @@ using System.Collections;
 
 public class RootbridgeGrowth : MonoBehaviour {
 
-	private Vector3 test1;
-	private Vector3 test2;
 	private GameObject player;
-	private bool inside;
 	private Vector3 l1;
 	private Vector3 l2;
 
@@ -18,33 +15,7 @@ public class RootbridgeGrowth : MonoBehaviour {
 	}
 
 	void Update() {
-		if(player.rigidbody2D.velocity.y > 0 || inside) {
-			Debug.Log("You can go through me.");
-			transform.Find("body").gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-		}
-		else {
-			transform.Find("body").gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
-		}
-
 		Debug.DrawLine(l1, l2, Color.red);
-	}
-
-	void OnTriggerStay2D(Collider2D col) {
-		if(col.gameObject.tag == "Player") {
-			inside = true;
-		}
-	}
-
-	void OnTriggerEnter2D(Collider2D col) {
-		if(col.gameObject.tag == "Player") {
-			inside = true;
-		}
-	}
-
-	void OnTriggerExit2D(Collider2D col) {
-		if(col.gameObject.tag == "Player") {
-			inside = false;
-		}
 	}
 
 	bool safe() {
