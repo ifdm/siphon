@@ -39,7 +39,6 @@ public class PlayerControl : MonoBehaviour {
 		}
 
 		this.state = state;
-		Debug.Log(this.state);
 		this.state.Enter(this);
 	}
 	

@@ -67,6 +67,6 @@ public class CameraFollow : MonoBehaviour {
 			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, 5, ref sizeVel, 0.5f);
 		}
 
-		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.3f);
+		transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.8f);
 	}
 }
