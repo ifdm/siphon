@@ -38,7 +38,7 @@ public class RootbridgeGrowth : MonoBehaviour {
 		p1.x += 0.1f;
 		p1.y = transform.position.y + extents.y + 0.01f;
 
-		p2.x += radius + 0.1f;
+		p2.x += radius + 0.2f;
 		p2.y = transform.position.y + extents.y + 0.01f;
 
 		l1 = p1;
@@ -50,7 +50,7 @@ public class RootbridgeGrowth : MonoBehaviour {
 			return true;
 		}
 
-		p1.x -= 0.2f + radius;
+		p1.x -= 0.3f + radius;
 		p2.x -= 0.2f + radius;
 
 		// Left
