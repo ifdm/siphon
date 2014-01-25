@@ -170,7 +170,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 8c7b4de636cad4ffeba0180ccc87d1b6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: .784313738}
 --- !u!4 &135351671
 Transform:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ GameObject:
   - 61: {fileID: 256389754}
   m_Layer: 8
   m_Name: Mushroom
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,7 +211,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 256389753}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 180, y: 250.003906}
   m_Center: {x: 17.4902344, y: 126.993797}
 --- !u!114 &256389755
@@ -272,9 +272,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 256389753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f48b5d30513d6b4a9f931343ed15640, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cd8e0fcd0935734db334e70d490f852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstBounce: 13
+  secondBounce: 15
 --- !u!4 &256389759
 Transform:
   m_ObjectHideFlags: 0
@@ -437,11 +439,15 @@ GameObject:
   - 50: {fileID: 1806353010}
   - 61: {fileID: 1806353009}
   - 58: {fileID: 1806353008}
+  - 68: {fileID: 1806353019}
   - 114: {fileID: 1806353007}
-  - 114: {fileID: 1806353015}
   - 33: {fileID: 1806353014}
   - 23: {fileID: 1806353013}
   - 114: {fileID: 1806353012}
+  - 114: {fileID: 1806353018}
+  - 114: {fileID: 1806353017}
+  - 114: {fileID: 1806353016}
+  - 114: {fileID: 1806353015}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -458,18 +464,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1806353006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e539022d7b0a41d4b2f6138d54da661, type: 3}
+  m_Script: {fileID: 11500000, guid: 971bdddd1410d2b44be752d7e4a38b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingRight: 1
-  jump: 0
-  animateIdle: 1
-  animateJump: 0
-  skeletonAnimation: {fileID: 0}
-  moveForce: 80
-  maxSpeed: 3.25
-  jumpForce: 575
-  state: 0
+  bounced: 0
 --- !u!58 &1806353008
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -492,7 +490,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 6200000, guid: eb5448cdc3ac2427d95c42e5b7d9d260, type: 2}
   m_IsTrigger: 0
-  m_Size: {x: 200, y: 325}
+  m_Size: {x: 190, y: 335}
   m_Center: {x: 50, y: 275}
 --- !u!50 &1806353010
 Rigidbody2D:
@@ -502,7 +500,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 814703638}
   m_GameObject: {fileID: 1806353006}
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
   m_FixedAngle: 1
@@ -518,7 +516,7 @@ Transform:
   m_GameObject: {fileID: 1806353006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.38547659, y: -3.18581438, z: 0}
-  m_LocalScale: {x: .00652447529, y: .00652447529, z: .0130489506}
+  m_LocalScale: {x: .00402447488, y: .00402447488, z: .0130489506}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &1806353012
@@ -579,12 +577,77 @@ MonoBehaviour:
   m_GameObject: {fileID: 1806353006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93f64da278f664f4f8e58e4622ea2772, type: 3}
+  m_Script: {fileID: 11500000, guid: b05c7b6aac57ef94bae9f6415b968523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingRight: 1
+  jump: 0
+  moveForce: 50
+  maxSpeed: 5
+  jumpForce: 575
+--- !u!114 &1806353016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400010, guid: 4d85ecd396e1292468f18ac765d8660f,
+    type: 2}
+  m_PrefabInternal: {fileID: 814703638}
+  m_GameObject: {fileID: 1806353006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868baa65a3c76494db0b6d7b17eb1417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 0}
+--- !u!114 &1806353017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400008, guid: 4d85ecd396e1292468f18ac765d8660f,
+    type: 2}
+  m_PrefabInternal: {fileID: 814703638}
+  m_GameObject: {fileID: 1806353006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e7aa29052bf42c4a983509d33d1fa36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
-  camera: {fileID: 1992078993}
+  mainCamera: {fileID: 0}
   slots: []
+  activeSlot: 0
+  throwable: 1
+--- !u!114 &1806353018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400006, guid: 4d85ecd396e1292468f18ac765d8660f,
+    type: 2}
+  m_PrefabInternal: {fileID: 814703638}
+  m_GameObject: {fileID: 1806353006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 022f02c191848c649a58f252bc92241e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 0}
+  climbing: {fileID: 0}
+  animator: {fileID: 0}
+  physics: {fileID: 0}
+--- !u!68 &1806353019
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6800000, guid: 4d85ecd396e1292468f18ac765d8660f,
+    type: 2}
+  m_PrefabInternal: {fileID: 814703638}
+  m_GameObject: {fileID: 1806353006}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Points:
+  - {x: -21.5187664, y: 26.621294}
+  - {x: -49.2350922, y: 94.9317703}
+  - {x: -49.1544037, y: 451.668396}
+  - {x: 149.380768, y: 451.653229}
+  - {x: 149.781723, y: 94.7803497}
+  - {x: 119.343689, y: 24.3831253}
 --- !u!1 &1992078988
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,12 +677,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1992078988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01e6f552556bc854a95f4fc68f0de3d6, type: 3}
+  m_Script: {fileID: 11500000, guid: d32df85e07f8be446b6ea3766421bbaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   smooth: 16
+  mouselookSmooth: 8
   player: {fileID: 1806353006}
-  mouseThreshold: 5
+  padding: 1
+  mouselookDelay: .5
+  mouselookForgive: .5
+  mouseTimer: 0
 --- !u!81 &1992078990
 AudioListener:
   m_ObjectHideFlags: 0
