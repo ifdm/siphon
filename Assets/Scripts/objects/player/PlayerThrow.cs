@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,10 +10,16 @@ public class PlayerThrow : MonoBehaviour {
 	
 	public GameObject[] slots;
 	private List<Queue> slotQueues;
-	
+
+	public float throwForce = 700f;
+	public float topDeadZone = 15f;
+	public float bottomDeadZone = 15f;
+
 	[HideInInspector] public int activeSlot;
 	[HideInInspector] public bool throwable = true;
-	
+
+
+
 	void Start() {
 		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		
@@ -28,7 +35,9 @@ public class PlayerThrow : MonoBehaviour {
 	
 	void Update () {
 		PlayerControl player = gameObject.GetComponent<PlayerControl>();
-		if(Input.GetMouseButtonDown(0) && player.state != PlayerState.Ledging && throwable && !GameObject.Find("Seed") && slots.Length > 0) {
+		PlayerPhysics playerPhysics = gameObject.GetComponent<PlayerPhysics>();
+
+		if(CanThrow(player)) {
 			Vector3 playerPos = transform.position;
 			BoxCollider2D box = GetComponent<BoxCollider2D>();
 			playerPos.x += box.center.x * transform.lossyScale.x;
@@ -36,15 +45,43 @@ public class PlayerThrow : MonoBehaviour {
 
 			GameObject thrownSeed = (GameObject)Instantiate(this.seed, playerPos, Quaternion.identity);
 			thrownSeed.name = "Seed";
+
 			Vector2 p = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
+
+
+			float angle = (float)Mathf.Atan2 (v.x, v.y);
+			angle = angle * Mathf.Rad2Deg;
+
+			Debug.Log ("Angle = " + angle);
+
+			//Adjust player rotation
+			if(playerPhysics.facingRight && angle < 0 || !playerPhysics.facingRight && angle > 0)
+				playerPhysics.ChangeDirection();
+
+
+
+			float top = 0;
+			float bottom = 180;
+			float tDangle = Mathf.Abs(Mathf.DeltaAngle (angle, top));
+			float bDangle = Mathf.Abs(Mathf.DeltaAngle (angle, bottom));
+
+			//If outside of the bounds above and below, simply throw straight down
+			if(tDangle < topDeadZone || bDangle < bottomDeadZone)
+			{
+				v = new Vector2(0, 0);
+			}
+
+			
+
 			thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
 			while(slotQueues[activeSlot].Count > 0) {
 				Destroy((GameObject)slotQueues[activeSlot].Dequeue());
 			}
+
 			thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
 			thrownSeed.GetComponent<SeedThrow>().queue = slotQueues[activeSlot];
-			thrownSeed.rigidbody2D.AddForce(v.normalized * 700);
+			thrownSeed.rigidbody2D.AddForce(v.normalized * throwForce);
 		}
 		
 		for(int i = 0; i < slots.Length; i++) {
@@ -53,5 +90,15 @@ public class PlayerThrow : MonoBehaviour {
 				break;
 			}
 		}
+	}
+
+
+	//Checks if the player can throw
+	private bool CanThrow(PlayerControl player){
+		return Input.GetMouseButtonDown (0) && 
+			player.state != PlayerState.Ledging && 
+				throwable && 
+				!GameObject.Find ("Seed") && 
+				slots.Length > 0;
 	}
 }

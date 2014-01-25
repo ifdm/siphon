@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour {
 	[HideInInspector] public PlayerAnimation animator;
 	[HideInInspector] public PlayerState state;
 	[HideInInspector] public PlayerPhysics physics;
-	
+
 	private bool climbFlag = true;
 
 
@@ -26,6 +26,8 @@ public class PlayerControl : MonoBehaviour {
 		}
 	}
 
+
+
 	void Update() {
 		state.HandleInput(this);
 	}
@@ -33,6 +35,7 @@ public class PlayerControl : MonoBehaviour {
 	void FixedUpdate() {
 		state.Update(this);
 	}
+
 
 	public void ChangeState(PlayerState state) {
 		if(this.state != null) {
