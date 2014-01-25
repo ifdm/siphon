@@ -5,6 +5,8 @@ public class SeedThrow : MonoBehaviour {
 	
 	public GameObject destiny;
 	public Queue queue;
+
+	private float health = 4.0f;
 	
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.tag == "Ground") {
@@ -13,6 +15,13 @@ public class SeedThrow : MonoBehaviour {
 			}
 			
 			DestroyObject(gameObject);
+		}
+	}
+
+	void Update() {
+		health -= Mathf.min(health, Time.deltaTime);
+		if(health == 0) {
+			Destroy(gameObject);
 		}
 	}
 }
