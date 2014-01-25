@@ -34,6 +34,7 @@ public class CameraFollow : MonoBehaviour {
 		float w = (camera.orthographicSize * camera.aspect) - padding;
 
 		Vector3 target = p;
+		float s = smooth;
 
 		if(p.x - target.x > w){target.x = p.x - w;}
 		else if(target.x - p.x > w){target.x = p.x + w;}

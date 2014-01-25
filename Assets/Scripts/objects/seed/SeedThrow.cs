@@ -19,7 +19,7 @@ public class SeedThrow : MonoBehaviour {
 	}
 
 	void Update() {
-		health -= Mathf.min(health, Time.deltaTime);
+		health -= Mathf.Min(health, Time.deltaTime);
 		if(health == 0) {
 			Destroy(gameObject);
 		}
