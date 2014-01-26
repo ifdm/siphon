@@ -7,7 +7,6 @@ public class TouchOfDeath : MonoBehaviour {
 		if(col.gameObject.tag == "Player") {
 			PlayerControl control = col.gameObject.GetComponent<PlayerControl>();
 			if(control.state != PlayerState.Dying){control.ChangeState(PlayerState.Dying);}
-			Destroy(gameObject);
 		}
 	}
 }
