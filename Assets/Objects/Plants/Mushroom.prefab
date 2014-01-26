@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400002}
   - 61: {fileID: 6100000}
+  - 131: {fileID: 13100000}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Plant
@@ -81,8 +82,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd8e0fcd0935734db334e70d490f852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstBounce: 15
-  secondBounce: 15
+  bounceForce: 20
+  horizontalForce: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,6 +102,25 @@ MonoBehaviour:
   calculateTangents: 0
   loop: 0
   _animationName: grow
+--- !u!131 &13100000
+GUITexture:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: cb56769fb01a74f97ba9dd52f49cac7c, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: 1}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

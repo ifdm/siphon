@@ -27,7 +27,7 @@ public class FirstEncounterHolder : MonoBehaviour {
 					Array.Resize<GameObject>(ref playerScript.slots, slotLength + newSlots.Length);
 					Array.Copy(newSlots, 0, playerScript.slots, slotLength, newSlots.Length);
 					// Adjust the slot queues (Not sure what they are, but this helps)
-					playerScript.AdjustSlotQueues();
+					playerScript.AddSlotQueue();
 					// Set an interacted state to avoid multiple slot additions
 					interacted = true;
 				}
