@@ -8,7 +8,6 @@ public class PlayerGUI : MonoBehaviour {
 	[HideInInspector] public PlayerThrow script;
 
 	private float[] buttonAlphas;
-	private float[] buttonScales;
 	private Rect[] buttons;
 	private Rect[] activeButtons;
 	private int length;
@@ -24,7 +23,6 @@ public class PlayerGUI : MonoBehaviour {
 		length = script.slots.Length;
 		buttons = new Rect[length];
 		buttonAlphas = new float[length];
-		buttonScales = new float[length];
 		activeButtons = new Rect[length];
 
 		int padding = 10;
