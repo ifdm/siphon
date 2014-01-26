@@ -608,6 +608,7 @@ GameObject:
   - 114: {fileID: 103612166}
   - 61: {fileID: 103612165}
   - 131: {fileID: 103612171}
+  - 114: {fileID: 103612172}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Plant
@@ -642,8 +643,8 @@ MonoBehaviour:
   skeletonDataAsset: {fileID: 11400000, guid: 5629ba6829dec4b7eacbabd784d48b9b, type: 2}
   initialSkinName: default
   timeScale: 1
-  calculateNormals: 0
-  calculateTangents: 0
+  calculateNormals: 1
+  calculateTangents: 1
   loop: 0
   _animationName: grow
 --- !u!23 &103612167
@@ -659,7 +660,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 324d8e627338047f38989172c6f912c2, type: 2}
+  - {fileID: 2100000, guid: 0cfdf5cdce0b245528f2d93c4b1971ad, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -721,6 +722,20 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &103612172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 6a6952dacada032418785151069c880a,
+    type: 2}
+  m_PrefabInternal: {fileID: 517676687}
+  m_GameObject: {fileID: 103612164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b74909571f224913988841ad5b8749c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 0}
+  TimeScale: 1
 --- !u!1 &129483771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,6 +1316,7 @@ GameObject:
   - 114: {fileID: 291706107}
   - 61: {fileID: 291706106}
   - 131: {fileID: 291706112}
+  - 114: {fileID: 291706113}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Plant
@@ -1335,8 +1351,8 @@ MonoBehaviour:
   skeletonDataAsset: {fileID: 11400000, guid: 5629ba6829dec4b7eacbabd784d48b9b, type: 2}
   initialSkinName: default
   timeScale: 1
-  calculateNormals: 0
-  calculateTangents: 0
+  calculateNormals: 1
+  calculateTangents: 1
   loop: 0
   _animationName: grow
 --- !u!23 &291706108
@@ -1352,7 +1368,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 324d8e627338047f38989172c6f912c2, type: 2}
+  - {fileID: 2100000, guid: 0cfdf5cdce0b245528f2d93c4b1971ad, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1414,6 +1430,20 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &291706113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 6a6952dacada032418785151069c880a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1576418736}
+  m_GameObject: {fileID: 291706105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b74909571f224913988841ad5b8749c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 0}
+  TimeScale: 1
 --- !u!1 &294448009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,6 +2312,10 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 6a6952dacada032418785151069c880a, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0cfdf5cdce0b245528f2d93c4b1971ad, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a6952dacada032418785151069c880a, type: 2}
   m_RootGameObject: {fileID: 103612164}
@@ -4064,6 +4098,10 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 6a6952dacada032418785151069c880a, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0cfdf5cdce0b245528f2d93c4b1971ad, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a6952dacada032418785151069c880a, type: 2}
   m_RootGameObject: {fileID: 1358439575}
@@ -5467,6 +5505,7 @@ GameObject:
   - 114: {fileID: 1358439577}
   - 61: {fileID: 1358439576}
   - 131: {fileID: 1358439582}
+  - 114: {fileID: 1358439583}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Plant
@@ -5501,8 +5540,8 @@ MonoBehaviour:
   skeletonDataAsset: {fileID: 11400000, guid: 5629ba6829dec4b7eacbabd784d48b9b, type: 2}
   initialSkinName: default
   timeScale: 1
-  calculateNormals: 0
-  calculateTangents: 0
+  calculateNormals: 1
+  calculateTangents: 1
   loop: 0
   _animationName: grow
 --- !u!23 &1358439578
@@ -5518,7 +5557,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 324d8e627338047f38989172c6f912c2, type: 2}
+  - {fileID: 2100000, guid: 0cfdf5cdce0b245528f2d93c4b1971ad, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -5580,6 +5619,20 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &1358439583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 6a6952dacada032418785151069c880a,
+    type: 2}
+  m_PrefabInternal: {fileID: 978875391}
+  m_GameObject: {fileID: 1358439575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b74909571f224913988841ad5b8749c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 0}
+  TimeScale: 1
 --- !u!1 &1370755436
 GameObject:
   m_ObjectHideFlags: 0
@@ -6349,6 +6402,10 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: 1408507349
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 6a6952dacada032418785151069c880a, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0cfdf5cdce0b245528f2d93c4b1971ad, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a6952dacada032418785151069c880a, type: 2}
   m_RootGameObject: {fileID: 291706105}
