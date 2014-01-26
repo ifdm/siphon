@@ -3534,6 +3534,7 @@ GameObject:
   - 23: {fileID: 905026698}
   - 114: {fileID: 905026697}
   - 61: {fileID: 905026696}
+  - 131: {fileID: 905026702}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Plant
@@ -3627,6 +3628,26 @@ Transform:
   m_LocalScale: {x: .020445969, y: .00300000003, z: .00300000003}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!131 &905026702
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13100000, guid: 6a6952dacada032418785151069c880a,
+    type: 2}
+  m_PrefabInternal: {fileID: 120352489}
+  m_GameObject: {fileID: 905026695}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: cb56769fb01a74f97ba9dd52f49cac7c, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: 1}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!1 &954048818
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,6 +3739,7 @@ GameObject:
   - 23: {fileID: 981752418}
   - 114: {fileID: 981752417}
   - 61: {fileID: 981752416}
+  - 131: {fileID: 981752422}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Plant
@@ -3811,6 +3833,26 @@ Transform:
   m_LocalScale: {x: .0188240651, y: .00300000003, z: .00300000003}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!131 &981752422
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13100000, guid: 6a6952dacada032418785151069c880a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1339294133}
+  m_GameObject: {fileID: 981752415}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: cb56769fb01a74f97ba9dd52f49cac7c, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: 1}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!1001 &984707139
 Prefab:
   m_ObjectHideFlags: 0
@@ -4036,6 +4078,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400008, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: slots.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
       propertyPath: m_LocalPosition.x
       value: -14.4540749
@@ -5923,6 +5969,7 @@ GameObject:
   - 23: {fileID: 1513106567}
   - 114: {fileID: 1513106566}
   - 61: {fileID: 1513106565}
+  - 131: {fileID: 1513106571}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Plant
@@ -6016,6 +6063,26 @@ Transform:
   m_LocalScale: {x: .0736573339, y: .00509999739, z: .00300000003}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!131 &1513106571
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13100000, guid: 6a6952dacada032418785151069c880a,
+    type: 2}
+  m_PrefabInternal: {fileID: 610888900}
+  m_GameObject: {fileID: 1513106564}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: cb56769fb01a74f97ba9dd52f49cac7c, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: 1}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!1 &1533571019
 GameObject:
   m_ObjectHideFlags: 0
@@ -6036,6 +6103,7 @@ GameObject:
   - 114: {fileID: 1533571022}
   - 114: {fileID: 1533571021}
   - 114: {fileID: 1533571020}
+  - 114: {fileID: 1533571033}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -6089,8 +6157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
   mainCamera: {fileID: 0}
-  slots:
-  - {fileID: 100002, guid: 6a6952dacada032418785151069c880a, type: 2}
+  slots: []
   throwForce: 700
   topDeadZone: 15
   bottomDeadZone: 15
@@ -6243,6 +6310,77 @@ Transform:
   m_LocalScale: {x: .00402447488, y: .00402447488, z: .0130489506}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1533571033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1533571019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9069dc668dfcafe40a2188d81503f0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  style:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  script: {fileID: 0}
 --- !u!1001 &1567877312
 Prefab:
   m_ObjectHideFlags: 0
@@ -7040,6 +7178,7 @@ GameObject:
   - 124: {fileID: 1707450429}
   - 81: {fileID: 1707450428}
   - 114: {fileID: 1707450427}
+  - 114: {fileID: 1707450433}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7131,6 +7270,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1707450433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 8e4a398b380da4d339cd0eaabe64be33,
+    type: 2}
+  m_PrefabInternal: {fileID: 447635306}
+  m_GameObject: {fileID: 1707450426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2966e63480d5f4da7c429f2ad6a2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1712768716
 GameObject:
   m_ObjectHideFlags: 0
