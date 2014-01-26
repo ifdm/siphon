@@ -70,7 +70,7 @@ public class PlayerPhysics : MonoBehaviour {
 		Debug.DrawLine(p1, p2, Color.green);
 
 		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * maxSpeed));
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * (maxSpeed / 2)));
 		}
 		else {
 			rigidbody2D.velocity = Vector2.zero;
