@@ -7,26 +7,22 @@ public class CameraEase : MonoBehaviour {
 	public float smooth = 3.0f;
 
 	private CameraFollow cameraFollow;
-	private Rect triggerRect;
+	private float distance;
 
 	public void Start() {
 		cameraFollow = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
 
 		BoxCollider2D box = GetComponent<BoxCollider2D>();
-		Vector2 p = (Vector2) transform.position;
-		p -= Vector2.Scale(box.size, transform.lossyScale);
-		triggerRect = new Rect(p.x, p.y, box.size.x * transform.lossyScale.x, box.size.y * transform.lossyScale.y);
+		distance = Mathf.Sqrt(Mathf.Pow(box.size.x * transform.lossyScale.x / 2, 2) + Mathf.Pow(box.size.y * transform.lossyScale.y / 2, 2));
 	}
 
 	public void Update() {
-		if(triggerRect.Contains((Vector2)GameObject.Find("Player").transform.position)) {
+		if(Vector3.Distance(transform.position, GameObject.Find("Player").transform.position) < distance) {
 			cameraFollow.targetSize = size;
 			cameraFollow.sizeSmooth = smooth;
 		}
 		else {
 			cameraFollow.targetSize = cameraFollow.defaultSize;
 		}
-
-		Debug.DrawLine(new Vector3(triggerRect.xMin, triggerRect.yMin, 0), new Vector3(triggerRect.xMax, triggerRect.yMax, 0), Color.blue);
 	}
 }
