@@ -126,6 +126,7 @@ GameObject:
   - 124: {fileID: 371908799}
   - 81: {fileID: 371908798}
   - 114: {fileID: 371908797}
+  - 114: {fileID: 371908803}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -217,6 +218,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &371908803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 8e4a398b380da4d339cd0eaabe64be33,
+    type: 2}
+  m_PrefabInternal: {fileID: 1756682294}
+  m_GameObject: {fileID: 371908796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2966e63480d5f4da7c429f2ad6a2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &375769284
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +723,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400008, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: slots.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 17.3231506
@@ -750,6 +767,10 @@ Prefab:
       propertyPath: slots.Array.data[0]
       value: 
       objectReference: {fileID: 100008, guid: a7414d4c3672e4e4b9f7a35c90192f85, type: 2}
+    - target: {fileID: 11400008, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: slots.Array.data[1]
+      value: 
+      objectReference: {fileID: 100002, guid: 6a6952dacada032418785151069c880a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
   m_RootGameObject: {fileID: 1643841432}
@@ -814,6 +835,7 @@ GameObject:
   - 114: {fileID: 1643841440}
   - 114: {fileID: 1643841438}
   - 114: {fileID: 1643841439}
+  - 114: {fileID: 1643841446}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -934,6 +956,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   slots:
   - {fileID: 100008, guid: a7414d4c3672e4e4b9f7a35c90192f85, type: 2}
+  - {fileID: 100002, guid: 6a6952dacada032418785151069c880a, type: 2}
   throwForce: 700
   topDeadZone: 15
   bottomDeadZone: 15
@@ -1021,6 +1044,78 @@ EdgeCollider2D:
   - {x: 149.380768, y: 451.653229}
   - {x: 149.781723, y: 94.7803497}
   - {x: 119.343689, y: 24.3831253}
+--- !u!114 &1643841446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: 4d85ecd396e1292468f18ac765d8660f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1161558423}
+  m_GameObject: {fileID: 1643841432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9069dc668dfcafe40a2188d81503f0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  style:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  script: {fileID: 0}
 --- !u!1 &1745737863
 GameObject:
   m_ObjectHideFlags: 0
