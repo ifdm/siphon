@@ -4,7 +4,7 @@ using System.Collections;
 public class LedgingState : PlayerState {
 
 	public override void HandleInput(PlayerControl player) {
-		if(Input.GetButton("Jump") || Input.GetAxis("Vertical") > 0) {
+		if(Input.GetButtonDown("Jump") || (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Vertical") < 1)) {
 			player.ChangeState(PlayerState.Jumping);
 
 			player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.1f);
