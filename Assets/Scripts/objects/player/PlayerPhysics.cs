@@ -12,7 +12,14 @@ public class PlayerPhysics : MonoBehaviour {
 	[HideInInspector] public bool airMove = true;
 
 	public void Move(float factor = 1.0f) {
-		if(GetComponent<PlayerControl>().isGrounded()){airMove = true;}
+		bool grounded = GetComponent<PlayerControl>().isGrounded();
+		if(grounded) {
+			airMove = true;
+		}
+		else {
+			factor *= 0.33f;
+		}
+
 		if(airMove) {
 			float h = Input.GetAxis("Horizontal");
 

@@ -1,0 +1,166 @@
+{
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone1", "parent": "root", "length": 86.74, "x": -17.04, "y": 11.49, "rotation": 78.43 },
+	{ "name": "bone2", "parent": "bone1", "length": 165.76, "x": 101.89, "y": -2.78, "rotation": -8.5 }
+],
+"slots": [
+	{ "name": "mushroom-stem_300x300", "bone": "bone1", "attachment": "bounce/bm-stem" },
+	{ "name": "mushroom-cap_300x300", "bone": "bone2", "attachment": "bounce/bm-cap" }
+],
+"skins": {
+	"default": {
+		"mushroom-cap_300x300": {
+			"bounce/bm-cap": { "x": 21.04, "y": 8.25, "scaleX": 0.927, "scaleY": 0.927, "rotation": -69.92, "width": 574, "height": 208 },
+			"bounce/mushroom-cap_300x300": { "x": 39.52, "y": -7.34, "scaleX": 0.927, "scaleY": 0.927, "rotation": -69.92, "width": 300, "height": 300 }
+		},
+		"mushroom-stem_300x300": {
+			"bounce/bm-stem": { "x": 1.63, "y": 29.04, "scaleX": 0.9, "scaleY": 0.9, "rotation": -78.43, "width": 184, "height": 60 },
+			"bounce/mushroom-stem_300x300": { "x": 124, "y": -15.34, "scaleX": 0.9, "scaleY": 0.9, "rotation": -78.43, "width": 300, "height": 300 }
+		}
+	}
+},
+"animations": {
+	"bounce": {
+		"bones": {
+			"bone2": {
+				"rotate": [
+					{
+						"time": 0,
+						"angle": 0,
+						"curve": [ 0.25, 0, 0.885, 0.06 ]
+					},
+					{ "time": 0.4, "angle": -5.75 },
+					{ "time": 0.8, "angle": 0 }
+				],
+				"translate": [
+					{
+						"time": 0,
+						"x": -3.91,
+						"y": 7.08,
+						"curve": [ 0.25, 0, 0.885, 0.06 ]
+					},
+					{
+						"time": 0.4,
+						"x": -21.2,
+						"y": 3.54,
+						"curve": [ 0.172, 0.82, 0.643, 1.02 ]
+					},
+					{ "time": 0.8, "x": -3.91, "y": 7.08 }
+				],
+				"scale": [
+					{
+						"time": 0,
+						"x": 1,
+						"y": 1,
+						"curve": [ 0.25, 0, 0.853, 0.36 ]
+					},
+					{
+						"time": 0.4,
+						"x": 0.923,
+						"y": 1.044,
+						"curve": [ 0.123, 0.74, 0.75, 1 ]
+					},
+					{ "time": 0.8, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"mushroom-cap_300x300": {
+				"attachment": [
+					{ "time": 0, "name": "bounce/bm-cap" }
+				]
+			},
+			"mushroom-stem_300x300": {
+				"attachment": [
+					{ "time": 0, "name": "bounce/bm-stem" }
+				]
+			}
+		}
+	},
+	"grow": {
+		"bones": {
+			"root": {
+				"translate": [
+					{
+						"time": 0,
+						"x": 0,
+						"y": 0,
+						"curve": [ 0.16, 0, 0.75, 1 ]
+					},
+					{
+						"time": 0.1666,
+						"x": 0,
+						"y": 23.26,
+						"curve": [ 0.25, 0, 0.827, 0.27 ]
+					},
+					{
+						"time": 0.3333,
+						"x": 0,
+						"y": 0,
+						"curve": [ 0.155, 0.29, 0.612, 1 ]
+					},
+					{
+						"time": 0.4333,
+						"x": 0,
+						"y": 9.84,
+						"curve": [ 0.379, 0, 0.81, 0.43 ]
+					},
+					{
+						"time": 0.5333,
+						"x": 0,
+						"y": 0,
+						"curve": [ 0.192, 0.47, 0.75, 1 ]
+					},
+					{
+						"time": 0.6333,
+						"x": 0,
+						"y": 6.05,
+						"curve": [ 0.5, 0, 0.827, 0.56 ]
+					},
+					{ "time": 0.7333, "x": 0, "y": 0 }
+				],
+				"scale": [
+					{
+						"time": 0,
+						"x": 0.009,
+						"y": 0.009,
+						"curve": [ 0.091, 0, 0.75, 1 ]
+					},
+					{
+						"time": 0.1666,
+						"x": 1.097,
+						"y": 1.097,
+						"curve": [ 0.25, 0, 0.841, 0.48 ]
+					},
+					{
+						"time": 0.3333,
+						"x": 0.9,
+						"y": 0.9,
+						"curve": [ 0.206, 0.66, 0.75, 1 ]
+					},
+					{ "time": 0.4333, "x": 1, "y": 1 }
+				]
+			},
+			"bone2": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": -3.91, "y": 7.08 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 }
+				]
+			}
+		},
+		"slots": {
+			"mushroom-cap_300x300": {
+				"attachment": [
+					{ "time": 0, "name": "bounce/bm-cap" }
+				]
+			}
+		}
+	}
+}
+}
