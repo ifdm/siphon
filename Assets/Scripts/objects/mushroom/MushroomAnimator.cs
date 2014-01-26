@@ -8,8 +8,8 @@ public class MushroomAnimator : Animateur {
 
 	public override void Start() {
 		actions = new Dictionary<string, Animateur.AnimationType>() {
-			{"Jump", new AnimationType(Type.Spine, "jump-up")},
-			{"Run", new AnimationType(Type.Spine, "run")}
+			{"Grow", new AnimationType(Type.Spine, "grow")},
+			{"Bounce", new AnimationType(Type.Spine, "bounce")}
 		};
 
 		base.Start();

@@ -5,7 +5,9 @@ public class MushroomBounce : MonoBehaviour {
 
 	public float bounceForce = 20f;
 	public float horizontalForce = 0;
+
 	private float bounceTimer = 0;
+	private MushroomAnimator animator;
 
 	void Awake() {		
 		RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position - (Vector3.up * 0.5f), 1 << LayerMask.NameToLayer("Ground"));
@@ -15,6 +17,10 @@ public class MushroomBounce : MonoBehaviour {
 		else {
 			Destroy(gameObject);
 		}
+	}
+
+	void Start() {
+		animator = GetComponent<MushroomAnimator>();
 	}
 
 	void Update() {
@@ -42,6 +48,8 @@ public class MushroomBounce : MonoBehaviour {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
 			}
 
+			animator.Set("Bounce");
+			
 			col.gameObject.SendMessage("Bounced", this);
 			bounceTimer = 0.1f;
 		}
