@@ -36,6 +36,7 @@ public class MushroomBounce : MonoBehaviour {
 			bounceForce = (bounceable.bounceForce != 0) ? bounceable.bounceForce : bounceForce;
 			float component = col.gameObject.rigidbody2D.velocity.x;
 
+			Debug.Log(horizontalForce);
 			if(horizontalForce > 0) {
 				col.rigidbody2D.AddForce(new Vector2(horizontalForce, 0));
 				component = 0;
@@ -48,7 +49,7 @@ public class MushroomBounce : MonoBehaviour {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
 			}
 
-			animator.Set("Bounce");
+			if(animator){animator.Set("Bounce");}
 			
 			col.gameObject.SendMessage("Bounced", this);
 			bounceTimer = 0.1f;
