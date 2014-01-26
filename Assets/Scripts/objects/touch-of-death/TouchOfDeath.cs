@@ -9,8 +9,5 @@ public class TouchOfDeath : MonoBehaviour {
 			if(control.state != PlayerState.Dying){control.ChangeState(PlayerState.Dying);}
 			Destroy(gameObject);
 		}
-		else if(col.gameObject.tag == "Seed") {
-			Destroy(col.gameObject);
-		}
 	}
 }
