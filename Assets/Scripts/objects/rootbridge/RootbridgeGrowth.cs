@@ -33,7 +33,7 @@ public class RootbridgeGrowth : MonoBehaviour {
 		// Right
 		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
 			transform.position = new Vector3(transform.position.x - extents.x + radius, transform.position.y, transform.position.z);
-			return !isGrounded(transform.position, seed);
+			return !isGrounded(transform.position, radius);
 		}
 
 		p1.x -= 0.3f + radius;
@@ -42,15 +42,14 @@ public class RootbridgeGrowth : MonoBehaviour {
 		// Left
 		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
 			transform.position = new Vector3(transform.position.x + extents.x - radius, transform.position.y, transform.position.z);
-			return !isGrounded(transform.position, seed);
+			return !isGrounded(transform.position, radius);
 		}
 
 		return false;
 	}
 
-	bool isGrounded(Vector3 position, GameObject seed) {
+	bool isGrounded(Vector3 position, float radius) {
 		float padding = 0.5f;
-		float radius = seed.GetComponent<CircleCollider2D>().radius * seed.transform.lossyScale.x;
 		Vector3 extents = body.gameObject.GetComponent<BoxCollider2D>().size;
 
 		Vector3 p1 = position;
