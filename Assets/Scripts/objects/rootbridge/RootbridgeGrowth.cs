@@ -37,7 +37,7 @@ public class RootbridgeGrowth : MonoBehaviour {
 		}
 
 		p1.x -= 0.3f + radius;
-		p2.x -= 0.2f + radius;
+		p2.x -= 0.3f + radius;
 
 		// Left
 		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
@@ -49,7 +49,7 @@ public class RootbridgeGrowth : MonoBehaviour {
 	}
 
 	bool isGrounded(Vector3 position) {
-		float padding = 0.1f;
+		float padding = 0.5f;
 		float radius = seed.GetComponent<CircleCollider2D>().radius * seed.transform.lossyScale.x;
 		Vector3 extents = body.gameObject.GetComponent<BoxCollider2D>().size;
 
