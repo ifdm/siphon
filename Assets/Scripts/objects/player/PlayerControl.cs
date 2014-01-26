@@ -73,7 +73,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public bool isIdle() {
-		return rigidbody2D.velocity.x == 0 && isGrounded() && Input.GetAxis("Horizontal") == 0;
+		return Mathf.Abs(rigidbody2D.velocity.x) < .1f && isGrounded() && Input.GetAxis("Horizontal") == 0;
 	}
 
 	public bool isRunning() {
