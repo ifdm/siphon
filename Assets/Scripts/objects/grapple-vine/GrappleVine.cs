@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GrappleVine : MonoBehaviour {
 
+	public float maxDistance = 9;
 	[HideInInspector] public Vector3 startPoint;
 	[HideInInspector] public Vector3 endPoint;
 
@@ -23,8 +24,8 @@ public class GrappleVine : MonoBehaviour {
 		climbable.startPoint = startPoint;
 		climbable.endPoint = endPoint;
 
-		if(Vector3.Distance(climbable.startPoint, climbable.endPoint) > 9) {
-			startPoint = (endPoint - (Vector3.up * 9));
+		if(Vector3.Distance(climbable.startPoint, climbable.endPoint) > maxDistance) {
+			startPoint = (endPoint - (Vector3.up * maxDistance));
 			climbable.startPoint = startPoint;
 		}
 	}
