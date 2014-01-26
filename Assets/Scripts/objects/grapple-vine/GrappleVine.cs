@@ -22,6 +22,11 @@ public class GrappleVine : MonoBehaviour {
 		Climbable climbable = GetComponent<Climbable>();
 		climbable.startPoint = startPoint;
 		climbable.endPoint = endPoint;
+
+		if(Vector3.Distance(climbable.startPoint, climbable.endPoint) > 9) {
+			startPoint = (endPoint - (Vector3.up * 9));
+			climbable.startPoint = startPoint;
+		}
 	}
 
 	void Update() {
