@@ -27,6 +27,14 @@ public class MushroomBounce : MonoBehaviour {
 		if(bounceTimer > 0) {
 			bounceTimer -= Mathf.Min(Time.deltaTime, bounceTimer);
 		}
+
+		BoxCollider2D box = GetComponent<BoxCollider2D>();
+		if(GameObject.Find("Player").GetComponent<PlayerControl>().isGrounded()) {
+			box.size = new Vector2(150, box.size.y);
+		}
+		else {
+			box.size = new Vector2(500, box.size.y);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
