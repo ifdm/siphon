@@ -12,9 +12,8 @@ public class SeedThrow : MonoBehaviour {
 		if(col.gameObject.tag == "Ground") {
 			if(col.gameObject.GetComponent<Unplantable>() == null && (col.transform.parent == null || col.transform.parent.gameObject.GetComponent<Unplantable>() == null)) {
 				queue.Enqueue(Instantiate(destiny, transform.position, Quaternion.identity));
+				DestroyObject(gameObject);
 			}
-			
-			DestroyObject(gameObject);
 		}
 	}
 
