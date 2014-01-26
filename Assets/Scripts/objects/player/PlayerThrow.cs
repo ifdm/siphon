@@ -18,19 +18,17 @@ public class PlayerThrow : MonoBehaviour {
 	[HideInInspector] public int activeSlot;
 	[HideInInspector] public bool throwable = true;
 
-
-
 	void Start() {
 		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		
-		AdjustSlotQueues();
-	}
-
-	public void AdjustSlotQueues() {
 		slotQueues = new List<Queue>();
 		for(int i = 0; i < slots.Length; i++) {
 			slotQueues.Add(new Queue());
 		}
+	}
+
+	public void AddSlotQueue() {
+		slotQueues.Add(new Queue());
 	}
 	
 	void Update () {
