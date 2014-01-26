@@ -16,7 +16,8 @@ public class PlayerAnimator : Animateur {
 			{"Stop", new AnimationType(Type.Spine, "stop")},
 			{"Land", new AnimationType(Type.Spine, "land")},
 			{"Throw", new AnimationType(Type.Spine, "throw")},
-			{"Idle", new AnimationType(Type.Spine, "idle")}
+			{"Idle", new AnimationType(Type.Spine, "idle")},
+			{"Climb", new AnimationType(Type.Spine, "climb-gv")}
 		};
 
 		base.Start();
