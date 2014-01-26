@@ -9,7 +9,7 @@ public class GrappleVine : MonoBehaviour {
 	void Start () {
 		RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position - (Vector3.up * 0.5f), 1 << LayerMask.NameToLayer("Ground"));
 		if(hit){transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);}
-		else{Destroy(gameObject);}
+		//else{Destroy(gameObject);}
 		
 		startPoint = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
 		Vector3 up = startPoint;
@@ -22,6 +22,11 @@ public class GrappleVine : MonoBehaviour {
 		Climbable climbable = GetComponent<Climbable>();
 		climbable.startPoint = startPoint;
 		climbable.endPoint = endPoint;
+
+		if(Vector3.Distance(climbable.startPoint, climbable.endPoint) > 9) {
+			startPoint = (endPoint - (Vector3.up * 9));
+			climbable.startPoint = startPoint;
+		}
 	}
 
 	void Update() {

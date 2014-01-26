@@ -1,27 +1,28 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Spine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerAnimation : MonoBehaviour {
+public class Animateur : MonoBehaviour {
+
+	protected enum Type {Spine, Sprite};
+	protected struct AnimationType {
+		public Type type;
+		public String name;
+
+		public AnimationType(Type type, String name) {
+			this.type = type;
+			this.name = name;
+		}
+	};
 
 	[HideInInspector] public SkeletonAnimation skeletonAnimation;
 	[HideInInspector] public Spine.AnimationState state;
 	[HideInInspector] public float TimeScale = 1.0f;
-	Dictionary<string, string> actions = new Dictionary<string, string>() {
-		{"Jump", "jump-up"},
-		{"Run", "run"},
-		{"Fall", "fall"},
-		{"Ledge", "ledge-hang"},
-		{"PullUp", "ledge-climb"},
-		{"Stop", "stop"},
-		{"Land", "land"},
-		{"Throw", "throw"},
-		{"Idle", "idle"}
-	};
-
-	void Start() {
+	protected Dictionary<string, AnimationType> actions = new Dictionary<string, AnimationType>();
+	
+	public virtual void Start() {
 		skeletonAnimation = GetComponent<SkeletonAnimation>();
 		state = skeletonAnimation.state;
 		state.Event += Event;
@@ -36,16 +37,16 @@ public class PlayerAnimation : MonoBehaviour {
 	}
 
 	public void Set(string animation, bool loop = false, int track = 0) {
-		if(actions.ContainsKey(animation)) {
+		if(actions.ContainsKey(animation) && state != null) {
 			Normalize();
-			state.SetAnimation(track, actions[animation], loop);
+			state.SetAnimation(track, actions[animation].name, loop);
 		}
 	}
 
 	public void Add(string animation, bool loop = false, int track = 0) {
-		if(actions.ContainsKey(animation)) {
+		if(actions.ContainsKey(animation) && state != null) {
 			Normalize();
-			state.AddAnimation(track, actions[animation], loop, 0);
+			state.AddAnimation(track, actions[animation].name, loop, 0);
 		}
 	}
 

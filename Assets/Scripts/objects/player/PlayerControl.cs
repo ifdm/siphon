@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour {
 	[HideInInspector] public SkeletonAnimation skeletonAnimation;
 	[HideInInspector] public GameObject climbing = null;
 
-	[HideInInspector] public PlayerAnimation animator;
+	[HideInInspector] public PlayerAnimator animator;
 	[HideInInspector] public PlayerState state;
 	[HideInInspector] public PlayerPhysics physics;
 
@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour {
 
 	void Start() {
 		physics = GetComponent<PlayerPhysics>();
-		animator = GetComponent<PlayerAnimation>();
+		animator = GetComponent<PlayerAnimator>();
 
 		ChangeState(PlayerState.Idling);
 
