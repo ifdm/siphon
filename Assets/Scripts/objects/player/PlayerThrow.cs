@@ -82,6 +82,14 @@ public class PlayerThrow : MonoBehaviour {
 				break;
 			}
 		}
+
+		if(Input.GetAxis("Mouse ScrollWheel") > 0) {
+			activeSlot = (activeSlot + 1) % slots.Length;
+		}
+		else if(Input.GetAxis("Mouse ScrollWheel") < 0) {
+			activeSlot--;
+			if(activeSlot < 0){activeSlot = slots.Length - 1;}
+		}
 	}
 
 
