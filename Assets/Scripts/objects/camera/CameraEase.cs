@@ -7,20 +7,21 @@ public class CameraEase : MonoBehaviour {
 	public float smooth = 3.0f;
 
 	private CameraFollow cameraFollow;
+	private float distance;
 
 	public void Start() {
 		cameraFollow = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
+
+		BoxCollider2D box = GetComponent<BoxCollider2D>();
+		distance = Mathf.Sqrt(Mathf.Pow(box.size.x * transform.lossyScale.x / 2, 2) + Mathf.Pow(box.size.y * transform.lossyScale.y / 2, 2));
 	}
 
-	public void OnTriggerStay2D(Collider2D col) {
-		if(col.tag == "Player") {
+	public void Update() {
+		if(Vector3.Distance(transform.position, GameObject.Find("Player").transform.position) < distance) {
 			cameraFollow.targetSize = size;
 			cameraFollow.sizeSmooth = smooth;
 		}
-	}
-
-	public void OnTriggerExit2D(Collider2D col) {
-		if(col.tag == "Player") {
+		else {
 			cameraFollow.targetSize = cameraFollow.defaultSize;
 		}
 	}

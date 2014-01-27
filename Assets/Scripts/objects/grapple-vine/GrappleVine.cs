@@ -7,7 +7,7 @@ public class GrappleVine : MonoBehaviour {
 	[HideInInspector] public Vector3 startPoint;
 	[HideInInspector] public Vector3 endPoint;
 
-	void Start () {
+	void Start() {
 		RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position - (Vector3.up * 0.5f), 1 << LayerMask.NameToLayer("Ground"));
 		if(hit){transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);}
 		//else{Destroy(gameObject);}
@@ -31,6 +31,6 @@ public class GrappleVine : MonoBehaviour {
 	}
 
 	void Update() {
-		Debug.DrawLine(startPoint, endPoint, Color.red);
+		//Debug.DrawLine(startPoint, endPoint, Color.red);
 	}
 }
