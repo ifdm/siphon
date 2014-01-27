@@ -15,7 +15,7 @@ public class ClimbingState : PlayerState {
 			player.ChangeState(PlayerState.Falling);
 		}
 
-		player.animator.TimeScale = Input.GetAxis("Vertical");
+		player.animator.TimeScale = Mathf.Abs(Input.GetAxis("Vertical"));
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
