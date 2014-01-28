@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour {
 
 	void Start() {
 		physics = GetComponent<PlayerPhysics>();
-		animator = GetComponent<PlayerAnimator>();
+		animator = transform.Find("Animation").GetComponent<PlayerAnimator>();
 
 		ChangeState(PlayerState.Idling);
 
@@ -57,17 +57,33 @@ public class PlayerControl : MonoBehaviour {
 		p1.x -= circle.radius * scale.x;
 		p2.x -= circle.radius * scale.x;
 		//Debug.DrawLine(p1, p2, Color.red);
-		bool left = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+		RaycastHit2D left = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
 
 		p1.x += circle.radius * scale.x;
 		p2.x += circle.radius * scale.x;
 		//Debug.DrawLine(p1, p2, Color.red);
-		bool center = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+		RaycastHit2D center = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
 
 		p1.x += circle.radius * scale.x;
 		p2.x += circle.radius * scale.x;
 		//Debug.DrawLine(p1, p2, Color.red);
-		bool right = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+		RaycastHit2D right = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+
+		Vector2 normal = Vector2.zero;
+		if(center) {
+			normal = center.normal;
+		}
+		else if(left) {
+			normal = left.normal;
+		}
+		else if(right) {
+			normal = right.normal;
+		}
+
+		if(normal != Vector2.zero) {
+			Transform animation = transform.Find("Animation");
+			animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, (Vector3) normal), 10 * Time.deltaTime);
+		}
 
 		return left || center || right;
 	}
