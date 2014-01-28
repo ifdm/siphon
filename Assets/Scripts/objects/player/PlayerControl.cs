@@ -82,7 +82,8 @@ public class PlayerControl : MonoBehaviour {
 
 		if(normal != Vector2.zero) {
 			Transform animation = transform.Find("Animation");
-			animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, (Vector3) normal), 10 * Time.deltaTime);
+			if(transform.lossyScale.x < 0){normal.x *= -1;}
+			animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, (Vector3) normal), 5 * Time.deltaTime);
 		}
 
 		return left || center || right;
