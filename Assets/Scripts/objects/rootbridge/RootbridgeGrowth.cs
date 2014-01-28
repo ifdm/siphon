@@ -4,9 +4,11 @@ using System.Collections;
 public class RootbridgeGrowth : MonoBehaviour {
 
 	private Transform body;
+	private Transform oAnim;
 
 	void Start() {
 		body = transform.Find("body");
+		oAnim = transform.Find("animation");
 
 		if(!safe()) {
 			DestroyObject(gameObject);
@@ -33,6 +35,7 @@ public class RootbridgeGrowth : MonoBehaviour {
 		// Right
 		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
 			transform.position = new Vector3(transform.position.x - extents.x + radius, transform.position.y, transform.position.z);
+			oAnim.rotation = new Quaternion(0, -180, 0, 1);
 			return !isGrounded(transform.position, radius);
 		}
 
@@ -42,6 +45,9 @@ public class RootbridgeGrowth : MonoBehaviour {
 		// Left
 		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
 			transform.position = new Vector3(transform.position.x + extents.x - radius, transform.position.y, transform.position.z);
+			oAnim.position = new Vector3(oAnim.position.x + extents.x - radius * 2, oAnim.position.y, oAnim.position.z);
+			oAnim.rotation = new Quaternion(0, 0, 0, 1);
+
 			return !isGrounded(transform.position, radius);
 		}
 
