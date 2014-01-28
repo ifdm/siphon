@@ -36,18 +36,26 @@ public class Animateur : MonoBehaviour {
 		Debug.Log(e.TrackIndex + " " + skeletonAnimation.state.GetCurrent(e.TrackIndex) + ": event " + e.Event + ", " + e.Event.Int);
 	}
 
-	public void Set(string animation, bool loop = false, int track = 0) {
+	public void Set(string animation, bool loop = false, int track = 0, float timeScale = 1f) {
 		if(actions.ContainsKey(animation) && state != null) {
-			Normalize();
+			TimeScale = timeScale;
 			state.SetAnimation(track, actions[animation].name, loop);
 		}
 	}
 
-	public void Add(string animation, bool loop = false, int track = 0) {
+	public void Add(string animation, bool loop = false, int track = 0, float timeScale = 1f, float delay = 0f) {
 		if(actions.ContainsKey(animation) && state != null) {
-			Normalize();
-			state.AddAnimation(track, actions[animation].name, loop, 0);
+			TimeScale = timeScale;
+			state.AddAnimation(track, actions[animation].name, loop, delay);
 		}
+	}
+
+	public void Clear(int track = 0) {
+		state.ClearTrack(track);
+	}
+
+	public void ClearAll() {
+		state.ClearTracks();
 	}
 
 	private void Normalize() {
