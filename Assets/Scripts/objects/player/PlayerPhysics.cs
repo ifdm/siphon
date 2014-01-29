@@ -24,7 +24,7 @@ public class PlayerPhysics : MonoBehaviour {
 			float h = Input.GetAxis("Horizontal");
 
 			if(h * rigidbody2D.velocity.x < maxSpeed && h != 0) {
-				rigidbody2D.AddForce(Vector2.right * Mathf.Sign(h) * moveForce * factor);
+				rigidbody2D.AddForce(Vector2.right * (Mathf.Clamp(Mathf.Abs(h) + .5f, 0, 1)) * Mathf.Sign(h) * moveForce * factor);
 			}
 			
 			if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed) {
@@ -41,6 +41,7 @@ public class PlayerPhysics : MonoBehaviour {
 		facingRight = !facingRight;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
+		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x / 2, rigidbody2D.velocity.y);
 		transform.localScale = theScale;
 	}
 
