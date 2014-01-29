@@ -14,11 +14,11 @@ public class FallingState : PlayerState {
 		if(player.canLedgeGrab() && ledgeGrace == 0) {
 			player.ChangeState(PlayerState.Ledging);
 		}
-		else if(player.isGrounded()) {
-			player.ChangeState(PlayerState.Running);
-		}
 		else if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
+		}
+		else if(player.isGrounded()) {
+			player.ChangeState(PlayerState.Running);
 		}
 		else if(player.canClimb()) {
 			player.ChangeState(PlayerState.Climbing);

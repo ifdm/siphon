@@ -15,6 +15,10 @@ public class PlayerPhysics : MonoBehaviour {
 		bool grounded = GetComponent<PlayerControl>().isGrounded();
 		if(grounded) {
 			airMove = true;
+			Vector2 normal = GetComponent<PlayerControl>().normal();
+			if(normal != Vector2.zero && normal.y < 1 && ((facingRight && normal.x < 0) || (!facingRight && normal.x > 0))) {
+				factor = 1 + (3 * Mathf.Cos(normal.y));
+			}
 		}
 		else {
 			factor *= 0.33f;
@@ -41,7 +45,6 @@ public class PlayerPhysics : MonoBehaviour {
 		facingRight = !facingRight;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
-		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x / 2, rigidbody2D.velocity.y);
 		transform.localScale = theScale;
 	}
 
