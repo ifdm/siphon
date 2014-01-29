@@ -74,6 +74,36 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &145770620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+  m_PrefabInternal: {fileID: 1161558423}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 145770621}
+  - 33: {fileID: 1643841444}
+  - 23: {fileID: 1643841443}
+  - 114: {fileID: 1643841438}
+  - 114: {fileID: 1643841442}
+  m_Layer: 0
+  m_Name: Animation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &145770621
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+  m_PrefabInternal: {fileID: 1161558423}
+  m_GameObject: {fileID: 145770620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1643841433}
 --- !u!1 &223662926
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,6 +565,10 @@ Prefab:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: dd1605fb396d6404fb3f2fb35f4232a2, type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2e6930f2810e0864784cc41c0fa0da36, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd1605fb396d6404fb3f2fb35f4232a2, type: 2}
   m_RootGameObject: {fileID: 584469855}
@@ -565,7 +599,7 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 465832662}
   m_GameObject: {fileID: 584469855}
   m_Enabled: 1
-  m_Material: {fileID: 6200000, guid: f80619cccb3878a40b997e1618f5fa1d, type: 2}
+  m_Material: {fileID: 6200000, guid: 2e6930f2810e0864784cc41c0fa0da36, type: 2}
   m_IsTrigger: 0
   m_Size: {x: 2, y: 2}
   m_Center: {x: 0, y: 0}
@@ -1156,12 +1190,8 @@ GameObject:
   - 58: {fileID: 1643841435}
   - 68: {fileID: 1643841445}
   - 114: {fileID: 1643841434}
-  - 33: {fileID: 1643841444}
-  - 23: {fileID: 1643841443}
-  - 114: {fileID: 1643841442}
   - 114: {fileID: 1643841441}
   - 114: {fileID: 1643841440}
-  - 114: {fileID: 1643841438}
   - 114: {fileID: 1643841439}
   - 114: {fileID: 1643841446}
   m_Layer: 9
@@ -1180,7 +1210,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.8352356, y: -5.33924389, z: 0}
   m_LocalScale: {x: .00402447488, y: .00402447488, z: .0130489506}
-  m_Children: []
+  m_Children:
+  - {fileID: 145770621}
   m_Father: {fileID: 0}
 --- !u!114 &1643841434
 MonoBehaviour:
@@ -1242,14 +1273,19 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 11400010, guid: 4d85ecd396e1292468f18ac765d8660f,
     type: 2}
   m_PrefabInternal: {fileID: 1161558423}
-  m_GameObject: {fileID: 1643841432}
+  m_GameObject: {fileID: 145770620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 868baa65a3c76494db0b6d7b17eb1417, type: 3}
+  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 0}
-  TimeScale: 1
+  skeletonDataAsset: {fileID: 11400000, guid: 4f064e87e957040cd9b9271cb11add83, type: 2}
+  initialSkinName: default
+  timeScale: 1.10000002
+  calculateNormals: 0
+  calculateTangents: 0
+  loop: 0
+  _animationName: idle
 --- !u!114 &1643841439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,7 +1299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   facingRight: 1
-  moveForce: 60
+  moveForce: 40
   maxSpeed: 5
   jumpForce: 13
   lethalVelocity: 35
@@ -1312,26 +1348,21 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 11400004, guid: 4d85ecd396e1292468f18ac765d8660f,
     type: 2}
   m_PrefabInternal: {fileID: 1161558423}
-  m_GameObject: {fileID: 1643841432}
+  m_GameObject: {fileID: 145770620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Script: {fileID: 11500000, guid: 868baa65a3c76494db0b6d7b17eb1417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 4f064e87e957040cd9b9271cb11add83, type: 2}
-  initialSkinName: default
-  timeScale: 1.10000002
-  calculateNormals: 0
-  calculateTangents: 0
-  loop: 0
-  _animationName: idle
+  skeletonAnimation: {fileID: 0}
+  TimeScale: 1
 --- !u!23 &1643841443
 Renderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 2300000, guid: 4d85ecd396e1292468f18ac765d8660f,
     type: 2}
   m_PrefabInternal: {fileID: 1161558423}
-  m_GameObject: {fileID: 1643841432}
+  m_GameObject: {fileID: 145770620}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1344,16 +1375,16 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayer: 2
+  m_SortingOrder: 1
+  m_SortingLayerID: 1408507349
 --- !u!33 &1643841444
 MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 3300000, guid: 4d85ecd396e1292468f18ac765d8660f,
     type: 2}
   m_PrefabInternal: {fileID: 1161558423}
-  m_GameObject: {fileID: 1643841432}
+  m_GameObject: {fileID: 145770620}
   m_Mesh: {fileID: 0}
 --- !u!68 &1643841445
 EdgeCollider2D:
