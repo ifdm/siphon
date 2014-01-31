@@ -11,8 +11,17 @@ public class SeedThrow : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.tag == "Ground") {
 			if(col.gameObject.GetComponent<Unplantable>() == null && (col.transform.parent == null || col.transform.parent.gameObject.GetComponent<Unplantable>() == null)) {
-				queue.Enqueue(Instantiate(destiny, transform.position, Quaternion.identity));
-				DestroyObject(gameObject);
+				if(destiny.name == "Mushroom" || destiny.name == "GrapplingVine") { // Yea yea..I know..
+					RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position - (Vector3.up * .5f), 1 << LayerMask.NameToLayer("Ground"));
+					if(hit) {
+						queue.Enqueue(Instantiate(destiny, transform.position, Quaternion.identity));
+						DestroyObject(gameObject);
+					}
+				}
+				else {
+					queue.Enqueue(Instantiate(destiny, transform.position, Quaternion.identity));
+					DestroyObject(gameObject);
+				}
 			}
 		}
 	}
