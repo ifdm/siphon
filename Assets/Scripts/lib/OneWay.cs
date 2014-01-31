@@ -32,6 +32,10 @@ public class OneWay : MonoBehaviour {
 		else {
 			gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
 		}
+
+		if(player.GetComponent<PlayerControl>().state == PlayerState.Climbing) {
+			inside = true;
+		}
 	}
 
 	void OnTriggerStay2D(Collider2D col) {
