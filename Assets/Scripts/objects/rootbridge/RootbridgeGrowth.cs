@@ -8,7 +8,7 @@ public class RootbridgeGrowth : MonoBehaviour {
 
 	void Start() {
 		body = transform.Find("body");
-		oAnim = transform.Find("animation");
+		oAnim = transform.Find("Animation");
 
 		if(!safe()) {
 			DestroyObject(gameObject);
