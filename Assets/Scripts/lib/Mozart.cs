@@ -8,6 +8,7 @@ public class Mozart : MonoBehaviour {
 	protected Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>();
 	private Dictionary<string, AudioSource> sources = new Dictionary<string, AudioSource>();
 
+	public virtual void AnimationEvent(string action) {}
 	public virtual void Awake() {}
 	public virtual void Start() {
 		AudioSource audio;

@@ -13,4 +13,8 @@ public class PlayerAudio : Mozart {
 			{"Right Foot Step", Resources.Load<AudioClip>("Trella_step2")}
 		};
 	}
+
+	public override void AnimationEvent(string action) {
+		// Use this for special events based on player animations
+	}
 }
