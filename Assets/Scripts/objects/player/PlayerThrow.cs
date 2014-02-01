@@ -49,7 +49,6 @@ public class PlayerThrow : MonoBehaviour {
 			float distance;
 			xy.Raycast(ray, out distance);
 			Vector2 p = ray.GetPoint(distance);
-
 			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
 
 			float angle = (float)Mathf.Atan2 (v.x, v.y);
