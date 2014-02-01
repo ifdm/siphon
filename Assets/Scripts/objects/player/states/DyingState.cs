@@ -21,6 +21,8 @@ public class DyingState : PlayerState {
 
 		player.StartCoroutine(DelayFade(deathDelay * .4f));
 		player.rigidbody2D.isKinematic = true;
+
+		player.animator.Set("Idle");
 	}
 
 	private IEnumerator DelayFade(float delay) {
