@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour {
 	[HideInInspector] public GameObject climbing = null;
 
 	[HideInInspector] public PlayerAnimator animator;
+	[HideInInspector] public PlayerAudio mozart;
 	[HideInInspector] public PlayerState state;
 	[HideInInspector] public PlayerPhysics physics;
 
@@ -17,6 +18,7 @@ public class PlayerControl : MonoBehaviour {
 	void Start() {
 		physics = GetComponent<PlayerPhysics>();
 		animator = transform.Find("Animation").GetComponent<PlayerAnimator>();
+		mozart = GetComponent<PlayerAudio>();
 
 		ChangeState(PlayerState.Idling);
 

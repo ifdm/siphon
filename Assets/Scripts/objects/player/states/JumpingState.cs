@@ -26,11 +26,10 @@ public class JumpingState : PlayerState {
 
 	public override void Enter(PlayerControl player, PlayerState from) {
 		if(Input.GetButtonDown("Jump")) {
-			//player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.01f);
-
 			player.physics.Jump();
 		}
 
 		player.animator.Set("Jump");
+		player.mozart.Play("Jump");
 	}
 }
