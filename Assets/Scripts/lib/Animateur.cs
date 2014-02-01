@@ -33,7 +33,12 @@ public class Animateur : MonoBehaviour {
 	}
 
 	public void Event(object sender, EventTriggeredArgs e) {
-		Debug.Log(e.TrackIndex + " " + skeletonAnimation.state.GetCurrent(e.TrackIndex) + ": event " + e.Event + ", " + e.Event.Int);
+		if(e.Event.String == "left-foot") {
+			this.gameObject.transform.parent.GetComponent<PlayerControl>().mozart.Play("Left Foot Step");
+		}
+		else if(e.Event.String == "right-foot") {
+			this.gameObject.transform.parent.GetComponent<PlayerControl>().mozart.Play("Right Foot Step");
+		}
 	}
 
 	public void Set(string animation, bool loop = false, int track = 0, float timeScale = 1f) {

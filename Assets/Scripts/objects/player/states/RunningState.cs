@@ -29,12 +29,10 @@ public class RunningState : PlayerState {
 
 	public override void Enter(PlayerControl player, PlayerState from) {
 		player.animator.Set("Run", true);
-		player.mozart.Play("Run", true);
 	}
 	
 	public override void Exit(PlayerControl player, PlayerState from) {
 		Transform animation = player.transform.Find("Animation");
 		animation.rotation = Quaternion.FromToRotation(Vector3.up, Vector3.up);
-		player.mozart.Stop("Run");
 	}
 }
