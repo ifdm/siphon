@@ -14,10 +14,13 @@ public class ClimbingState : PlayerState {
 		if(!player.canClimb()) {
 			player.ChangeState(PlayerState.Falling);
 		}
+
+		player.animator.TimeScale = Mathf.Abs(Input.GetAxis("Vertical"));
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
 		player.rigidbody2D.isKinematic = true;
+		player.animator.Set("Climb", true);
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to) {

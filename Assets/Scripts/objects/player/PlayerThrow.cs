@@ -18,19 +18,17 @@ public class PlayerThrow : MonoBehaviour {
 	[HideInInspector] public int activeSlot;
 	[HideInInspector] public bool throwable = true;
 
-
-
 	void Start() {
 		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		
-		AdjustSlotQueues();
-	}
-
-	public void AdjustSlotQueues() {
 		slotQueues = new List<Queue>();
 		for(int i = 0; i < slots.Length; i++) {
 			slotQueues.Add(new Queue());
 		}
+	}
+
+	public void AddSlotQueue() {
+		slotQueues.Add(new Queue());
 	}
 	
 	void Update () {
@@ -46,7 +44,11 @@ public class PlayerThrow : MonoBehaviour {
 			GameObject thrownSeed = (GameObject)Instantiate(this.seed, playerPos, Quaternion.identity);
 			thrownSeed.name = "Seed";
 
-			Vector2 p = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+			Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+			Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
+			float distance;
+			xy.Raycast(ray, out distance);
+			Vector2 p = ray.GetPoint(distance);
 			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
 
 			float angle = (float)Mathf.Atan2 (v.x, v.y);
@@ -83,6 +85,14 @@ public class PlayerThrow : MonoBehaviour {
 				activeSlot = i;
 				break;
 			}
+		}
+
+		if(Input.GetAxis("Mouse ScrollWheel") > 0) {
+			activeSlot = (activeSlot + 1) % slots.Length;
+		}
+		else if(Input.GetAxis("Mouse ScrollWheel") < 0) {
+			activeSlot--;
+			if(activeSlot < 0){activeSlot = slots.Length - 1;}
 		}
 	}
 

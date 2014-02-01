@@ -2,12 +2,11 @@
 using System.Collections;
 
 public class TouchOfDeath : MonoBehaviour {
+	
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.tag == "Player") {
-			Application.LoadLevel(Application.loadedLevel);
-		}
-		else if(col.gameObject.tag == "Seed") {
-			Destroy(col.gameObject);
+			PlayerControl control = col.gameObject.GetComponent<PlayerControl>();
+			if(control.state != PlayerState.Dying){control.ChangeState(PlayerState.Dying);}
 		}
 	}
 }
