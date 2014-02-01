@@ -19,6 +19,8 @@ public class GrappleVine : MonoBehaviour {
 		endPoint = (Vector3)cast.point;
 		
 		if(!cast){DestroyObject(gameObject);}
+		GameObject platform = cast.collider.gameObject;
+		if(platform.GetComponent<Unplantable>() || (platform.transform.parent && platform.transform.parent.gameObject.GetComponent<Unplantable>())){DestroyObject(gameObject);}
 		
 		Climbable climbable = GetComponent<Climbable>();
 		climbable.startPoint = startPoint;
