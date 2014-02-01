@@ -63,8 +63,8 @@ public class PlayerPhysics : MonoBehaviour {
 		p2.x += box.size.x * scale.x * 0.5f;
 
 		if(Mathf.Sign(v) > 0) {
-			p1.y += box.size.y * scale.y;
-			p2.y += box.size.y * scale.y;
+			p1.y += (box.size.y * scale.y) - .15f;
+			p2.y += (box.size.y * scale.y) - .15f;;
 		}
 		else {
 			p1.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);

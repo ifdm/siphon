@@ -44,7 +44,11 @@ public class PlayerThrow : MonoBehaviour {
 			GameObject thrownSeed = (GameObject)Instantiate(this.seed, playerPos, Quaternion.identity);
 			thrownSeed.name = "Seed";
 
-			Vector2 p = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+			Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+			Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
+			float distance;
+			xy.Raycast(ray, out distance);
+			Vector2 p = ray.GetPoint(distance);
 			Vector2 v = (p - new Vector2(transform.position.x, transform.position.y));
 
 			float angle = (float)Mathf.Atan2 (v.x, v.y);
