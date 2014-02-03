@@ -15,6 +15,7 @@ public class PlayerAudio : Mozart {
 	}
 
 	public override void AnimationEvent(string action) {
-		// Use this for special events based on player animations
+		if(action == "left-foot") Play("Left Foot Step");
+		else if(action == "right-foot") Play("Right Foot Step");
 	}
 }

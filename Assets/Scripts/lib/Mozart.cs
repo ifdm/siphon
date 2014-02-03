@@ -19,17 +19,31 @@ public class Mozart : MonoBehaviour {
 		}
 	}
 
-	public void Play(string name, bool loop = false,ulong delay = 0) {
-		sources[name].loop = loop;
-		sources[name].Play(delay);
+	public void Play(string name, float volume = 1f, bool loop = false, ulong delay = 0) {
+		if(Available(name)) {
+			sources[name].volume = volume;
+			sources[name].loop = loop;
+			sources[name].Play(delay);
+		}
 	}
 
-	public void Pause(string name) {}
+	public void Pause(string name) {
+		if(Available(name)) {
+			if(sources[name].isPlaying) {
+				sources[name].Pause();
+			}
+		}
+	}
 
 	public void Stop(string name) {
-		sources[name].Stop();
+		if(Available(name)) {
+			sources[name].Stop();
+		}
 	}
 
 	public void Add(string name) {}
 	public void ClearAll() {}
+	private bool Available(string name) {
+		return sources.ContainsKey(name);
+	}
 }
