@@ -19,12 +19,12 @@ public class RunningState : PlayerState {
 			player.rigidbody2D.velocity = new Vector2(0, player.rigidbody2D.velocity.y);
 		}
 		
-		/*Vector2 normal = player.normal();
+		Vector2 normal = player.normal();
 		if(normal != Vector2.zero) {
 			Transform animation = player.transform.Find("Animation");
 			if(player.transform.lossyScale.x < 0){normal.x *= -1;}
-			animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, (Vector3) normal), 5 * Time.deltaTime);
-		}*/
+			animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, (Vector3) normal), 4 * Time.deltaTime);
+		}
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {

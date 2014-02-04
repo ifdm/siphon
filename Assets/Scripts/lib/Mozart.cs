@@ -41,8 +41,18 @@ public class Mozart : MonoBehaviour {
 		}
 	}
 
-	public void Add(string name) {}
-	public void ClearAll() {}
+	public void Schedule(string name, float time) {
+		if(Available(name)) {
+			sources[name].PlayScheduled(time);
+		}
+	}
+
+	public void ClearAll() {
+		foreach(KeyValuePair<string, AudioSource> source in sources) {
+			source.Value.Stop();
+		}
+	}
+
 	private bool Available(string name) {
 		return sources.ContainsKey(name);
 	}
