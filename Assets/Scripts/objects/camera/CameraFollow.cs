@@ -24,6 +24,7 @@ public class CameraFollow : MonoBehaviour {
 		targetSize = defaultSize;
 		sizeSmooth = 0.65f;
 		defaultSizeSmooth = sizeSmooth;
+		camera.transparencySortMode = TransparencySortMode.Orthographic;
 	}
 
 	void OnPreRender() {
