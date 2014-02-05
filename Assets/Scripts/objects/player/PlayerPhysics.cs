@@ -41,11 +41,12 @@ public class PlayerPhysics : MonoBehaviour {
 		}
 	}
 
-	public void ChangeDirection(){
+	public void ChangeDirection() {
 		facingRight = !facingRight;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+		//transform.Find("Animation").rotation *= Quaternion.Euler(0, 0, 180);
 	}
 
 	public void Climb() {

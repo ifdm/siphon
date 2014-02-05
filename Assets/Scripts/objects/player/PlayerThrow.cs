@@ -15,6 +15,8 @@ public class PlayerThrow : MonoBehaviour {
 	public float topDeadZone = 15f;
 	public float bottomDeadZone = 15f;
 
+	public Texture2D[] cursors;
+
 	[HideInInspector] public int activeSlot;
 	[HideInInspector] public bool throwable = true;
 
@@ -25,6 +27,13 @@ public class PlayerThrow : MonoBehaviour {
 		for(int i = 0; i < slots.Length; i++) {
 			slotQueues.Add(new Queue());
 		}
+
+		StartCoroutine(SetInitialCursor());
+	}
+
+	private IEnumerator SetInitialCursor() {
+		yield return new WaitForSeconds(.1f);
+		Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
 	}
 
 	public void AddSlotQueue() {
@@ -83,6 +92,7 @@ public class PlayerThrow : MonoBehaviour {
 		for(int i = 0; i < slots.Length; i++) {
 			if(Input.GetKeyDown((i + 1).ToString())) {
 				activeSlot = i;
+				Cursor.SetCursor(cursors[i], Vector2.zero, CursorMode.Auto);
 				break;
 			}
 		}

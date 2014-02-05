@@ -23,16 +23,12 @@ public class RunningState : PlayerState {
 		if(normal != Vector2.zero) {
 			Transform animation = player.transform.Find("Animation");
 			if(player.transform.lossyScale.x < 0){normal.x *= -1;}
+			if(Mathf.Abs(normal.x) > .5f){normal = new Vector2(.5f * Mathf.Sign(normal.x), normal.y);}
 			animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, (Vector3) normal), 4 * Time.deltaTime);
 		}
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
 		player.animator.Set("Run", true);
-	}
-	
-	public override void Exit(PlayerControl player, PlayerState from) {
-		Transform animation = player.transform.Find("Animation");
-		animation.rotation = Quaternion.FromToRotation(Vector3.up, Vector3.up);
 	}
 }
