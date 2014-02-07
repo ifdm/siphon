@@ -4,7 +4,6 @@ using Spine;
 
 public class PlayerControl : MonoBehaviour {
 
-	[HideInInspector] public static Vector3 checkpoint;
 	[HideInInspector] public SkeletonAnimation skeletonAnimation;
 	[HideInInspector] public GameObject climbing = null;
 
@@ -21,10 +20,6 @@ public class PlayerControl : MonoBehaviour {
 		mozart = GetComponent<PlayerAudio>();
 
 		ChangeState(PlayerState.Idling);
-
-		if(PlayerControl.checkpoint != Vector3.zero) {
-			transform.position = PlayerControl.checkpoint;
-		}
 	}
 
 	void Update() {
