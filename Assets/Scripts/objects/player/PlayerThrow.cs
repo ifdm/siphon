@@ -34,7 +34,7 @@ public class PlayerThrow : MonoBehaviour {
 	private IEnumerator SetInitialCursor() {
 		yield return new WaitForSeconds(.1f);
 		if(cursors.Length > 0) {
-			Screen.showCursor = false;
+			Screen.showCursor = true;
 			Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
 		}
 	}
