@@ -101,10 +101,12 @@ public class PlayerThrow : MonoBehaviour {
 
 		if(Input.GetAxis("Mouse ScrollWheel") > 0) {
 			activeSlot = (activeSlot + 1) % slots.Length;
+			Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
 		}
 		else if(Input.GetAxis("Mouse ScrollWheel") < 0) {
 			activeSlot--;
 			if(activeSlot < 0){activeSlot = slots.Length - 1;}
+			Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
 		}
 	}
 
