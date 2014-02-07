@@ -27,6 +27,14 @@ public class Mozart : MonoBehaviour {
 		}
 	}
 
+	public void One(string name, float volume = 1f, bool loop = false, ulong delay = 0) {
+		if(Available(name)) {
+			if(!sources[name].isPlaying) {
+				Play(name, volume, loop, delay);
+			}
+		}		
+	}
+
 	public void Pause(string name) {
 		if(Available(name)) {
 			if(sources[name].isPlaying) {
