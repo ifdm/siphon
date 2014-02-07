@@ -10,13 +10,16 @@ public class FirstEncounterHolder : MonoBehaviour {
 	private bool destroyed = false;
 
 	void Start() {
-		CheckpointController checkpointController = GameObject.Find("Checkpoint Controller").GetComponent<CheckpointController>();
-		if(checkpointController.slots != null && checkpointController.slots.Contains(plant)) {
-			foreach(Transform child in transform) {
-				if(child.gameObject.tag == "Seed") {
-					Destroy(child.gameObject);
-					destroyed = true;
-					interacted = true;
+		GameObject checkpoint = GameObject.Find("Checkpoint Controller");
+		if(checkpoint != null) {
+			CheckpointController checkpointController = checkpoint.GetComponent<CheckpointController>();
+			if(checkpointController.slots != null && checkpointController.slots.Contains(plant)) {
+				foreach(Transform child in transform) {
+					if(child.gameObject.tag == "Seed") {
+						Destroy(child.gameObject);
+						destroyed = true;
+						interacted = true;
+					}
 				}
 			}
 		}
