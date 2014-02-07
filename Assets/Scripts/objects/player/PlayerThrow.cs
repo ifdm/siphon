@@ -34,8 +34,8 @@ public class PlayerThrow : MonoBehaviour {
 	private IEnumerator SetInitialCursor() {
 		yield return new WaitForSeconds(.1f);
 		if(cursors.Length > 0) {
-			Screen.showCursor = true;
-			Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
+			//Screen.showCursor = true;
+			//Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
 		}
 	}
 
@@ -95,19 +95,19 @@ public class PlayerThrow : MonoBehaviour {
 		for(int i = 0; i < slots.Length; i++) {
 			if(Input.GetKeyDown((i + 1).ToString())) {
 				activeSlot = i;
-				Cursor.SetCursor(cursors[i], Vector2.zero, CursorMode.Auto);
+				//Cursor.SetCursor(cursors[i], Vector2.zero, CursorMode.Auto);
 				break;
 			}
 		}
 
 		if(Input.GetAxis("Mouse ScrollWheel") > 0) {
 			activeSlot = (activeSlot + 1) % slots.Length;
-			Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
+			//Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
 		}
 		else if(Input.GetAxis("Mouse ScrollWheel") < 0) {
 			activeSlot--;
 			if(activeSlot < 0){activeSlot = slots.Length - 1;}
-			Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
+			//Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
 		}
 	}
 
