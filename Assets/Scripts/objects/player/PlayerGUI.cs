@@ -12,10 +12,6 @@ public class PlayerGUI : MonoBehaviour {
 	private Rect[] activeButtons;
 	private int length;
 
-	private int getIndex = 0;
-	private int getState = 0;
-	private float getTimer = 0;
-
 	void Start () {
 		script = GameObject.Find("Player").GetComponent<PlayerThrow>();
 		length = script.slots.Length;
@@ -53,16 +49,6 @@ public class PlayerGUI : MonoBehaviour {
 			else {
 				script.throwable = true;
 			}
-		}
-
-		if(getState == 0) {
-			getTimer += Time.deltaTime;
-			int x = Screen.width / 2 - 128 * (36 / 55);
-			int y = Screen.height / 2 - 128;
-			int w = 128 * (36 / 55);
-			int h = 128;
-			activeButtons[0] = new Rect(x, y, w, h);
-			buttons[0] = new Rect(x, y, w, h);
 		}
 	}
 	
