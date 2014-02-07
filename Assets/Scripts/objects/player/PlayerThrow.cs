@@ -33,7 +33,9 @@ public class PlayerThrow : MonoBehaviour {
 
 	private IEnumerator SetInitialCursor() {
 		yield return new WaitForSeconds(.1f);
-		Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
+		if(cursors.Length > 0) {
+			Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
+		}
 	}
 
 	public void AddSlotQueue() {

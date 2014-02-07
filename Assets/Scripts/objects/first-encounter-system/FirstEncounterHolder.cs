@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System;
 
 public class FirstEncounterHolder : MonoBehaviour {
@@ -7,6 +8,19 @@ public class FirstEncounterHolder : MonoBehaviour {
 
 	private bool interacted = false;
 	private bool destroyed = false;
+
+	void Start() {
+		CheckpointController checkpointController = GameObject.Find("Checkpoint Controller").GetComponent<CheckpointController>();
+		if(checkpointController.slots != null && checkpointController.slots.Contains(plant)) {
+			foreach(Transform child in transform) {
+				if(child.gameObject.tag == "Seed") {
+					Destroy(child.gameObject);
+					destroyed = true;
+					interacted = true;
+				}
+			}
+		}
+	}
 	
 	void Update() {
 		if(!interacted) {

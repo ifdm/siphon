@@ -9,7 +9,6 @@ public class DyingState : PlayerState {
 
 	public override void HandleInput(PlayerControl player) {
 		dyingTimer -= Time.deltaTime;
-		Debug.Log(dyingTimer);
 		if(dyingTimer <= 0){Application.LoadLevel(Application.loadedLevel);}
 		if(dyingTimer > deathDelay * .9) {
 			player.transform.Rotate(0, 0, (-(Time.deltaTime * 90) / deathDelay) * 9);

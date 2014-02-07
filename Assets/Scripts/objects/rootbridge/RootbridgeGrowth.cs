@@ -18,6 +18,8 @@ public class RootbridgeGrowth : MonoBehaviour {
 	bool safe() {
 		GameObject seed = GameObject.Find("Seed");
 
+		if(!seed){return true;}
+
 		float radius = seed.GetComponent<CircleCollider2D>().radius * seed.transform.lossyScale.x;
 
 		Vector3 extents = body.gameObject.GetComponent<BoxCollider2D>().size * .5f;
