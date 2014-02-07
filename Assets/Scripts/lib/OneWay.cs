@@ -7,7 +7,7 @@ public class OneWay : MonoBehaviour {
 	private GameObject player;
 	private bool inside;
 	private bool grown = false;
-	private float grace = 0.2f;
+	private float grace = 0.1f;
 
 	void Start() {
 		player = GameObject.Find("Player");		
