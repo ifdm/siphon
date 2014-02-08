@@ -38,8 +38,4 @@ public class JumpingState : PlayerState {
 
 		player.animator.Set("Jump");
 	}
-
-	public override void Exit(PlayerControl player, PlayerState to) {
-		player.mozart.One("Land");
-	}
 }
