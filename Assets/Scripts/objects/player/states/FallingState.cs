@@ -34,6 +34,8 @@ public class FallingState : PlayerState {
 
 	public override void Exit(PlayerControl player, PlayerState to) {
 		player.animator.Set("Land");
+		player.mozart.One("Land");
+		
 		if(fallVelocity < -player.physics.lethalVelocity && player.isGrounded()){Application.LoadLevel(Application.loadedLevel);}
 	}
 }

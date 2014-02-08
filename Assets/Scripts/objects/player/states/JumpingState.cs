@@ -32,7 +32,10 @@ public class JumpingState : PlayerState {
 			player.physics.Jump();
 		}
 
+		if(from == PlayerState.Running || from == PlayerState.Idling) {
+			player.mozart.One("Jump");
+		}
+
 		player.animator.Set("Jump");
-		player.mozart.Play("Jump");
 	}
 }
