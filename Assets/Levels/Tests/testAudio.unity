@@ -216,10 +216,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
   mainCamera: {fileID: 0}
-  slots: []
+  slots:
+  - {fileID: 100002, guid: 6a6952dacada032418785151069c880a, type: 2}
+  - {fileID: 100008, guid: a7414d4c3672e4e4b9f7a35c90192f85, type: 2}
+  - {fileID: 100000, guid: a06fefea94c18374fbc82b65447bd59f, type: 2}
   throwForce: 700
   topDeadZone: 15
   bottomDeadZone: 15
+  cursors:
+  - {fileID: 2800000, guid: 723faac60ee1e436fb14c8ad65fc3fc6, type: 3}
+  - {fileID: 2800000, guid: 49fc4c30312aa4722b89a7c259d9e5a9, type: 3}
+  - {fileID: 2800000, guid: ff11f3266da854b0c9117e3e1e1e32f0, type: 3}
+  - {fileID: 2800000, guid: 13e52a7d6659f4c7ca88050d535c410b, type: 3}
   activeSlot: 0
   throwable: 1
 --- !u!114 &569742895
@@ -473,11 +481,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smooth: .200000003
   player: {fileID: 0}
-  targetSize: 0
-  defaultSize: 0
-  sizeSmooth: 0
-  defaultSizeSmooth: 0
-  padding: 1
+  additionalZ: 0
+  zSmooth: .5
 --- !u!81 &1119878904
 AudioListener:
   m_ObjectHideFlags: 0
@@ -725,7 +730,7 @@ AudioSource:
   m_GameObject: {fileID: 1880863805}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: a615293fefb6f461488ccde6039c8c44, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4c95c261ce3164598a98b3eefbffc5fc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -873,6 +878,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 96915b91a363444169ce92ea1f79a20a, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4c95c261ce3164598a98b3eefbffc5fc, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96915b91a363444169ce92ea1f79a20a, type: 2}
   m_RootGameObject: {fileID: 1880863805}
