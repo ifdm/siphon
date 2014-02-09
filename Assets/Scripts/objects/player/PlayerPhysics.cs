@@ -21,14 +21,14 @@ public class PlayerPhysics : MonoBehaviour {
 			}
 		}
 		else {
-			factor *= 0.33f;
+			factor *= 0.4f;
 		}
 
 		if(airMove) {
-			float h = Input.GetAxis("Horizontal");
+			float h = Input.GetAxisRaw("Horizontal");
 
-			if(h * rigidbody2D.velocity.x < maxSpeed && h != 0) {
-				rigidbody2D.AddForce(Vector2.right * (Mathf.Clamp(Mathf.Abs(h) + .5f, 0, 1)) * Mathf.Sign(h) * moveForce * factor);
+			if(h != 0) {
+				rigidbody2D.AddForce(Vector2.right * Mathf.Sign(h) * moveForce * factor);
 			}
 			
 			if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed) {
