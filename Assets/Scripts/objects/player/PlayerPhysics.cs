@@ -17,7 +17,7 @@ public class PlayerPhysics : MonoBehaviour {
 			airMove = true;
 			Vector2 normal = GetComponent<PlayerControl>().normal();
 			if(normal != Vector2.zero && normal.y < 1 && ((facingRight && normal.x < 0) || (!facingRight && normal.x > 0))) {
-				factor = 1 + (3 * Mathf.Cos(normal.y));
+				factor = (3 * Mathf.Cos(normal.y));
 			}
 		}
 		else {

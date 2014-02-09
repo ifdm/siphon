@@ -49,18 +49,23 @@ public class PlayerControl : MonoBehaviour {
 
 		p2.y -= circle.radius * scale.y + 0.07f;
 		
-		RaycastHit2D center = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		if(center){return center.normal;}
+		float inc = circle.radius * -scale.x;
+		p1.x -= inc;
+		p2.x -= inc;
+		
+		RaycastHit2D cast;
+		cast = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+		if(cast){return cast.normal;}
 
-		p1.x -= circle.radius * scale.x;
-		p2.x -= circle.radius * scale.x;
-		RaycastHit2D left = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		if(left){return left.normal;}
+		p1.x += inc;
+		p2.x += inc;
+		cast = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+		if(cast){return cast.normal;}
 
-		p1.x += circle.radius * scale.x * 2;
-		p2.x += circle.radius * scale.x * 2;
-		RaycastHit2D right = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		if(right){return right.normal;}
+		p1.x += inc;
+		p2.x += inc;
+		cast = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+		if(cast){return cast.normal;}
 
 		return Vector2.zero;
 	}
