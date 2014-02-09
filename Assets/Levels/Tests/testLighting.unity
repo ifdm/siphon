@@ -12,13 +12,13 @@ SceneSettings:
     backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 0
-  m_FogColor: {r: .698529422, g: .698529422, b: .698529422, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: .283620477, g: 0, b: .875, a: 1}
   m_FogMode: 3
-  m_FogDensity: .00999999978
-  m_LinearFogStart: -10
-  m_LinearFogEnd: 10
-  m_AmbientLight: {r: 0, g: 0, b: 0, a: 1}
+  m_FogDensity: .0500000007
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 20
+  m_AmbientLight: {r: 1, g: .972413778, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: .5
   m_FlareStrength: 1
@@ -295,7 +295,7 @@ Camera:
   m_GameObject: {fileID: 41092936}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -304,7 +304,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -2171,68 +2171,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 2, y: 2}
   m_Center: {x: 0, y: 0}
---- !u!1 &382147648
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 382147650}
-  - 108: {fileID: 382147649}
-  m_Layer: 0
-  m_Name: Spotlight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &382147649
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 382147648}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Type: 0
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 90
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_Softness: 4
-    m_SoftnessFade: 1
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_ActuallyLightmapped: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 1
-  m_ShadowSamples: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_IndirectIntensity: 1
-  m_AreaSize: {x: 1, y: 1}
---- !u!4 &382147650
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 382147648}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.5723181, y: 5.69946098, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &384737738
 GameObject:
   m_ObjectHideFlags: 0
@@ -5478,6 +5416,18 @@ Prefab:
       propertyPath: orthographic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: m_HDR
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: far clip plane
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e4a398b380da4d339cd0eaabe64be33, type: 2}
   m_RootGameObject: {fileID: 41092936}
@@ -5556,7 +5506,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1044810416}
   m_LocalRotation: {x: 0, y: 0, z: -.997596204, w: -.0692952946}
-  m_LocalPosition: {x: -95.8635025, y: 25.8579178, z: .634765625}
+  m_LocalPosition: {x: -95.8635025, y: 25.8579178, z: 10}
   m_LocalScale: {x: .547907531, y: .547908425, z: 1}
   m_Children: []
   m_Father: {fileID: 307192819}
@@ -6337,7 +6287,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1260895906}
-  m_LocalRotation: {x: .382683486, y: 0, z: 0, w: .923879564}
+  m_LocalRotation: {x: .5, y: 0, z: 0, w: .866025388}
   m_LocalPosition: {x: -104.120285, y: -12.9262695, z: -18.5171432}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6351,7 +6301,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: .00689673424, b: 1, a: 1}
   m_Intensity: .5
   m_Range: 10
   m_SpotAngle: 30
