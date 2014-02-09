@@ -37,13 +37,13 @@ public class OneWay : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D col) {
-		if(col.gameObject.tag == "Player" && grown) {
+		if(col.gameObject.tag == "Player") {
 			inside = true;
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
-		if(col.gameObject.tag == "Player" && grown) {
+		if(col.gameObject.tag == "Player") {
 			inside = true;
 		}
 	}

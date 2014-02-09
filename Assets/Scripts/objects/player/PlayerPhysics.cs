@@ -28,7 +28,7 @@ public class PlayerPhysics : MonoBehaviour {
 			float h = Input.GetAxisRaw("Horizontal");
 
 			if(h != 0) {
-				rigidbody2D.AddForce(Vector2.right * Mathf.Sign(h) * moveForce * factor);
+				rigidbody2D.AddForce(Vector2.right * h * moveForce * factor);
 			}
 			
 			if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed) {
