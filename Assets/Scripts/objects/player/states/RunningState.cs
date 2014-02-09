@@ -12,7 +12,7 @@ public class RunningState : PlayerState {
 	}
 
 	public override void Update(PlayerControl player) {
-		player.animator.TimeScale = (Mathf.Abs(player.rigidbody2D.velocity.x) / 8) + .6f;
+		player.animator.TimeScale = (Mathf.Abs(player.rigidbody2D.velocity.x) / 8) + .3f;
 		player.physics.Move();
 
 		if(Input.GetAxisRaw("Horizontal") == 0) {
