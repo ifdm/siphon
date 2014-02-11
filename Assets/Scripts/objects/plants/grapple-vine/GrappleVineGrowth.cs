@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GrappleVineGrowth : MonoBehaviour {
+public class GrappleVineGrowth : Plant {
 	
 	private Vector3 startPoint;
 	public GameObject GrappleVine;
@@ -25,5 +25,10 @@ public class GrappleVineGrowth : MonoBehaviour {
 
 	public void OnDestroy() {
 		if(child){Destroy(child);}
+	}
+	
+	public Vector3 plantPosition(Vector3 target) {
+		RaycastHit2D cast = Physics2D.Linecast(target, target - (Vector3.up * .5f), 1 << LayerMask.NameToLayer("Ground"));
+		return cast ? (Vector3)cast.point : Vector3.zero;
 	}
 }

@@ -8,7 +8,7 @@ public class PlayerThrow : MonoBehaviour {
 	public GameObject seed;
 	[HideInInspector] public Camera mainCamera;
 	
-	public GameObject[] slots;
+	public Plant[] slots;
 	private List<Queue> slotQueues;
 
 	public float throwForce = 700f;
@@ -94,54 +94,64 @@ public class PlayerThrow : MonoBehaviour {
 			player.animator.Set("Throw", false, 1);
 		}*/
 		
-		bool targeting = Input.GetAxis("Seed Horizontal") != 0 || Input.GetAxis("Seed Vertical") != 0 || Input.GetMouseButton(0);
-		bool throwing = Input.GetAxis("Seed Throw") != 0 || Input.GetMouseButtonUp(0);
-		
-		if(targeting && !throwing) {
-			Vector3 playerPos = transform.position;
-			BoxCollider2D box = GetComponent<BoxCollider2D>();
-			playerPos.x += box.center.x * transform.lossyScale.x;
-			playerPos.y += box.center.y * transform.lossyScale.y;
+		if(slots.Length > 0) {
+			bool targeting = Input.GetAxis("Seed Horizontal") != 0 || Input.GetAxis("Seed Vertical") != 0 || Input.GetMouseButton(0);
+			bool throwing = Input.GetAxis("Seed Throw") != 0 || Input.GetMouseButtonUp(0);
 			
-			Vector3 end;
-			if(Input.GetMouseButton(0)) {
-				Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-				Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
-				float distance;
-				xy.Raycast(ray, out distance);
-				end = ray.GetPoint(distance);
-			}
-			else {
-				end = playerPos + (Vector3)new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical")) * 10;
-			}
-			
-			RaycastHit2D cast = Physics2D.Linecast(playerPos, end, 1 << LayerMask.NameToLayer("Ground"));
-			if(cast){end = cast.point; target = cast.point;}
-			else{target = Vector3.zero;}
-			
-			Debug.DrawLine(playerPos, end, cast ? Color.green : Color.red);
-		}
-		
-		
-		if(throwing) {
-			if(target != Vector3.zero) {				
-				GameObject thrownSeed = (GameObject)Instantiate(this.seed, target, Quaternion.identity);
-				thrownSeed.name = "Seed";
-
-				thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
-				while(slotQueues[activeSlot].Count > 0) {
-					Destroy((GameObject)slotQueues[activeSlot].Dequeue());
-				}
-
-				thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
-				thrownSeed.GetComponent<SeedThrow>().queue = slotQueues[activeSlot];
-				player.animator.Set("Throw", false, 1);
+			if(targeting && !throwing) {
+				Vector3 playerPos = transform.position;
+				BoxCollider2D box = GetComponent<BoxCollider2D>();
+				playerPos.x += box.center.x * transform.lossyScale.x;
+				playerPos.y += box.center.y * transform.lossyScale.y;
 				
-				target = Vector3.zero;
+				Vector3 end;
+				if(Input.GetMouseButton(0)) {
+					Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+					Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
+					float distance;
+					xy.Raycast(ray, out distance);
+					end = ray.GetPoint(distance);
+				}
+				else {
+					end = playerPos + (Vector3)new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical")) * 10;
+				}
+				
+				RaycastHit2D cast = Physics2D.Linecast(playerPos, end, 1 << LayerMask.NameToLayer("Ground"));
+				if(cast) {
+					end = cast.point;
+					target = slots[activeSlot].PlantPosition(end);
+				}
+				else{target = Vector3.zero;}
+				
+				Debug.DrawLine(playerPos, end, target == Vector3.zero ? Color.red : Color.green);
 			}
+			
+			
+			if(throwing) {
+				if(target != Vector3.zero) {
+					/*GameObject thrownSeed = (GameObject)Instantiate(this.seed, target, Quaternion.identity);
+					thrownSeed.name = "Seed";
+
+					thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
+					while(slotQueues[activeSlot].Count > 0) {
+						Destroy((GameObject)slotQueues[activeSlot].Dequeue());
+					}
+
+					thrownSeed.GetComponent<SeedThrow>().destiny = slots[activeSlot];
+					thrownSeed.GetComponent<SeedThrow>().queue = slotQueues[activeSlot];
+					player.animator.Set("Throw", false, 1);*/
+					
+					while(slotQueues[activeSlot].Count > 0) {
+						Destroy((GameObject)slotQueues[activeSlot].Dequeue());
+					}
+					slotQueues[activeSlot].Enqueue(Instantiate(slots[activeSlot], target, Quaternion.identity));
+					
+					target = Vector3.zero;
+				}
+			}
+			
+			selectSeed();
 		}
-		
-		selectSeed();
 	}
 	
 	private void selectSeed() {

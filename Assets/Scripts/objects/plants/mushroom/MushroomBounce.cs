@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MushroomBounce : MonoBehaviour {
+public class MushroomBounce : Plant {
 
 	public float bounceForce = 20f;
 	public float horizontalForce = 0;
@@ -15,9 +15,6 @@ public class MushroomBounce : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position - (Vector3.up * .5f), 1 << LayerMask.NameToLayer("Ground"));
 		if(hit) {
 			transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
-		}
-		else {
-			Destroy(gameObject);
 		}
 	}
 
@@ -54,5 +51,10 @@ public class MushroomBounce : MonoBehaviour {
 			col.gameObject.SendMessage("Bounced", false);
 			bounceTimer = 0.1f;
 		}
+	}
+	
+	public Vector3 plantPosition(Vector3 target) {
+		RaycastHit2D cast = Physics2D.Linecast(target, target - (Vector3.up * .5f), 1 << LayerMask.NameToLayer("Ground"));
+		return cast ? (Vector3)cast.point : Vector3.zero;
 	}
 }

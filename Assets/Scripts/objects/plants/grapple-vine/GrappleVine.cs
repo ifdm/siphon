@@ -8,10 +8,6 @@ public class GrappleVine : MonoBehaviour {
 	[HideInInspector] public Vector3 endPoint;
 
 	void Start() {
-		RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position - (Vector3.up * 0.5f), 1 << LayerMask.NameToLayer("Ground"));
-		if(hit){transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);}
-		//else{Destroy(gameObject);}
-		
 		startPoint = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
 		Vector3 up = startPoint;
 		up.y += 100;
@@ -34,9 +30,5 @@ public class GrappleVine : MonoBehaviour {
 		Transform animation = transform.Find("Animation");
 		animation.position = new Vector3(animation.position.x, endPoint.y - 4.4f, animation.position.z);
 		animation.localScale = new Vector2(animation.localScale.x, 0.5f);
-	}
-
-	void Update() {
-		//Debug.DrawLine(startPoint, endPoint, Color.red);
 	}
 }

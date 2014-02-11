@@ -4,7 +4,7 @@ using System;
 
 public class FirstEncounterHolder : MonoBehaviour {
 
-	public GameObject plant;
+	public Plant plant;
 
 	private bool interacted = false;
 	private bool destroyed = false;
@@ -39,9 +39,9 @@ public class FirstEncounterHolder : MonoBehaviour {
 					PlayerThrow playerScript = player.GetComponent<PlayerThrow>();
 					// Copy the new GameObject plant into the existing slots
 					int slotLength = playerScript.slots.Length;
-					GameObject[] newSlots = { plant };
+					Plant[] newSlots = { plant };
 					// A bit of Array magic for resizing and copying
-					Array.Resize<GameObject>(ref playerScript.slots, slotLength + newSlots.Length);
+					Array.Resize<Plant>(ref playerScript.slots, slotLength + newSlots.Length);
 					Array.Copy(newSlots, 0, playerScript.slots, slotLength, newSlots.Length);
 					// Adjust the slot queues (Not sure what they are, but this helps)
 					playerScript.AddSlotQueue();

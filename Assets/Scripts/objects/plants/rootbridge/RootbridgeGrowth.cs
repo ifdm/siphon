@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RootbridgeGrowth : MonoBehaviour {
+public class RootbridgeGrowth : Plant {
 
 	private Transform body;
 	private Transform oAnim;
@@ -115,5 +115,9 @@ public class RootbridgeGrowth : MonoBehaviour {
 		}
 
 		return false;
+	}
+	
+	public Vector3 plantPosition(Vector3 target) {
+		return target;
 	}
 }

@@ -8,7 +8,7 @@ public class Checkpoint : MonoBehaviour {
 			if(checkpoint) {
 				CheckpointController controller = checkpoint.GetComponent<CheckpointController>();
 				controller.position = transform.position;
-				controller.slots = (GameObject[])collider.gameObject.GetComponent<PlayerThrow>().slots.Clone();
+				controller.slots = (Plant[])collider.gameObject.GetComponent<PlayerThrow>().slots.Clone();
 			}
 		}
 	}
