@@ -10,6 +10,7 @@ public class PlayerPhysics : MonoBehaviour {
 	public float lethalVelocity = 35;
 
 	[HideInInspector] public bool airMove = true;
+	[HideInInspector] public float timeSinceFall = 0;
 
 	public void Move(float factor = 1.0f) {
 		bool grounded = GetComponent<PlayerControl>().isGrounded();
@@ -85,5 +86,33 @@ public class PlayerPhysics : MonoBehaviour {
 	public void Jump() {
 		rigidbody2D.isKinematic = false;
 		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
+	}
+
+	// Black magic that prevents you from sliding off corner of platform.
+	public void LedgeCompensate() {
+		Vector2 scale = (Vector2) transform.lossyScale;
+		CircleCollider2D circle = GetComponent<CircleCollider2D>();
+		Vector2 p1 = Vector2.Scale(circle.center, scale) + (Vector2) transform.position;
+		Vector2 p2 = p1;
+
+		p2.y -= circle.radius * scale.y + 0.07f;
+
+		p1.x -= circle.radius * Mathf.Abs(scale.x);
+		p2.x -= circle.radius * Mathf.Abs(scale.x);
+		RaycastHit2D left = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+
+		p1.x += circle.radius * Mathf.Abs(scale.x) * 2;
+		p2.x += circle.radius * Mathf.Abs(scale.x) * 2;
+		RaycastHit2D right = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+
+		if(left && !right) {
+			rigidbody2D.AddForce(new Vector2(-30 * Mathf.Pow(3, -(timeSinceFall + .5f)), 0));
+		}
+
+		if(right && !left) {
+			rigidbody2D.AddForce(new Vector2(30 * Mathf.Pow(3, -(timeSinceFall + .5f)), 0));
+		}
+
+		timeSinceFall += Time.deltaTime;
 	}
 }

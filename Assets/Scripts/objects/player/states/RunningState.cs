@@ -26,6 +26,8 @@ public class RunningState : PlayerState {
 			if(Mathf.Abs(normal.x) > .5f){normal = new Vector2(.5f * Mathf.Sign(normal.x), normal.y);}
 			animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, (Vector3) normal), 4 * Time.deltaTime);
 		}
+
+		player.physics.LedgeCompensate();
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {

@@ -126,7 +126,7 @@ public class PlayerControl : MonoBehaviour {
 		p2.y = p1.y;
 		p1.y += box.size.y * scale.y * .3f;
 		p2.y += box.size.y * scale.y * .3f;
-		p2.x += box.size.x * scale.x * .8f;
+		p2.x += box.size.x * scale.x * 1.5f;
 
 		//Debug.DrawLine(p1, p2, Color.blue);
 		

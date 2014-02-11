@@ -18,6 +18,23 @@ public class LedgingState : PlayerState {
 	public override void Enter(PlayerControl player, PlayerState from) {
 		player.rigidbody2D.isKinematic = true;
 		player.animator.Set("Ledge");
+
+		Vector2 p1 = (Vector2) player.transform.position;
+		Vector2 p2 = (Vector2) player.transform.position;
+		Vector2 scale = (Vector2) player.transform.lossyScale;
+		BoxCollider2D box = player.GetComponent<BoxCollider2D>();
+		p1 += Vector2.Scale(box.center, scale);
+		p2 += Vector2.Scale(box.center, scale);
+
+		p1.y += box.size.y * scale.y * .3f;
+		p2.y += box.size.y * scale.y * .3f;
+		p2.x += box.size.x * scale.x * 1.5f;
+
+		//Debug.DrawLine(p1, p2, Color.blue);
+		
+		RaycastHit2D cast = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+		float diff = cast.point.x - (player.transform.position.x + (box.size.x * scale.x));
+		player.transform.position = new Vector3(player.transform.position.x + diff, player.transform.position.y, player.transform.position.z);
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to) {

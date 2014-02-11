@@ -112,7 +112,7 @@ public class PlayerThrow : MonoBehaviour {
 				end = ray.GetPoint(distance);
 			}
 			else {
-				end = playerPos + (Vector3)new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical")) * 20;
+				end = playerPos + (Vector3)new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical")) * 10;
 			}
 			
 			RaycastHit2D cast = Physics2D.Linecast(playerPos, end, 1 << LayerMask.NameToLayer("Ground"));
