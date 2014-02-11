@@ -3,121 +3,52 @@ using System.Collections;
 
 public class RootbridgeGrowth : Plant {
 
-	private Transform body;
-	private Transform oAnim;
-
-	void Start() {
-		body = transform.Find("body");
-		oAnim = transform.Find("Animation");
-
-		if(!safe()) {
-			DestroyObject(gameObject);
-		}
-	}
-
-	bool safe() {
-		GameObject seed = GameObject.Find("Seed");
-
-		if(!seed){return true;}
-
-		float radius = seed.GetComponent<CircleCollider2D>().radius * seed.transform.lossyScale.x;
-
-		Vector3 extents = body.gameObject.GetComponent<BoxCollider2D>().size * .5f;
+	public override void grow(RaycastHit2D cast) {
+		Vector3 extents = transform.Find("body").gameObject.GetComponent<BoxCollider2D>().size * .5f;
 		extents = Vector2.Scale(extents, transform.lossyScale);
 
-		Vector3 p1 = transform.position;
-		Vector3 p2 = transform.position;
-
-		p1.x += 0.1f;
-		p1.y += extents.y + 0.01f;
-
-		p2.x += radius + 0.1f;
-		p2.y += extents.y + 0.01f;
-
-		// Right
-		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
-			transform.position = new Vector3(transform.position.x - extents.x + radius, transform.position.y, transform.position.z);
-			oAnim.rotation = new Quaternion(0, -180, 0, 1);
-			return !isGrounded(transform.position, radius);
+		Transform animation = transform.Find("Animation");
+		if(cast.normal.x < 0) {
+			transform.position = new Vector3(transform.position.x - extents.x, transform.position.y, transform.position.z);
+			animation.rotation = new Quaternion(0, -180, 0, 1);
 		}
-
-		p1.x -= 0.3f + radius;
-		p2.x -= 0.3f + radius;
-
-		// Left
-		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
-			transform.position = new Vector3(transform.position.x + extents.x - radius, transform.position.y, transform.position.z);
-			oAnim.position = new Vector3(oAnim.position.x + extents.x - radius * 2, oAnim.position.y, oAnim.position.z);
-			oAnim.rotation = new Quaternion(0, 0, 0, 1);
-
-			return !isGrounded(transform.position, radius);
+		else {
+			transform.position = new Vector3(transform.position.x + extents.x, transform.position.y, transform.position.z);
+			animation.position = new Vector3(animation.position.x + extents.x - .85f, animation.position.y, animation.position.z);
+			animation.rotation = new Quaternion(0, 0, 0, 1);
 		}
-
-		return false;
-	}
-
-	bool isGrounded(Vector3 position, float radius) {
-		float padding = 0.5f;
-		float spacer = 0.3f;
-		Vector3 extents = body.gameObject.GetComponent<BoxCollider2D>().size;
-
-		Vector3 p1 = position;
-		Vector3 p2 = position;
-
-		p1.x -= (extents.x + radius * 2) - padding;
-		p1.y -= spacer;
-		p2.x += (extents.x + radius * 2) - padding;
-		p2.y -= spacer;
-
-		// First Bottom Ground Check
-		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
-			return true;
-		}
-
-		p1.y -= spacer;
-		p2.y -= spacer;
-
-		// Second Bottom Ground Check
-		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
-			return true;
-		}
-
-		p1.y -= spacer;
-		p2.y -= spacer;
-
-		// Third Bottom Ground Check
-		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
-			return true;
-		}
-
-		p1.y += spacer * 4;
-		p2.y += spacer * 4;
-
-		// First Top Ground Check
-		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
-			return true;
-		}
-
-		p1.y += spacer;
-		p2.y += spacer;
-
-		// Second Top Ground Check
-		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
-			return true;
-		}
-
-		p1.y += spacer;
-		p2.y += spacer;
-
-		// Third Top Ground Check
-		if(Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
-			return true;
-		}
-
-		return false;
 	}
 	
-	public Vector3 plantPosition(Vector3 target) {
-		return target;
+	public override bool canPlant(RaycastHit2D cast) {
+		if(!cast){return false;}
+		
+		Vector3 extents = transform.Find("body").gameObject.GetComponent<BoxCollider2D>().size * .5f;
+		extents = Vector2.Scale(extents, transform.lossyScale);
+		
+		Vector3 p1 = cast.point;
+		Vector3 p2 = cast.point;
+		
+		p1.x -= .1f;
+		p2.x += .1f;
+		
+		p1.y += extents.y + .1f;
+		p2.y += extents.y + .1f;
+		
+		Debug.DrawLine(p1, p2, Color.blue);
+		
+		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+			return false;
+		}
+		
+		p1.y -= extents.y + .2f;
+		p2.y -= extents.y + .2f;
+		
+		Debug.DrawLine(p1, p2, Color.blue);
+		
+		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+			return false;
+		}
+		
+		return true;
 	}
 }

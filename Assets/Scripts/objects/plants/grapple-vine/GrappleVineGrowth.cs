@@ -27,8 +27,38 @@ public class GrappleVineGrowth : Plant {
 		if(child){Destroy(child);}
 	}
 	
-	public Vector3 plantPosition(Vector3 target) {
-		RaycastHit2D cast = Physics2D.Linecast(target, target - (Vector3.up * .5f), 1 << LayerMask.NameToLayer("Ground"));
-		return cast ? (Vector3)cast.point : Vector3.zero;
+	public override bool canPlant(RaycastHit2D cast) {
+		if(!cast){return false;}
+		
+		Vector3 p1 = cast.point;
+		Vector3 p2 = cast.point;
+		
+		p1.y -= .01f;
+		p2.y -= .01f;
+		
+		p2.y -= .1f;
+		
+		p1.x -= .1f;
+		p2.x -= .1f;
+		Debug.DrawLine(p1, p2, Color.blue);
+		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+			return false;
+		}
+		
+		p1.x += .1f;
+		p2.x += .1f;
+		Debug.DrawLine(p1, p2, Color.blue);
+		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+			return false;
+		}
+		
+		p1.x += .1f;
+		p2.x += .1f;
+		Debug.DrawLine(p1, p2, Color.blue);
+		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+			return false;
+		}
+		
+		return true;
 	}
 }

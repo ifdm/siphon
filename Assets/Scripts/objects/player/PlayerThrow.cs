@@ -20,7 +20,7 @@ public class PlayerThrow : MonoBehaviour {
 	[HideInInspector] public int activeSlot;
 	[HideInInspector] public bool throwable = true;
 	
-	private Vector3 target;
+	private RaycastHit2D target;
 
 	void Start() {
 		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -68,26 +68,27 @@ public class PlayerThrow : MonoBehaviour {
 					end = playerPos + (Vector3)new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical")) * 10;
 				}
 				
-				RaycastHit2D cast = Physics2D.Linecast(playerPos, end, 1 << LayerMask.NameToLayer("Ground"));
-				if(cast) {
-					end = cast.point;
-					target = slots[activeSlot].PlantPosition(end);
+				target = Physics2D.Linecast(playerPos, end, 1 << LayerMask.NameToLayer("Ground"));
+				if(target) {
+					end = target.point;
 				}
-				else{target = Vector3.zero;}
 				
-				Debug.DrawLine(playerPos, end, target == Vector3.zero ? Color.red : Color.green);
+				Debug.DrawLine(playerPos, end, slots[activeSlot].canPlant(target) ? Color.green : Color.red);
 			}
 			
 			
-			if(throwing && target != Vector3.zero) {
+			if(throwing && slots[activeSlot].canPlant(target)) {
 				while(slotQueues[activeSlot].Count > 0) {
-					Plant plant = (Plant)slotQueues[activeSlot].Dequeue();
-					Destroy(plant.gameObject);
+					Plant old = (Plant)slotQueues[activeSlot].Dequeue();
+					Destroy(old.gameObject);
 				}
-				slotQueues[activeSlot].Enqueue(Instantiate(slots[activeSlot], target, Quaternion.identity));
+				Plant plant = (Plant)Instantiate(slots[activeSlot], target.point, Quaternion.identity);
+				slotQueues[activeSlot].Enqueue(plant);
+				plant.grow(target);
+				
 				GetComponent<PlayerControl>().animator.Set("Throw", false, 1);
 				
-				target = Vector3.zero;
+				target = default(RaycastHit2D);
 			}
 			
 			selectSeed();

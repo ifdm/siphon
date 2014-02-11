@@ -4,7 +4,11 @@ using System.Collections;
 
 public class Plant : MonoBehaviour {
 
-	public virtual Vector3 PlantPosition(Vector3 target) {
-		return target;
+	public virtual bool canPlant(RaycastHit2D cast) {
+		return true;
+	}
+	
+	public virtual void grow(RaycastHit2D cast) {
+		return;
 	}
 }
