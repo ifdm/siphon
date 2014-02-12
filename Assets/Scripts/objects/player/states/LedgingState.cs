@@ -31,7 +31,7 @@ public class LedgingState : PlayerState {
 		p2.x += box.size.x * scale.x * 1.5f;
 
 		RaycastHit2D cast = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		float diff = cast.point.x - (player.transform.position.x + (box.size.x * scale.x * .5f));
+		float diff = cast.point.x - (player.transform.position.x + (box.size.x * scale.x * .75f));
 		player.transform.position = new Vector3(player.transform.position.x + diff, player.transform.position.y, player.transform.position.z);
 	}
 
