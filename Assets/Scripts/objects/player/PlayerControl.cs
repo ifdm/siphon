@@ -167,4 +167,8 @@ public class PlayerControl : MonoBehaviour {
 			return false;
 		}
 	}
+	
+	public void AnimationEvent(string action) {
+		transform.Find("Landing").GetComponent<ParticleSystem>().Emit(30);
+	}
 }
