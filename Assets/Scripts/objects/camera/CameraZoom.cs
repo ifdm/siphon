@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraEase : MonoBehaviour {
+public class CameraZoom : MonoBehaviour {
 
 	public float size = 5;
 	public float smooth = 3.0f;
@@ -29,9 +29,9 @@ public class CameraEase : MonoBehaviour {
 		if(player.position.x > x && player.position.y > y && player.position.x < x + w && player.position.y < y + h) {
 			camera.additionalZ = size;
 			camera.zSmooth = smooth;
-			CameraEase.dirty = true;
+			CameraZoom.dirty = true;
 		}
-		else if(!CameraEase.dirty) {
+		else if(!CameraZoom.dirty) {
 			camera.additionalZ = 0;
 		}
 	}

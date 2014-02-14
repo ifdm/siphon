@@ -36,6 +36,6 @@ public class CameraFollow : MonoBehaviour {
 
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref posVel, s);
 
-		CameraEase.dirty = false;
+		CameraZoom.dirty = false;
 	}
 }
