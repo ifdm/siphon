@@ -57,26 +57,30 @@ public class MushroomBounce : Plant {
 		p1.y -= .01f;
 		p2.y -= .01f;
 		
-		p2.y -= .1f;
+		p1.y += .1f;
+		p2.y -= .2f;
 		
 		p1.x -= .1f;
 		p2.x -= .1f;
 		Debug.DrawLine(p1, p2, Color.blue);
-		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+		cast = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
+		if(!cast || cast.fraction == 0) {
 			return false;
 		}
 		
 		p1.x += .1f;
 		p2.x += .1f;
 		Debug.DrawLine(p1, p2, Color.blue);
-		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+		cast = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
+		if(!cast || cast.fraction == 0) {
 			return false;
 		}
 		
 		p1.x += .1f;
 		p2.x += .1f;
 		Debug.DrawLine(p1, p2, Color.blue);
-		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
+		cast = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
+		if(!cast || cast.fraction == 0) {
 			return false;
 		}
 		
