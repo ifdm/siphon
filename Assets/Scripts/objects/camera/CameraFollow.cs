@@ -9,17 +9,26 @@ public class CameraFollow : MonoBehaviour {
 	[HideInInspector] public float zSmooth = .5f;
 	[HideInInspector] public Vector3 pullTo = Vector3.zero;
 	[HideInInspector] public float pullSmooth;
+	[HideInInspector] public float shake = 0;
 
 	private float z;
+	public float zStart;
 	private float zVel = 0;
 	private Vector3 posVel = Vector3.zero;
 
 	void Start() {
 		player = GameObject.Find("Player");
 		z = transform.position.z;
+		zStart = z;
 		transform.position = new Vector3(player.transform.position.x, player.transform.position.y, z);
+		shake = 0;
 
 		camera.transparencySortMode = TransparencySortMode.Orthographic;
+	}
+
+	void Update() {
+		shake -= Mathf.Min(shake, Time.deltaTime);
+		Debug.Log(shake);
 	}
 
 	void OnPreRender() {
@@ -30,7 +39,7 @@ public class CameraFollow : MonoBehaviour {
 			zSmooth = smooth;
 		}
 		else {
-			z = Mathf.SmoothDamp(z, -10 - additionalZ, ref zVel, zSmooth);
+			z = Mathf.SmoothDamp(z, zStart - additionalZ, ref zVel, zSmooth);
 		}
 
 		Vector2 p2d;
@@ -42,6 +51,10 @@ public class CameraFollow : MonoBehaviour {
 		else {
 			target = pullTo;
 			s = pullSmooth;
+		}
+
+		if(shake > 0) {
+			target = new Vector3(target.x + Random.Range(-8, 8), target.y + Random.Range(-8, 8), target.z + Random.Range(-8, 8));
 		}
 
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref posVel, s);
