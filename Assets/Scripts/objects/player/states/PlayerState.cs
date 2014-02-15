@@ -11,6 +11,7 @@ public class PlayerState {
 	public static ClimbingState Climbing = new ClimbingState();
 	public static FallingState Falling = new FallingState();
 	public static DyingState Dying = new DyingState();
+	public static InteractingState Interacting = new InteractingState();
 
 	public virtual void HandleInput(PlayerControl player) {}
 	public virtual void Update(PlayerControl player) {}
