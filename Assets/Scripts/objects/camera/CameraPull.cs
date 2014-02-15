@@ -14,8 +14,6 @@ public class CameraPull : MonoBehaviour {
 	[HideInInspector] public static bool dirty;
 
 	public void Start() {
-		size -= 5; // Legacy support ew
-
 		BoxCollider2D box = GetComponent<BoxCollider2D>();
 		w = box.size.x * transform.lossyScale.x;
 		h = box.size.y * transform.lossyScale.y;
@@ -30,10 +28,9 @@ public class CameraPull : MonoBehaviour {
 		if(!pulling) {
 			CameraFollow camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
 			if(player.position.x > x && player.position.y > y && player.position.x < x + w && player.position.y < y + h) {
-				camera.additionalZ = size;
 				camera.zSmooth = smooth;
 				Vector3 v = transform.Find("PullTo").position;
-				camera.pullTo = new Vector3(v.x, v.y, camera.transform.position.z);
+				camera.pullTo = new Vector3(v.x, v.y, camera.zStart - size);
 				camera.pullSmooth = smooth;
 				pulling = true;
 				pulling = true;
@@ -50,6 +47,7 @@ public class CameraPull : MonoBehaviour {
 		yield return new WaitForSeconds(smooth * 2 + duration);
 		CameraFollow camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
 		camera.pullTo = Vector3.zero;
+		camera.additionalZ = 0;
 		Destroy(gameObject);
 	}
 }
