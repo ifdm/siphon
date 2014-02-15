@@ -24,7 +24,7 @@ public class JumpingState : PlayerState {
 		player.physics.Move();
 
 		Transform animation = player.transform.Find("Animation");
-		animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.identity, 4 * Time.deltaTime);
+		//animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.identity, 4 * Time.deltaTime);
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
@@ -36,6 +36,6 @@ public class JumpingState : PlayerState {
 			player.mozart.One("Jump");
 		}
 
-		player.animator.Set("Jump");
+		player.animator.Set("Jump", false, 0, 2f);	
 	}
 }
