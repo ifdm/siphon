@@ -22,9 +22,6 @@ public class JumpingState : PlayerState {
 
 	public override void Update(PlayerControl player) {
 		player.physics.Move();
-
-		Transform animation = player.transform.Find("Animation");
-		//animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.identity, 4 * Time.deltaTime);
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {

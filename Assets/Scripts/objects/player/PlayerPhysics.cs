@@ -12,7 +12,7 @@ public class PlayerPhysics : MonoBehaviour {
 	[HideInInspector] public bool airMove = true;
 	[HideInInspector] public float timeSinceFall = 0;
 
-	public void Move(float factor = 1.0f) {
+	public void Move(float factor = 1.0f, bool allowed = true) {
 		bool grounded = GetComponent<PlayerControl>().isGrounded();
 		if(grounded) {
 			airMove = true;
@@ -37,7 +37,7 @@ public class PlayerPhysics : MonoBehaviour {
 			}
 
 			if((h > 0 && !facingRight) || (h < 0 && facingRight)) {
-				ChangeDirection();
+				if(allowed) ChangeDirection();
 			}
 		}
 	}
@@ -47,7 +47,6 @@ public class PlayerPhysics : MonoBehaviour {
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
-		//transform.Find("Animation").rotation *= Quaternion.Euler(0, 0, 180);
 	}
 
 	public void Climb() {

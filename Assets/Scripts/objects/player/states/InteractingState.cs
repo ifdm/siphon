@@ -15,14 +15,11 @@ public class InteractingState : PlayerState {
 				player.ChangeState(PlayerState.Running);
 			}
 		}
-	}
-	
-	public override void Update(PlayerControl player) {
-		player.physics.Move(0.5f);
+		else {
+
+		}
 	}
 
-	public override void Enter(PlayerControl player, PlayerState from) {
-		Debug.Log("Interacting");
-	}
+	public override void Enter(PlayerControl player, PlayerState from) {}
 
 }
