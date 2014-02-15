@@ -6,15 +6,18 @@ using System.Collections.Generic;
 public class Mozart : MonoBehaviour {
 
 	protected Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>();
-	private Dictionary<string, AudioSource> sources = new Dictionary<string, AudioSource>();
+	protected Dictionary<string, AudioSource> sources = new Dictionary<string, AudioSource>();
 
 	public virtual void AnimationEvent(string action) {}
 	public virtual void Awake() {}
+
 	public virtual void Start() {
 		AudioSource audio;
 		foreach(KeyValuePair<string, AudioClip> clip in clips) {
-			audio = gameObject.AddComponent<AudioSource>();			
+			audio = gameObject.AddComponent<AudioSource>();	
 			audio.clip = clip.Value;
+			if(clip.Value == null) 
+				Debug.Log("clip " + clip + " is null");
 			sources.Add(clip.Key, audio);
 		}
 	}

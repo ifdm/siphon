@@ -7,6 +7,8 @@ public class CameraFollow : MonoBehaviour {
 	[HideInInspector] public GameObject player;
 	[HideInInspector] public float additionalZ = 0;
 	[HideInInspector] public float zSmooth = .5f;
+	[HideInInspector] public Vector3 pullTo = Vector3.zero;
+	[HideInInspector] public float pullSmooth;
 
 	private float z;
 	private float zVel = 0;
@@ -31,8 +33,18 @@ public class CameraFollow : MonoBehaviour {
 			z = Mathf.SmoothDamp(z, -10 - additionalZ, ref zVel, zSmooth);
 		}
 
-		Vector2 p2d = (Vector2)player.transform.position + Vector2.Scale(player.GetComponent<BoxCollider2D>().center, (Vector2)player.transform.lossyScale);
-		Vector3 target = new Vector3(p2d.x, p2d.y, z);
+		Vector2 p2d;
+		Vector3 target;
+		if(pullTo == Vector3.zero) {
+			p2d = (Vector2)player.transform.position + Vector2.Scale(player.GetComponent<BoxCollider2D>().center, (Vector2)player.transform.lossyScale);
+			target = new Vector3(p2d.x, p2d.y, z);
+		}
+		else {
+			target = pullTo;
+			s = pullSmooth;
+
+			Debug.Log("ASDF");
+		}
 
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref posVel, s);
 
