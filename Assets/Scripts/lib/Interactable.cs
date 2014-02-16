@@ -25,12 +25,12 @@ public class Interactable : MonoBehaviour {
 		}
 	}
 
-	void Update() {
+	void Update() {		
 		if(inRange && Input.GetButtonUp("Action")) {
 			velocity = Vector2.zero;
 		}
 
-		if(canInteract() && velocity != Vector2.zero && inRange) {
+		if(player.canInteract() && velocity != Vector2.zero && inRange) {
 			player.rigidbody2D.velocity = velocity;
 			rigidbody2D.velocity = velocity;
 		}
@@ -40,7 +40,7 @@ public class Interactable : MonoBehaviour {
 		if(col.gameObject.tag == "Player") {
 			inRange = true;
 
-			if(canInteract()) {
+			if(player.canInteract()) {
 				// Are we just starting to interact?
 				if(player.state != PlayerState.Interacting) {
 					// If so, make the interactable item movable.
@@ -52,6 +52,20 @@ public class Interactable : MonoBehaviour {
 				// If we start moving, build up velocity
 				if(player.isRunning()) {
 					var sign = Mathf.Sign(Input.GetAxis("Horizontal"));
+
+					if(player.physics.facingRight) {
+						if(sign == 1 && !push || sign == -1 && !pull) {
+							velocity = Vector2.zero;
+							return;
+						}
+					}
+					else {
+						if(sign == 1 && !pull || sign == -1 && !push) {
+							velocity = Vector2.zero;
+							return;
+						}
+					}
+
 					velocity = new Vector2(sign * 3, 0);
 				}
 			}
@@ -64,9 +78,5 @@ public class Interactable : MonoBehaviour {
 			velocity = Vector2.zero;
 			rigidbody2D.mass = staticWeight;
 		}
-	}
-
-	private bool canInteract() {
-		return player.isGrounded() && Input.GetButton("Action");
 	}
 }
