@@ -68,6 +68,9 @@ public class Mozart : MonoBehaviour {
 			string name = tracks[trackIndex];
 			StartCoroutine(Fader(name, to, duration));
 		}
+		else {
+			StartCoroutine(Fader(null, to, duration));
+		}
 
 		Play(to, 1f, true, 1);
 	}
@@ -93,7 +96,7 @@ public class Mozart : MonoBehaviour {
 		sources[to].volume = 0f;
 
 		while(duration > 0) {
-			sources[from].volume -= Mathf.Max(Time.deltaTime / maxDuration, 0f);
+			if(Available(from)) sources[from].volume -= Mathf.Max(Time.deltaTime / maxDuration, 0f);
 			sources[to].volume += Mathf.Min(Time.deltaTime / maxDuration, 1f);
 
 			duration -= Time.deltaTime;
