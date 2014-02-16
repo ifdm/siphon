@@ -19,11 +19,14 @@ public class MushroomBounce : Plant {
 		}
 
 		BoxCollider2D box = GetComponent<BoxCollider2D>();
-		if(GameObject.Find("Player").GetComponent<PlayerControl>().isGrounded()) {
-			box.size = new Vector2(150, box.size.y);
+		GameObject player = GameObject.Find("Player");
+		if(player.GetComponent<PlayerControl>().isGrounded()) {
+			box.size = new Vector2(250, 10);
+			box.center = new Vector2(35 * player.rigidbody2D.velocity.x, 10);
 		}
 		else {
-			box.size = new Vector2(500, box.size.y);
+			box.size = new Vector2(400, 10 + (10 * Mathf.Abs(player.rigidbody2D.velocity.y)));
+			box.center = new Vector2(0, 10 + (5 * Mathf.Abs(player.rigidbody2D.velocity.y)));
 		}
 	}
 
@@ -31,11 +34,12 @@ public class MushroomBounce : Plant {
 		Bounceable bounceable = col.gameObject.GetComponent<Bounceable>();
 
 		if(bounceable && col.gameObject.rigidbody2D && bounceTimer == 0) {
-			bounceForce = (bounceable.bounceForce != 0) ? bounceable.bounceForce : bounceForce;
+			float bf = (bounceable.bounceForce != 0) ? bounceable.bounceForce : bounceForce;
 			float component = col.gameObject.rigidbody2D.velocity.x;
 			
-			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bounceForce) {
-				col.gameObject.rigidbody2D.velocity = new Vector2(component, bounceForce);
+			Debug.Log(bf + " " +  col.gameObject.rigidbody2D.velocity.y);
+			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bf) {
+				col.gameObject.rigidbody2D.velocity = new Vector2(component, bf);
 			}
 			else {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
@@ -47,7 +51,7 @@ public class MushroomBounce : Plant {
 			bounceTimer = 0.1f;
 		}
 	}
-		
+	
 	public override bool canPlant(RaycastHit2D cast) {
 		if(!cast){return false;}
 		
