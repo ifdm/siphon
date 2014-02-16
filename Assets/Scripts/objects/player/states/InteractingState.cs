@@ -15,11 +15,6 @@ public class InteractingState : PlayerState {
 				player.ChangeState(PlayerState.Running);
 			}
 		}
-		else {
-
-		}
 	}
-
-	public override void Enter(PlayerControl player, PlayerState from) {}
-
+	
 }

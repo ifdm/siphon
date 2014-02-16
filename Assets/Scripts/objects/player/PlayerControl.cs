@@ -31,11 +31,11 @@ public class PlayerControl : MonoBehaviour {
 		state.Update(this);
 	}
 
-	public void ChangeState(PlayerState next) {
+	public void ChangeState(PlayerState next) {		
 		PlayerState previous = this.state;
-		if(previous != null) {
-			previous.Exit(this, next);
-		}
+
+		if(previous != null && (next == previous)) return;
+		if(previous != null) {previous.Exit(this, next);}
 
 		this.state = next;
 		this.state.Enter(this, previous);
@@ -107,6 +107,23 @@ public class PlayerControl : MonoBehaviour {
 
 	public bool isRunning() {
 		return isGrounded() && Input.GetAxisRaw("Horizontal") != 0;
+	}
+
+	public bool canInteract() {
+		Vector2 p1 = (Vector2) transform.position;
+		Vector2 p2 = (Vector2) transform.position;
+		Vector2 scale = (Vector2) transform.lossyScale;
+		BoxCollider2D box = GetComponent<BoxCollider2D>();
+		p1 += Vector2.Scale(box.center, scale);
+		p2 += Vector2.Scale(box.center, scale);
+		p2.x += box.size.x * scale.x * 1.5f;
+
+		Debug.DrawLine(p1, p2, Color.green);
+		if(Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")))) {
+			return isGrounded() && Input.GetButton("Action");
+		}
+
+		return false;
 	}
 
 	public bool canLedgeGrab() {

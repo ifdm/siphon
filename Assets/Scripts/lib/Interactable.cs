@@ -25,12 +25,9 @@ public class Interactable : MonoBehaviour {
 		}
 	}
 
-	void Update() {
-		if(inRange && Input.GetButtonUp("Action")) {
-			velocity = Vector2.zero;
-		}
-
-		if(canInteract() && velocity != Vector2.zero && inRange) {
+	void Update() {	
+		if(!inRange || (inRange && Input.GetButtonUp("Action"))) {return;}
+		if(player.canInteract() && velocity != Vector2.zero && inRange) {
 			player.rigidbody2D.velocity = velocity;
 			rigidbody2D.velocity = velocity;
 		}
@@ -40,18 +37,23 @@ public class Interactable : MonoBehaviour {
 		if(col.gameObject.tag == "Player") {
 			inRange = true;
 
-			if(canInteract()) {
-				// Are we just starting to interact?
-				if(player.state != PlayerState.Interacting) {
-					// If so, make the interactable item movable.
-					rigidbody2D.mass = dynamicWeight;
-					// Change state.
-					player.ChangeState(PlayerState.Interacting);
-				}
-
+			if(player.canInteract()) {
+				// If so, make the interactable item movable.
+				rigidbody2D.mass = dynamicWeight;
+				// Change state.
+				player.ChangeState(PlayerState.Interacting);
 				// If we start moving, build up velocity
 				if(player.isRunning()) {
 					var sign = Mathf.Sign(Input.GetAxis("Horizontal"));
+					var direction = (player.physics.facingRight) ? 1 : -1;
+					// Check to see if we are allowed to push or pull in that direction.
+					if(sign == direction && !push || sign == -direction && !pull) {
+						// If we aren't, make the interactable item immovable.
+						rigidbody2D.mass = staticWeight;
+						inRange = false;
+						return;
+					}
+
 					velocity = new Vector2(sign * 3, 0);
 				}
 			}
@@ -61,12 +63,7 @@ public class Interactable : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D col) {
 		if(col.gameObject.tag == "Player") {
 			inRange = false;
-			velocity = Vector2.zero;
 			rigidbody2D.mass = staticWeight;
 		}
-	}
-
-	private bool canInteract() {
-		return player.isGrounded() && Input.GetButton("Action");
 	}
 }
