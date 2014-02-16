@@ -46,7 +46,6 @@ public class Interactable : MonoBehaviour {
 				if(player.isRunning()) {
 					var sign = Mathf.Sign(Input.GetAxis("Horizontal"));
 					var direction = (player.physics.facingRight) ? 1 : -1;
-
 					// Check to see if we are allowed to push or pull in that direction.
 					if(sign == direction && !push || sign == -direction && !pull) {
 						// If we aren't, make the interactable item immovable.
