@@ -40,10 +40,15 @@ namespace Spine {
 		public AnimationStateData Data { get { return data; } }
 		public float TimeScale { get { return timeScale; } set { timeScale = value; } }
 
-		public event EventHandler<StartEndArgs> Start;
-		public event EventHandler<StartEndArgs> End;
-		public event EventHandler<EventTriggeredArgs> Event;
-		public event EventHandler<CompleteArgs> Complete;
+		public delegate void StartEndDelegate(AnimationState state, int trackIndex);
+		public event StartEndDelegate Start;
+		public event StartEndDelegate End;
+
+		public delegate void EventDelegate(AnimationState state, int trackIndex, Event e);
+		public event EventDelegate Event;
+		
+		public delegate void CompleteDelegate(AnimationState state, int trackIndex, int loopCount);
+		public event CompleteDelegate Complete;
 
 		public AnimationState (AnimationStateData data) {
 			if (data == null) throw new ArgumentNullException("data cannot be null.");
@@ -70,7 +75,7 @@ namespace Spine {
 				if (current.loop ? (current.lastTime % endTime > time % endTime) : (current.lastTime < endTime && time >= endTime)) {
 					int count = (int)(time / endTime);
 					current.OnComplete(this, i, count);
-					if (Complete != null) Complete(this, new CompleteArgs(i, count));
+					if (Complete != null) Complete(this, i, count);
 				}
 
 				TrackEntry next = current.next;
@@ -115,7 +120,7 @@ namespace Spine {
 				for (int ii = 0, nn = events.Count; ii < nn; ii++) {
 					Event e = events[ii];
 					current.OnEvent(this, i, e);
-					if (Event != null) Event(this, new EventTriggeredArgs(i, e));
+					if (Event != null) Event(this, i, e);
 				}
 
 				current.lastTime = current.time;
@@ -134,7 +139,7 @@ namespace Spine {
 			if (current == null) return;
 
 			current.OnEnd(this, trackIndex);
-			if (End != null) End(this, new StartEndArgs(trackIndex));
+			if (End != null) End(this, trackIndex);
 
 			tracks[trackIndex] = null;
 		}
@@ -153,7 +158,7 @@ namespace Spine {
 				current.previous = null;
 
 				current.OnEnd(this, index);
-				if (End != null) End(this, new StartEndArgs(index));
+				if (End != null) End(this, index);
 
 				entry.mixDuration = data.GetMix(current.animation, entry.animation);
 				if (entry.mixDuration > 0) {
@@ -169,7 +174,7 @@ namespace Spine {
 			tracks[index] = entry;
 
 			entry.OnStart(this, index);
-			if (Start != null) Start(this, new StartEndArgs(index));
+			if (Start != null) Start(this, index);
 		}
 
 		public TrackEntry SetAnimation (int trackIndex, String animationName, bool loop) {
@@ -242,34 +247,6 @@ namespace Spine {
 		}
 	}
 
-	public class EventTriggeredArgs : EventArgs {
-		public int TrackIndex { get; private set; }
-		public Event Event { get; private set; }
-
-		public EventTriggeredArgs (int trackIndex, Event e) {
-			TrackIndex = trackIndex;
-			Event = e;
-		}
-	}
-
-	public class CompleteArgs : EventArgs {
-		public int TrackIndex { get; private set; }
-		public int LoopCount { get; private set; }
-
-		public CompleteArgs (int trackIndex, int loopCount) {
-			TrackIndex = trackIndex;
-			LoopCount = loopCount;
-		}
-	}
-
-	public class StartEndArgs : EventArgs {
-		public int TrackIndex { get; private set; }
-
-		public StartEndArgs (int trackIndex) {
-			TrackIndex = trackIndex;
-		}
-	}
-
 	public class TrackEntry {
 		internal TrackEntry next, previous;
 		internal Animation animation;
@@ -284,26 +261,26 @@ namespace Spine {
 		public float EndTime { get { return endTime; } set { endTime = value; } }
 		public float TimeScale { get { return timeScale; } set { timeScale = value; } }
 		public bool Loop { get { return loop; } set { loop = value; } }
-
-		public event EventHandler<StartEndArgs> Start;
-		public event EventHandler<StartEndArgs> End;
-		public event EventHandler<EventTriggeredArgs> Event;
-		public event EventHandler<CompleteArgs> Complete;
+		
+		public event AnimationState.StartEndDelegate Start;
+		public event AnimationState.StartEndDelegate End;
+		public event AnimationState.EventDelegate Event;
+		public event AnimationState.CompleteDelegate Complete;
 
 		internal void OnStart (AnimationState state, int index) {
-			if (Start != null) Start(state, new StartEndArgs(index));
+			if (Start != null) Start(state, index);
 		}
 
 		internal void OnEnd (AnimationState state, int index) {
-			if (End != null) End(state, new StartEndArgs(index));
+			if (End != null) End(state, index);
 		}
 
 		internal void OnEvent (AnimationState state, int index, Event e) {
-			if (Event != null) Event(state, new EventTriggeredArgs(index, e));
+			if (Event != null) Event(state, index, e);
 		}
 
 		internal void OnComplete (AnimationState state, int index, int loopCount) {
-			if (Complete != null) Complete(state, new CompleteArgs(index, loopCount));
+			if (Complete != null) Complete(state, index, loopCount);
 		}
 
 		override public String ToString () {
