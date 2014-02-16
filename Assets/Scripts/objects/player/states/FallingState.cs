@@ -28,8 +28,8 @@ public class FallingState : PlayerState {
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
-		player.animator.Set("Fall", true);
 		if(from == PlayerState.Ledging){ledgeGrace = 0.2f;}
+		player.animator.Set("Fall", true);
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to) {

@@ -34,9 +34,13 @@ using Spine;
 
 /** Extends SkeletonComponent to apply an animation. */
 [ExecuteInEditMode, RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
+[AddComponentMenu("Spine/SkeletonAnimation")]
 public class SkeletonAnimation : SkeletonComponent {
 	public bool loop;
 	public Spine.AnimationState state;
+
+	public delegate void UpdateBonesDelegate(SkeletonAnimation skeleton);
+	public UpdateBonesDelegate UpdateBones;
 
 	public String _animationName;
 	public String animationName {
@@ -67,6 +71,8 @@ public class SkeletonAnimation : SkeletonComponent {
 		// Apply the animation.
 		state.Update(deltaTime * timeScale);
 		state.Apply(skeleton);
+
+		if (UpdateBones != null) UpdateBones(this);
 
 		// Call overridden method to call skeleton Update and UpdateWorldTransform.
 		base.UpdateSkeleton(deltaTime);
