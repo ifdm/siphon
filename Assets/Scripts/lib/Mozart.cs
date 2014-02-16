@@ -16,8 +16,6 @@ public class Mozart : MonoBehaviour {
 		foreach(KeyValuePair<string, AudioClip> clip in clips) {
 			audio = gameObject.AddComponent<AudioSource>();	
 			audio.clip = clip.Value;
-			if(clip.Value == null) 
-				Debug.Log("clip " + clip + " is null");
 			sources.Add(clip.Key, audio);
 		}
 	}
@@ -26,7 +24,6 @@ public class Mozart : MonoBehaviour {
 		if(Available(name)) {
 			sources[name].volume = volume;
 			sources[name].loop = loop;
-			Debug.Log("Playing " + name + " which is " + sources[name]);
 			sources[name].Play(delay);
 		}
 	}

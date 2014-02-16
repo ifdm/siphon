@@ -31,11 +31,11 @@ public class PlayerControl : MonoBehaviour {
 		state.Update(this);
 	}
 
-	public void ChangeState(PlayerState next) {
+	public void ChangeState(PlayerState next) {		
 		PlayerState previous = this.state;
-		if(previous != null) {
-			previous.Exit(this, next);
-		}
+
+		if(previous != null && (next == previous)) return;
+		if(previous != null) {previous.Exit(this, next);}
 
 		this.state = next;
 		this.state.Enter(this, previous);
