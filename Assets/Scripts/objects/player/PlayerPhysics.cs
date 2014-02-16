@@ -12,7 +12,7 @@ public class PlayerPhysics : MonoBehaviour {
 	[HideInInspector] public bool airMove = true;
 	[HideInInspector] public float timeSinceFall = 0;
 
-	public void Move(float factor = 1.0f, bool allowed = true) {
+	public void Move(float factor = 1.0f) {
 		bool grounded = GetComponent<PlayerControl>().isGrounded();
 		if(grounded) {
 			airMove = true;
@@ -37,7 +37,7 @@ public class PlayerPhysics : MonoBehaviour {
 			}
 
 			if((h > 0 && !facingRight) || (h < 0 && facingRight)) {
-				if(allowed) ChangeDirection();
+				ChangeDirection();
 			}
 		}
 	}

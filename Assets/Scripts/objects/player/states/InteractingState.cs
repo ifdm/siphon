@@ -3,6 +3,8 @@ using System.Collections;
 
 public class InteractingState : PlayerState {
 
+	private float direction = -1;
+
 	public override void HandleInput(PlayerControl player) {
 		if(Input.GetButtonUp("Action")) {
 			if(!player.isGrounded() || Input.GetButtonDown("Jump")) {
@@ -16,5 +18,8 @@ public class InteractingState : PlayerState {
 			}
 		}
 	}
+
+	public override void Enter(PlayerControl player, PlayerState from){}
+	public override void Exit(PlayerControl player, PlayerState to){}
 	
 }
