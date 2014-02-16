@@ -52,18 +52,13 @@ public class Interactable : MonoBehaviour {
 				// If we start moving, build up velocity
 				if(player.isRunning()) {
 					var sign = Mathf.Sign(Input.GetAxis("Horizontal"));
+					var direction = (player.physics.facingRight) ? 1 : -1;
 
-					if(player.physics.facingRight) {
-						if(sign == 1 && !push || sign == -1 && !pull) {
-							velocity = Vector2.zero;
-							return;
-						}
-					}
-					else {
-						if(sign == 1 && !pull || sign == -1 && !push) {
-							velocity = Vector2.zero;
-							return;
-						}
+					if(sign == direction && !push || sign == -direction && !pull) {
+						// If so, make the interactable item movable.
+						rigidbody2D.mass = staticWeight;
+						velocity = Vector2.zero;
+						return;
 					}
 
 					velocity = new Vector2(sign * 3, 0);
