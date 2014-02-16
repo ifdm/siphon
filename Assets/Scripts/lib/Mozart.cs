@@ -26,6 +26,7 @@ public class Mozart : MonoBehaviour {
 		if(Available(name)) {
 			sources[name].volume = volume;
 			sources[name].loop = loop;
+			Debug.Log("Playing " + name + " which is " + sources[name]);
 			sources[name].Play(delay);
 		}
 	}

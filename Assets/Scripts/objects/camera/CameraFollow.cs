@@ -28,7 +28,7 @@ public class CameraFollow : MonoBehaviour {
 
 	void Update() {
 		shake -= Mathf.Min(shake, Time.deltaTime);
-		Debug.Log(shake);
+		//Debug.Log(shake);
 	}
 
 	void OnPreRender() {
