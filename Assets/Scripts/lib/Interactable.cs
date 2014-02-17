@@ -27,7 +27,7 @@ public class Interactable : MonoBehaviour {
 
 	void Update() {	
 		if(!inRange || (inRange && Input.GetButtonUp("Action"))) {return;}
-		if(player.canInteract() && velocity != Vector2.zero && inRange) {
+		if(player.canInteract() && Input.GetAxis("Horizontal") != 0 && velocity != Vector2.zero && inRange) {
 			player.rigidbody2D.velocity = velocity;
 			rigidbody2D.velocity = velocity;
 		}
