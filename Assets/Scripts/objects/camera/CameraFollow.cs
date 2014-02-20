@@ -45,7 +45,7 @@ public class CameraFollow : MonoBehaviour {
 		Vector3 target;
 		if(pullTo == Vector3.zero) {
 			p2d = (Vector2)player.transform.position + Vector2.Scale(player.GetComponent<BoxCollider2D>().center, (Vector2)player.transform.lossyScale);
-			target = new Vector3(p2d.x, p2d.y, z);
+			target = new Vector3(p2d.x, p2d.y + 2.0f, z);
 		}
 		else {
 			target = pullTo;
