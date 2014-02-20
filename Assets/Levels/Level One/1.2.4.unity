@@ -2490,8 +2490,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 355381960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.3695889, y: -5.15381622, z: -.134765625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4.68996143, y: -1.02139199, z: -.134765625}
+  m_LocalScale: {x: .200000003, y: .200000003, z: 1}
   m_Children:
   - {fileID: 8133836}
   - {fileID: 1564143267}
@@ -2619,7 +2619,7 @@ Transform:
   - {fileID: 1575899087}
   - {fileID: 1204222983}
   - {fileID: 75289349}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1191727399}
 --- !u!212 &355381962
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6781,7 +6781,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.0802165121, y: -.0468564257, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 355381961}
   m_Father: {fileID: 0}
 --- !u!1 &1201181718
 GameObject:
@@ -10163,7 +10164,7 @@ MonoBehaviour:
   zSmooth: .5
   pullTo: {x: 0, y: 0, z: 0}
   pullSmooth: 0
-  shake: 0
+  shake: 1
   zStart: 0
 --- !u!81 &1716237969
 AudioListener:
@@ -10255,6 +10256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e6e0eb2d0c54288b8ffb6bff683c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fade: .200000003
+  currentTrack: 
 --- !u!1 &1723110160
 GameObject:
   m_ObjectHideFlags: 0
@@ -11870,6 +11873,7 @@ MonoBehaviour:
   timeScale: 1.10000002
   calculateNormals: 0
   calculateTangents: 0
+  zSpacing: 0
   loop: 0
   _animationName: idle
 --- !u!114 &1967366570
@@ -12128,6 +12132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce792c43b9fcc41b6b5fe7a6b27cbbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fade: .200000003
 --- !u!1001 &1991796883
 Prefab:
   m_ObjectHideFlags: 0
