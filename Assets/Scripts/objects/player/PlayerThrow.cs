@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class PlayerThrow : MonoBehaviour {
 
@@ -16,12 +17,21 @@ public class PlayerThrow : MonoBehaviour {
 	public float bottomDeadZone = 15f;
 
 	public Texture2D[] cursors;
+	
+	private bool isCursorStart = false;
+	private bool isCursorLoop = false;
+	private int frameCounter = 0;
+	
+	private Texture2D[] cursorLoop;
+	private Texture2D[] cursorStart;
+	private int curSeed;
 
 	[HideInInspector] public int activeSlot;
 	[HideInInspector] public bool throwable = true;
 	
 	private RaycastHit2D target;
-
+	
+	
 	void Start() {
 		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		
@@ -30,14 +40,25 @@ public class PlayerThrow : MonoBehaviour {
 			slotQueues.Add(new Queue());
 		}
 
-		StartCoroutine(SetInitialCursor());
+		cursorLoop = Resources.LoadAll <Texture2D>("GUI Animations/crosshair-loop");
+		Debug.Log (cursorLoop.Length);
+		
+		cursorStart = Resources.LoadAll <Texture2D>("GUI Animations/crosshair-start");
+		Debug.Log (cursorStart.Length);
+		
+		foreach(Texture2D t in cursorLoop){
+			Debug.Log (t);
+		}
 	}
+
+			
 
 	private IEnumerator SetInitialCursor() {
 		yield return new WaitForSeconds(.1f);
 		if(cursors.Length > 0) {
 			Screen.showCursor = true;
 			Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
+			curSeed = 0;
 		}
 	}
 
@@ -46,6 +67,7 @@ public class PlayerThrow : MonoBehaviour {
 	}
 	
 	void Update () {
+		
 		if(slots.Length > 0) {
 			bool targeting = Input.GetAxis("Seed Horizontal") != 0 || Input.GetAxis("Seed Vertical") != 0 || Input.GetMouseButton(0);
 			bool throwing = Input.GetAxis("Seed Throw") != 0 || Input.GetMouseButtonUp(0);
@@ -72,8 +94,13 @@ public class PlayerThrow : MonoBehaviour {
 				if(target) {
 					end = target.point;
 				}
+				if(!isCursorStart && !isCursorLoop) isCursorStart = true;
 				
 				Debug.DrawLine(playerPos, end, slots[activeSlot].canPlant(target) ? Color.green : Color.red);
+			}
+			else{
+				isCursorStart = isCursorLoop = false;
+				Cursor.SetCursor(cursors[curSeed], Vector2.zero, CursorMode.Auto);
 			}
 			
 			
@@ -93,6 +120,23 @@ public class PlayerThrow : MonoBehaviour {
 			
 			selectSeed();
 		}
+		
+		if(isCursorStart || isCursorLoop){
+			Texture2D[] cur = (isCursorStart) ? cursorStart : cursorLoop;
+			Texture2D tex = cur[frameCounter];
+			Cursor.SetCursor(tex, Vector2.zero, CursorMode.Auto);
+			frameCounter++;
+			if(frameCounter >= cur.Length){
+				if(isCursorStart){   //switch to the loop after doing start
+					isCursorStart = false;
+					isCursorLoop = true;
+					frameCounter = 0;
+				}
+				frameCounter = 0;
+			}
+		}
+		else
+			frameCounter = 0;
 	}
 	
 	private void selectSeed() {
@@ -100,6 +144,7 @@ public class PlayerThrow : MonoBehaviour {
 			if(Input.GetKeyDown((i + 1).ToString())) {
 				activeSlot = i;
 				Cursor.SetCursor(cursors[i], Vector2.zero, CursorMode.Auto);
+				curSeed = i;
 				break;
 			}
 		}
@@ -107,11 +152,13 @@ public class PlayerThrow : MonoBehaviour {
 		if(Input.GetAxis("Mouse ScrollWheel") > 0) {
 			activeSlot = (activeSlot + 1) % slots.Length;
 			Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
-		}
+			curSeed = activeSlot;
+			}
 		else if(Input.GetAxis("Mouse ScrollWheel") < 0) {
 			activeSlot--;
 			if(activeSlot < 0){activeSlot = slots.Length - 1;}
 			Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
+			curSeed = activeSlot;
 		}
 	}
 }
