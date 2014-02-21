@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InteractingState : PlayerState {
 
-	private float direction = -1;
+	public GameObject interactable;
 
 	public override void HandleInput(PlayerControl player) {
 		if(Input.GetButtonUp("Action")) {
@@ -19,7 +19,17 @@ public class InteractingState : PlayerState {
 		}
 	}
 
-	public override void Enter(PlayerControl player, PlayerState from){}
-	public override void Exit(PlayerControl player, PlayerState to){}
+	public override void Update(PlayerControl player) {
+		player.physics.Interact(interactable);
+	}
+
+	public override void Enter(PlayerControl player, PlayerState from){
+		interactable.rigidbody2D.mass = interactable.GetComponent<Interactable>().dynamicWeight;
+		player.animator.Set("Push", true);
+	}
+
+	public override void Exit(PlayerControl player, PlayerState to){
+		interactable.rigidbody2D.mass = interactable.GetComponent<Interactable>().staticWeight;
+	}
 	
 }

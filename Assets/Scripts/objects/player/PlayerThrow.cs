@@ -57,8 +57,12 @@ public class PlayerThrow : MonoBehaviour {
 		yield return new WaitForSeconds(.1f);
 		if(cursors.Length > 0) {
 			Screen.showCursor = true;
+
 			Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
 			curSeed = 0;
+
+			//Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
+
 		}
 	}
 
@@ -143,8 +147,12 @@ public class PlayerThrow : MonoBehaviour {
 		for(int i = 0; i < slots.Length; i++) {
 			if(Input.GetKeyDown((i + 1).ToString())) {
 				activeSlot = i;
+				
 				Cursor.SetCursor(cursors[i], Vector2.zero, CursorMode.Auto);
 				curSeed = i;
+
+				//Cursor.SetCursor(cursors[i], Vector2.zero, CursorMode.Auto);
+
 				break;
 			}
 		}
@@ -159,6 +167,8 @@ public class PlayerThrow : MonoBehaviour {
 			if(activeSlot < 0){activeSlot = slots.Length - 1;}
 			Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
 			curSeed = activeSlot;
+			//Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
 		}
+	
 	}
 }

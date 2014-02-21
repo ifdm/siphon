@@ -1418,8 +1418,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Size: {x: 180, y: 250.003906}
-  m_Center: {x: 17.4902344, y: 126.993797}
+  m_Size: {x: 180, y: 5}
+  m_Center: {x: 17.4902344, y: 5}
 --- !u!114 &256389755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd8e0fcd0935734db334e70d490f852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 20
+  bounceForce: 22
   horizontalForce: 0
 --- !u!4 &256389759
 Transform:
@@ -1875,7 +1875,7 @@ Transform:
   m_PrefabInternal: {fileID: 32455877}
   m_GameObject: {fileID: 1534813390}
   m_LocalRotation: {x: .258819073, y: 0, z: 0, w: .965925872}
-  m_LocalPosition: {x: 29.7672424, y: -4.99518108, z: -8.65190887}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1992078994}
@@ -1926,6 +1926,18 @@ Prefab:
       propertyPath: slots.Array.data[0]
       value: 
       objectReference: {fileID: 100002, guid: 6a6952dacada032418785151069c880a, type: 2}
+    - target: {fileID: 2300000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3a6def11d9d3481a9eac1cd819664d7, type: 2}
+    - target: {fileID: 11400010, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: calculateNormals
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
+      propertyPath: calculateTangents
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d85ecd396e1292468f18ac765d8660f, type: 2}
   m_RootGameObject: {fileID: 1806353006}
@@ -2101,7 +2113,7 @@ MonoBehaviour:
   skeletonDataAsset: {fileID: 11400000, guid: 4f064e87e957040cd9b9271cb11add83, type: 2}
   initialSkinName: default
   timeScale: 1.10000002
-  calculateNormals: 0
+  calculateNormals: 1
   calculateTangents: 0
   zSpacing: 0
   loop: 0
@@ -2177,6 +2189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce792c43b9fcc41b6b5fe7a6b27cbbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fade: .200000003
 --- !u!114 &1806353021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2289,6 +2302,8 @@ MonoBehaviour:
   zSmooth: .5
   pullTo: {x: 0, y: 0, z: 0}
   pullSmooth: 0
+  shake: 1
+  zStart: 0
 --- !u!81 &1992078990
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2367,6 +2382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e6e0eb2d0c54288b8ffb6bff683c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fade: .200000003
+  currentTrack: 
 --- !u!114 &1992078996
 MonoBehaviour:
   m_ObjectHideFlags: 0

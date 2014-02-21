@@ -33,6 +33,6 @@ public class JumpingState : PlayerState {
 			player.mozart.One("Jump");
 		}
 
-		player.animator.Set("Jump", false, 0, 2f);	
+		player.animator.Set("Jump", false, 0, .2f);
 	}
 }
