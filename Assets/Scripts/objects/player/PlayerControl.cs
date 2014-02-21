@@ -109,7 +109,8 @@ public class PlayerControl : MonoBehaviour {
 		return isGrounded() && Input.GetAxisRaw("Horizontal") != 0;
 	}
 
-	public bool canInteract() {
+	public GameObject isInteracting() {
+		RaycastHit2D cast;
 		Vector2 p1 = (Vector2) transform.position;
 		Vector2 p2 = (Vector2) transform.position;
 		Vector2 scale = (Vector2) transform.lossyScale;
@@ -119,11 +120,13 @@ public class PlayerControl : MonoBehaviour {
 		p2.x += box.size.x * scale.x * 1.5f;
 
 		Debug.DrawLine(p1, p2, Color.green);
-		if(Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")))) {
-			return isGrounded() && Input.GetButton("Action");
+		if(cast = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")))) {
+			if(isGrounded() && Input.GetButton("Action") && cast.rigidbody && cast.rigidbody.gameObject.GetComponent<Interactable>()) {
+				return cast.rigidbody.gameObject;
+			}
 		}
 
-		return false;
+		return null;
 	}
 
 	public bool canLedgeGrab() {
