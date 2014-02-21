@@ -9,6 +9,12 @@ public class RunningState : PlayerState {
 		else if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}
+		
+		GameObject interactable;
+		if(interactable = player.isInteracting()) {
+			PlayerState.Interacting.interactable = interactable;
+			player.ChangeState(PlayerState.Interacting);
+		}
 	}
 
 	public override void Update(PlayerControl player) {

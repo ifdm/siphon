@@ -11,6 +11,12 @@ public class IdlingState : PlayerState {
 		if(!player.isGrounded() || Input.GetButtonDown("Jump")) {
 			player.ChangeState(PlayerState.Jumping);
 		}
+
+		GameObject interactable;
+		if(interactable = player.isInteracting()) {
+			PlayerState.Interacting.interactable = interactable;
+			player.ChangeState(PlayerState.Interacting);
+		}
 	}
 	
 	public override void Update(PlayerControl player) {

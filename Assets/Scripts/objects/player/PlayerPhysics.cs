@@ -81,6 +81,24 @@ public class PlayerPhysics : MonoBehaviour {
 			rigidbody2D.velocity = Vector2.zero;
 		}
 	}
+
+	public void Interact(GameObject interactable) {
+		var sign = Mathf.Sign(Input.GetAxis("Horizontal"));
+		var direction = (facingRight) ? 1 : -1;
+		var script = interactable.GetComponent<Interactable>();
+		// Check to see if we are allowed to push or pull in that direction.
+		if(sign == direction && !script.push || sign == -direction && !script.pull) {
+			// If we aren't, make the interactable item immovable.
+			interactable.rigidbody2D.mass = script.staticWeight;
+			return;
+		}
+
+		var velocity = new Vector2(sign * 3, 0);
+		if(GetComponent<PlayerControl>().isInteracting() && Input.GetAxis("Horizontal") != 0 && velocity != Vector2.zero) {
+			rigidbody2D.velocity = velocity;
+			interactable.rigidbody2D.velocity = velocity;
+		}
+	}
 	
 	public void Jump() {
 		rigidbody2D.isKinematic = false;
