@@ -8,6 +8,8 @@ public class PlayerThrow : MonoBehaviour {
 
 	public GameObject seed;
 	[HideInInspector] public Camera mainCamera;
+
+	private CursorBehavior throwCursor;
 	
 	public Plant[] slots;
 	private List<Queue> slotQueues;
@@ -17,13 +19,7 @@ public class PlayerThrow : MonoBehaviour {
 	public float bottomDeadZone = 15f;
 
 	public Texture2D[] cursors;
-	
-	private bool isCursorStart = false;
-	private bool isCursorLoop = false;
-	private int frameCounter = 0;
-	
-	private Texture2D[] cursorLoop;
-	private Texture2D[] cursorStart;
+
 	private int curSeed;
 
 	[HideInInspector] public int activeSlot;
@@ -34,21 +30,14 @@ public class PlayerThrow : MonoBehaviour {
 	
 	void Start() {
 		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-		
+		throwCursor = GameObject.Find ("Throw Cursor").GetComponent<CursorBehavior> ();
+
 		slotQueues = new List<Queue>();
 		for(int i = 0; i < slots.Length; i++) {
 			slotQueues.Add(new Queue());
 		}
 
-		cursorLoop = Resources.LoadAll <Texture2D>("GUI Animations/crosshair-loop");
-		Debug.Log (cursorLoop.Length);
-		
-		cursorStart = Resources.LoadAll <Texture2D>("GUI Animations/crosshair-start");
-		Debug.Log (cursorStart.Length);
-		
-		foreach(Texture2D t in cursorLoop){
-			Debug.Log (t);
-		}
+
 	}
 
 			
@@ -98,12 +87,17 @@ public class PlayerThrow : MonoBehaviour {
 				if(target) {
 					end = target.point;
 				}
-				if(!isCursorStart && !isCursorLoop) isCursorStart = true;
+				throwCursor.isCursorDrawing = true;
+				throwCursor.raycast = target;
+				throwCursor.plant = slots[activeSlot];
+				throwCursor.position = end;
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 				
 				Debug.DrawLine(playerPos, end, slots[activeSlot].canPlant(target) ? Color.green : Color.red);
 			}
 			else{
-				isCursorStart = isCursorLoop = false;
+				throwCursor.isCursorDrawing = false;
+
 				Cursor.SetCursor(cursors[curSeed], Vector2.zero, CursorMode.Auto);
 			}
 			
@@ -125,22 +119,7 @@ public class PlayerThrow : MonoBehaviour {
 			selectSeed();
 		}
 		
-		if(isCursorStart || isCursorLoop){
-			Texture2D[] cur = (isCursorStart) ? cursorStart : cursorLoop;
-			Texture2D tex = cur[frameCounter];
-			Cursor.SetCursor(tex, Vector2.zero, CursorMode.Auto);
-			frameCounter++;
-			if(frameCounter >= cur.Length){
-				if(isCursorStart){   //switch to the loop after doing start
-					isCursorStart = false;
-					isCursorLoop = true;
-					frameCounter = 0;
-				}
-				frameCounter = 0;
-			}
-		}
-		else
-			frameCounter = 0;
+
 	}
 	
 	private void selectSeed() {

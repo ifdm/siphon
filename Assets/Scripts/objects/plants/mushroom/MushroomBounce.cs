@@ -37,7 +37,7 @@ public class MushroomBounce : Plant {
 			float bf = (bounceable.bounceForce != 0) ? bounceable.bounceForce : bounceForce;
 			float component = col.gameObject.rigidbody2D.velocity.x;
 			
-			Debug.Log(bf + " " +  col.gameObject.rigidbody2D.velocity.y);
+			//Debug.Log(bf + " " +  col.gameObject.rigidbody2D.velocity.y);
 			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bf) {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, bf);
 			}
