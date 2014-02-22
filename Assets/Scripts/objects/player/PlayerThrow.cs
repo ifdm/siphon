@@ -2,11 +2,14 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class PlayerThrow : MonoBehaviour {
 
 	public GameObject seed;
 	[HideInInspector] public Camera mainCamera;
+
+	private CursorBehavior throwCursor;
 	
 	public Plant[] slots;
 	private List<Queue> slotQueues;
@@ -17,27 +20,38 @@ public class PlayerThrow : MonoBehaviour {
 
 	public Texture2D[] cursors;
 
+	private int curSeed;
+
 	[HideInInspector] public int activeSlot;
 	[HideInInspector] public bool throwable = true;
 	
 	private RaycastHit2D target;
-
+	
+	
 	void Start() {
 		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-		
+		throwCursor = GameObject.Find ("Throw Cursor").GetComponent<CursorBehavior> ();
+
 		slotQueues = new List<Queue>();
 		for(int i = 0; i < slots.Length; i++) {
 			slotQueues.Add(new Queue());
 		}
 
-		StartCoroutine(SetInitialCursor());
+
 	}
+
+			
 
 	private IEnumerator SetInitialCursor() {
 		yield return new WaitForSeconds(.1f);
 		if(cursors.Length > 0) {
 			Screen.showCursor = true;
+
 			Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
+			curSeed = 0;
+
+			//Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
+
 		}
 	}
 
@@ -46,6 +60,7 @@ public class PlayerThrow : MonoBehaviour {
 	}
 	
 	void Update () {
+		
 		if(slots.Length > 0) {
 			bool targeting = Input.GetAxis("Seed Horizontal") != 0 || Input.GetAxis("Seed Vertical") != 0 || Input.GetMouseButton(0);
 			bool throwing = Input.GetAxis("Seed Throw") != 0 || Input.GetMouseButtonUp(0);
@@ -72,8 +87,18 @@ public class PlayerThrow : MonoBehaviour {
 				if(target) {
 					end = target.point;
 				}
+				throwCursor.isCursorDrawing = true;
+				throwCursor.raycast = target;
+				throwCursor.plant = slots[activeSlot];
+				throwCursor.position = end;
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 				
 				Debug.DrawLine(playerPos, end, slots[activeSlot].canPlant(target) ? Color.green : Color.red);
+			}
+			else{
+				throwCursor.isCursorDrawing = false;
+
+				Cursor.SetCursor(cursors[curSeed], Vector2.zero, CursorMode.Auto);
 			}
 			
 			
@@ -93,13 +118,20 @@ public class PlayerThrow : MonoBehaviour {
 			
 			selectSeed();
 		}
+		
+
 	}
 	
 	private void selectSeed() {
 		for(int i = 0; i < slots.Length; i++) {
 			if(Input.GetKeyDown((i + 1).ToString())) {
 				activeSlot = i;
+				
 				Cursor.SetCursor(cursors[i], Vector2.zero, CursorMode.Auto);
+				curSeed = i;
+
+				//Cursor.SetCursor(cursors[i], Vector2.zero, CursorMode.Auto);
+
 				break;
 			}
 		}
@@ -107,11 +139,15 @@ public class PlayerThrow : MonoBehaviour {
 		if(Input.GetAxis("Mouse ScrollWheel") > 0) {
 			activeSlot = (activeSlot + 1) % slots.Length;
 			Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
-		}
+			curSeed = activeSlot;
+			}
 		else if(Input.GetAxis("Mouse ScrollWheel") < 0) {
 			activeSlot--;
 			if(activeSlot < 0){activeSlot = slots.Length - 1;}
 			Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
+			curSeed = activeSlot;
+			//Cursor.SetCursor(cursors[activeSlot], Vector2.zero, CursorMode.Auto);
 		}
+	
 	}
 }

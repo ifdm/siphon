@@ -100,7 +100,7 @@ public class Mozart : MonoBehaviour {
 			sources[to].volume += Mathf.Min(Time.deltaTime / maxDuration, 1f);
 
 			duration -= Time.deltaTime;
-			Debug.Log(duration);
+			//Debug.Log(duration);
 
 			yield return new WaitForSeconds(0);
 		}
