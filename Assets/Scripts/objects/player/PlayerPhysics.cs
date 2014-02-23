@@ -7,7 +7,8 @@ public class PlayerPhysics : MonoBehaviour {
 	public float moveForce = 190f;
 	public float maxSpeed = 5f;
 	public float jumpForce = 13;
-	public float lethalVelocity = 35;
+	public float dangerousVelocity = 35;
+	public float lethalVelocity = 85;
 	public float ledgeDuration = .4f;
 	public float alignSpeed = 4;
 
