@@ -14,7 +14,7 @@ public class Mushroom : Plant {
 		animator = GetComponent<MushroomAnimator>();
 	}
 	
-	public void grow(RaycastHit2D cast) {
+	public override void grow(RaycastHit2D cast) {
 		if(!cast){return;}
 		
 		transform.rotation = Quaternion.FromToRotation(Vector3.up, (Vector3)cast.normal);

@@ -13,6 +13,8 @@ public class LedgingState : PlayerState {
 		else if(Input.GetAxis("Vertical") < 0) {
 			player.ChangeState(PlayerState.Falling);
 		}
+		
+		player.physics.AlignUpright();
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
@@ -37,6 +39,6 @@ public class LedgingState : PlayerState {
 
 	public override void Exit(PlayerControl player, PlayerState to) {
 		player.rigidbody2D.isKinematic = false;
-		player.animator.Set("PullUp");
+		if(to == PlayerState.Jumping){player.animator.Set("PullUp");}
 	}
 }

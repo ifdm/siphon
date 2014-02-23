@@ -132,4 +132,21 @@ public class PlayerPhysics : MonoBehaviour {
 
 		timeSinceFall += Time.deltaTime;
 	}
+	
+	public void AlignUpright() {
+		Transform animation = transform.Find("Animation");
+		animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, Vector3.up), 4 * Time.deltaTime);
+	}
+	
+	public void AlignSlope() {
+		Vector2 normal = GetComponent<PlayerControl>().normal();
+		if(normal != Vector2.zero) {
+			Transform animation = transform.Find("Animation");
+			if(transform.lossyScale.x < 0){normal.x *= -1;}
+			if(Vector2.Angle(Vector2.up, normal) > 45) {
+				normal = new Vector2(Mathf.Deg2Rad * Mathf.Cos(45) * Mathf.Sign(normal.x), Mathf.Deg2Rad * Mathf.Sin(45));
+			}
+			animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, (Vector3) normal), 4 * Time.deltaTime);
+		}
+	}
 }
