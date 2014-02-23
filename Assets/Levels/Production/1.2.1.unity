@@ -2803,55 +2803,55 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1001329675}
-  - {fileID: 1262452921}
-  - {fileID: 165029360}
-  - {fileID: 536220811}
-  - {fileID: 546205709}
-  - {fileID: 1166165891}
-  - {fileID: 1696898687}
-  - {fileID: 1756260650}
-  - {fileID: 1766574303}
-  - {fileID: 1769769563}
-  - {fileID: 1816507187}
-  - {fileID: 1827484480}
-  - {fileID: 1842801500}
-  - {fileID: 500987127}
-  - {fileID: 507109365}
-  - {fileID: 443343017}
-  - {fileID: 69491175}
-  - {fileID: 281481286}
-  - {fileID: 281501747}
-  - {fileID: 89879323}
-  - {fileID: 1345469357}
-  - {fileID: 181738631}
-  - {fileID: 825512704}
   - {fileID: 861753472}
+  - {fileID: 2066200071}
   - {fileID: 367095225}
+  - {fileID: 1600453041}
+  - {fileID: 281501747}
   - {fileID: 375600586}
-  - {fileID: 423729425}
-  - {fileID: 635979101}
+  - {fileID: 443343017}
+  - {fileID: 1816507187}
   - {fileID: 944282971}
   - {fileID: 566517929}
-  - {fileID: 1860708813}
-  - {fileID: 2025924484}
-  - {fileID: 2064830913}
-  - {fileID: 2066200071}
-  - {fileID: 2092058830}
-  - {fileID: 2119395481}
-  - {fileID: 1551224884}
-  - {fileID: 1600453041}
+  - {fileID: 423729425}
+  - {fileID: 1766574303}
   - {fileID: 1605464391}
-  - {fileID: 1834209546}
+  - {fileID: 1551224884}
+  - {fileID: 1842801500}
+  - {fileID: 1166165891}
+  - {fileID: 1827484480}
+  - {fileID: 2092058830}
+  - {fileID: 507109365}
+  - {fileID: 546205709}
+  - {fileID: 536220811}
+  - {fileID: 825512704}
+  - {fileID: 635979101}
+  - {fileID: 165029360}
+  - {fileID: 1756260650}
+  - {fileID: 181738631}
+  - {fileID: 2119395481}
+  - {fileID: 1262452921}
+  - {fileID: 1769769563}
+  - {fileID: 89879323}
+  - {fileID: 500987127}
+  - {fileID: 1860708813}
+  - {fileID: 2064830913}
+  - {fileID: 2025924484}
+  - {fileID: 281481286}
+  - {fileID: 1345469357}
+  - {fileID: 69491175}
+  - {fileID: 1001329675}
+  - {fileID: 1696898687}
   - {fileID: 862097805}
   - {fileID: 376791586}
   - {fileID: 1935972691}
+  - {fileID: 1834209546}
+  - {fileID: 287471075}
+  - {fileID: 1683227280}
   - {fileID: 1298724241}
   - {fileID: 738640717}
   - {fileID: 167450812}
   - {fileID: 1872325624}
-  - {fileID: 287471075}
-  - {fileID: 1683227280}
   m_Father: {fileID: 1836952514}
 --- !u!1 &312558680
 GameObject:
@@ -10818,22 +10818,22 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1593302575}
   - {fileID: 31280015}
+  - {fileID: 1593302575}
   - {fileID: 1322067038}
-  - {fileID: 1003923093}
-  - {fileID: 1180559569}
-  - {fileID: 511712325}
-  - {fileID: 908320919}
-  - {fileID: 1359619854}
-  - {fileID: 1396911228}
-  - {fileID: 393496299}
   - {fileID: 646631582}
   - {fileID: 1961722524}
-  - {fileID: 1988385536}
-  - {fileID: 1992987710}
   - {fileID: 1637805737}
+  - {fileID: 1396911228}
+  - {fileID: 1988385536}
+  - {fileID: 908320919}
+  - {fileID: 1003923093}
   - {fileID: 43033565}
+  - {fileID: 511712325}
+  - {fileID: 1992987710}
+  - {fileID: 1359619854}
+  - {fileID: 393496299}
+  - {fileID: 1180559569}
   - {fileID: 1626219276}
   m_Father: {fileID: 1836952514}
 --- !u!1 &1245362839
@@ -14048,7 +14048,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
   mainCamera: {fileID: 0}
-  slots: []
+  slots:
+  - {fileID: 11400000, guid: 6a6952dacada032418785151069c880a, type: 2}
   throwForce: 700
   topDeadZone: 15
   bottomDeadZone: 15
@@ -18120,6 +18121,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400012, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
+      propertyPath: slots.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -18160,6 +18165,11 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 21.6694527
       objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
+      propertyPath: slots.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6a6952dacada032418785151069c880a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
   m_RootGameObject: {fileID: 1545041981}

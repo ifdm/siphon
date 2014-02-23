@@ -6,17 +6,12 @@ using System.IO;
 
 public class PlayerThrow : MonoBehaviour {
 
-	public GameObject seed;
 	[HideInInspector] public Camera mainCamera;
 
 	private CursorBehavior throwCursor;
 	
 	public Plant[] slots;
 	private List<Queue> slotQueues;
-
-	public float throwForce = 700f;
-	public float topDeadZone = 15f;
-	public float bottomDeadZone = 15f;
 
 	public Texture2D[] cursors;
 
