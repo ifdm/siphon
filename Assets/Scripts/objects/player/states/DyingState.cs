@@ -4,7 +4,7 @@ using System.Collections;
 
 public class DyingState : PlayerState {
 
-	private float deathDelay = 1.5f;
+	private float deathDelay = 1.0f;
 	private float dyingTimer = 0;
 
 	public override void HandleInput(PlayerControl player) {
@@ -19,7 +19,7 @@ public class DyingState : PlayerState {
 		dyingTimer = deathDelay;
 
 		player.StartCoroutine(DelayFade(deathDelay * .4f));
-		player.rigidbody2D.isKinematic = true;
+		//player.rigidbody2D.isKinematic = true;
 
 		player.animator.Set("Idle");
 	}
