@@ -12,16 +12,14 @@ public class Mushroom : Plant {
 
 	void Start() {
 		animator = GetComponent<MushroomAnimator>();
+	}
+	
+	public void grow(RaycastHit2D cast) {
+		if(!cast){return;}
 		
-		Vector3 p1 = transform.position;
-		Vector3 p2 = transform.position;
-		
-		p1.y += .1f;
-		p2.y -= .2f;
-		
-		RaycastHit2D cast = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
-		if(cast) {
-			transform.rotation = Quaternion.FromToRotation(Vector3.up, (Vector3)cast.normal);
+		transform.rotation = Quaternion.FromToRotation(Vector3.up, (Vector3)cast.normal);
+		if(canPlant(cast)) {
+			InvokeRepeating("keepAlive", .5f, .5f);
 		}
 	}
 
@@ -102,5 +100,11 @@ public class Mushroom : Plant {
 		}
 		
 		return true;
+	}
+	
+	private void keepAlive() {
+		if(!canPlant(Physics2D.Linecast(transform.position + (Vector3.up * .1f), transform.position - (Vector3.up * .2f), 1 << LayerMask.NameToLayer("Ground")))) {
+			Destroy(gameObject);
+		}
 	}
 }

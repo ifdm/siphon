@@ -100,13 +100,7 @@ public class PlayerThrow : MonoBehaviour {
 			
 			
 			if(throwing && slots[activeSlot].canPlant(target)) {
-				while(slotQueues[activeSlot].Count > 0) {
-					Plant old = (Plant)slotQueues[activeSlot].Dequeue();
-					Destroy(old.gameObject);
-				}
-				Plant plant = (Plant)Instantiate(slots[activeSlot], target.point, Quaternion.identity);
-				slotQueues[activeSlot].Enqueue(plant);
-				plant.grow(target);
+				StartCoroutine(delayThrow(activeSlot, target, .15f));
 				
 				GetComponent<PlayerControl>().animator.Set("Throw", false, 1);
 				
@@ -115,8 +109,18 @@ public class PlayerThrow : MonoBehaviour {
 			
 			selectSeed();
 		}
+	}
+	
+	IEnumerator delayThrow(int slot, RaycastHit2D target, float delay) {
+		yield return new WaitForSeconds(delay);
 		
-
+		while(slotQueues[slot].Count > 0) {
+			Plant old = (Plant)slotQueues[slot].Dequeue();
+			Destroy(old.gameObject);
+		}
+		Plant plant = (Plant)Instantiate(slots[slot], target.point, Quaternion.identity);
+		slotQueues[slot].Enqueue(plant);
+		plant.grow(target);
 	}
 	
 	private void selectSeed() {
