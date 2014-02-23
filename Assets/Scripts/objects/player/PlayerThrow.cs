@@ -66,19 +66,21 @@ public class PlayerThrow : MonoBehaviour {
 				playerPos.x += box.center.x * transform.lossyScale.x;
 				playerPos.y += box.center.y * transform.lossyScale.y;
 				
-				Vector3 end;
+				Vector2 dir;
 				if(Input.GetMouseButton(0)) {
 					Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 					Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
 					float distance;
 					xy.Raycast(ray, out distance);
-					end = ray.GetPoint(distance);
+					dir = ray.GetPoint(distance) - playerPos;
 				}
 				else {
-					end = playerPos + (Vector3)new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical")) * 10;
+					dir = new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical"));
 				}
 				
-				target = Physics2D.Linecast(playerPos, end, 1 << LayerMask.NameToLayer("Ground"));
+				target = Physics2D.Raycast(playerPos, dir, 20, 1 << LayerMask.NameToLayer("Ground"));
+				
+				Vector3 end = playerPos + (Vector3)dir * 20;
 				if(target) {
 					end = target.point;
 				}
