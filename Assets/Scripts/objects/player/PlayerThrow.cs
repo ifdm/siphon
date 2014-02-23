@@ -6,17 +6,12 @@ using System.IO;
 
 public class PlayerThrow : MonoBehaviour {
 
-	public GameObject seed;
 	[HideInInspector] public Camera mainCamera;
 
 	private CursorBehavior throwCursor;
 	
 	public Plant[] slots;
 	private List<Queue> slotQueues;
-
-	public float throwForce = 700f;
-	public float topDeadZone = 15f;
-	public float bottomDeadZone = 15f;
 
 	public Texture2D[] cursors;
 
@@ -30,17 +25,13 @@ public class PlayerThrow : MonoBehaviour {
 	
 	void Start() {
 		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-		throwCursor = GameObject.Find ("Throw Cursor").GetComponent<CursorBehavior> ();
+		throwCursor = GameObject.Find("Throw Cursor").GetComponent<CursorBehavior>();
 
 		slotQueues = new List<Queue>();
 		for(int i = 0; i < slots.Length; i++) {
 			slotQueues.Add(new Queue());
 		}
-
-
 	}
-
-			
 
 	private IEnumerator SetInitialCursor() {
 		yield return new WaitForSeconds(.1f);
@@ -51,7 +42,6 @@ public class PlayerThrow : MonoBehaviour {
 			curSeed = 0;
 
 			//Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
-
 		}
 	}
 
@@ -71,19 +61,21 @@ public class PlayerThrow : MonoBehaviour {
 				playerPos.x += box.center.x * transform.lossyScale.x;
 				playerPos.y += box.center.y * transform.lossyScale.y;
 				
-				Vector3 end;
+				Vector2 dir;
 				if(Input.GetMouseButton(0)) {
 					Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 					Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
 					float distance;
 					xy.Raycast(ray, out distance);
-					end = ray.GetPoint(distance);
+					dir = ray.GetPoint(distance) - playerPos;
 				}
 				else {
-					end = playerPos + (Vector3)new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical")) * 10;
+					dir = new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical"));
 				}
 				
-				target = Physics2D.Linecast(playerPos, end, 1 << LayerMask.NameToLayer("Ground"));
+				target = Physics2D.Raycast(playerPos, dir, 20, 1 << LayerMask.NameToLayer("Ground"));
+				
+				Vector3 end = playerPos + (Vector3)dir * 20;
 				if(target) {
 					end = target.point;
 				}
@@ -103,13 +95,7 @@ public class PlayerThrow : MonoBehaviour {
 			
 			
 			if(throwing && slots[activeSlot].canPlant(target)) {
-				while(slotQueues[activeSlot].Count > 0) {
-					Plant old = (Plant)slotQueues[activeSlot].Dequeue();
-					Destroy(old.gameObject);
-				}
-				Plant plant = (Plant)Instantiate(slots[activeSlot], target.point, Quaternion.identity);
-				slotQueues[activeSlot].Enqueue(plant);
-				plant.grow(target);
+				StartCoroutine(delayThrow(activeSlot, target, .15f));
 				
 				GetComponent<PlayerControl>().animator.Set("Throw", false, 1);
 				
@@ -118,8 +104,18 @@ public class PlayerThrow : MonoBehaviour {
 			
 			selectSeed();
 		}
+	}
+	
+	IEnumerator delayThrow(int slot, RaycastHit2D target, float delay) {
+		yield return new WaitForSeconds(delay);
 		
-
+		while(slotQueues[slot].Count > 0) {
+			Plant old = (Plant)slotQueues[slot].Dequeue();
+			Destroy(old.gameObject);
+		}
+		Plant plant = (Plant)Instantiate(slots[slot], target.point, Quaternion.identity);
+		slotQueues[slot].Enqueue(plant);
+		plant.grow(target);
 	}
 	
 	private void selectSeed() {

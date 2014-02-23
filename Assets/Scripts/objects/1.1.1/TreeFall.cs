@@ -23,7 +23,7 @@ public class TreeFall : MonoBehaviour {
 	}
 
 	IEnumerator makeSafe() {
-		yield return new WaitForSeconds(4.0f);
+		yield return new WaitForSeconds(5.0f);
 		GameObject fallingTree = GameObject.Find("FallingTree");
 		Destroy(fallingTree.GetComponent<TouchOfDeath>());
 	}

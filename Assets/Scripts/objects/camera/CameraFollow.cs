@@ -34,10 +34,11 @@ public class CameraFollow : MonoBehaviour {
 		float s = smooth;
 		if(Mathf.Abs(player.rigidbody2D.velocity.y) > 20) {
 			s = smooth * (1 - Mathf.Clamp((Mathf.Abs(player.rigidbody2D.velocity.y) - 20) / 20, 0.0f, 0.75f));
-			z = Mathf.SmoothDamp(z, -20 - additionalZ, ref zVel, 0.3f);
+			z = Mathf.SmoothDamp(z, Mathf.Min(-20, zStart - additionalZ), ref zVel, 0.3f);
 			zSmooth = smooth;
 		}
 		else {
+			if(additionalZ > 0 && z < zStart - additionalZ){zSmooth = 0.3f;}
 			z = Mathf.SmoothDamp(z, zStart - additionalZ, ref zVel, zSmooth);
 		}
 

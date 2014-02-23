@@ -5,6 +5,7 @@ public class JumpingState : PlayerState {
 
 	public override void HandleInput(PlayerControl player) {
 		player.rigidbody2D.isKinematic = false;
+		player.physics.AlignUpright();
 	
 		if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);

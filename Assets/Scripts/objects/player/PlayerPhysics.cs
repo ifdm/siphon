@@ -7,7 +7,10 @@ public class PlayerPhysics : MonoBehaviour {
 	public float moveForce = 190f;
 	public float maxSpeed = 5f;
 	public float jumpForce = 13;
-	public float lethalVelocity = 35;
+	public float dangerousVelocity = 35;
+	public float lethalVelocity = 85;
+	public float ledgeDuration = .4f;
+	public float alignSpeed = 4;
 
 	[HideInInspector] public bool airMove = true;
 	[HideInInspector] public float timeSinceFall = 0;
@@ -131,5 +134,22 @@ public class PlayerPhysics : MonoBehaviour {
 		}
 
 		timeSinceFall += Time.deltaTime;
+	}
+	
+	public void AlignUpright() {
+		Transform animation = transform.Find("Animation");
+		animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, Vector3.up), alignSpeed * Time.deltaTime);
+	}
+	
+	public void AlignSlope() {
+		Vector2 normal = GetComponent<PlayerControl>().normal();
+		if(normal != Vector2.zero) {
+			Transform animation = transform.Find("Animation");
+			if(transform.lossyScale.x < 0){normal.x *= -1;}
+			if(Vector2.Angle(Vector2.up, normal) > 45) {
+				normal = new Vector2(Mathf.Deg2Rad * Mathf.Cos(45) * Mathf.Sign(normal.x), Mathf.Deg2Rad * Mathf.Sin(45));
+			}
+			animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, (Vector3) normal), alignSpeed * Time.deltaTime);
+		}
 	}
 }
