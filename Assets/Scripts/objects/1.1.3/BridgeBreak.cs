@@ -17,6 +17,17 @@ public class BridgeBreak : MonoBehaviour {
 			if(boardL) {
 				Destroy(boardL.GetComponent<DistanceJoint2D>());
 			}
+			
+			StartCoroutine(killBridge());
 		}
+	}
+	
+	IEnumerator killBridge() {
+		yield return new WaitForSeconds(1);
+		GameObject.Find("Board1").GetComponent<BoxCollider2D>().isTrigger = true;
+		GameObject.Find("Board2").GetComponent<BoxCollider2D>().isTrigger = true;
+		GameObject.Find("Board3").GetComponent<BoxCollider2D>().isTrigger = true;
+		GameObject.Find("BoardEdgeL").GetComponent<BoxCollider2D>().isTrigger = true;
+		GameObject.Find("BoardEdgeR").GetComponent<BoxCollider2D>().isTrigger = true;
 	}
 }

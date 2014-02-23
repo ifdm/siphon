@@ -5,6 +5,7 @@ public class MushroomBounce : Plant {
 
 	public float bounceForce = 20f;
 	public float horizontalForce = 0;
+	public bool adjustTrigger = true;
 
 	private float bounceTimer = 0;
 	private MushroomAnimator animator;
@@ -18,15 +19,17 @@ public class MushroomBounce : Plant {
 			bounceTimer -= Mathf.Min(Time.deltaTime, bounceTimer);
 		}
 
-		BoxCollider2D box = GetComponent<BoxCollider2D>();
-		GameObject player = GameObject.Find("Player");
-		if(player.GetComponent<PlayerControl>().isGrounded()) {
-			box.size = new Vector2(250, 10);
-			box.center = new Vector2(35 * player.rigidbody2D.velocity.x, 10);
-		}
-		else {
-			box.size = new Vector2(400, 10 + (10 * Mathf.Abs(player.rigidbody2D.velocity.y)));
-			box.center = new Vector2(0, 10 + (5 * Mathf.Abs(player.rigidbody2D.velocity.y)));
+		if(adjustTrigger) {
+			BoxCollider2D box = GetComponent<BoxCollider2D>();
+			GameObject player = GameObject.Find("Player");
+			if(player.GetComponent<PlayerControl>().isGrounded()) {
+				box.size = new Vector2(250, 10);
+				box.center = new Vector2(35 * player.rigidbody2D.velocity.x, 10);
+			}
+			else {
+				box.size = new Vector2(400, 10 + (10 * Mathf.Abs(player.rigidbody2D.velocity.y)));
+				box.center = new Vector2(0, 10 + (5 * Mathf.Abs(player.rigidbody2D.velocity.y)));
+			}
 		}
 	}
 
@@ -37,7 +40,6 @@ public class MushroomBounce : Plant {
 			float bf = (bounceable.bounceForce != 0) ? bounceable.bounceForce : bounceForce;
 			float component = col.gameObject.rigidbody2D.velocity.x;
 			
-			//Debug.Log(bf + " " +  col.gameObject.rigidbody2D.velocity.y);
 			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bf) {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, bf);
 			}
