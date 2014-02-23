@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MushroomBounce : Plant {
+public class Mushroom : Plant {
 
 	public float bounceForce = 20f;
 	public float horizontalForce = 0;
@@ -12,6 +12,17 @@ public class MushroomBounce : Plant {
 
 	void Start() {
 		animator = GetComponent<MushroomAnimator>();
+		
+		Vector3 p1 = transform.position;
+		Vector3 p2 = transform.position;
+		
+		p1.y += .1f;
+		p2.y -= .2f;
+		
+		RaycastHit2D cast = Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"));
+		if(cast) {
+			transform.rotation = Quaternion.FromToRotation(Vector3.up, (Vector3)cast.normal);
+		}
 	}
 
 	void Update() {

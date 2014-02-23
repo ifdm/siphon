@@ -30,17 +30,13 @@ public class PlayerThrow : MonoBehaviour {
 	
 	void Start() {
 		mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-		throwCursor = GameObject.Find ("Throw Cursor").GetComponent<CursorBehavior> ();
+		throwCursor = GameObject.Find("Throw Cursor").GetComponent<CursorBehavior>();
 
 		slotQueues = new List<Queue>();
 		for(int i = 0; i < slots.Length; i++) {
 			slotQueues.Add(new Queue());
 		}
-
-
 	}
-
-			
 
 	private IEnumerator SetInitialCursor() {
 		yield return new WaitForSeconds(.1f);
@@ -51,7 +47,6 @@ public class PlayerThrow : MonoBehaviour {
 			curSeed = 0;
 
 			//Cursor.SetCursor(cursors[0], Vector2.zero, CursorMode.Auto);
-
 		}
 	}
 

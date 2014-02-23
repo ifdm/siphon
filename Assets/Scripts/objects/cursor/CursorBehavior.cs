@@ -51,7 +51,7 @@ public class CursorBehavior : MonoBehaviour
 			float scale = 0.2f;
 			float vOffset = .3f;
 
-			if(plant is MushroomBounce) { sprite = bm_ghost; scale = 0.2f; }
+			if(plant is Mushroom) { sprite = bm_ghost; scale = 0.2f; }
 			else if(plant is GrappleVineGrowth) { sprite = gv_ghost; scale = 0.05f; }
 			else if(plant is RootbridgeGrowth) { sprite = rb_ghost; scale = 0.2f;}
 			myRenderer.sprite = sprite;
