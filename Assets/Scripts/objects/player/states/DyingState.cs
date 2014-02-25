@@ -16,7 +16,6 @@ public class DyingState : PlayerState {
 		dyingTimer = deathDelay;
 
 		player.StartCoroutine(DelayFade(deathDelay * .4f));
-		//player.rigidbody2D.isKinematic = true;
 
 		player.animator.Set("Death");
 	}
