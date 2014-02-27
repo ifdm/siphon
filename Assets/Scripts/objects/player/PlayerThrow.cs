@@ -62,15 +62,19 @@ public class PlayerThrow : MonoBehaviour {
 				playerPos.y += box.center.y * transform.lossyScale.y;
 				
 				Vector2 dir;
+				Vector3 mouse;
+				
 				if(Input.GetMouseButton(0)) {
 					Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 					Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, 0));
 					float distance;
 					xy.Raycast(ray, out distance);
 					dir = ray.GetPoint(distance) - playerPos;
+					mouse = ray.GetPoint(distance);
 				}
 				else {
 					dir = new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical"));
+					mouse = playerPos + (Vector3) new Vector2(Input.GetAxis("Seed Horizontal"), Input.GetAxis("Seed Vertical")) * 10;
 				}
 				
 				target = Physics2D.Raycast(playerPos, dir, 20, 1 << LayerMask.NameToLayer("Ground"));
@@ -82,7 +86,8 @@ public class PlayerThrow : MonoBehaviour {
 				throwCursor.isCursorDrawing = true;
 				throwCursor.raycast = target;
 				throwCursor.plant = slots[activeSlot];
-				throwCursor.position = end;
+				throwCursor.position = mouse;
+				
 				Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 				
 				Debug.DrawLine(playerPos, end, slots[activeSlot].canPlant(target) ? Color.green : Color.red);
