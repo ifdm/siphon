@@ -129,6 +129,11 @@ public class PlayerControl : MonoBehaviour {
 		return null;
 	}
 
+	public bool isSliding() {
+		Vector2 n = normal();
+		return isGrounded() && n.x > .5 && rigidbody2D.velocity.y < 0;
+	}
+
 	public bool canLedgeGrab() {
 		Vector2 p1 = (Vector2) transform.position;
 		Vector2 p2 = (Vector2) transform.position;

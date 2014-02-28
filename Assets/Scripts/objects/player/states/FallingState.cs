@@ -14,6 +14,9 @@ public class FallingState : PlayerState {
 		if(player.canLedgeGrab() && ledgeGrace == 0) {
 			player.ChangeState(PlayerState.Ledging);
 		}
+		else if(player.isSliding()) {
+			player.ChangeState(PlayerState.Sliding);
+		}
 		else if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}

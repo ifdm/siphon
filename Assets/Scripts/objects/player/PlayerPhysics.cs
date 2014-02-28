@@ -151,5 +151,8 @@ public class PlayerPhysics : MonoBehaviour {
 			}
 			animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, (Vector3) normal), alignSpeed * Time.deltaTime);
 		}
+
+	public void Slide() {
+		// Maybe we'll do something here?
 	}
 }
