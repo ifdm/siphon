@@ -9,7 +9,7 @@ public class FallingState : PlayerState {
 	public override void Update(PlayerControl player) {
 		player.physics.Move();
 
-		fallVelocity = player.rigidbody2D.velocity.y == 0 ? fallVelocity : player.rigidbody2D.velocity.y;
+		fallVelocity = Mathf.Min(fallVelocity, player.rigidbody2D.velocity.y);
 
 		if(player.canLedgeGrab() && ledgeGrace == 0) {
 			player.ChangeState(PlayerState.Ledging);
@@ -40,6 +40,11 @@ public class FallingState : PlayerState {
 
 		player.physics.timeSinceFall = 0;
 		
-		if(fallVelocity < -player.physics.dangerousVelocity && (to == PlayerState.Idling || to == PlayerState.Running)){player.ChangeState(PlayerState.Dying);}
+		if(fallVelocity < -player.physics.dangerousVelocity && (to == PlayerState.Idling || to == PlayerState.Running)){player.StartCoroutine(die(player));}
+	}
+	
+	IEnumerator die(PlayerControl player) { // Hack :[
+		yield return new WaitForSeconds(.01f);
+		player.ChangeState(PlayerState.Dying);
 	}
 }
