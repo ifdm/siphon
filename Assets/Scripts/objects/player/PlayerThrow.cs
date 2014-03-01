@@ -119,6 +119,7 @@ public class PlayerThrow : MonoBehaviour {
 			Destroy(old.gameObject);
 		}
 		Plant plant = (Plant)Instantiate(slots[slot], target.point, Quaternion.identity);
+		Debug.Log ("instantiating ");
 		slotQueues[slot].Enqueue(plant);
 		plant.grow(target);
 	}
