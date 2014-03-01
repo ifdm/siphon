@@ -19,7 +19,7 @@ public class MusicTrigger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.Equals(player) && !triggered) {
 			triggered = true;
-			cameraAudio.CrossFade(track, 2f, 0);
+			cameraAudio.CrossFade(track, 1f, 0);
 		}
 	}
 

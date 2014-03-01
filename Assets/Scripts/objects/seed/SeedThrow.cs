@@ -10,6 +10,8 @@ public class SeedThrow : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.tag == "Ground") {
+			EntityAudio audio = GetComponent<EntityAudio>();
+			audio.One("plant");
 			if(col.gameObject.GetComponent<Unplantable>() == null && (col.transform.parent == null || col.transform.parent.gameObject.GetComponent<Unplantable>() == null)) {
 				if(destiny.name == "Mushroom" || destiny.name == "GrapplingVine") { // Yea yea..I know..
 					RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position - (Vector3.up * .5f), 1 << LayerMask.NameToLayer("Ground"));
