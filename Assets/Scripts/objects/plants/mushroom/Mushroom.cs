@@ -57,6 +57,8 @@ public class Mushroom : Plant {
 			}
 
 			if(animator){animator.Set("Bounce");}
+			EntityAudio audio = GetComponent<EntityAudio>();
+			audio.One("Mushroom");
 			
 			col.gameObject.SendMessage("Bounced", false);
 			bounceTimer = 0.1f;

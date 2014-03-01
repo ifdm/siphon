@@ -17,6 +17,7 @@ public class RootbridgeGrowth : Plant {
 			animation.position = new Vector3(animation.position.x + extents.x - .85f, animation.position.y, animation.position.z);
 			animation.rotation = new Quaternion(0, 0, 0, 1);
 		}
+
 	}
 	
 	public override bool canPlant(RaycastHit2D cast) {
