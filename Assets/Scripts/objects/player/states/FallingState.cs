@@ -14,6 +14,9 @@ public class FallingState : PlayerState {
 		if(player.canLedgeGrab() && ledgeGrace == 0) {
 			player.ChangeState(PlayerState.Ledging);
 		}
+		else if(player.isSliding()) {
+			player.ChangeState(PlayerState.Sliding);
+		}
 		else if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}
@@ -32,6 +35,7 @@ public class FallingState : PlayerState {
 	public override void Enter(PlayerControl player, PlayerState from) {
 		if(from == PlayerState.Ledging){ledgeGrace = 0.2f;}
 		player.animator.Add("Fall", true);
+		fallVelocity = 0;
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to) {

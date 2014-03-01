@@ -6,6 +6,9 @@ public class RunningState : PlayerState {
 		if(!player.isGrounded() || Input.GetButtonDown("Jump")) {
 			player.ChangeState(PlayerState.Jumping);
 		}
+		else if(player.isSliding()) {
+			player.ChangeState(PlayerState.Sliding);
+		}
 		else if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}
