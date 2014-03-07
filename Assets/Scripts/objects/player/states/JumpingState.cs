@@ -16,7 +16,7 @@ public class JumpingState : PlayerState {
 		else if(player.rigidbody2D.velocity.y < 0) {
 			player.ChangeState(PlayerState.Falling);
 		}
-		else if(player.canClimb()) {
+		else if(player.getLadder() && Input.GetAxisRaw("Vertical") != 0) {
 			player.ChangeState(PlayerState.Climbing);
 		}
 	}
