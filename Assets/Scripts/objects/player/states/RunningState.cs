@@ -12,6 +12,10 @@ public class RunningState : PlayerState {
 		else if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}
+		else if(player.getLadder() && Input.GetAxisRaw("Vertical") != 0) {
+			player.ChangeState(PlayerState.Climbing);
+		}
+
 		
 		GameObject interactable;
 		if(interactable = player.isInteracting()) {

@@ -3,17 +3,16 @@ using System.Collections;
 
 public class ClimbingState : PlayerState {
 	
+	private GameObject ladder;
+
 	public override void HandleInput(PlayerControl player) {
-		if(Input.GetButtonDown("Jump")) {
+		if(Input.GetButtonDown("Jump") && Input.GetAxisRaw("Vertical") == 0) {
 			player.ChangeState(PlayerState.Jumping);
 		}
 	}
 
 	public override void Update(PlayerControl player) {
-		player.physics.Climb();
-		if(!player.canClimb()) {
-			player.ChangeState(PlayerState.Falling);
-		}
+		player.physics.Climb(ladder);
 
 		player.animator.TimeScale = Mathf.Abs(Input.GetAxis("Vertical"));
 	}
@@ -21,6 +20,8 @@ public class ClimbingState : PlayerState {
 	public override void Enter(PlayerControl player, PlayerState from) {
 		player.rigidbody2D.isKinematic = true;
 		player.animator.Set("Climb", true);
+
+		ladder = player.getLadder();
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to) {
