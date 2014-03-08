@@ -7,9 +7,13 @@ public class WaterRobotAI : MonoBehaviour {
 
 	public float speed;
 	public float lookAhead;
+	public int pauseTime;
 
+	private float randThreshold = .005f;
 	private float targetX;
 	private int direction = 1;
+	private float backwards = 0;
+	private float currentSpeed = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +24,16 @@ public class WaterRobotAI : MonoBehaviour {
 	void Update () {
 		//TODO Has to do a raytrace to check for missing ground beneath it
 		//to avoid walking off cliffs
+		if(backwards > 0){
+			backwards--;
+			if(backwards == 0)
+				direction *= -1;
+		}
+		else if(Random.value < randThreshold){
+			backwards = pauseTime;
+			direction *= -1;
+			currentSpeed = 0;
+		}
 		Vector3 pos = transform.position;
 
 		Vector2 l1 = new Vector2 (pos.x - this.lookAhead, pos.y);
@@ -34,7 +48,8 @@ public class WaterRobotAI : MonoBehaviour {
 			this.direction *= -1;		
 		}
 
-		pos.x += (this.direction * this.speed);
+		pos.x += (this.direction *  	currentSpeed);
+		currentSpeed = Mathf.Min(0.1f + currentSpeed, speed);
 		transform.position = pos;
 
 	}
@@ -43,7 +58,12 @@ public class WaterRobotAI : MonoBehaviour {
 		if (!(coll.gameObject.tag == "Player")) {
 			//turn around when we hit something
 			this.direction = this.direction * -1;
+			this.currentSpeed = 0;
 			Debug.Log("direction: " + this.direction);
+		}
+		else if ((transform.position.x  - coll.transform.position.x) < -.5 && this.direction == 1) {
+			PlayerControl player = coll.gameObject.GetComponent<PlayerControl>();
+			player.ChangeState(PlayerState.Dying);
 		}
 	}
 }
