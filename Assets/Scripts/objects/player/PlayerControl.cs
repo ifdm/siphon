@@ -5,14 +5,13 @@ using Spine;
 public class PlayerControl : MonoBehaviour {
 
 	[HideInInspector] public SkeletonAnimation skeletonAnimation;
-	[HideInInspector] public GameObject climbing = null;
 
 	[HideInInspector] public PlayerAnimator animator;
 	[HideInInspector] public PlayerAudio mozart;
 	[HideInInspector] public PlayerState state;
 	[HideInInspector] public PlayerPhysics physics;
 
-	private bool climbFlag = true;
+	[HideInInspector] public bool climbDirty = false;
 
 	void Start() {
 		physics = GetComponent<PlayerPhysics>();
@@ -174,25 +173,19 @@ public class PlayerControl : MonoBehaviour {
 		return false;
 	}
 	
-	public bool canClimb() {
+	public GameObject getLadder() {
 		GameObject[] ladders = GameObject.FindGameObjectsWithTag("Ladder");
-		bool ladder = false;
 		foreach(GameObject obj in ladders) {
 			Climbable climbable = obj.GetComponent<Climbable>();
 			RaycastHit2D cast = Physics2D.Linecast(climbable.startPoint, climbable.endPoint, 1 << LayerMask.NameToLayer("Player"));
 			if(cast) {
-				ladder = true;
-				break;
+				return obj;
 			}
 		}
-		
-		if(!ladder){climbFlag = true; return false;}
-		else {
-			if(state == PlayerState.Climbing){return true;}
-			if(rigidbody2D.velocity.y < 0){climbFlag = true;}
-			if(climbFlag){climbFlag = false; return true;}
-			return false;
-		}
+
+		climbDirty = false;
+
+		return null;
 	}
 	
 	public void AnimationEvent(string action) {
