@@ -14,6 +14,9 @@ public class Interactable : MonoBehaviour {
 	private Vector2 velocity;
 	private PlayerControl player;
 
+	[HideInInspector] public bool pulling = false;
+	[HideInInspector] public bool pushing = false;
+
 	void Start() {
 		player = GameObject.Find("Player").GetComponent<PlayerControl>();
 
