@@ -15,15 +15,20 @@ public class WaterRobotAI : MonoBehaviour {
 	private float backwards = 0;
 	private float currentSpeed = 0;
 
+	private Interactable interactable;
+
 	// Use this for initialization
 	void Start () {
-	
+		interactable = GetComponentInChildren<Interactable>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//TODO Has to do a raytrace to check for missing ground beneath it
 		//to avoid walking off cliffs
+		if(interactable.moved)
+			return;
+		
 		if(backwards > 0){
 			backwards--;
 			if(backwards == 0)
