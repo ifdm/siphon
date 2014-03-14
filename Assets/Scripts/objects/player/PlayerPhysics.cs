@@ -52,37 +52,35 @@ public class PlayerPhysics : MonoBehaviour {
 		transform.localScale = theScale;
 	}
 
-	public void Climb() {
+	public void Climb(GameObject ladder) {
 		float v = Input.GetAxis("Vertical");
 		
-		Vector2 p1 = (Vector2)transform.position;
-		Vector2 p2 = (Vector2)transform.position;
+		Vector2 p = (Vector2)transform.position;
 		Vector2 scale = (Vector2)transform.lossyScale;
 		BoxCollider2D box = GetComponent<BoxCollider2D>();
 		CircleCollider2D circle = GetComponent<CircleCollider2D>();
 
-		p1 += Vector2.Scale(box.center, scale);
-		p2 += Vector2.Scale(box.center, scale);
-		p1.x -= box.size.x * scale.x * 0.5f;
-		p2.x += box.size.x * scale.x * 0.5f;
+		p += Vector2.Scale(box.center, scale);
 
+		Climbable climbable = ladder.GetComponent<Climbable>();
+		rigidbody2D.velocity = Vector2.zero;
 		if(Mathf.Sign(v) > 0) {
-			p1.y += (box.size.y * scale.y) - .15f;
-			p2.y += (box.size.y * scale.y) - .15f;;
+			p.y += (box.size.y * scale.y) - .15f;
+			if(p.y < climbable.endPoint.y) {
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * (maxSpeed / 2)));
+			}
 		}
 		else {
-			p1.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
-			p2.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
+			p.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
+			if(p.y > climbable.startPoint.y) {
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * (maxSpeed / 2)));
+			}
+			else {
+				GetComponent<PlayerControl>().ChangeState(PlayerState.Falling);
+			}
 		}
 		
-		Debug.DrawLine(p1, p2, Color.green);
-
-		if(!Physics2D.Linecast(p1, p2, 1 << LayerMask.NameToLayer("Ground"))) {
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * (maxSpeed / 2)));
-		}
-		else {
-			rigidbody2D.velocity = Vector2.zero;
-		}
+		Debug.DrawLine(p - Vector2.right, p + Vector2.right, Color.green);
 	}
 
 	public void Interact(GameObject interactable) {
@@ -97,9 +95,42 @@ public class PlayerPhysics : MonoBehaviour {
 		}
 
 		var velocity = new Vector2(sign * 3, 0);
+
 		if(GetComponent<PlayerControl>().isInteracting() && Input.GetAxis("Horizontal") != 0 && velocity != Vector2.zero) {
-			rigidbody2D.velocity = velocity;
-			interactable.rigidbody2D.velocity = velocity;
+			
+			// push 
+			if(Input.GetAxisRaw("Horizontal") == Mathf.Sign(transform.lossyScale.x)) {
+				if(!script.pushing) {
+					GetComponent<PlayerControl>().animator.Set("Push", true);
+					script.pushing = true;
+					script.pulling = false;
+				}
+
+				if(!script.torqued) {
+					rigidbody2D.AddForce(new Vector2(sign * 50, 0));
+				}
+
+				interactable.rigidbody2D.AddForce(new Vector2(sign * 50, 0));
+
+				if(Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){rigidbody2D.velocity = velocity;}
+				if(!script.torqued) {
+					if(Mathf.Abs(interactable.rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){interactable.rigidbody2D.velocity = velocity;}
+				}
+			}
+
+			// pull
+			else if(Input.GetAxisRaw("Horizontal") != Mathf.Sign(transform.lossyScale.x)) {
+				if(!script.pulling) {
+					GetComponent<PlayerControl>().animator.Set("Pull", true);
+					script.pulling = true;
+					script.pushing = false;
+				}
+
+				interactable.rigidbody2D.AddForce(new Vector2(sign * 100, 0));
+
+				if(Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){rigidbody2D.velocity = velocity;}
+				if(Mathf.Abs(interactable.rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){interactable.rigidbody2D.velocity = velocity;}
+			}
 		}
 	}
 	

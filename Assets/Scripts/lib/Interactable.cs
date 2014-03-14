@@ -15,6 +15,10 @@ public class Interactable : MonoBehaviour {
 	private bool inRange = false;
 	private Vector2 velocity;
 	private PlayerControl player;
+	public bool torqued;
+
+	[HideInInspector] public bool pulling = false;
+	[HideInInspector] public bool pushing = false;
 
 	void Start() {
 		player = GameObject.Find("Player").GetComponent<PlayerControl>();
