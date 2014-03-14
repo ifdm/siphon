@@ -53,7 +53,7 @@ public class Mushroom : Plant {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, bf);
 			}
 			else {
-				col.gameObject.rigidbody2D.velocity = new Vector2(component, -col.gameObject.rigidbody2D.velocity.y);
+				col.gameObject.rigidbody2D.velocity = new Vector2(component, Mathf.Abs(col.gameObject.rigidbody2D.velocity.y));
 			}
 
 			if(animator){animator.Set("Bounce");}

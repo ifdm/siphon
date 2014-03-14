@@ -34,6 +34,9 @@ public class OneWay : MonoBehaviour {
 		if(player.GetComponent<PlayerControl>().state == PlayerState.Climbing) {
 			inside = true;
 		}
+		else if(player.GetComponent<PlayerControl>().state == PlayerState.Falling) {
+			inside = false;
+		}
 	}
 
 	void OnTriggerStay2D(Collider2D col) {

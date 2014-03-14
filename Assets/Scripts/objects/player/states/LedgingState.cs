@@ -18,9 +18,9 @@ public class LedgingState : PlayerState {
 			}
 		}
 
-		if(!player.canLedgeGrab()) {
+		/*if(!player.canLedgeGrab()) {
 			player.ChangeState(PlayerState.Falling);
-		}
+		}*/
 		
 		jumpTimer -= Mathf.Min(jumpTimer, Time.deltaTime);
 		
@@ -44,7 +44,9 @@ public class LedgingState : PlayerState {
 
 		RaycastHit2D cast = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
 		float diff = cast.point.x - (player.transform.position.x + (box.size.x * scale.x * .75f));
-		player.transform.position = new Vector3(player.transform.position.x + diff, player.transform.position.y, player.transform.position.z);
+		float y = player.transform.position.y;
+		if(cast.rigidbody){y += Mathf.Sign(cast.rigidbody.velocity.y * .3f);}
+		player.transform.position = new Vector3(player.transform.position.x + diff, y, player.transform.position.z);
 		
 		jumpTimer = player.physics.ledgeDuration;
 	}

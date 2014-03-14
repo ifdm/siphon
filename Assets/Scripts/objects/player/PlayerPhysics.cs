@@ -95,9 +95,42 @@ public class PlayerPhysics : MonoBehaviour {
 		}
 
 		var velocity = new Vector2(sign * 3, 0);
+
 		if(GetComponent<PlayerControl>().isInteracting() && Input.GetAxis("Horizontal") != 0 && velocity != Vector2.zero) {
-			rigidbody2D.velocity = velocity;
-			interactable.rigidbody2D.velocity = velocity;
+			
+			// push 
+			if(Input.GetAxisRaw("Horizontal") == Mathf.Sign(transform.lossyScale.x)) {
+				if(!script.pushing) {
+					GetComponent<PlayerControl>().animator.Set("Push", true);
+					script.pushing = true;
+					script.pulling = false;
+				}
+
+				if(!script.torqued) {
+					rigidbody2D.AddForce(new Vector2(sign * 50, 0));
+				}
+
+				interactable.rigidbody2D.AddForce(new Vector2(sign * 50, 0));
+
+				if(Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){rigidbody2D.velocity = velocity;}
+				if(!script.torqued) {
+					if(Mathf.Abs(interactable.rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){interactable.rigidbody2D.velocity = velocity;}
+				}
+			}
+
+			// pull
+			else if(Input.GetAxisRaw("Horizontal") != Mathf.Sign(transform.lossyScale.x)) {
+				if(!script.pulling) {
+					GetComponent<PlayerControl>().animator.Set("Pull", true);
+					script.pulling = true;
+					script.pushing = false;
+				}
+
+				interactable.rigidbody2D.AddForce(new Vector2(sign * 100, 0));
+
+				if(Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){rigidbody2D.velocity = velocity;}
+				if(Mathf.Abs(interactable.rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){interactable.rigidbody2D.velocity = velocity;}
+			}
 		}
 	}
 	
