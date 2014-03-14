@@ -18,9 +18,9 @@ public class LedgingState : PlayerState {
 			}
 		}
 
-		/*if(!player.canLedgeGrab()) {
+		if(!player.canLedgeGrab()) {
 			player.ChangeState(PlayerState.Falling);
-		}*/
+		}
 		
 		jumpTimer -= Mathf.Min(jumpTimer, Time.deltaTime);
 		
@@ -49,14 +49,10 @@ public class LedgingState : PlayerState {
 		player.transform.position = new Vector3(player.transform.position.x + diff, y, player.transform.position.z);
 		
 		jumpTimer = player.physics.ledgeDuration;
-
-		player.transform.parent = cast.transform;
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to) {
 		player.rigidbody2D.isKinematic = false;
 		if(to == PlayerState.Jumping){player.animator.Set("PullUp");}
-
-		player.transform.parent = null;
 	}
 }

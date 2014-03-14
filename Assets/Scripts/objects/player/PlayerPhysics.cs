@@ -97,6 +97,7 @@ public class PlayerPhysics : MonoBehaviour {
 		var velocity = new Vector2(sign * 3, 0);
 
 		if(GetComponent<PlayerControl>().isInteracting() && Input.GetAxis("Horizontal") != 0 && velocity != Vector2.zero) {
+			
 			// push 
 			if(Input.GetAxisRaw("Horizontal") == Mathf.Sign(transform.lossyScale.x)) {
 				if(!script.pushing) {
@@ -105,12 +106,18 @@ public class PlayerPhysics : MonoBehaviour {
 					script.pulling = false;
 				}
 
-				rigidbody2D.AddForce(new Vector2(sign * 50, 0));
+				if(!script.torqued) {
+					rigidbody2D.AddForce(new Vector2(sign * 50, 0));
+				}
+
 				interactable.rigidbody2D.AddForce(new Vector2(sign * 50, 0));
 
 				if(Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){rigidbody2D.velocity = velocity;}
-				if(Mathf.Abs(interactable.rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){interactable.rigidbody2D.velocity = velocity;}
+				if(!script.torqued) {
+					if(Mathf.Abs(interactable.rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){interactable.rigidbody2D.velocity = velocity;}
+				}
 			}
+
 			// pull
 			else if(Input.GetAxisRaw("Horizontal") != Mathf.Sign(transform.lossyScale.x)) {
 				if(!script.pulling) {
