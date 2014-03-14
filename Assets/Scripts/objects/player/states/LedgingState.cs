@@ -18,9 +18,9 @@ public class LedgingState : PlayerState {
 			}
 		}
 
-		if(!player.canLedgeGrab()) {
+		/*if(!player.canLedgeGrab()) {
 			player.ChangeState(PlayerState.Falling);
-		}
+		}*/
 		
 		jumpTimer -= Mathf.Min(jumpTimer, Time.deltaTime);
 		
