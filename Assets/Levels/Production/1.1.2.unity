@@ -4744,11 +4744,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 17.9857292
+      value: 17.8500004
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -20.205162
+      value: -20.1559887
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4792,7 +4792,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 5000000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: m_AngularDrag
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6100000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: m_Material
@@ -4800,11 +4800,19 @@ Prefab:
       objectReference: {fileID: 6200000, guid: 2e6930f2810e0864784cc41c0fa0da36, type: 2}
     - target: {fileID: 11400000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: dynamicWeight
-      value: 5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: m_Name
       value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
+      propertyPath: movePlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
+      propertyPath: force
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
@@ -7331,8 +7339,8 @@ Transform:
   m_PrefabInternal: {fileID: 1655497898}
   m_GameObject: {fileID: 778156419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.3679047, y: -27.2775135, z: 0}
-  m_LocalScale: {x: .100000001, y: 3, z: 1}
+  m_LocalPosition: {x: 33.3679047, y: -26.7633018, z: 0}
+  m_LocalScale: {x: .100000001, y: 2.60671878, z: 1}
   m_Children: []
   m_Father: {fileID: 996391812}
 --- !u!1 &779196826
@@ -7554,7 +7562,8 @@ MonoBehaviour:
   push: 1
   staticWeight: 100000
   dynamicWeight: 5
-  torqued: 0
+  movePlayer: 0
+  force: 50
   pulling: 0
   pushing: 0
 --- !u!61 &804873196
@@ -7640,7 +7649,7 @@ Transform:
   m_PrefabInternal: {fileID: 1677414254}
   m_GameObject: {fileID: 804873194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.9561558, y: -29.0394974, z: 0}
+  m_LocalPosition: {x: 21.5, y: -29.1511059, z: 0}
   m_LocalScale: {x: .689999998, y: .689999998, z: .689999998}
   m_Children: []
   m_Father: {fileID: 996391812}
@@ -10268,7 +10277,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   mozart: {fileID: 0}
   physics: {fileID: 0}
-  climbDirty: 0
 --- !u!114 &1029775866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15710,7 +15718,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6c5887a53e188da4aab3c21b23a49b2c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -27.2775135
+      value: -26.7633018
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6c5887a53e188da4aab3c21b23a49b2c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -15734,7 +15742,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6c5887a53e188da4aab3c21b23a49b2c, type: 2}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2.60671878
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c5887a53e188da4aab3c21b23a49b2c, type: 2}
@@ -16050,11 +16058,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 19.9561558
+      value: 21.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -29.0394974
+      value: -29.1511059
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: m_LocalPosition.z
@@ -17491,8 +17499,9 @@ MonoBehaviour:
   pull: 0
   push: 1
   staticWeight: 100000
-  dynamicWeight: 5
-  torqued: 1
+  dynamicWeight: 50
+  movePlayer: 0
+  force: 150
   pulling: 0
   pushing: 0
 --- !u!61 &1817652706
@@ -17528,7 +17537,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1817652704}
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 4
   m_GravityScale: 1
   m_FixedAngle: 0
   m_IsKinematic: 0
@@ -17578,7 +17587,7 @@ Transform:
   m_PrefabInternal: {fileID: 567510995}
   m_GameObject: {fileID: 1817652704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.9857292, y: -20.205162, z: 0}
+  m_LocalPosition: {x: 17.8500004, y: -20.1559887, z: 0}
   m_LocalScale: {x: .575000048, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 996391812}

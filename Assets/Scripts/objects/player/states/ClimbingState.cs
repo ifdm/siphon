@@ -9,6 +9,9 @@ public class ClimbingState : PlayerState {
 		if(Input.GetButtonDown("Jump") && Input.GetAxisRaw("Vertical") == 0) {
 			player.ChangeState(PlayerState.Jumping);
 		}
+		else if(player.canLedgeGrab()) {
+			player.ChangeState(PlayerState.Ledging);
+		}
 	}
 
 	public override void Update(PlayerControl player) {

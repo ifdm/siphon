@@ -155,7 +155,7 @@ public class PlayerControl : MonoBehaviour {
 		//Debug.DrawLine(p1, p2, Color.blue);
 		
 		RaycastHit2D cast = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		if(cast && cast.collider.gameObject.tag != "Boulder") {
+		if(cast && cast.collider.gameObject.tag != "NoLedgeGrab") {
 			p1.y += box.size.y * scale.y * .25f;
 			p2.y += box.size.y * scale.y * .25f;
 			p2 = new Vector2(cast.point.x + (.05f * scale.x), p2.y);
@@ -174,6 +174,14 @@ public class PlayerControl : MonoBehaviour {
 	}
 	
 	public GameObject getLadder() {
+		if(Input.GetAxisRaw("Vertical") == 0) {
+			climbDirty = false;
+		}
+
+		if(climbDirty) {
+			return null;
+		}
+
 		GameObject[] ladders = GameObject.FindGameObjectsWithTag("Ladder");
 		foreach(GameObject obj in ladders) {
 			Climbable climbable = obj.GetComponent<Climbable>();
@@ -182,8 +190,6 @@ public class PlayerControl : MonoBehaviour {
 				return obj;
 			}
 		}
-
-		climbDirty = false;
 
 		return null;
 	}

@@ -105,6 +105,7 @@ public class Mushroom : Plant {
 	}
 	
 	private void keepAlive() {
+		Debug.Log("Keppr");
 		if(!canPlant(Physics2D.Linecast(transform.position + (Vector3.up * .1f), transform.position - (Vector3.up * .2f), 1 << LayerMask.NameToLayer("Ground")))) {
 			Destroy(gameObject);
 		}

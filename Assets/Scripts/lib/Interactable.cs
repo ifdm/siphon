@@ -10,10 +10,12 @@ public class Interactable : MonoBehaviour {
 
 	public float staticWeight = 100000;
 	public float dynamicWeight = 5;
+	public bool movePlayer;
+	public float force = 50;
+
 	private bool inRange = false;
 	private Vector2 velocity;
 	private PlayerControl player;
-	public bool torqued;
 
 	[HideInInspector] public bool pulling = false;
 	[HideInInspector] public bool pushing = false;
