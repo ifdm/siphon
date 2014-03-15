@@ -155,7 +155,7 @@ public class PlayerControl : MonoBehaviour {
 		//Debug.DrawLine(p1, p2, Color.blue);
 		
 		RaycastHit2D cast = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		if(cast) {
+		if(cast && cast.collider.gameObject.tag != "Boulder") {
 			p1.y += box.size.y * scale.y * .25f;
 			p2.y += box.size.y * scale.y * .25f;
 			p2 = new Vector2(cast.point.x + (.05f * scale.x), p2.y);

@@ -115,9 +115,11 @@ public class PlayerPhysics : MonoBehaviour {
 
 				if(!script.torqued) {
 					rigidbody2D.AddForce(new Vector2(sign * 50, 0));
+					interactable.rigidbody2D.AddForce(new Vector2(sign * 50, 0));
 				}
-
-				interactable.rigidbody2D.AddForce(new Vector2(sign * 50, 0));
+				else {
+					interactable.rigidbody2D.AddForceAtPosition(new Vector2(sign * 50, 0), interactable.transform.position + 5 * Vector3.up);
+				}
 
 				if(Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){rigidbody2D.velocity = velocity;}
 				if(!script.torqued) {
