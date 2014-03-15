@@ -5,6 +5,7 @@ public class CameraZoom : MonoBehaviour {
 
 	public float size = 5;
 	public float smooth = 3.0f;
+	public bool disableControl = false;
 
 	private float x, y, w, h;
 	private Transform player;
@@ -30,9 +31,19 @@ public class CameraZoom : MonoBehaviour {
 			camera.additionalZ = size;
 			camera.zSmooth = smooth;
 			CameraZoom.dirty = true;
+			if(disableControl && player.gameObject.GetComponent<PlayerControl>().isGrounded()) {
+				player.gameObject.GetComponent<PlayerPhysics>().disableControl = true;
+				disableControl = false;
+				StartCoroutine(enableControl());
+			}
 		}
 		else if(!CameraZoom.dirty) {
 			camera.additionalZ = 0;
 		}
+	}
+
+	IEnumerator enableControl() {
+		yield return new WaitForSeconds(1.0f);
+		player.gameObject.GetComponent<PlayerPhysics>().disableControl = false;
 	}
 }

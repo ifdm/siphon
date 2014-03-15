@@ -14,8 +14,11 @@ public class PlayerPhysics : MonoBehaviour {
 
 	[HideInInspector] public bool airMove = true;
 	[HideInInspector] public float timeSinceFall = 0;
+	[HideInInspector] public bool disableControl = false;
 
 	public void Move(float factor = 1.0f) {
+		if(disableControl){return;}
+
 		bool grounded = GetComponent<PlayerControl>().isGrounded();
 		if(grounded) {
 			airMove = true;
@@ -53,6 +56,8 @@ public class PlayerPhysics : MonoBehaviour {
 	}
 
 	public void Climb(GameObject ladder) {
+		if(disableControl){return;}
+		
 		float v = Input.GetAxis("Vertical");
 		
 		Vector2 p = (Vector2)transform.position;
@@ -84,6 +89,8 @@ public class PlayerPhysics : MonoBehaviour {
 	}
 
 	public void Interact(GameObject interactable) {
+		if(disableControl){return;}
+
 		var sign = Mathf.Sign(Input.GetAxis("Horizontal"));
 		var direction = (facingRight) ? 1 : -1;
 		var script = interactable.GetComponent<Interactable>();
@@ -135,6 +142,7 @@ public class PlayerPhysics : MonoBehaviour {
 	}
 	
 	public void Jump() {
+		if(disableControl){return;}
 		rigidbody2D.isKinematic = false;
 		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
 	}

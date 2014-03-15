@@ -30,7 +30,7 @@ public class PlayerControl : MonoBehaviour {
 		state.Update(this);
 	}
 
-	public void ChangeState(PlayerState next) {		
+	public void ChangeState(PlayerState next) {
 		PlayerState previous = this.state;
 
 		if(previous != null && (next == previous)) return;
@@ -105,7 +105,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public bool isRunning() {
-		return isGrounded() && Input.GetAxisRaw("Horizontal") != 0;
+		return !GetComponent<PlayerPhysics>().disableControl && isGrounded() && Input.GetAxisRaw("Horizontal") != 0;
 	}
 
 	public GameObject isInteracting() {

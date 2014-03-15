@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour {
 	[HideInInspector] public Vector3 pullTo = Vector3.zero;
 	[HideInInspector] public float pullSmooth;
 	[HideInInspector] public float shake = 0;
+	[HideInInspector] public float shakeStrength = 4;
 
 	private float z;
 	public float zStart;
@@ -54,7 +55,7 @@ public class CameraFollow : MonoBehaviour {
 		}
 
 		if(shake > 0) {
-			target = new Vector3(target.x + Random.Range(-8, 8), target.y + Random.Range(-8, 8), target.z + Random.Range(-8, 8));
+			target = new Vector3(target.x + Random.Range(-shakeStrength, shakeStrength), target.y + Random.Range(-shakeStrength, shakeStrength), target.z + Random.Range(-0, 0));
 		}
 
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref posVel, s);
