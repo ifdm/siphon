@@ -18,7 +18,7 @@ public class BranchBreak : MonoBehaviour {
 	}
 
 	IEnumerator ded() {
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(1.5f);
 		Destroy(GameObject.Find("Branch1"));
 		Destroy(GameObject.Find("Branch2"));
 		Destroy(GameObject.Find("Branch3"));
