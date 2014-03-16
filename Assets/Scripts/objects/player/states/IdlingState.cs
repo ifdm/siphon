@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class IdlingState : PlayerState {
+	private bool edging = false;
 
 	public override void HandleInput(PlayerControl player) {
 		if(player.isRunning()) {
@@ -19,6 +20,12 @@ public class IdlingState : PlayerState {
 			PlayerState.Interacting.interactable = interactable;
 			player.ChangeState(PlayerState.Interacting);
 		}
+
+		if(player.isIdle() && player.isUnbalanced() && player.isGrounded() && !edging) {
+			Debug.Log("Playing edge.");
+			player.animator.Set("Edge", true);
+			edging = true;
+		}
 		
 		player.physics.AlignSlope();
 	}
@@ -29,5 +36,9 @@ public class IdlingState : PlayerState {
 
 	public override void Enter(PlayerControl player, PlayerState from) {
 		player.animator.Add("Idle", true);
+	}
+
+	public override void Exit(PlayerControl player, PlayerState to) {
+		edging = false;
 	}
 }

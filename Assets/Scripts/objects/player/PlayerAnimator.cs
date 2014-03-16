@@ -21,7 +21,8 @@ public class PlayerAnimator : Animateur {
 			{"Push", new AnimationType(Type.Spine, "push")},
 			{"Pull", new AnimationType(Type.Spine, "pull")},
 			{"Death", new AnimationType(Type.Spine, "spike-death")},
-			{"Turn", new AnimationType(Type.Spine, "turn-around")}
+			{"Turn", new AnimationType(Type.Spine, "turn-around")},
+			{"Edge", new AnimationType(Type.Spine, "near-edge")}
 		};
 
 		base.Start();
