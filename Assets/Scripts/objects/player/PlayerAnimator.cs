@@ -20,9 +20,12 @@ public class PlayerAnimator : Animateur {
 			{"Climb", new AnimationType(Type.Spine, "climb-gv")},
 			{"Push", new AnimationType(Type.Spine, "push")},
 			{"Pull", new AnimationType(Type.Spine, "pull")},
-			{"Death", new AnimationType(Type.Spine, "spike-death")},
 			{"Turn", new AnimationType(Type.Spine, "turn-around")},
-			{"Edge", new AnimationType(Type.Spine, "near-edge")}
+			{"Edge", new AnimationType(Type.Spine, "near-edge")},
+			{"SpikeDeath", new AnimationType(Type.Spine, "spike-death")},
+			{"BackHit", new AnimationType(Type.Spine, "back-hit")},
+			{"FrontHit", new AnimationType(Type.Spine, "front-hit")},
+			{"FallDeath", new AnimationType(Type.Spine, "fall-death")}
 		};
 
 		base.Start();
