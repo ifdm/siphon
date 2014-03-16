@@ -160,6 +160,10 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public bool canLedgeGrab() {
+		if(rigidbody2D.velocity.y < -GetComponent<PlayerPhysics>().dangerousVelocity) {
+			return false;
+		} 
+
 		Vector2 p1 = (Vector2) transform.position;
 		Vector2 p2 = (Vector2) transform.position;
 		Vector2 scale = (Vector2) transform.lossyScale;
