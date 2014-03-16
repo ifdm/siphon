@@ -8877,6 +8877,10 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: -3.49268603
       objectReference: {fileID: 0}
+    - target: {fileID: 5000000, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
   m_RootGameObject: {fileID: 540939112}
@@ -8985,8 +8989,9 @@ EdgeCollider2D:
   m_Points:
   - {x: -12.2419891, y: -.274402618}
   - {x: -9.71977234, y: .671550751}
-  - {x: -9.08492279, y: 2.50942993}
-  - {x: -9.13410187, y: 7.45284462}
+  - {x: -9.16188049, y: 2.45812225}
+  - {x: -9.20805359, y: 6.44680405}
+  - {x: -9.67282104, y: 8.91509056}
   - {x: -9.68670654, y: 12.5347652}
 --- !u!1 &921271019
 GameObject:
@@ -9555,11 +9560,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: b549925492fb8df4f80ca68b72d719f9, type: 2}
       propertyPath: m_Points.Array.data[11].x
-      value: 10.5738754
+      value: 10.2813797
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: b549925492fb8df4f80ca68b72d719f9, type: 2}
       propertyPath: m_Points.Array.data[11].y
-      value: .682437897
+      value: .935935974
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: b549925492fb8df4f80ca68b72d719f9, type: 2}
       propertyPath: m_Points.Array.data[12].x
@@ -10277,6 +10282,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   mozart: {fileID: 0}
   physics: {fileID: 0}
+  climbDirty: 0
 --- !u!114 &1029775866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10347,7 +10353,7 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1001 &1040035207
 Prefab:
   m_ObjectHideFlags: 0
@@ -12629,9 +12635,10 @@ GameObject:
   - 58: {fileID: 1282892991}
   - 58: {fileID: 1282892990}
   - 114: {fileID: 1282892989}
+  - 114: {fileID: 1282892992}
   m_Layer: 8
   m_Name: Boulder
-  m_TagString: Boulder
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12672,6 +12679,17 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_Radius: 1.5
   m_Center: {x: 0, y: -.200000003}
+--- !u!114 &1282892992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1282892988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7e3dc5f77b40c41963db36023d63cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &1282892994
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -12679,7 +12697,7 @@ Rigidbody2D:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1282892988}
-  m_Mass: 5
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 1
@@ -12687,7 +12705,7 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!212 &1282892995
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15354,7 +15372,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 6800000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_Points.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_LocalPosition.x
@@ -15406,35 +15424,35 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_Points.Array.data[2].x
-      value: -9.08492279
+      value: -9.16188049
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_Points.Array.data[2].y
-      value: 2.50942993
+      value: 2.45812225
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_Points.Array.data[3].x
-      value: -9.13410187
+      value: -9.20805359
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_Points.Array.data[3].y
-      value: 7.45284462
+      value: 6.44680405
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_Points.Array.data[4].x
-      value: -9.68670654
+      value: -9.67282104
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_Points.Array.data[4].y
-      value: 12.5347652
+      value: 8.91509056
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_Points.Array.data[5].x
-      value: -9.27516937
+      value: -9.68670654
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_Points.Array.data[5].y
-      value: 7.96089554
+      value: 12.5347652
       objectReference: {fileID: 0}
     - target: {fileID: 6800000, guid: 38d2285969d154946b2865b77e981950, type: 2}
       propertyPath: m_Points.Array.data[6].x
@@ -17304,7 +17322,7 @@ EdgeCollider2D:
   - {x: 1.05603027, y: 1.87610817}
   - {x: 4.52648163, y: 1.26634216}
   - {x: 8.39573288, y: .923330307}
-  - {x: 10.5738754, y: .682437897}
+  - {x: 10.2813797, y: .935935974}
   - {x: 11.21521, y: .107475281}
   - {x: 16.304615, y: -.963310242}
   - {x: 20.1990547, y: -1.41025543}
