@@ -5785,8 +5785,13 @@ MonoBehaviour:
   moveForce: 40
   maxSpeed: 5
   jumpForce: 13
+  dangerousVelocity: 35
   lethalVelocity: 35
+  ledgeDuration: .400000006
+  alignSpeed: 4
   airMove: 1
+  timeSinceFall: 0
+  disableControl: 0
 --- !u!114 &321639396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5799,12 +5804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7aa29052bf42c4a983509d33d1fa36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
   mainCamera: {fileID: 0}
   slots: []
-  throwForce: 700
-  topDeadZone: 15
-  bottomDeadZone: 15
+  cursors: []
   activeSlot: 0
   throwable: 1
 --- !u!114 &321639397
@@ -5820,9 +5822,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 0}
-  climbing: {fileID: 0}
   animator: {fileID: 0}
+  mozart: {fileID: 0}
   physics: {fileID: 0}
+  climbDirty: 0
 --- !u!114 &321639398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8564,7 +8567,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 71f4e8e722fde5e489538c030e1bdfbb, type: 2}
+  - {fileID: 2100000, guid: 1a9ffbe6d09ca497bac257ce94f5f157, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -10774,7 +10777,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 71f4e8e722fde5e489538c030e1bdfbb, type: 2}
+  - {fileID: 2100000, guid: 1a9ffbe6d09ca497bac257ce94f5f157, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -15486,7 +15489,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 71f4e8e722fde5e489538c030e1bdfbb, type: 2}
+  - {fileID: 2100000, guid: 1a9ffbe6d09ca497bac257ce94f5f157, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -16568,11 +16571,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smooth: .200000003
   player: {fileID: 0}
-  targetSize: 0
-  defaultSize: 0
-  sizeSmooth: 0
-  defaultSizeSmooth: 0
-  padding: 1
+  additionalZ: 0
+  zSmooth: .5
+  pullTo: {x: 0, y: 0, z: 0}
+  pullSmooth: 0
+  shake: 0
+  shakeStrength: 4
+  zStart: 0
 --- !u!81 &1884872909
 AudioListener:
   m_ObjectHideFlags: 0
@@ -16699,6 +16704,7 @@ MonoBehaviour:
   timeScale: 1.10000002
   calculateNormals: 0
   calculateTangents: 0
+  zSpacing: 0
   loop: 0
   _animationName: idle
 --- !u!23 &1952585078
@@ -16720,7 +16726,7 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_SortingLayerID: 1408507349
 --- !u!33 &1952585079

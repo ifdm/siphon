@@ -50,5 +50,6 @@ public class FallingState : PlayerState {
 	IEnumerator die(PlayerControl player) { // Hack :[
 		yield return new WaitForSeconds(.01f);
 		player.ChangeState(PlayerState.Dying);
+		player.animator.Set("FrontHit", false);
 	}
 }

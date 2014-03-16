@@ -6,7 +6,7 @@ public class InteractingState : PlayerState {
 	public GameObject interactable;
 
 	public override void HandleInput(PlayerControl player) {
-		if(Input.GetButtonUp("Action")) {
+		if(Input.GetButtonUp("Action") || !player.isInteracting()) {
 			if(!player.isGrounded() || Input.GetButtonDown("Jump")) {
 				player.ChangeState(PlayerState.Jumping);
 			}
