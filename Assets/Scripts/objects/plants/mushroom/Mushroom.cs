@@ -18,9 +18,7 @@ public class Mushroom : Plant {
 		if(!cast){return;}
 		
 		transform.rotation = Quaternion.FromToRotation(Vector3.up, (Vector3)cast.normal);
-		if(canPlant(cast)) {
-			InvokeRepeating("keepAlive", .5f, .5f);
-		}
+		transform.parent = cast.transform;
 	}
 
 	void Update() {
@@ -102,12 +100,5 @@ public class Mushroom : Plant {
 		}
 		
 		return true;
-	}
-	
-	private void keepAlive() {
-		Debug.Log("Keppr");
-		if(!canPlant(Physics2D.Linecast(transform.position + (Vector3.up * .1f), transform.position - (Vector3.up * .2f), 1 << LayerMask.NameToLayer("Ground")))) {
-			Destroy(gameObject);
-		}
 	}
 }
