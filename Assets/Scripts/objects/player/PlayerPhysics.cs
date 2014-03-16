@@ -138,7 +138,7 @@ public class PlayerPhysics : MonoBehaviour {
 					script.pushing = false;
 				}
 
-				interactable.rigidbody2D.AddForce(new Vector2(sign * 100, 0));
+				interactable.rigidbody2D.AddForce(new Vector2(sign * force * 4, 0));
 
 				if(Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){rigidbody2D.velocity = velocity;}
 				if(Mathf.Abs(interactable.rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){interactable.rigidbody2D.velocity = velocity;}

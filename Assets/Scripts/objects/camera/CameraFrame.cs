@@ -28,6 +28,7 @@ public class CameraFrame : MonoBehaviour {
 			Vector3 v = transform.Find("PullTo").position;
 			camera.pullTo = new Vector3(v.x, v.y, camera.zStart - size);
 			camera.pullSmooth = smooth;
+			CameraZoom.dirty = true;
 		}
 		else {
 			camera.pullTo = Vector3.zero;
