@@ -171,11 +171,11 @@ public class PlayerPhysics : MonoBehaviour {
 		RaycastHit2D right = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
 
 		if(left && !right) {
-			rigidbody2D.AddForce(new Vector2(-30 * Mathf.Pow(2, -(timeSinceFall + .6f)), 0));
+			rigidbody2D.AddForce(new Vector2(-20 * Mathf.Pow(2, -(timeSinceFall + .6f)), 0));
 		}
 
 		if(right && !left) {
-			rigidbody2D.AddForce(new Vector2(30 * Mathf.Pow(2, -(timeSinceFall + .6f)), 0));
+			rigidbody2D.AddForce(new Vector2(20 * Mathf.Pow(2, -(timeSinceFall + .6f)), 0));
 		}
 
 		timeSinceFall += Time.deltaTime;
