@@ -14,9 +14,6 @@ public class BridgeBreak : MonoBehaviour {
 					Destroy(board3.GetComponent<HingeJoint2D>());
 				}
 			}
-			// if(boardL) {
-			// 	Destroy(boardL.GetComponent<DistanceJoint2D>());
-			// }
 			
 			StartCoroutine(killBridge());
 		}
