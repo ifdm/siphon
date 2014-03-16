@@ -13,16 +13,12 @@ public class Interactable : MonoBehaviour {
 	public bool movePlayer;
 	public float force = 50;
 
-	private bool inRange = false;
 	private Vector2 velocity;
-	private PlayerControl player;
 
 	[HideInInspector] public bool pulling = false;
 	[HideInInspector] public bool pushing = false;
 
 	void Start() {
-		player = GameObject.Find("Player").GetComponent<PlayerControl>();
-
 		if(rigidbody2D == null) {
 			throw new Exception("Interactable requires a rigid body.");
 		}
@@ -35,7 +31,6 @@ public class Interactable : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D col) {}
 	void OnTriggerExit2D(Collider2D col) {
 		if(col.gameObject.tag == "Player") {
-			inRange = false;
 			rigidbody2D.mass = staticWeight;
 		}
 	}

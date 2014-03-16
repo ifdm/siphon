@@ -22,9 +22,8 @@ public class IdlingState : PlayerState {
 		}
 
 		if(player.isIdle() && player.isUnbalanced() && player.isGrounded() && !edging) {
-			Debug.Log("Playing edge.");
 			player.animator.Set("Edge", true);
-			edging = true;
+			//edging = true;
 		}
 		
 		player.physics.AlignSlope();

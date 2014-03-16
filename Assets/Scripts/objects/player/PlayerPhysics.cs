@@ -63,7 +63,6 @@ public class PlayerPhysics : MonoBehaviour {
 		Vector2 p = (Vector2)transform.position;
 		Vector2 scale = (Vector2)transform.lossyScale;
 		BoxCollider2D box = GetComponent<BoxCollider2D>();
-		CircleCollider2D circle = GetComponent<CircleCollider2D>();
 
 		p += Vector2.Scale(box.center, scale);
 
