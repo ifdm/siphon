@@ -124,7 +124,7 @@ GameObject:
   - 61: {fileID: 7400039}
   m_Layer: 8
   m_Name: bottomEdge
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +164,7 @@ GameObject:
   - 61: {fileID: 8640915}
   - 232: {fileID: 8640914}
   - 114: {fileID: 8640917}
+  - 58: {fileID: 8640918}
   m_Layer: 8
   m_Name: BoardEdgeL
   m_TagString: Ground
@@ -235,6 +236,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06285694aa66afa4a8bc5e6cb7fa2356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &8640918
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 8640912}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Radius: .319999993
+  m_Center: {x: -1.58000004, y: 0}
 --- !u!1 &41273466
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +336,22 @@ Prefab:
     - target: {fileID: 400006, guid: f9892e822c761924f8f06358aadd0bdb, type: 2}
       propertyPath: m_LocalScale.y
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: f9892e822c761924f8f06358aadd0bdb, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: f9892e822c761924f8f06358aadd0bdb, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f9892e822c761924f8f06358aadd0bdb, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: f9892e822c761924f8f06358aadd0bdb, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9892e822c761924f8f06358aadd0bdb, type: 2}
@@ -832,7 +860,7 @@ GameObject:
   - 61: {fileID: 191681851}
   m_Layer: 8
   m_Name: bottomEdge
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -910,7 +938,7 @@ GameObject:
   - 61: {fileID: 232888560}
   m_Layer: 8
   m_Name: leftEdge
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -988,7 +1016,7 @@ GameObject:
   - 61: {fileID: 245822148}
   m_Layer: 8
   m_Name: body
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1971,7 +1999,7 @@ GameObject:
   - 114: {fileID: 378848705}
   m_Layer: 0
   m_Name: trigger
-  m_TagString: Untagged
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2372,7 +2400,7 @@ Transform:
   m_PrefabInternal: {fileID: 1263019010}
   m_GameObject: {fileID: 475167286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.5093689, y: 6.13183594, z: -.03515625}
+  m_LocalPosition: {x: 14.492588, y: 5.9556284, z: -.03515625}
   m_LocalScale: {x: 2.64156747, y: 2, z: 2.88992023}
   m_Children: []
   m_Father: {fileID: 493375493}
@@ -3053,7 +3081,7 @@ GameObject:
   - 61: {fileID: 594012435}
   m_Layer: 8
   m_Name: bottomEdge
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3207,6 +3235,30 @@ Prefab:
     - target: {fileID: 5000000, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
       propertyPath: m_GravityScale
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
@@ -3910,6 +3962,10 @@ Prefab:
     - target: {fileID: 23200000, guid: 805831a091812784896994881642863e, type: 2}
       propertyPath: m_Anchor.x
       value: 1.60000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 805831a091812784896994881642863e, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 805831a091812784896994881642863e, type: 2}
@@ -4783,11 +4839,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -9.33704567
+      value: 3.85350037
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 10.218626
+      value: 13.7523813
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
@@ -5304,7 +5360,7 @@ GameObject:
   - 58: {fileID: 979001086}
   m_Layer: 8
   m_Name: BoardEdgeR
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6396,7 +6452,7 @@ Transform:
   m_PrefabInternal: {fileID: 1619275563}
   m_GameObject: {fileID: 1130313956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.96897316, y: -8.86553097, z: .0163574219}
+  m_LocalPosition: {x: -8.83787346, y: -9.69428062, z: .0163574219}
   m_LocalScale: {x: .152612388, y: .152612388, z: .152612388}
   m_Children: []
   m_Father: {fileID: 493375493}
@@ -8177,11 +8233,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 14.5093689
+      value: 14.492588
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.13183594
+      value: 5.9556284
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
       propertyPath: m_LocalPosition.z
@@ -8311,7 +8367,7 @@ GameObject:
   - 50: {fileID: 1277428026}
   m_Layer: 8
   m_Name: Lift
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8891,7 +8947,7 @@ GameObject:
   - 61: {fileID: 1361360568}
   m_Layer: 8
   m_Name: body
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8982,7 +9038,7 @@ GameObject:
   - 50: {fileID: 1391958187}
   m_Layer: 8
   m_Name: Lift
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9176,7 +9232,7 @@ GameObject:
   - 114: {fileID: 1459776207}
   m_Layer: 0
   m_Name: trigger
-  m_TagString: Untagged
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9278,7 +9334,7 @@ GameObject:
   - 61: {fileID: 1496847557}
   m_Layer: 8
   m_Name: leftEdge
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9456,7 +9512,7 @@ GameObject:
   - 61: {fileID: 1588598849}
   m_Layer: 8
   m_Name: leftEdge
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9707,11 +9763,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 311740841b905c844a75976085c3b30f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.96897316
+      value: -8.83787346
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 311740841b905c844a75976085c3b30f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.86553097
+      value: -9.69428062
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 311740841b905c844a75976085c3b30f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9905,7 +9961,7 @@ GameObject:
   - 61: {fileID: 1646911840}
   m_Layer: 8
   m_Name: rightEdge
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10796,7 +10852,7 @@ GameObject:
   - 61: {fileID: 1723001454}
   m_Layer: 8
   m_Name: rightEdge
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10833,11 +10889,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 311740841b905c844a75976085c3b30f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 8.03104401
+      value: 8.31809807
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 311740841b905c844a75976085c3b30f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -8.86553097
+      value: -9.03515434
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 311740841b905c844a75976085c3b30f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -11396,7 +11452,7 @@ Transform:
   m_PrefabInternal: {fileID: 1723506406}
   m_GameObject: {fileID: 1854250103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.03104401, y: -8.86553097, z: 0}
+  m_LocalPosition: {x: 8.31809807, y: -9.03515434, z: 0}
   m_LocalScale: {x: .152612388, y: .152612388, z: .152612388}
   m_Children: []
   m_Father: {fileID: 493375493}
@@ -11957,6 +12013,30 @@ Prefab:
       propertyPath: m_GravityScale
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
+      propertyPath: m_TagString
+      value: NoLedgeGrab
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 087b4b83e1c334e6196d45811872b384, type: 2}
   m_RootGameObject: {fileID: 1391958185}
@@ -12305,7 +12385,7 @@ GameObject:
   - 61: {fileID: 2064217323}
   m_Layer: 8
   m_Name: body
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12438,7 +12518,7 @@ GameObject:
   - 61: {fileID: 2091751985}
   m_Layer: 8
   m_Name: rightEdge
-  m_TagString: Ground
+  m_TagString: NoLedgeGrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12537,7 +12617,7 @@ Transform:
   m_PrefabInternal: {fileID: 877986917}
   m_GameObject: {fileID: 2101158133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.218626, y: -9.33704567, z: 0}
+  m_LocalPosition: {x: 13.7523813, y: 3.85350037, z: 0}
   m_LocalScale: {x: .00402447488, y: .00402447488, z: .00402447488}
   m_Children:
   - {fileID: 1913196103}
