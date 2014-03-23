@@ -294,7 +294,10 @@ MonoBehaviour:
   push: 1
   moved: 0
   staticWeight: 100000
-  dynamicWeight: 1
+  dynamicWeight: 5
+  torqued: 0
+  pulling: 0
+  pushing: 0
 --- !u!61 &601520872
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -388,7 +391,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 601520870}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fac279af19e3a449843206f8a1bbc66, type: 3}
   m_Name: 
@@ -682,7 +685,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
       propertyPath: dynamicWeight
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9315c748652ab4906bba1859b3644752, type: 2}
@@ -855,10 +858,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 0}
-  climbing: {fileID: 0}
   animator: {fileID: 0}
   mozart: {fileID: 0}
   physics: {fileID: 0}
+  climbDirty: 0
 --- !u!114 &1454055550
 MonoBehaviour:
   m_ObjectHideFlags: 0
