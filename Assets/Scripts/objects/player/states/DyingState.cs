@@ -16,8 +16,6 @@ public class DyingState : PlayerState {
 		dyingTimer = deathDelay;
 
 		player.StartCoroutine(DelayFade(deathDelay * .4f));
-
-		player.animator.Set("Death");
 	}
 
 	private IEnumerator DelayFade(float delay) {

@@ -14,8 +14,11 @@ public class PlayerPhysics : MonoBehaviour {
 
 	[HideInInspector] public bool airMove = true;
 	[HideInInspector] public float timeSinceFall = 0;
+	[HideInInspector] public bool disableControl = false;
 
 	public void Move(float factor = 1.0f) {
+		if(disableControl){return;}
+
 		bool grounded = GetComponent<PlayerControl>().isGrounded();
 		if(grounded) {
 			airMove = true;
@@ -53,30 +56,33 @@ public class PlayerPhysics : MonoBehaviour {
 	}
 
 	public void Climb(GameObject ladder) {
+		if(disableControl){return;}
+		
 		float v = Input.GetAxis("Vertical");
 		
 		Vector2 p = (Vector2)transform.position;
 		Vector2 scale = (Vector2)transform.lossyScale;
 		BoxCollider2D box = GetComponent<BoxCollider2D>();
-		CircleCollider2D circle = GetComponent<CircleCollider2D>();
 
 		p += Vector2.Scale(box.center, scale);
 
 		Climbable climbable = ladder.GetComponent<Climbable>();
 		rigidbody2D.velocity = Vector2.zero;
 		if(Mathf.Sign(v) > 0) {
-			p.y += (box.size.y * scale.y) - .15f;
+			p.y -= (box.size.y * scale.y) * 1.3f;
 			if(p.y < climbable.endPoint.y) {
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * (maxSpeed / 2)));
 			}
 		}
 		else {
-			p.y -= (((box.center.y - circle.center.y) - ((2 * circle.radius) - (box.size.y / 2))) * scale.y);
+			p = (Vector2)transform.position;
 			if(p.y > climbable.startPoint.y) {
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * (maxSpeed / 2)));
 			}
-			else {
-				GetComponent<PlayerControl>().ChangeState(PlayerState.Falling);
+			else {  
+				PlayerControl playerControl = GetComponent<PlayerControl>();
+				playerControl.ChangeState(PlayerState.Idling);
+				playerControl.climbDirty = true;
 			}
 		}
 		
@@ -84,9 +90,13 @@ public class PlayerPhysics : MonoBehaviour {
 	}
 
 	public void Interact(GameObject interactable) {
+		if(disableControl){return;}
+
 		var sign = Mathf.Sign(Input.GetAxis("Horizontal"));
 		var direction = (facingRight) ? 1 : -1;
 		var script = interactable.GetComponent<Interactable>();
+		float force = script.force;
+
 		// Check to see if we are allowed to push or pull in that direction.
 		if(sign == direction && !script.push || sign == -direction && !script.pull) {
 			// If we aren't, make the interactable item immovable.
@@ -96,7 +106,7 @@ public class PlayerPhysics : MonoBehaviour {
 
 		var velocity = new Vector2(sign * 3, 0);
 
-		if(GetComponent<PlayerControl>().isInteracting() && Input.GetAxis("Horizontal") != 0 && velocity != Vector2.zero) {
+		if(GetComponent<PlayerControl>().isInteracting() && Input.GetAxisRaw("Horizontal") != 0 && velocity != Vector2.zero) {
 			
 			// push 
 			if(Input.GetAxisRaw("Horizontal") == Mathf.Sign(transform.lossyScale.x)) {
@@ -106,14 +116,16 @@ public class PlayerPhysics : MonoBehaviour {
 					script.pulling = false;
 				}
 
-				if(!script.torqued) {
-					rigidbody2D.AddForce(new Vector2(sign * 50, 0));
+				if(script.movePlayer) {
+					rigidbody2D.AddForce(new Vector2(sign * force, 0));
+					interactable.rigidbody2D.AddForce(new Vector2(sign * force, 0));
+				}
+				else {
+					interactable.rigidbody2D.AddForceAtPosition(new Vector2(sign * force, 0), interactable.transform.position + 5 * Vector3.up);
 				}
 
-				interactable.rigidbody2D.AddForce(new Vector2(sign * 50, 0));
-
 				if(Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){rigidbody2D.velocity = velocity;}
-				if(!script.torqued) {
+				if(script.movePlayer) {
 					if(Mathf.Abs(interactable.rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){interactable.rigidbody2D.velocity = velocity;}
 				}
 			}
@@ -126,7 +138,7 @@ public class PlayerPhysics : MonoBehaviour {
 					script.pushing = false;
 				}
 
-				interactable.rigidbody2D.AddForce(new Vector2(sign * 100, 0));
+				interactable.rigidbody2D.AddForce(new Vector2(sign * force * 4, 0));
 
 				if(Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){rigidbody2D.velocity = velocity;}
 				if(Mathf.Abs(interactable.rigidbody2D.velocity.x) > Mathf.Abs(velocity.x)){interactable.rigidbody2D.velocity = velocity;}
@@ -135,6 +147,7 @@ public class PlayerPhysics : MonoBehaviour {
 	}
 	
 	public void Jump() {
+		if(disableControl){return;}
 		rigidbody2D.isKinematic = false;
 		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
 	}
@@ -157,11 +170,11 @@ public class PlayerPhysics : MonoBehaviour {
 		RaycastHit2D right = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
 
 		if(left && !right) {
-			rigidbody2D.AddForce(new Vector2(-30 * Mathf.Pow(2, -(timeSinceFall + .5f)), 0));
+			rigidbody2D.AddForce(new Vector2(-20 * Mathf.Pow(2, -(timeSinceFall + .6f)), 0));
 		}
 
 		if(right && !left) {
-			rigidbody2D.AddForce(new Vector2(30 * Mathf.Pow(2, -(timeSinceFall + .5f)), 0));
+			rigidbody2D.AddForce(new Vector2(20 * Mathf.Pow(2, -(timeSinceFall + .6f)), 0));
 		}
 
 		timeSinceFall += Time.deltaTime;

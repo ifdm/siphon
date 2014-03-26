@@ -14,20 +14,22 @@ public class BridgeBreak : MonoBehaviour {
 					Destroy(board3.GetComponent<HingeJoint2D>());
 				}
 			}
-			if(boardL) {
-				Destroy(boardL.GetComponent<DistanceJoint2D>());
-			}
 			
 			StartCoroutine(killBridge());
 		}
 	}
 	
 	IEnumerator killBridge() {
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(.3f);
 		GameObject.Find("Board1").GetComponent<BoxCollider2D>().isTrigger = true;
 		GameObject.Find("Board2").GetComponent<BoxCollider2D>().isTrigger = true;
 		GameObject.Find("Board3").GetComponent<BoxCollider2D>().isTrigger = true;
 		GameObject.Find("BoardEdgeL").GetComponent<BoxCollider2D>().isTrigger = true;
 		GameObject.Find("BoardEdgeR").GetComponent<BoxCollider2D>().isTrigger = true;
+		
+		GameObject.Find("Branch1").GetComponent<BoxCollider2D>().isTrigger = true;
+		GameObject.Find("Branch2").GetComponent<BoxCollider2D>().isTrigger = true;
+		GameObject.Find("Branch3").GetComponent<BoxCollider2D>().isTrigger = true;
+		GameObject.Find("Branch4").GetComponent<BoxCollider2D>().isTrigger = true;
 	}
 }

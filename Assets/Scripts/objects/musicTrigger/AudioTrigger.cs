@@ -7,8 +7,6 @@ using System.Collections.Generic;
 //Triggers ambient audio in the gameworld
 public class AudioTrigger : Mozart {
 	
-	private GameObject player;
-	
 	public bool repeats;
 	public float volume;
 	public string track;
@@ -24,8 +22,7 @@ public class AudioTrigger : Mozart {
 		};
 	}
 	
-	void Start(){
-		player = GameObject.Find ("Player");
+	public override void Start(){
 		base.Start();
 	}
 	
