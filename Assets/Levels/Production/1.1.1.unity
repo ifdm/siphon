@@ -2394,7 +2394,7 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &332231317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2863,6 +2863,48 @@ Transform:
   - {fileID: 1355442922}
   - {fileID: 1360808331}
   m_Father: {fileID: 704860952}
+--- !u!1 &570779725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 570779726}
+  - 50: {fileID: 570779727}
+  m_Layer: 0
+  m_Name: FallingTreeAxis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &570779726
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 570779725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.8217201, y: -12.7579603, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2032544702}
+--- !u!50 &570779727
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 570779725}
+  m_Mass: 1e+06
+  m_LinearDrag: 1
+  m_AngularDrag: 1
+  m_GravityScale: 0
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1 &585689961
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,6 +3119,7 @@ GameObject:
   - 61: {fileID: 665492274}
   - 61: {fileID: 665492273}
   - 50: {fileID: 665492272}
+  - 233: {fileID: 665492271}
   m_Layer: 8
   m_Name: FallingTree
   m_TagString: Ground
@@ -3084,6 +3127,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!233 &665492271
+HingeJoint2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665492270}
+  m_Enabled: 1
+  m_CollideConnected: 0
+  m_ConnectedRigidBody: {fileID: 570779727}
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 0
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: 359
 --- !u!50 &665492272
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -3109,7 +3171,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Size: {x: 4, y: 40}
-  m_Center: {x: -2.5, y: 0}
+  m_Center: {x: -2.5, y: 20}
 --- !u!61 &665492274
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3120,7 +3182,7 @@ BoxCollider2D:
   m_Material: {fileID: 6200000, guid: 2e6930f2810e0864784cc41c0fa0da36, type: 2}
   m_IsTrigger: 0
   m_Size: {x: 4, y: 40}
-  m_Center: {x: -2.5, y: 0}
+  m_Center: {x: -2.5, y: 20}
 --- !u!212 &665492275
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3151,7 +3213,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 665492270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.8879395, y: -.911277771, z: 0}
+  m_LocalPosition: {x: -20.8217239, y: -12.7579575, z: 0}
   m_LocalScale: {x: 1, y: .600000024, z: 1}
   m_Children: []
   m_Father: {fileID: 2032544702}
@@ -8343,6 +8405,7 @@ Transform:
   - {fileID: 1514227768}
   - {fileID: 83206826}
   - {fileID: 665492276}
+  - {fileID: 570779726}
   - {fileID: 65677141}
   m_Father: {fileID: 704860952}
 --- !u!1 &2063364311

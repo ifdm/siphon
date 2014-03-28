@@ -8,6 +8,8 @@ public class Interactable : MonoBehaviour {
 	public bool pull = true;
 	public bool push = true;
 
+	[HideInInspector] public bool moved = false;
+
 	public float staticWeight = 100000;
 	public float dynamicWeight = 5;
 	public bool movePlayer;
