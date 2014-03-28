@@ -26,7 +26,9 @@ public class TreeFall : MonoBehaviour {
 		yield return new WaitForSeconds(0.5f);
 		player.GetComponent<PlayerPhysics>().disableControl = false;
 		tree.rigidbody2D.isKinematic = false;
-		tree.rigidbody2D.AddForceAtPosition(new Vector2(100, 0), new Vector2(0, -2));
+		tree.rigidbody2D.AddTorque(-10000000);
+		Debug.Log ("Foo2");		
+//tree.rigidbody2D.AddForceAtPosition(new Vector2(1000, 0), new Vector2(0, -50));
 		tree.AddComponent("TouchOfDeath");
 		yield return new WaitForSeconds(5.0f);
 		Destroy(tree.GetComponent<TouchOfDeath>());

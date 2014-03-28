@@ -25,11 +25,18 @@ public class InteractingState : PlayerState {
 
 	public override void Enter(PlayerControl player, PlayerState from){
 		interactable.rigidbody2D.mass = interactable.GetComponent<Interactable>().dynamicWeight;
+		player.animator.Set("Push", true);
+		interactable.GetComponent<Interactable>().moved = true;
+
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to){
 		interactable.rigidbody2D.mass = interactable.GetComponent<Interactable>().staticWeight;
+
+		interactable.GetComponent<Interactable>().moved = false;
+
 		interactable.GetComponent<Interactable>().pushing = interactable.GetComponent<Interactable>().pulling = false;
+
 	}
-	
+
 }
