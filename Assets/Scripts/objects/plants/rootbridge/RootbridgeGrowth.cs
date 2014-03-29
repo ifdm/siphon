@@ -18,10 +18,17 @@ public class RootbridgeGrowth : Plant {
 			animation.rotation = new Quaternion(0, 0, 0, 1);
 		}
 
+		transform.parent = cast.transform;
 	}
 	
 	public override bool canPlant(RaycastHit2D cast) {
 		if(!cast){return false;}
+		if(
+			(cast.transform.parent && cast.transform.parent.gameObject.GetComponent<Unplantable>() != null) ||
+			(cast.transform && cast.transform.gameObject.GetComponent<Unplantable>() != null)
+		) {
+			return false;
+		}
 		
 		Vector3 extents = transform.Find("body").gameObject.GetComponent<BoxCollider2D>().size * .5f;
 		extents = Vector2.Scale(extents, transform.lossyScale);
