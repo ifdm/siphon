@@ -10,10 +10,13 @@ public class WaterRobotAI : MonoBehaviour {
 	public int pauseTime;
 	public Transform leftWaypoint;
 	public Transform rightWaypoint;
+	public Transform stopWaypoint;
 
 	private int direction = 1;
 	private int pause = 0;
 	private bool left = true;
+	private bool stopping = false;
+	private bool stopped = false;
 	private Interactable interactable;
 
 	// Use this for initialization
@@ -23,16 +26,27 @@ public class WaterRobotAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//TODO Has to do a raytrace to check for missing ground beneath it
-		//to avoid walking off cliffs
+		if(stopped) return;
+
+		float x = transform.position.x;
+
+		if(x > stopWaypoint.position.x && !stopped){
+			stopping = true;
+			return;
+		}
 		if(interactable.moved)
 			return;
+		if(stopping){
+			rigidbody2D.mass = 10000000f;
+			interactable.dynamicWeight = 100000000f;
+			return;
+		}
 		if(pause > 0){
 			pause--;
 			return;
 		}
 	
-		float x = transform.position.x;
+		
 		if(x < leftWaypoint.position.x && !left)
 		{
 			left = !left;
