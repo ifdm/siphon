@@ -7,7 +7,11 @@ public class Comet : MonoBehaviour {
 	void Start () {
 		rigidbody2D.velocity = new Vector2(-38, -30);
 	}
-
+	
+	void Update() {
+		Debug.Log("asdf");
+	}
+	
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.name == "FallingTree") {
 			GameObject camera = GameObject.Find("Main Camera");
