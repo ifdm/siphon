@@ -69,7 +69,7 @@ public class PlayerPhysics : MonoBehaviour {
 		Climbable climbable = ladder.GetComponent<Climbable>();
 		rigidbody2D.velocity = Vector2.zero;
 		if(Mathf.Sign(v) > 0) {
-			p.y -= (box.size.y * scale.y) * 1.3f;
+			p.y += (box.size.y * scale.y) * 1.3f;
 			if(p.y < climbable.endPoint.y) {
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * (maxSpeed / 2)));
 			}
@@ -85,6 +85,8 @@ public class PlayerPhysics : MonoBehaviour {
 				playerControl.climbDirty = true;
 			}
 		}
+		
+		transform.position = new Vector3(ladder.transform.position.x + Mathf.Sign(transform.lossyScale.x) * -.4f, transform.position.y, transform.position.z);
 		
 		Debug.DrawLine(p - Vector2.right, p + Vector2.right, Color.green);
 	}
