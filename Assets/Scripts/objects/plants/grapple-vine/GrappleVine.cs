@@ -31,4 +31,9 @@ public class GrappleVine : MonoBehaviour {
 		animation.position = new Vector3(animation.position.x, endPoint.y - 4.4f, animation.position.z);
 		animation.localScale = new Vector2(animation.localScale.x, 0.5f);
 	}
+		
+	void Update() {
+		Climbable climbable = GetComponent<Climbable>();
+		Debug.DrawLine(climbable.startPoint, climbable.endPoint, Color.blue);
+	}
 }
