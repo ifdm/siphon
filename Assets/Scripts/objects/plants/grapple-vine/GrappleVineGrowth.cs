@@ -17,8 +17,10 @@ public class GrappleVineGrowth : Plant {
 		timer -= Mathf.Min(timer, Time.deltaTime);
 		if(timer == 0 && !child) {
 			transform.position = new Vector3(transform.position.x, transform.position.y + (24 * Time.deltaTime), transform.position.z);
-			if(Physics2D.Linecast(transform.position, transform.position + (1.5f * Vector3.up), 1 << LayerMask.NameToLayer("Ground"))) {
+			RaycastHit2D cast;
+			if(cast = Physics2D.Linecast(transform.position, transform.position + (1.5f * Vector3.up), 1 << LayerMask.NameToLayer("Ground"))) {
 				child = (GameObject)Instantiate(GrappleVine, startPoint, Quaternion.identity);
+				cast.transform.gameObject.SendMessage("Hooked");
 			}
 		}
 	}
