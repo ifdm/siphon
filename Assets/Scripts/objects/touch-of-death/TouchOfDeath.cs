@@ -16,10 +16,10 @@ public class TouchOfDeath : MonoBehaviour {
 		if(col.gameObject.tag == "Player") {
 			PlayerControl control = col.gameObject.GetComponent<PlayerControl>();
 			if(control.state != PlayerState.Dying) {
-				Destroy(col.gameObject.GetComponent<Rigidbody2D>());
-				Destroy(col.gameObject.GetComponent<EdgeCollider2D>());
-				Destroy(col.gameObject.GetComponent<BoxCollider2D>());
-				Destroy(col.gameObject.GetComponent<CircleCollider2D>());
+				col.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+				col.gameObject.GetComponent<EdgeCollider2D>().isTrigger = true;
+				col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+				col.gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
 				control.ChangeState(PlayerState.Dying);
 				switch(animation) {
 					case TouchOfDeath.DeathAnimation.frontHit:
