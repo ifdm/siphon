@@ -69,7 +69,7 @@ public class PlayerPhysics : MonoBehaviour {
 		Climbable climbable = ladder.GetComponent<Climbable>();
 		rigidbody2D.velocity = Vector2.zero;
 		if(Mathf.Sign(v) > 0) {
-			p.y += (box.size.y * scale.y) * 1.3f;
+			if(ladder.name == "GrappleVine"){p.y += (box.size.y * scale.y) * 1.3f;}
 			if(p.y < climbable.endPoint.y) {
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * (maxSpeed / 2)));
 			}
