@@ -8,9 +8,7 @@ public class Comet : MonoBehaviour {
 		rigidbody2D.velocity = new Vector2(-38, -30);
 	}
 	
-	void Update() {
-		Debug.Log("asdf");
-	}
+	void Update() {}
 	
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.name == "FallingTree") {
