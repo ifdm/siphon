@@ -20,7 +20,7 @@ public class GrappleVineGrowth : Plant {
 			RaycastHit2D cast;
 			if(cast = Physics2D.Linecast(transform.position, transform.position + (1.5f * Vector3.up), 1 << LayerMask.NameToLayer("Ground"))) {
 				child = (GameObject)Instantiate(GrappleVine, startPoint, Quaternion.identity);
-				cast.transform.gameObject.SendMessage("Hooked");
+				cast.transform.gameObject.SendMessage("Hooked", SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}
