@@ -3,10 +3,14 @@ using System.Collections;
 
 public class JumpingState : PlayerState {
 
+	private float grace;
+
 	public override void HandleInput(PlayerControl player) {
 		player.rigidbody2D.isKinematic = false;
 		player.physics.AlignUpright();
-	
+
+		grace -= Mathf.Min(grace, Time.deltaTime);
+		if(grace > 0){return;}
 		if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}
@@ -28,6 +32,10 @@ public class JumpingState : PlayerState {
 	public override void Enter(PlayerControl player, PlayerState from) {
 		if(Input.GetButtonDown("Jump")) {
 			player.physics.Jump();
+			grace = 0;
+		}
+		else {
+			grace = .4f;
 		}
 
 		if(from == PlayerState.Running || from == PlayerState.Idling) {

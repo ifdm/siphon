@@ -18,10 +18,8 @@ public class SlidingState : PlayerState {
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
-		Debug.Log("I'm Sliding!");
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to) {
-		Debug.Log("I'm not sliding!");
 	}
 }

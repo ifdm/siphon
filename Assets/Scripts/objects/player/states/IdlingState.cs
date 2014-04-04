@@ -8,7 +8,7 @@ public class IdlingState : PlayerState {
 		if(player.isRunning()) {
 			player.ChangeState(PlayerState.Running);
 		}
-		else if(!player.isGrounded() || Input.GetButtonDown("Jump") && !player.physics.disableControl) {
+		else if((!player.isGrounded() || Input.GetButtonDown("Jump")) && !player.physics.disableControl) {
 			player.ChangeState(PlayerState.Jumping);
 		}
 		else if(player.getLadder() && Input.GetAxisRaw("Vertical") != 0) {

@@ -30,7 +30,7 @@ public class WaterRobotAI : MonoBehaviour {
 
 		float x = transform.position.x;
 
-		if(x > stopWaypoint.position.x && !stopped){
+		if(x > stopWaypoint.position.x && !stopped) {
 			stopping = true;
 			return;
 		}
@@ -43,22 +43,23 @@ public class WaterRobotAI : MonoBehaviour {
 		}
 		if(pause > 0){
 			pause--;
+			if(pause == 0) {
+				Vector3 theScale = transform.localScale;
+				theScale.x *= -1;
+				transform.localScale = theScale;
+				direction *= -1;
+			}
 			return;
 		}
 	
 		
-		if(x < leftWaypoint.position.x && !left)
-		{
+		if(x < leftWaypoint.position.x && !left) {
 			left = !left;
 			pause = pauseTime;
-			direction = 1;
-			Debug.Log("changed direction " + left);
 		}
-		else if(x > rightWaypoint.position.x && left){
+		else if(x > rightWaypoint.position.x && left) {
 			left = !left;
 			pause = pauseTime;
-			direction = -1;
-			Debug.Log("changed direction " + left);
 		}
 
 		rigidbody2D.AddForce(Vector2.right * this.direction * 100f);
