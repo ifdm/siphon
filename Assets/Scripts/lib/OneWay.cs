@@ -7,6 +7,7 @@ public class OneWay : MonoBehaviour {
 	private GameObject player;
 	private bool inside;
 	private bool grown = false;
+	private float grace = 0.1f;
 
 	void Start() {
 		player = GameObject.Find("Player");		
@@ -20,7 +21,8 @@ public class OneWay : MonoBehaviour {
 
 	void Update() {
 		if(grown) {
-			if(player.rigidbody2D.velocity.y > 0 || inside) {
+			grace -= Mathf.Min(grace, Time.deltaTime);
+			if(player.rigidbody2D.velocity.y > 0 || inside || grace > 0) {
 				gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
 			}
 			else {
@@ -42,12 +44,14 @@ public class OneWay : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D col) {
 		if(col.gameObject.tag == "Player") {
 			inside = true;
+			grace = .05f;
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.tag == "Player") {
 			inside = true;
+			grace = .05f;
 		}
 	}
 
