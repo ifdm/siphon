@@ -37,7 +37,7 @@ public class PlayerPhysics : MonoBehaviour {
 			if(h != 0) {
 				rigidbody2D.AddForce(Vector2.right * h * moveForce * factor);
 			}
-			
+
 			if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed) {
 				rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
 			}
@@ -57,14 +57,14 @@ public class PlayerPhysics : MonoBehaviour {
 
 	public void Climb(GameObject ladder) {
 		if(disableControl){return;}
-		
+
 		float v = Input.GetAxis("Vertical");
 		float h = Input.GetAxis("Horizontal");
 		if(h != 0 && Mathf.Sign(h) != Mathf.Sign(transform.localScale.x) && ladder.GetComponent<Climbable>().direction == 0) {
 			ChangeDirection();
 			transform.position = new Vector3(ladder.transform.position.x + Mathf.Sign(transform.lossyScale.x) * -.3f, transform.position.y, transform.position.z);
 		}
-				
+
 		Vector2 p = (Vector2)transform.position;
 		Vector2 scale = (Vector2)transform.lossyScale;
 		BoxCollider2D box = GetComponent<BoxCollider2D>();
@@ -89,7 +89,7 @@ public class PlayerPhysics : MonoBehaviour {
 				playerControl.ChangeState(PlayerState.Idling);
 			}
 		}
-				
+
 		Debug.DrawLine(p - Vector2.right, p + Vector2.right, Color.green);
 	}
 
@@ -111,8 +111,8 @@ public class PlayerPhysics : MonoBehaviour {
 		var velocity = new Vector2(sign * 3, 0);
 
 		if(GetComponent<PlayerControl>().isInteracting() && Input.GetAxisRaw("Horizontal") != 0 && velocity != Vector2.zero) {
-			
-			// push 
+
+			// push
 			if(Input.GetAxisRaw("Horizontal") == Mathf.Sign(transform.lossyScale.x)) {
 				if(!script.pushing) {
 					GetComponent<PlayerControl>().animator.Set("Push", true);
@@ -149,7 +149,7 @@ public class PlayerPhysics : MonoBehaviour {
 			}
 		}
 	}
-	
+
 	public void Jump() {
 		if(disableControl){return;}
 		rigidbody2D.isKinematic = false;
@@ -183,12 +183,12 @@ public class PlayerPhysics : MonoBehaviour {
 
 		timeSinceFall += Time.deltaTime;
 	}
-	
+
 	public void AlignUpright() {
 		Transform animation = transform.Find("Animation");
 		animation.rotation = Quaternion.Lerp(animation.rotation, Quaternion.FromToRotation(Vector3.up, Vector3.up), alignSpeed * Time.deltaTime);
 	}
-	
+
 	public void AlignSlope() {
 		Vector2 normal = GetComponent<PlayerControl>().normal();
 		if(normal != Vector2.zero) {
