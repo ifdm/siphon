@@ -579,6 +579,7 @@ GameObject:
   - 61: {fileID: 65677140}
   - 114: {fileID: 65677139}
   - 114: {fileID: 65677142}
+  - 114: {fileID: 65677143}
   m_Layer: 0
   m_Name: TreeFallTrigger
   m_TagString: Untagged
@@ -633,6 +634,22 @@ MonoBehaviour:
   size: 10
   smooth: .400000006
   disableControl: 0
+--- !u!114 &65677143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 65677138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7256255c3a729948931553ac65f045d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: .200000003
+  startup: 
+  names:
+  - Comet
+  - Tree_Fall_Heavy
 --- !u!1 &77137555
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,12 +3116,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  slots: []
+  slots:
+  - {fileID: 11400000, guid: 6a6952dacada032418785151069c880a, type: 2}
+  - {fileID: 11400000, guid: a7414d4c3672e4e4b9f7a35c90192f85, type: 2}
+  - {fileID: 11400000, guid: a06fefea94c18374fbc82b65447bd59f, type: 2}
   cursors:
+  - {fileID: 2800000, guid: 58afc4b4284be9a4f82a8368d37c3671, type: 3}
   - {fileID: 2800000, guid: 723faac60ee1e436fb14c8ad65fc3fc6, type: 3}
   - {fileID: 2800000, guid: 49fc4c30312aa4722b89a7c259d9e5a9, type: 3}
   - {fileID: 2800000, guid: ff11f3266da854b0c9117e3e1e1e32f0, type: 3}
-  - {fileID: 2800000, guid: 13e52a7d6659f4c7ca88050d535c410b, type: 3}
   activeSlot: 0
   throwable: 1
 --- !u!114 &329073893
@@ -3123,7 +3143,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   mozart: {fileID: 0}
   physics: {fileID: 0}
-  climbDirty: 0
 --- !u!114 &329073894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4670,6 +4689,8 @@ GameObject:
   - 61: {fileID: 665492273}
   - 50: {fileID: 665492272}
   - 233: {fileID: 665492271}
+  - 114: {fileID: 665492278}
+  - 114: {fileID: 665492277}
   m_Layer: 8
   m_Name: FallingTree
   m_TagString: Ground
@@ -4767,6 +4788,32 @@ Transform:
   m_LocalScale: {x: 1, y: .600000024, z: 1}
   m_Children: []
   m_Father: {fileID: 2032544702}
+--- !u!114 &665492277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665492270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b3d4c26d206094ea80735f68c6ea06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &665492278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665492270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7256255c3a729948931553ac65f045d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: .200000003
+  startup: 
+  names:
+  - Tree_Land_Heavy
 --- !u!1 &666362086
 GameObject:
   m_ObjectHideFlags: 0
@@ -7524,13 +7571,13 @@ MonoBehaviour:
   bm_ghost: {fileID: 21300000, guid: a547d6d925e6e48f1bc47a442a02b573, type: 3}
   rb_ghost: {fileID: 21300000, guid: 9e64fd8d87b104daaafd2deacc311e22, type: 3}
   gv_ghost: {fileID: 21300000, guid: abb01b0ba76bb40b6acc503d38772d98, type: 3}
-  bm_scale: 0
-  gv_scale: 0
-  rb_scale_h: 0
-  rb_scale_v: 0
-  bm_offset: 0
-  gv_offset: 0
-  rb_offset: 0
+  bm_scale: .300000012
+  gv_scale: .100000001
+  rb_scale_h: .419999987
+  rb_scale_v: .319999993
+  bm_offset: .300000012
+  gv_offset: .300000012
+  rb_offset: 2.4000001
   isCursorDrawing: 0
   position: {x: 0, y: 0}
   plant: {fileID: 0}
@@ -7553,9 +7600,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayer: 3
+  m_SortingOrder: 2
+  m_SortingLayerID: 1408507349
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1197628333
