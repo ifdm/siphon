@@ -11,8 +11,6 @@ public class PlayerControl : MonoBehaviour {
 	[HideInInspector] public PlayerState state;
 	[HideInInspector] public PlayerPhysics physics;
 
-	[HideInInspector] public bool climbDirty = false;
-
 	void Start() {
 		physics = GetComponent<PlayerPhysics>();
 		animator = transform.Find("Animation").GetComponent<PlayerAnimator>();
@@ -204,14 +202,6 @@ public class PlayerControl : MonoBehaviour {
 	}
 	
 	public GameObject getLadder() {
-		if(Input.GetAxisRaw("Vertical") == 0) {
-			climbDirty = false;
-		}
-
-		if(climbDirty) {
-			return null;
-		}
-
 		GameObject[] ladders = GameObject.FindGameObjectsWithTag("Ladder");
 		foreach(GameObject obj in ladders) {
 			Climbable climbable = obj.GetComponent<Climbable>();

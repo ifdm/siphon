@@ -23,7 +23,7 @@ public class FallingState : PlayerState {
 		else if(player.isGrounded()) {
 			player.ChangeState(PlayerState.Running);
 		}
-		else if(player.getLadder() && Input.GetAxisRaw("Vertical") != 0) {
+		else if(player.getLadder()){
 			player.ChangeState(PlayerState.Climbing);
 		}
 

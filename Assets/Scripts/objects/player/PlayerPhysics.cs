@@ -84,10 +84,9 @@ public class PlayerPhysics : MonoBehaviour {
 			if(p.y > climbable.startPoint.y) {
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, (v * (maxSpeed / 2)));
 			}
-			else {  
+			else {
 				PlayerControl playerControl = GetComponent<PlayerControl>();
 				playerControl.ChangeState(PlayerState.Idling);
-				playerControl.climbDirty = true;
 			}
 		}
 				

@@ -9,6 +9,7 @@ public class ClimbingState : PlayerState {
 	public override void HandleInput(PlayerControl player) {
 		if(Input.GetButtonDown("Jump") && Input.GetAxisRaw("Vertical") == 0) {
 			player.ChangeState(PlayerState.Jumping);
+			PlayerState.Jumping.canClimb = false;
 		}
 		else if(player.canLedgeGrab() && ledgeGrace == 0) {
 			player.ChangeState(PlayerState.Ledging);

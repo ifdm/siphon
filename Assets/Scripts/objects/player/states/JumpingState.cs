@@ -4,6 +4,7 @@ using System.Collections;
 public class JumpingState : PlayerState {
 
 	private float grace;
+	public bool canClimb = true;
 
 	public override void HandleInput(PlayerControl player) {
 		player.rigidbody2D.isKinematic = false;
@@ -20,7 +21,7 @@ public class JumpingState : PlayerState {
 		else if(player.rigidbody2D.velocity.y < 0) {
 			player.ChangeState(PlayerState.Falling);
 		}
-		else if(player.getLadder() && Input.GetAxisRaw("Vertical") != 0) {
+		else if(canClimb && player.getLadder()) {
 			player.ChangeState(PlayerState.Climbing);
 		}
 	}
@@ -41,6 +42,8 @@ public class JumpingState : PlayerState {
 		if(from == PlayerState.Running || from == PlayerState.Idling) {
 			player.mozart.One("Jump");
 		}
+		
+		canClimb = true;
 
 		player.animator.Set("Jump", false, 0, .2f);
 	}
