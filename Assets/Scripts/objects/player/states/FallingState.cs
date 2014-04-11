@@ -29,7 +29,9 @@ public class FallingState : PlayerState {
 
 		ledgeGrace -= Mathf.Min(ledgeGrace, Time.deltaTime);
 		
-		if(fallVelocity < -player.physics.lethalVelocity){player.ChangeState(PlayerState.Dying);}
+		if(fallVelocity < -player.physics.lethalVelocity) {
+			player.ChangeState(PlayerState.Dying);
+		}
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
