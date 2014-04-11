@@ -31,7 +31,12 @@ public class PlayerThrow : MonoBehaviour {
 		}
 
 		Screen.showCursor = true;
-		StartCoroutine(SetCursor(0, 1f));
+		if(slots.Length == 0) {
+			StartCoroutine(SetCursor(0, .1f));
+		}
+		else {
+			StartCoroutine(SetCursor(activeSlot + 1, .1f));
+		}
 	}
 
 	private IEnumerator SetCursor(int index, float delay) {
@@ -119,7 +124,7 @@ public class PlayerThrow : MonoBehaviour {
 		for(int i = 0; i < slots.Length; i++) {
 			if(Input.GetKeyDown((i + 1).ToString())) {
 				activeSlot = i;
-				StartCoroutine(SetCursor(activeSlot, .1f));
+				StartCoroutine(SetCursor(activeSlot + 1, .1f));
 
 				break;
 			}
@@ -127,12 +132,12 @@ public class PlayerThrow : MonoBehaviour {
 
 		if(Input.GetAxis("Mouse ScrollWheel") > 0) {
 			activeSlot = (activeSlot + 1) % slots.Length;
-			StartCoroutine(SetCursor(activeSlot, .1f));
+			StartCoroutine(SetCursor(activeSlot + 1, .1f));
 		}
 		else if(Input.GetAxis("Mouse ScrollWheel") < 0) {
 			activeSlot--;
 			if(activeSlot < 0){activeSlot = slots.Length - 1;}
-			StartCoroutine(SetCursor(activeSlot, .1f));
+			StartCoroutine(SetCursor(activeSlot + 1, .1f));
 		}
 	
 	}
