@@ -9,6 +9,8 @@ public class BranchBreak : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.tag == "Player" && col.gameObject.GetComponent<PlayerControl>().isGrounded() && branch) {
 			HingeJoint2D joint = branch.GetComponent<HingeJoint2D>();
+			EntityAudio audio = GetComponent<EntityAudio>();
+			audio.One("Branch_Break");
 			if(joint) {
 				JointAngleLimits2D limits = joint.limits;
 				limits.min = -5;
@@ -18,7 +20,7 @@ public class BranchBreak : MonoBehaviour {
 			}
 		}
 	}
-	
+
 	IEnumerator breakBranch() {
 		yield return new WaitForSeconds(.6f);
 		branch.rigidbody2D.AddForceAtPosition(new Vector2(0, -100), new Vector2(4, 0));

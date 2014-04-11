@@ -12,7 +12,7 @@ public class FallSound : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-    if (collision.relativeVelocity.magnitude > 2 && collision.gameObject.tag == "Ground"){
+    if (collision.relativeVelocity.magnitude > 2 && collision.gameObject.tag != "Player"){
         audio.Play();
       }
   }
