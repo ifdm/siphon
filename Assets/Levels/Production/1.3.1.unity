@@ -9015,6 +9015,7 @@ GameObject:
   - 61: {fileID: 1076846265}
   - 114: {fileID: 1076846264}
   - 61: {fileID: 1076846263}
+  - 114: {fileID: 1076846269}
   m_Layer: 8
   m_Name: Bucket Right
   m_TagString: Untagged
@@ -9085,7 +9086,7 @@ SliderJoint2D:
   m_Angle: 0
   m_UseMotor: 1
   m_Motor:
-    m_MotorSpeed: -25
+    m_MotorSpeed: -75
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_TranslationLimits:
@@ -9131,6 +9132,17 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!114 &1076846269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1076846261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3c475376105434d8f40db7f5bd1045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1087579322
 GameObject:
   m_ObjectHideFlags: 0
@@ -10974,10 +10986,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a6952dacada032418785151069c880a, type: 2}
   - {fileID: 11400000, guid: a7414d4c3672e4e4b9f7a35c90192f85, type: 2}
   cursors:
+  - {fileID: 2800000, guid: 58afc4b4284be9a4f82a8368d37c3671, type: 3}
   - {fileID: 2800000, guid: 723faac60ee1e436fb14c8ad65fc3fc6, type: 3}
   - {fileID: 2800000, guid: 49fc4c30312aa4722b89a7c259d9e5a9, type: 3}
   - {fileID: 2800000, guid: ff11f3266da854b0c9117e3e1e1e32f0, type: 3}
-  - {fileID: 2800000, guid: 13e52a7d6659f4c7ca88050d535c410b, type: 3}
   activeSlot: 0
   throwable: 1
 --- !u!114 &1367096637
@@ -11660,6 +11672,7 @@ GameObject:
   - 61: {fileID: 1487597136}
   - 114: {fileID: 1487597135}
   - 61: {fileID: 1487597134}
+  - 114: {fileID: 1487597140}
   m_Layer: 8
   m_Name: Bucket Left
   m_TagString: Untagged
@@ -11730,7 +11743,7 @@ SliderJoint2D:
   m_Angle: 0
   m_UseMotor: 1
   m_Motor:
-    m_MotorSpeed: 25
+    m_MotorSpeed: 75
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_TranslationLimits:
@@ -11776,6 +11789,17 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!114 &1487597140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1487597132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3c475376105434d8f40db7f5bd1045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1499346838
 GameObject:
   m_ObjectHideFlags: 0
@@ -13703,6 +13727,22 @@ Prefab:
     - target: {fileID: 5000002, guid: 0fee07945621841b0a4296743ced6510, type: 2}
       propertyPath: m_GravityScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100006, guid: 0fee07945621841b0a4296743ced6510, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100004, guid: 0fee07945621841b0a4296743ced6510, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23400002, guid: 0fee07945621841b0a4296743ced6510, type: 2}
+      propertyPath: m_Motor.m_MotorSpeed
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 23400000, guid: 0fee07945621841b0a4296743ced6510, type: 2}
+      propertyPath: m_Motor.m_MotorSpeed
+      value: -75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0fee07945621841b0a4296743ced6510, type: 2}
