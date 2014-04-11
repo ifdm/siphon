@@ -7,7 +7,7 @@ public class MovingPlatformMove : MonoBehaviour {
 
 	void Update() {
 		float y = transform.position.y;
-		y += Mathf.Min(Mathf.Abs(y - targetY), .1f) * (Time.deltaTime * 50) * Mathf.Sign(targetY - y);
+		y += Mathf.Min(Mathf.Abs(y - targetY), .1f) * (Time.deltaTime * 25) * Mathf.Sign(targetY - y);
 		transform.position = new Vector3(transform.position.x, y, transform.position.z);
 	}
 }
