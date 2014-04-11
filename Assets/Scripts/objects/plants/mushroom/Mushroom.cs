@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[RequireComponent(typeof(EntityAudio))]
 public class Mushroom : Plant {
 
 	public float bounceForce = 20f;
@@ -10,13 +10,15 @@ public class Mushroom : Plant {
 	private float bounceTimer = 0;
 	private MushroomAnimator animator;
 
+
+
 	void Start() {
 		animator = GetComponent<MushroomAnimator>();
 	}
-	
+
 	public override void grow(RaycastHit2D cast) {
 		if(!cast){return;}
-		
+
 		transform.rotation = Quaternion.FromToRotation(Vector3.up, (Vector3)cast.normal);
 		transform.parent = cast.transform;
 	}
@@ -46,7 +48,7 @@ public class Mushroom : Plant {
 		if(bounceable && col.gameObject.rigidbody2D && bounceTimer == 0) {
 			float bf = (bounceable.bounceForce != 0) ? bounceable.bounceForce : bounceForce;
 			float component = col.gameObject.rigidbody2D.velocity.x;
-			
+
 			if(Mathf.Abs(col.gameObject.rigidbody2D.velocity.y) < bf) {
 				col.gameObject.rigidbody2D.velocity = new Vector2(component, bf);
 			}
@@ -56,13 +58,13 @@ public class Mushroom : Plant {
 
 			if(animator){animator.Set("Bounce");}
 			EntityAudio audio = GetComponent<EntityAudio>();
-			audio.One("Mushroom");
-			
+			audio.One("Mushroom_Bounce");
+
 			col.gameObject.SendMessage("Bounced", false);
 			bounceTimer = 0.1f;
 		}
 	}
-	
+
 	public override bool canPlant(RaycastHit2D cast) {
 		if(!cast){return false;}
 		if(
@@ -74,13 +76,13 @@ public class Mushroom : Plant {
 
 		Vector3 p1 = cast.point;
 		Vector3 p2 = cast.point;
-		
+
 		p1.y -= .01f;
 		p2.y -= .01f;
-		
+
 		p1.y += .1f;
 		p2.y -= .2f;
-		
+
 		p1.x -= .1f;
 		p2.x -= .1f;
 		Debug.DrawLine(p1, p2, Color.blue);
@@ -88,7 +90,7 @@ public class Mushroom : Plant {
 		if(!cast || cast.fraction == 0) {
 			return false;
 		}
-		
+
 		p1.x += .1f;
 		p2.x += .1f;
 		Debug.DrawLine(p1, p2, Color.blue);
@@ -96,7 +98,7 @@ public class Mushroom : Plant {
 		if(!cast || cast.fraction == 0) {
 			return false;
 		}
-		
+
 		p1.x += .1f;
 		p2.x += .1f;
 		Debug.DrawLine(p1, p2, Color.blue);
@@ -104,7 +106,7 @@ public class Mushroom : Plant {
 		if(!cast || cast.fraction == 0) {
 			return false;
 		}
-		
+
 		return true;
 	}
 }
