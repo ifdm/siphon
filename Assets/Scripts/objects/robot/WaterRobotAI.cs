@@ -18,12 +18,17 @@ public class WaterRobotAI : MonoBehaviour {
 	private bool stopping = false;
 	private bool stopped = false;
 	private Interactable interactable;
+	private EntityAudio audio;
 
 	// Use this for initialization
 	void Start () {
 		interactable = GetComponentInChildren<Interactable>();
+		audio = GetComponent<EntityAudio>();
+		audio.One("WaterRobot_Idle", 1f, true);
+		audio.One("WaterRobot_Move", 1f, true);
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if(stopped) return;
@@ -39,6 +44,9 @@ public class WaterRobotAI : MonoBehaviour {
 		if(stopping){
 			rigidbody2D.mass = 10000000f;
 			interactable.dynamicWeight = 100000000f;
+			audio.One("WaterRobot_Stopping");
+			audio.Stop("WaterRobot_Move");
+			audio.Stop("WaterRobot_Idle");
 			return;
 		}
 		if(pause > 0){
@@ -48,18 +56,21 @@ public class WaterRobotAI : MonoBehaviour {
 				theScale.x *= -1;
 				transform.localScale = theScale;
 				direction *= -1;
+				audio.One("WaterRobot_Move", 1f, true);
 			}
 			return;
 		}
-	
-		
+
+
 		if(x < leftWaypoint.position.x && !left) {
 			left = !left;
 			pause = pauseTime;
+			audio.Stop("WaterRobot_Move");
 		}
 		else if(x > rightWaypoint.position.x && left) {
 			left = !left;
 			pause = pauseTime;
+			audio.Stop("WaterRobot_Move");
 		}
 
 		rigidbody2D.AddForce(Vector2.right * this.direction * 100f);
@@ -76,6 +87,7 @@ public class WaterRobotAI : MonoBehaviour {
 
 			PlayerControl player = coll.gameObject.GetComponent<PlayerControl>();
 			player.ChangeState(PlayerState.Dying);
+			audio.One("WaterRobot_Kill");
 		}
 	}
 }

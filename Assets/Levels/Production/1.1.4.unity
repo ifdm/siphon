@@ -368,6 +368,7 @@ GameObject:
   - 61: {fileID: 77136532}
   - 61: {fileID: 77136533}
   - 114: {fileID: 77136535}
+  - 114: {fileID: 77136536}
   m_Layer: 8
   m_Name: Robot
   m_TagString: Untagged
@@ -498,6 +499,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3c475376105434d8f40db7f5bd1045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &77136536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 77136526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7256255c3a729948931553ac65f045d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: .200000003
+  startup: 
+  names:
+  - WaterRobot_Move
+  - WaterRobot_Idle
+  - WaterRobot_Kill
+  - WaterRobot_Dragged
+  - WaterRobot_Stopped
 --- !u!1 &96039746
 GameObject:
   m_ObjectHideFlags: 0
@@ -4696,7 +4716,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   mozart: {fileID: 0}
   physics: {fileID: 0}
-  climbDirty: 0
 --- !u!114 &1283949387
 MonoBehaviour:
   m_ObjectHideFlags: 0
