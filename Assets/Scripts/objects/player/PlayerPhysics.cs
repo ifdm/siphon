@@ -85,9 +85,7 @@ public class PlayerPhysics : MonoBehaviour {
 				playerControl.climbDirty = true;
 			}
 		}
-		
-		transform.position = new Vector3(ladder.transform.position.x + Mathf.Sign(transform.lossyScale.x) * -.4f, transform.position.y, transform.position.z);
-		
+				
 		Debug.DrawLine(p - Vector2.right, p + Vector2.right, Color.green);
 	}
 
