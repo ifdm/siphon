@@ -25,7 +25,6 @@ public class ClimbingState : PlayerState {
 	public override void Enter(PlayerControl player, PlayerState from) {
 		ledgeGrace = .4f;
 		ladder = player.getLadder();
-		player.transform.position = new Vector3(ladder.transform.position.x + Mathf.Sign(player.transform.lossyScale.x) * -.4f, player.transform.position.y, player.transform.position.z);
 		player.animator.Set("Climb", true);
 		player.rigidbody2D.gravityScale = 0;
 	}

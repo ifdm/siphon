@@ -59,7 +59,12 @@ public class PlayerPhysics : MonoBehaviour {
 		if(disableControl){return;}
 		
 		float v = Input.GetAxis("Vertical");
-		
+		float h = Input.GetAxis("Horizontal");
+		if(h != 0 && Mathf.Sign(h) != Mathf.Sign(transform.localScale.x) && ladder.GetComponent<Climbable>().direction == 0) {
+			ChangeDirection();
+			transform.position = new Vector3(ladder.transform.position.x + Mathf.Sign(transform.lossyScale.x) * -.3f, transform.position.y, transform.position.z);
+		}
+				
 		Vector2 p = (Vector2)transform.position;
 		Vector2 scale = (Vector2)transform.lossyScale;
 		BoxCollider2D box = GetComponent<BoxCollider2D>();
