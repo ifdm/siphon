@@ -29,7 +29,9 @@ public class FallingState : PlayerState {
 
 		ledgeGrace -= Mathf.Min(ledgeGrace, Time.deltaTime);
 		
-		if(fallVelocity < -player.physics.lethalVelocity){player.ChangeState(PlayerState.Dying);}
+		if(fallVelocity < -player.physics.lethalVelocity) {
+			player.ChangeState(PlayerState.Dying);
+		}
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
@@ -45,6 +47,8 @@ public class FallingState : PlayerState {
 		player.physics.timeSinceFall = 0;
 		
 		if(fallVelocity < -player.physics.dangerousVelocity && (to == PlayerState.Idling || to == PlayerState.Running)){player.StartCoroutine(die(player));}
+
+		player.animator.Emit(60);
 	}
 	
 	IEnumerator die(PlayerControl player) { // Hack :[

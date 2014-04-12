@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerAnimator : Animateur {
+	
+	public string particleType;
 
 	public override void Start() {
 		actions = new Dictionary<string, Animateur.AnimationType>() {
@@ -28,6 +30,20 @@ public class PlayerAnimator : Animateur {
 			{"FallDeath", new AnimationType(Type.Spine, "fall-death")}
 		};
 
+		particleType = "dust";
+
 		base.Start();
+	}
+
+	public void Emit(int count) {
+		GameObject emitter = GameObject.Find(particleType);
+		emitter.transform.position = transform.position;
+		emitter.GetComponent<ParticleSystem>().Emit(count);
+	}
+
+	public void AnimationEvent(string action) {
+		if(action == "left-foot" || action == "right-foot") {
+			Emit(30);
+		}
 	}
 }

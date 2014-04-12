@@ -7,6 +7,7 @@ public class BridgeBreak : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		string name = col.gameObject.name;
 		if(name == "Board1" || name == "Board2" || name == "Board3") {
+
 			Destroy(col.gameObject.GetComponent<HingeJoint2D>());
 			GameObject board3 = GameObject.Find("Board3"); // Always destroy board3 and boardedgeL so player can proceed.
 			GameObject boardL = GameObject.Find("BoardEdgeL");
@@ -15,11 +16,11 @@ public class BridgeBreak : MonoBehaviour {
 					Destroy(board3.GetComponent<HingeJoint2D>());
 				}
 			}
-			
+
 			StartCoroutine(killBridge());
 		}
 	}
-	
+
 	IEnumerator killBridge() {
 		yield return new WaitForSeconds(.1f);
 		GameObject.Find("Board1").GetComponent<BoxCollider2D>().isTrigger = true;
@@ -27,7 +28,8 @@ public class BridgeBreak : MonoBehaviour {
 		GameObject.Find("Board3").GetComponent<BoxCollider2D>().isTrigger = true;
 		GameObject.Find("BoardEdgeL").GetComponent<BoxCollider2D>().isTrigger = true;
 		GameObject.Find("BoardEdgeR").GetComponent<BoxCollider2D>().isTrigger = true;
-		
+
 		GameObject.Find("Branch").GetComponent<BoxCollider2D>().isTrigger = true;
+
 	}
 }
