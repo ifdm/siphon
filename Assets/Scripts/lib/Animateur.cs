@@ -43,7 +43,7 @@ public class Animateur : MonoBehaviour {
 	public void End(Spine.AnimationState state, int trackIndex) {}
 	public void Complete(Spine.AnimationState state, int trackIndex, int loop) {}
 	public void Event(Spine.AnimationState state, int trackIndex, Spine.Event e) {
-		this.gameObject.transform.parent.SendMessage("AnimationEvent", e.String);
+		this.gameObject.transform.SendMessage("AnimationEvent", e.String);
 	}
 
 	public void Set(string animation, bool loop = false, int track = 0, float timeScale = 1f) {
