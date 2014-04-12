@@ -22,7 +22,6 @@ public class CameraFrame : MonoBehaviour {
 		y -= .5f;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		CameraFollow camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
 		if(player.position.x > x && player.position.y > y && player.position.x < x + w && player.position.y < y + h) {
@@ -33,7 +32,10 @@ public class CameraFrame : MonoBehaviour {
 			active = true;
 		}
 		else if(active) {
+			camera.zSmooth = smooth;
 			camera.pullTo = Vector3.zero;
+			camera.pullSmooth = smooth;
+
 			camera.additionalZ = 0;
 			active = false;
 		}
