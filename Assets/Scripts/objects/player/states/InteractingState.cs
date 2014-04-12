@@ -27,6 +27,7 @@ public class InteractingState : PlayerState {
 		interactable.rigidbody2D.mass = interactable.GetComponent<Interactable>().dynamicWeight;
 		player.animator.Set("Push", true);
 		interactable.GetComponent<Interactable>().moved = true;
+		interactable.GetComponent<Interactable>().audio.Play();
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to){
@@ -35,7 +36,7 @@ public class InteractingState : PlayerState {
 		interactable.GetComponent<Interactable>().moved = false;
 
 		interactable.GetComponent<Interactable>().pushing = interactable.GetComponent<Interactable>().pulling = false;
-
+		interactable.GetComponent<Interactable>().audio.Stop();
 	}
 
 }
