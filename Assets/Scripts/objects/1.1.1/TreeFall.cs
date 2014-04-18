@@ -3,6 +3,7 @@ using System.Collections;
 
 public class TreeFall : MonoBehaviour {
 
+	public Sprite ravagedTreeSprite;
 	private bool fallen = false;
 
 	void OnTriggerEnter2D(Collider2D col) {
@@ -25,12 +26,14 @@ public class TreeFall : MonoBehaviour {
 		camera.GetComponent<CameraFollow>().shakeStrength = 1.0f;
 		yield return new WaitForSeconds(2.8f);
 		comet.AddComponent("Comet");
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.4f);
 		player.GetComponent<PlayerPhysics>().disableControl = false;
 		tree.rigidbody2D.isKinematic = false;
 		tree.rigidbody2D.AddTorque(-9000000);
 		audio.One("Tree_Fall_Heavy");
 //tree.rigidbody2D.AddForceAtPosition(new Vector2(1000, 0), new Vector2(0, -50));
 		tree.AddComponent("TouchOfDeath");
+		tree.transform.Find("Renderer").GetComponent<SpriteRenderer>().sprite = ravagedTreeSprite;
+
 	}
 }
