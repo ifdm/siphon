@@ -11,7 +11,8 @@ public class PlayerAudio : Mozart {
 			{"Land", Resources.Load<AudioClip>("Trella_land")},
 			{"Run", Resources.Load<AudioClip>("Trella_Walk_2step")},
 			{"Left Foot Step", Resources.Load<AudioClip>("Trella_step1")},
-			{"Right Foot Step", Resources.Load<AudioClip>("Trella_step2")}
+			{"Right Foot Step", Resources.Load<AudioClip>("Trella_step2")},
+			{"Death", Resources.Load<AudioClip>("Death")}
 		};
 	}
 

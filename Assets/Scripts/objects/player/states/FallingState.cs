@@ -48,7 +48,9 @@ public class FallingState : PlayerState {
 		
 		if(fallVelocity < -player.physics.dangerousVelocity && (to == PlayerState.Idling || to == PlayerState.Running)){player.StartCoroutine(die(player));}
 
-		player.animator.Emit(60);
+		if(to == PlayerState.Idling || to == PlayerState.Running) {
+			player.animator.Emit(60);
+		}
 	}
 	
 	IEnumerator die(PlayerControl player) { // Hack :[

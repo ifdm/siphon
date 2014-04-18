@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerAnimator : Animateur {
-	
+
 	public string particleType;
 
 	public override void Start() {
