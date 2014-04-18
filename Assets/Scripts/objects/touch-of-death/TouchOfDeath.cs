@@ -11,7 +11,7 @@ public class TouchOfDeath : MonoBehaviour {
 	};
 
 	public TouchOfDeath.DeathAnimation animation = TouchOfDeath.DeathAnimation.frontHit;
-	
+
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.tag == "Player") {
 			PlayerControl control = col.gameObject.GetComponent<PlayerControl>();
@@ -20,6 +20,7 @@ public class TouchOfDeath : MonoBehaviour {
 				col.gameObject.GetComponent<EdgeCollider2D>().isTrigger = true;
 				col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
 				col.gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
+				col.gameObject.GetComponent<PlayerAudio>().Play("Death");
 				control.ChangeState(PlayerState.Dying);
 				switch(animation) {
 					case TouchOfDeath.DeathAnimation.frontHit:
