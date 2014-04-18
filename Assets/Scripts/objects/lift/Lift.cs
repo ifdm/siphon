@@ -16,6 +16,7 @@ public class Lift : MonoBehaviour {
 	private Vector3 center;
 	private Vector3 start;
 	private Vector3 end;
+	private EntityAudio audio;
 
 	void Start () {
 		start = transform.position;
@@ -23,6 +24,20 @@ public class Lift : MonoBehaviour {
 		cachedSpeed = speed;
 		speed = (!playerEnabled) ? speed : 0f;
 		up = (transform.position.y > end.y) ? true : false;
+		audio = GetComponent<EntityAudio>();
+		SetSound();
+	}
+
+	private void SetSound(){
+		Debug.Log(speed);
+		if(speed == 1){
+			audio.Stop("Lift_Down");
+			audio.Play("Lift_Up", 1f, true);
+		}
+		else{
+			audio.Stop("Lift_Up");
+			audio.Play("Lift_Down", 1f, true);
+		}
 	}
 
 	void Update() {
@@ -33,12 +48,17 @@ public class Lift : MonoBehaviour {
 
 		if(pivot && loop) {
 			speed *= -1;
+			SetSound();
+
 		}
 		else if(pivot) {
 			speed = 0;
 			if(breaks) {
 				broken = true;
 				rigidbody2D.isKinematic = false;
+				audio.Stop("Lift_Up");
+				audio.Stop("Lift_Down");
+				audio.One("Lift_Break");
 			}
 		}
 	}
