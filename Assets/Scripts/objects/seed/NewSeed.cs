@@ -23,10 +23,10 @@ public class NewSeed : MonoBehaviour {
 
 	IEnumerator fadeIn() {
 		while(true) {
-			alpha = Mathf.Lerp(alpha, 1, 5 * Time.deltaTime);
+			alpha = Mathf.Lerp(alpha, 1, 8 * Time.deltaTime);
 
 			if(z > 15) {
-				z = Mathf.Lerp(z, 15 - 1, 5 * Time.deltaTime);
+				z = Mathf.Lerp(z, 15 - 1, 8 * Time.deltaTime);
 				if(z < 15){
 					z = 15;
 					camera.GetComponent<CameraFollow>().shake = 0.5f;
@@ -44,7 +44,7 @@ public class NewSeed : MonoBehaviour {
 	}
 
 	IEnumerator fadeOut() {
-		yield return new WaitForSeconds(1.1f);
+		yield return new WaitForSeconds(1.35f);
 
 		while(true) {
 			alpha = Mathf.Lerp(alpha, 0, 10 * Time.deltaTime);
