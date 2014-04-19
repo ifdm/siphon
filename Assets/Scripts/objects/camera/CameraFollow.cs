@@ -11,6 +11,8 @@ public class CameraFollow : MonoBehaviour {
 	[HideInInspector] public float pullSmooth;
 	[HideInInspector] public float shake = 0;
 	[HideInInspector] public float shakeStrength = 4;
+	[HideInInspector] public Color targetAmbient;
+	[HideInInspector] public float ambientSmooth = 5;
 
 	private float z;
 	public float zStart;
@@ -23,6 +25,7 @@ public class CameraFollow : MonoBehaviour {
 		zStart = z;
 		transform.position = new Vector3(player.transform.position.x, player.transform.position.y, z);
 		shake = 0;
+		targetAmbient = RenderSettings.ambientLight;
 
 		camera.transparencySortMode = TransparencySortMode.Orthographic;
 	}
@@ -61,5 +64,7 @@ public class CameraFollow : MonoBehaviour {
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref posVel, s);
 
 		CameraZoom.dirty = false;
+
+		RenderSettings.ambientLight = Color.Lerp(RenderSettings.ambientLight, targetAmbient, ambientSmooth * Time.deltaTime);
 	}
 }
