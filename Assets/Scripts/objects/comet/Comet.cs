@@ -22,7 +22,7 @@ public class Comet : MonoBehaviour {
 	}
 
 	IEnumerator cometFlash() {
-		yield return new WaitForSeconds(0);
+		yield return new WaitForSeconds(0.2f);
 
 		Light flash = transform.Find("Point light").gameObject.GetComponent<Light>();
 		flash.intensity = 0;
