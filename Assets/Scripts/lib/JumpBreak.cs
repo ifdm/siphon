@@ -8,7 +8,7 @@ public class JumpBreak : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.collider.tag == "Player" && col.relativeVelocity.y > 8) {
 			if(--health <= 0) {
-				EntityAudio audio = GetComponent<EntityAudio>();
+				GetComponent<EntityAudio>().One("Branch_Break");
 				Destroy(gameObject);
 			}
 		}
