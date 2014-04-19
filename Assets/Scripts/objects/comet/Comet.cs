@@ -6,6 +6,7 @@ public class Comet : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rigidbody2D.velocity = new Vector2(-38, -30);
+		StartCoroutine(cometFlash());
 	}
 	
 	void Update() {}
@@ -18,5 +19,23 @@ public class Comet : MonoBehaviour {
 			rigidbody2D.velocity = Vector2.zero;
 			Destroy(GetComponent<SpriteRenderer>());
 		}
+	}
+
+	IEnumerator cometFlash() {
+		yield return new WaitForSeconds(0);
+
+		Light flash = transform.Find("Point light").gameObject.GetComponent<Light>();
+		flash.intensity = 0;
+		while(flash.intensity < 6) {
+			flash.intensity += 12 * Time.deltaTime;
+			yield return new WaitForSeconds(0);
+		}
+
+		while(flash.intensity > 0) {
+			flash.intensity -= Time.deltaTime;
+			yield return new WaitForSeconds(0);
+		}
+
+		Destroy(gameObject);
 	}
 }

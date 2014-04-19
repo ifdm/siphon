@@ -34,6 +34,5 @@ public class TreeFall : MonoBehaviour {
 //tree.rigidbody2D.AddForceAtPosition(new Vector2(1000, 0), new Vector2(0, -50));
 		tree.AddComponent("TouchOfDeath");
 		tree.transform.Find("Renderer").GetComponent<SpriteRenderer>().sprite = ravagedTreeSprite;
-
 	}
 }
