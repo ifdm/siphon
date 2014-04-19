@@ -4,8 +4,11 @@ using System.Collections;
 public class BoulderKill : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
-		if(col.gameObject.name == "RootKiller") {
-			Destroy(col.gameObject);
+		if(col.gameObject.name == "Rootbot") {
+			var animator = col.transform.Find("Animation").GetComponent<RootbotAnimator>();
+			animator.One("Die");
+
+			StartCoroutine(Kill(col.gameObject, 2.0f));
 		}
 	}
 
@@ -15,4 +18,10 @@ public class BoulderKill : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
+
+	IEnumerator Kill(GameObject gameObject, float delay) {
+		yield return new WaitForSeconds(delay);
+		Destroy(gameObject);
+	}
+	
 }
