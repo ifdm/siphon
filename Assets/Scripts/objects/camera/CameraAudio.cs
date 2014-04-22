@@ -38,9 +38,4 @@ public class CameraAudio : Mozart {
 		};
 	}
 
-	public override void Start() {
-		base.Start();
-		Play(FOREST_ENVIRONMENT, 0.5f);
-	}
-
 }
