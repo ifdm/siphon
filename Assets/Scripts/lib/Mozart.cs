@@ -34,6 +34,7 @@ public class Mozart : MonoBehaviour {
 	}
 
 	public void Play(string name, float volume = 1f, bool loop = false, int track = 0, ulong delay = 0) {
+		Debug.Log ("Foo " + name);
 		if(Available(name)) {
 			tracks[track] = name;
 			sources[name].volume = volume;
