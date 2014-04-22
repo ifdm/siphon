@@ -20,6 +20,8 @@ public class InteractingState : PlayerState {
 	}
 
 	public override void Update(PlayerControl player) {
+		if(interactable.GetComponent<Interactable>() == null){player.ChangeState(PlayerState.Idling);}
+		
 		player.physics.Interact(interactable);
 	}
 
@@ -31,6 +33,8 @@ public class InteractingState : PlayerState {
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to){
+		if(interactable.GetComponent<Interactable>() == null){return;}
+
 		interactable.rigidbody2D.mass = interactable.GetComponent<Interactable>().staticWeight;
 
 		interactable.GetComponent<Interactable>().moved = false;

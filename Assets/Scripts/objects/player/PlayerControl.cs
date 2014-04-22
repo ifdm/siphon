@@ -74,21 +74,25 @@ public class PlayerControl : MonoBehaviour {
 		Vector2 p2 = p1;
 
 		p2.y -= circle.radius * scale.y + 0.07f;
-		p1.x -= (circle.radius * scale.x) / 1.6f;
-		p2.x -= (circle.radius * scale.x) / 1.6f;
+		p1.x -= (circle.radius * scale.x) / 1.5f;
+		p2.x -= (circle.radius * scale.x) / 1.5f;
 
-		//Debug.DrawLine(p1, p2, Color.red);
+		Debug.DrawLine(p1, p2, Color.red);
 
 		RaycastHit2D left = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		if(!left && GetComponent<PlayerPhysics>().timeSinceFall > 1 && normal().x == 0){return true;}
 
-		p1.x += (circle.radius * scale.x * 2) / 1.6f;
-		p2.x += (circle.radius * scale.x * 2) / 1.6f;
+		p1.x += (circle.radius * scale.x * 2) / 1.5f;
+		p2.x += (circle.radius * scale.x * 2) / 1.5f;
 
-		//Debug.DrawLine(p1, p2, Color.red);
+		Debug.DrawLine(p1, p2, Color.red);
 
 		RaycastHit2D right = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		if(!right && GetComponent<PlayerPhysics>().timeSinceFall > 1 && normal().x == 0){return true;}
+		
+		if(physics.timeSinceFall > 1 && normal().x == 0) {
+			if(!right && left) {
+				return true;
+			}
+		}
 
 		return false;
 	}

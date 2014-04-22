@@ -32,5 +32,9 @@ public class TreeFall : MonoBehaviour {
 		audio.One("Tree_Fall_Heavy");
 //tree.rigidbody2D.AddForceAtPosition(new Vector2(1000, 0), new Vector2(0, -50));
 		tree.AddComponent("TouchOfDeath");
+<<<<<<< HEAD
+=======
+		tree.transform.Find("Renderer").GetComponent<SpriteRenderer>().sprite = ravagedTreeSprite;
+>>>>>>> b40ad8bd71416bdf47bad605963f793ddb63eff3
 	}
 }
