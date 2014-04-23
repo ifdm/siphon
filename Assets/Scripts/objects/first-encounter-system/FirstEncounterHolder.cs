@@ -52,6 +52,8 @@ public class FirstEncounterHolder : MonoBehaviour {
 					GameObject seedAnimation = (GameObject) Instantiate(newSeed);					
 					//seedAnimation.transform.parent = GameObject.Find("Main Camera").transform;
 					//seedAnimation.transform.localPosition = new Vector3(0, 0, 6);
+					EntityAudio audio = GetComponent<EntityAudio>();
+					audio.One("Seed_Collect");
 				}
 			}
 		}

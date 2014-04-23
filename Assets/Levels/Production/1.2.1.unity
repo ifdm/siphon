@@ -328,6 +328,59 @@ MonoBehaviour:
   fade: .200000003
   startup: Mushroom_Grow
   names: []
+--- !u!1 &21114764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+  m_PrefabInternal: {fileID: 103864386}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 21114767}
+  - 61: {fileID: 21114766}
+  - 114: {fileID: 21114765}
+  m_Layer: 0
+  m_Name: MusicTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &21114765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: f185157485cae42aa9aa505f3a4e9f74,
+    type: 2}
+  m_PrefabInternal: {fileID: 103864386}
+  m_GameObject: {fileID: 21114764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16fcf34605a54392af0da65c4ec8d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  track: The_Healer
+--- !u!61 &21114766
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6100000, guid: f185157485cae42aa9aa505f3a4e9f74,
+    type: 2}
+  m_PrefabInternal: {fileID: 103864386}
+  m_GameObject: {fileID: 21114764}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 18.0191078, y: 32.1028748}
+  m_Center: {x: -.963602066, y: 9.76982498}
+--- !u!4 &21114767
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+  m_PrefabInternal: {fileID: 103864386}
+  m_GameObject: {fileID: 21114764}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.3353424, y: 3.30999947, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 973196089}
 --- !u!1 &28198075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,6 +1660,50 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 8c7b4de636cad4ffeba0180ccc87d1b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1001 &103864386
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 973196089}
+    m_Modifications:
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 26.3353424
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.30999947
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: track
+      value: The_Healer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+  m_RootGameObject: {fileID: 21114764}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &108413135
 GameObject:
   m_ObjectHideFlags: 0
@@ -12782,6 +12879,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 21114767}
   - {fileID: 1083328042}
   - {fileID: 103119990}
   - {fileID: 1527138327}
