@@ -17,6 +17,7 @@ public class CameraAudio : Mozart {
 	public static string FOREST_HAPPY = "Siphon_Forest_Happy";
 	public static string THE_HEALER = "The_Healer";
 	public static string TRANQUILITY = "Tranquility";
+	public static string ISLANDER = "Islander";
 	
 	public string currentTrack;
 
@@ -34,6 +35,7 @@ public class CameraAudio : Mozart {
 			{SERENITY, 		 	Resources.Load<AudioClip>(SERENITY)},
 			{FOREST_HAPPY, 		Resources.Load<AudioClip>(FOREST_HAPPY)},
 			{THE_HEALER, 		Resources.Load<AudioClip>(THE_HEALER)},
+			{ISLANDER, 		    Resources.Load<AudioClip>(ISLANDER)},
 			{TRANQUILITY, 		Resources.Load<AudioClip>(TRANQUILITY)}
 		};
 	}

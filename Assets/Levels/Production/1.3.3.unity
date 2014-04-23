@@ -8372,11 +8372,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.379707336
+      value: -56.3126984
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -22.975832
+      value: -48.6326065
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
       propertyPath: m_LocalPosition.z
@@ -13433,6 +13433,59 @@ Transform:
   m_LocalScale: {x: .382111073, y: .382110983, z: 1}
   m_Children: []
   m_Father: {fileID: 1381562159}
+--- !u!1 &1240803790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+  m_PrefabInternal: {fileID: 2034090889}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1240803793}
+  - 61: {fileID: 1240803792}
+  - 114: {fileID: 1240803791}
+  m_Layer: 0
+  m_Name: MusicTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1240803791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: f185157485cae42aa9aa505f3a4e9f74,
+    type: 2}
+  m_PrefabInternal: {fileID: 2034090889}
+  m_GameObject: {fileID: 1240803790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16fcf34605a54392af0da65c4ec8d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  track: Islander
+--- !u!61 &1240803792
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6100000, guid: f185157485cae42aa9aa505f3a4e9f74,
+    type: 2}
+  m_PrefabInternal: {fileID: 2034090889}
+  m_GameObject: {fileID: 1240803790}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 18.0191078, y: 32.1028748}
+  m_Center: {x: -.963602066, y: 9.76982498}
+--- !u!4 &1240803793
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+  m_PrefabInternal: {fileID: 2034090889}
+  m_GameObject: {fileID: 1240803790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -46.9781494, y: -29.4299889, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1249695932
 GameObject:
   m_ObjectHideFlags: 0
@@ -16666,7 +16719,7 @@ Transform:
   m_PrefabInternal: {fileID: 666903874}
   m_GameObject: {fileID: 1515489008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.379707336, y: -22.975832, z: 0}
+  m_LocalPosition: {x: -56.3126984, y: -48.6326065, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 823912189}
@@ -18312,6 +18365,7 @@ GameObject:
   - 61: {fileID: 1670153565}
   - 50: {fileID: 1670153564}
   - 114: {fileID: 1670153563}
+  - 114: {fileID: 1670153567}
   m_Layer: 0
   m_Name: Seed Holder
   m_TagString: Untagged
@@ -18399,6 +18453,21 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 0761d857cf47545418b39bb977eea198, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1670153567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1670153561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7256255c3a729948931553ac65f045d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: .200000003
+  startup: 
+  names:
+  - Seed_Collect
 --- !u!1 &1670473569
 GameObject:
   m_ObjectHideFlags: 0
@@ -22694,6 +22763,50 @@ Transform:
   m_LocalScale: {x: .776032746, y: .77603209, z: 1}
   m_Children: []
   m_Father: {fileID: 1381562159}
+--- !u!1001 &2034090889
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -46.9781494
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -29.4299889
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: track
+      value: Islander
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+  m_RootGameObject: {fileID: 1240803790}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &2044941904
 GameObject:
   m_ObjectHideFlags: 0

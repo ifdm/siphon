@@ -124,6 +124,54 @@ Transform:
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 1751778520}
+--- !u!1001 &3562404
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -9.69618034
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -16.4789486
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: track
+      value: Islander
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+      propertyPath: m_Name
+      value: MusicTrigger REMOVE ON MERGE
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+  m_RootGameObject: {fileID: 1955955570}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &21621199
 GameObject:
   m_ObjectHideFlags: 0
@@ -16686,6 +16734,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
   slots: []
+--- !u!1 &1955955570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+  m_PrefabInternal: {fileID: 3562404}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1955955571}
+  - 61: {fileID: 1955955573}
+  - 114: {fileID: 1955955572}
+  m_Layer: 0
+  m_Name: MusicTrigger REMOVE ON MERGE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1955955571
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: f185157485cae42aa9aa505f3a4e9f74, type: 2}
+  m_PrefabInternal: {fileID: 3562404}
+  m_GameObject: {fileID: 1955955570}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.69618034, y: -16.4789486, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &1955955572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: f185157485cae42aa9aa505f3a4e9f74,
+    type: 2}
+  m_PrefabInternal: {fileID: 3562404}
+  m_GameObject: {fileID: 1955955570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16fcf34605a54392af0da65c4ec8d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  track: Islander
+--- !u!61 &1955955573
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6100000, guid: f185157485cae42aa9aa505f3a4e9f74,
+    type: 2}
+  m_PrefabInternal: {fileID: 3562404}
+  m_GameObject: {fileID: 1955955570}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 18.0191078, y: 32.1028748}
+  m_Center: {x: -.963602066, y: 9.76982498}
 --- !u!1 &1961990750
 GameObject:
   m_ObjectHideFlags: 0
