@@ -17,9 +17,9 @@ public class RunningState : PlayerState {
 		}
 
 		
-		GameObject interactable;
-		if(interactable = player.isInteracting()) {
-			PlayerState.Interacting.interactable = interactable;
+		GameObject target;
+		if(target = player.isInteracting()) {
+			PlayerState.Interacting.target = target;
 			player.ChangeState(PlayerState.Interacting);
 		}
 		

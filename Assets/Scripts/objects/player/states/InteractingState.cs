@@ -3,7 +3,8 @@ using System.Collections;
 
 public class InteractingState : PlayerState {
 
-	public GameObject interactable;
+	public GameObject target;
+	private float animationEase = .4f;
 
 	public override void HandleInput(PlayerControl player) {
 		if(Input.GetButtonUp("Action") || !player.isInteracting()) {
@@ -20,27 +21,48 @@ public class InteractingState : PlayerState {
 	}
 
 	public override void Update(PlayerControl player) {
-		if(interactable.GetComponent<Interactable>() == null){player.ChangeState(PlayerState.Idling);}
+		Interactable interactable = target.GetComponent<Interactable>();
+
+		if(interactable == null){player.ChangeState(PlayerState.Idling);}
+
+		if(animationEase > 0) {
+			player.animator.TimeScale = 1;
+			animationEase -= Time.deltaTime;
+		}
+		else {
+			player.animator.Set("Push", true);
+			player.animator.TimeScale = Mathf.Abs(Input.GetAxis("Horizontal"));
+		}
 		
-		player.physics.Interact(interactable);
+		player.physics.Interact(target);
+
+		if(interactable.offsetX >= 0) {
+			float x = target.transform.position.x;
+			x += interactable.offsetX * Mathf.Sign(player.transform.position.x - x);
+			x = Mathf.Lerp(player.transform.position.x, x, 10 * Time.deltaTime);
+			player.transform.position = new Vector3(x, player.transform.position.y, player.transform.position.z);
+		}
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from){
-		interactable.rigidbody2D.mass = interactable.GetComponent<Interactable>().dynamicWeight;
-		player.animator.Set("Push", true);
-		interactable.GetComponent<Interactable>().moved = true;
-		interactable.GetComponent<Interactable>().audio.Play();
+		Interactable interactable = target.GetComponent<Interactable>();
+		target.rigidbody2D.mass = interactable.dynamicWeight;
+		player.animator.One("Push");
+		animationEase = .4f;
+		interactable.moved = true;
+		interactable.audio.Play();
 	}
 
 	public override void Exit(PlayerControl player, PlayerState to){
-		if(interactable.GetComponent<Interactable>() == null){return;}
+		Interactable interactable = target.GetComponent<Interactable>();
 
-		interactable.rigidbody2D.mass = interactable.GetComponent<Interactable>().staticWeight;
+		if(interactable == null){return;}
 
-		interactable.GetComponent<Interactable>().moved = false;
-
-		interactable.GetComponent<Interactable>().pushing = interactable.GetComponent<Interactable>().pulling = false;
-		interactable.GetComponent<Interactable>().audio.Stop();
+		interactable.rigidbody2D.mass = interactable.staticWeight;
+		interactable.moved = false;
+		interactable.pushing = interactable.pulling = false;
+		interactable.audio.Stop();
+		player.animator.Set("Idle");
 	}
 
 }

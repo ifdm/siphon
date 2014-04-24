@@ -15,9 +15,9 @@ public class IdlingState : PlayerState {
 			player.ChangeState(PlayerState.Climbing);
 		}
 
-		GameObject interactable;
-		if(interactable = player.isInteracting()) {
-			PlayerState.Interacting.interactable = interactable;
+		GameObject target;
+		if(target = player.isInteracting()) {
+			PlayerState.Interacting.target = target;
 			player.ChangeState(PlayerState.Interacting);
 		}
 

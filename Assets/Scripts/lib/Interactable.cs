@@ -14,6 +14,7 @@ public class Interactable : MonoBehaviour {
 	public float dynamicWeight = 5;
 	public bool movePlayer;
 	public float force = 50;
+	public float offsetX = .2f;
 	public AudioClip pushSound;
 
 
