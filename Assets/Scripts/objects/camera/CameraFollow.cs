@@ -18,6 +18,7 @@ public class CameraFollow : MonoBehaviour {
 	public float zStart;
 	private float zVel = 0;
 	private Vector3 posVel = Vector3.zero;
+	private Vector3 shakeVel = Vector3.zero;
 
 	void Start() {
 		player = GameObject.Find("Player");
@@ -55,13 +56,15 @@ public class CameraFollow : MonoBehaviour {
 		else {
 			target = pullTo;
 			s = pullSmooth;
-		}
-
-		if(shake > 0) {
-			target = new Vector3(target.x + Random.Range(-shakeStrength, shakeStrength), target.y + Random.Range(-shakeStrength, shakeStrength), target.z + Random.Range(-0, 0));
+			Debug.Log(s);
 		}
 
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref posVel, s);
+
+		if(shake > 0) {
+			target = new Vector3(transform.position.x + Random.Range(-shakeStrength, shakeStrength), transform.position.y + Random.Range(-shakeStrength, shakeStrength), transform.position.z + Random.Range(-0, 0));
+			transform.position = Vector3.SmoothDamp(transform.position, target, ref shakeVel, smooth);
+		}
 
 		CameraZoom.dirty = false;
 
