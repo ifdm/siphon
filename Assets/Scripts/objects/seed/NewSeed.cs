@@ -6,6 +6,7 @@ public class NewSeed : MonoBehaviour {
 	public float alpha;
 	private float z;
 	private GameObject camera;
+	private bool snap = true;
 
 	void Start () {
 		alpha = 0;
@@ -19,6 +20,9 @@ public class NewSeed : MonoBehaviour {
 		Color color = renderer.material.color;
 		color.a = alpha;
 		renderer.material.color = color;
+		if(snap) {
+			transform.position = camera.camera.ScreenToWorldPoint(new Vector3(camera.camera.pixelWidth / 2, camera.camera.pixelHeight / 2, z));
+		}
 	}
 
 	IEnumerator fadeIn() {
@@ -37,14 +41,13 @@ public class NewSeed : MonoBehaviour {
 				}
 			}
 
-			transform.position = camera.camera.ScreenToWorldPoint(new Vector3(camera.camera.pixelWidth / 2, camera.camera.pixelHeight / 2, z));
-
 			yield return new WaitForSeconds(0);
 		}
 	}
 
 	IEnumerator fadeOut() {
 		yield return new WaitForSeconds(1.35f);
+		snap = false;
 
 		while(true) {
 			alpha = Mathf.Lerp(alpha, 0, 10 * Time.deltaTime);
