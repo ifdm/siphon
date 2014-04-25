@@ -73,7 +73,7 @@ public class Mozart : MonoBehaviour {
 			StartCoroutine(Fader(null, to, duration));
 		}
 
-		Play(to, 1f, true, 1);
+		Play(to, 0.2f, true, 1);
 	}
 
 	public void Schedule(string name, float time) {
