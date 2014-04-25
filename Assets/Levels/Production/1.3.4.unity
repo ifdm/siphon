@@ -13138,7 +13138,8 @@ Prefab:
       propertyPath: disableControl
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
   m_RootGameObject: {fileID: 1758575129}
   m_IsPrefabParent: 0
@@ -18194,8 +18195,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1758575133}
   - 212: {fileID: 1758575132}
-  - 114: {fileID: 1758575131}
   - 61: {fileID: 1758575130}
+  - 114: {fileID: 1758575134}
   m_Layer: 0
   m_Name: CameraZoom
   m_TagString: Untagged
@@ -18215,21 +18216,6 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: 2.55999994, y: 2.55999994}
   m_Center: {x: 0, y: 0}
---- !u!114 &1758575131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee,
-    type: 2}
-  m_PrefabInternal: {fileID: 1236383750}
-  m_GameObject: {fileID: 1758575129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e973975e5d0cd364a95fc896ad8595eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 600
-  smooth: 9.99999984e+16
-  disableControl: 1
 --- !u!212 &1758575132
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18265,6 +18251,19 @@ Transform:
   m_LocalScale: {x: 14.7131319, y: 70.0402908, z: 2.88992023}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1758575134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1758575129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454593d2114a34e72ba39e2e9ccd9e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomTo: 600
+  zoomSpeed: 150
 --- !u!1 &1761202694
 GameObject:
   m_ObjectHideFlags: 0
