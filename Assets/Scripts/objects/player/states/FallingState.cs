@@ -23,13 +23,15 @@ public class FallingState : PlayerState {
 		else if(player.isGrounded()) {
 			player.ChangeState(PlayerState.Running);
 		}
-		else if(player.canClimb()) {
+		else if(player.getLadder()){
 			player.ChangeState(PlayerState.Climbing);
 		}
 
 		ledgeGrace -= Mathf.Min(ledgeGrace, Time.deltaTime);
 		
-		if(fallVelocity < -player.physics.lethalVelocity){player.ChangeState(PlayerState.Dying);}
+		if(fallVelocity < -player.physics.lethalVelocity) {
+			player.ChangeState(PlayerState.Dying);
+		}
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
@@ -45,10 +47,15 @@ public class FallingState : PlayerState {
 		player.physics.timeSinceFall = 0;
 		
 		if(fallVelocity < -player.physics.dangerousVelocity && (to == PlayerState.Idling || to == PlayerState.Running)){player.StartCoroutine(die(player));}
+
+		if(to == PlayerState.Idling || to == PlayerState.Running) {
+			player.animator.Emit(60);
+		}
 	}
 	
 	IEnumerator die(PlayerControl player) { // Hack :[
 		yield return new WaitForSeconds(.01f);
 		player.ChangeState(PlayerState.Dying);
+		player.animator.Set("FrontHit", false);
 	}
 }

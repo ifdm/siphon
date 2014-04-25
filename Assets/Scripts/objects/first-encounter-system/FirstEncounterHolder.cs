@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System;
+using System.Collections;
 
 public class FirstEncounterHolder : MonoBehaviour {
 
 	public Plant plant;
+	public GameObject newSeed;
+	public Sprite newSeedSprite;
 
 	private bool interacted = false;
 	private bool destroyed = false;
@@ -47,6 +50,11 @@ public class FirstEncounterHolder : MonoBehaviour {
 					playerScript.AddSlotQueue();
 					// Set an interacted state to avoid multiple slot additions
 					interacted = true;
+					// Comment everything
+					GameObject seedAnimation = (GameObject) Instantiate(newSeed);
+					seedAnimation.GetComponent<SpriteRenderer>().sprite = newSeedSprite;
+					EntityAudio audio = GetComponent<EntityAudio>();
+					audio.One("Seed_Collect");
 				}
 			}
 		}

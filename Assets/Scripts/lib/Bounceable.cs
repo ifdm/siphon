@@ -8,7 +8,10 @@ public class Bounceable : MonoBehaviour {
 
 	void Bounced(bool locked) {
 		if(gameObject.tag == "Player") {
-			gameObject.GetComponent<PlayerControl>().ChangeState(PlayerState.Jumping);
+			PlayerControl playerControl = gameObject.GetComponent<PlayerControl>();
+			if(playerControl.state != PlayerState.Dying) {
+				playerControl.ChangeState(PlayerState.Jumping);
+			}
 			PlayerPhysics playerPhysics = gameObject.GetComponent<PlayerPhysics>();
 			if(locked) {
 				playerPhysics.airMove = false;

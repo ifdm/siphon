@@ -12,10 +12,14 @@ public class RunningState : PlayerState {
 		else if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}
+		else if(player.getLadder() && Input.GetAxisRaw("Vertical") != 0) {
+			player.ChangeState(PlayerState.Climbing);
+		}
+
 		
-		GameObject interactable;
-		if(interactable = player.isInteracting()) {
-			PlayerState.Interacting.interactable = interactable;
+		GameObject target;
+		if(target = player.isInteracting()) {
+			PlayerState.Interacting.target = target;
 			player.ChangeState(PlayerState.Interacting);
 		}
 		
@@ -23,6 +27,13 @@ public class RunningState : PlayerState {
 	}
 
 	public override void Update(PlayerControl player) {
+		if(player.physics.disableControl) {
+			//player.animator.TimeScale = (Mathf.Abs(player.rigidbody2D.velocity.x) / 8) + .3f;
+			//player.animator.Set("Idle", true);
+			player.ChangeState(PlayerState.Idling);
+			return;
+		}
+
 		player.animator.TimeScale = (Mathf.Abs(player.rigidbody2D.velocity.x) / 8) + .3f;
 		player.physics.Move();
 

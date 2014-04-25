@@ -11,6 +11,8 @@ public class Lift : MonoBehaviour {
 
 	[HideInInspector] public float cachedSpeed;
 	[HideInInspector] public bool running = false;
+	private bool broken = false;
+	private bool up = false;
 	private Vector3 center;
 	private Vector3 start;
 	private Vector3 end;
@@ -20,22 +22,25 @@ public class Lift : MonoBehaviour {
 		end = transform.position + Vector3.up * distance;
 		cachedSpeed = speed;
 		speed = (!playerEnabled) ? speed : 0f;
+		up = (transform.position.y > end.y) ? true : false;
 	}
 
+
 	void Update() {
-		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, speed);
-		if(
-			(transform.position.y < end.y && speed < 0
-			|| transform.position.y > start.y && speed > 0)
-			&& loop
-		) {
+		if(!broken) rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, speed);
+
+		var pivot = (up) ? (transform.position.y < end.y && speed < 0 || transform.position.y > start.y && speed > 0)
+			: (transform.position.y > end.y && speed > 0 || transform.position.y < start.y && speed < 0);
+
+		if(pivot && loop) {
 			speed *= -1;
 		}
-		else if(
-			(transform.position.y < end.y && speed < 0
-			|| transform.position.y > start.y && speed > 0)
-		) {
+		else if(pivot) {
 			speed = 0;
+			if(breaks) {
+				broken = true;
+				rigidbody2D.isKinematic = false;
+			}
 		}
 	}
 

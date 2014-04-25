@@ -15,6 +15,8 @@ public class GrappleVine : MonoBehaviour {
 		endPoint = (Vector3)cast.point;
 		
 		if(!cast){DestroyObject(gameObject);}
+		if(!cast.collider) return;
+
 		GameObject platform = cast.collider.gameObject;
 		if(platform.GetComponent<Unplantable>() || (platform.transform.parent && platform.transform.parent.gameObject.GetComponent<Unplantable>())){DestroyObject(gameObject);}
 		
@@ -30,5 +32,10 @@ public class GrappleVine : MonoBehaviour {
 		Transform animation = transform.Find("Animation");
 		animation.position = new Vector3(animation.position.x, endPoint.y - 4.4f, animation.position.z);
 		animation.localScale = new Vector2(animation.localScale.x, 0.5f);
+	}
+		
+	void Update() {
+		Climbable climbable = GetComponent<Climbable>();
+		Debug.DrawLine(climbable.startPoint, climbable.endPoint, Color.blue);
 	}
 }

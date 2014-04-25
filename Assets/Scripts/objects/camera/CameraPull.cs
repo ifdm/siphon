@@ -33,7 +33,6 @@ public class CameraPull : MonoBehaviour {
 				camera.pullTo = new Vector3(v.x, v.y, camera.zStart - size);
 				camera.pullSmooth = smooth;
 				pulling = true;
-				pulling = true;
 				StartCoroutine(stopPulling());
 			}
 		}

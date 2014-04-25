@@ -104,7 +104,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c064336b637382d449a72d9dd0c6f9f0, type: 2}
+  - {fileID: 2100000, guid: dbf8f0cfad19e4481bb7e386f1bf2dd5, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1199,7 +1199,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 7f16aaa27226a4016aab4275eda79451, type: 2}
+  - {fileID: 2100000, guid: ebcefa65fec7140e8abb60dd50458ebf, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2299,7 +2299,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 7f16aaa27226a4016aab4275eda79451, type: 2}
+  - {fileID: 2100000, guid: ebcefa65fec7140e8abb60dd50458ebf, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -3503,7 +3503,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 7f16aaa27226a4016aab4275eda79451, type: 2}
+  - {fileID: 2100000, guid: 61342f182a3de42c492547ca8f7827ac, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -3520,7 +3520,7 @@ ParticleSystemRenderer:
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_SortMode: 0
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -4603,7 +4603,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 7f16aaa27226a4016aab4275eda79451, type: 2}
+  - {fileID: 2100000, guid: ebcefa65fec7140e8abb60dd50458ebf, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -5785,8 +5785,13 @@ MonoBehaviour:
   moveForce: 40
   maxSpeed: 5
   jumpForce: 13
+  dangerousVelocity: 35
   lethalVelocity: 35
+  ledgeDuration: .400000006
+  alignSpeed: 4
   airMove: 1
+  timeSinceFall: 0
+  disableControl: 0
 --- !u!114 &321639396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5799,12 +5804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7aa29052bf42c4a983509d33d1fa36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: {fileID: 100000, guid: e86bbe4267242425a9857b920a375b28, type: 2}
   mainCamera: {fileID: 0}
   slots: []
-  throwForce: 700
-  topDeadZone: 15
-  bottomDeadZone: 15
+  cursors: []
   activeSlot: 0
   throwable: 1
 --- !u!114 &321639397
@@ -5820,8 +5822,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 0}
-  climbing: {fileID: 0}
   animator: {fileID: 0}
+  mozart: {fileID: 0}
   physics: {fileID: 0}
 --- !u!114 &321639398
 MonoBehaviour:
@@ -6127,7 +6129,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 49009ac6ce8ae9840acd7e53f22e8b8c, type: 2}
+  - {fileID: 2100000, guid: a1f9ca82958b8482cacd95f8224513ee, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -7261,7 +7263,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c064336b637382d449a72d9dd0c6f9f0, type: 2}
+  - {fileID: 2100000, guid: ef677da3342774c598b1b64b3828ffca, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -8564,7 +8566,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 71f4e8e722fde5e489538c030e1bdfbb, type: 2}
+  - {fileID: 2100000, guid: 1a9ffbe6d09ca497bac257ce94f5f157, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -10774,7 +10776,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 71f4e8e722fde5e489538c030e1bdfbb, type: 2}
+  - {fileID: 2100000, guid: 1a9ffbe6d09ca497bac257ce94f5f157, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -14323,7 +14325,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c064336b637382d449a72d9dd0c6f9f0, type: 2}
+  - {fileID: 2100000, guid: ab7e71975b06149b3ae04c2d4daa8104, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -15486,7 +15488,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 71f4e8e722fde5e489538c030e1bdfbb, type: 2}
+  - {fileID: 2100000, guid: 1a9ffbe6d09ca497bac257ce94f5f157, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -16568,11 +16570,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smooth: .200000003
   player: {fileID: 0}
-  targetSize: 0
-  defaultSize: 0
-  sizeSmooth: 0
-  defaultSizeSmooth: 0
-  padding: 1
+  additionalZ: 0
+  zSmooth: .5
+  pullTo: {x: 0, y: 0, z: 0}
+  pullSmooth: 0
+  shake: 0
+  shakeStrength: 4
+  zStart: 0
 --- !u!81 &1884872909
 AudioListener:
   m_ObjectHideFlags: 0
@@ -16699,6 +16703,7 @@ MonoBehaviour:
   timeScale: 1.10000002
   calculateNormals: 0
   calculateTangents: 0
+  zSpacing: 0
   loop: 0
   _animationName: idle
 --- !u!23 &1952585078
@@ -16720,7 +16725,7 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_SortingLayerID: 1408507349
 --- !u!33 &1952585079
@@ -16937,7 +16942,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c064336b637382d449a72d9dd0c6f9f0, type: 2}
+  - {fileID: 2100000, guid: dbf8f0cfad19e4481bb7e386f1bf2dd5, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -18032,7 +18037,7 @@ ParticleSystemRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c064336b637382d449a72d9dd0c6f9f0, type: 2}
+  - {fileID: 2100000, guid: 61342f182a3de42c492547ca8f7827ac, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

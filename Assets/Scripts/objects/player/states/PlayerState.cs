@@ -3,6 +3,7 @@ using System.Collections;
 using Spine;
 
 public class PlayerState {
+
 	// States
 	public static JumpingState Jumping = new JumpingState();
 	public static IdlingState Idling = new IdlingState();

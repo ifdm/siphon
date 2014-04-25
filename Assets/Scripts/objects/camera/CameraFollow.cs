@@ -10,11 +10,15 @@ public class CameraFollow : MonoBehaviour {
 	[HideInInspector] public Vector3 pullTo = Vector3.zero;
 	[HideInInspector] public float pullSmooth;
 	[HideInInspector] public float shake = 0;
+	[HideInInspector] public float shakeStrength = 4;
+	[HideInInspector] public Color targetAmbient;
+	[HideInInspector] public float ambientSmooth = 5;
 
 	private float z;
 	public float zStart;
 	private float zVel = 0;
 	private Vector3 posVel = Vector3.zero;
+	private Vector3 shakeVel = Vector3.zero;
 
 	void Start() {
 		player = GameObject.Find("Player");
@@ -22,6 +26,7 @@ public class CameraFollow : MonoBehaviour {
 		zStart = z;
 		transform.position = new Vector3(player.transform.position.x, player.transform.position.y, z);
 		shake = 0;
+		targetAmbient = RenderSettings.ambientLight;
 
 		camera.transparencySortMode = TransparencySortMode.Orthographic;
 	}
@@ -51,14 +56,18 @@ public class CameraFollow : MonoBehaviour {
 		else {
 			target = pullTo;
 			s = pullSmooth;
-		}
-
-		if(shake > 0) {
-			target = new Vector3(target.x + Random.Range(-8, 8), target.y + Random.Range(-8, 8), target.z + Random.Range(-8, 8));
+			Debug.Log(s);
 		}
 
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref posVel, s);
 
+		if(shake > 0) {
+			target = new Vector3(transform.position.x + Random.Range(-shakeStrength, shakeStrength), transform.position.y + Random.Range(-shakeStrength, shakeStrength), transform.position.z + Random.Range(-0, 0));
+			transform.position = Vector3.SmoothDamp(transform.position, target, ref shakeVel, smooth);
+		}
+
 		CameraZoom.dirty = false;
+
+		RenderSettings.ambientLight = Color.Lerp(RenderSettings.ambientLight, targetAmbient, ambientSmooth * Time.deltaTime);
 	}
 }
