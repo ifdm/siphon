@@ -4,7 +4,7 @@ using System.Collections;
 public class InteractingState : PlayerState {
 
 	public GameObject target;
-	private float animationEase = .4f;
+	private float animationGrace;
 
 	public override void HandleInput(PlayerControl player) {
 		if(Input.GetButtonUp("Action") || !player.isInteracting()) {
@@ -25,14 +25,11 @@ public class InteractingState : PlayerState {
 
 		if(interactable == null){player.ChangeState(PlayerState.Idling);}
 
-		if(animationEase > 0) {
-			player.animator.TimeScale = 1;
-			animationEase -= Time.deltaTime;
+		bool s = Input.GetAxisRaw("Horizontal") == Mathf.Sign(player.transform.localScale.x);
+		if(!s && animationGrace == 0) {
+			player.animator.TimeScale = Mathf.Lerp(player.animator.TimeScale, 0, 5 * Time.deltaTime);
 		}
-		else {
-			player.animator.Set("Push", true);
-			player.animator.TimeScale = Mathf.Abs(Input.GetAxis("Horizontal"));
-		}
+		animationGrace -= Mathf.Min(animationGrace, Time.deltaTime);
 		
 		player.physics.Interact(target);
 
@@ -47,8 +44,9 @@ public class InteractingState : PlayerState {
 	public override void Enter(PlayerControl player, PlayerState from){
 		Interactable interactable = target.GetComponent<Interactable>();
 		target.rigidbody2D.mass = interactable.dynamicWeight;
-		player.animator.One("Push");
-		animationEase = .4f;
+		player.animator.Set("Push");
+		player.animator.TimeScale = 1;
+		animationGrace = .5f;
 		interactable.moved = true;
 		interactable.audio.Play();
 	}

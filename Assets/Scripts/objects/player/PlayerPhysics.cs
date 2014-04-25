@@ -96,7 +96,7 @@ public class PlayerPhysics : MonoBehaviour {
 	public void Interact(GameObject interactable) {
 		if(disableControl){return;}
 
-		var sign = Mathf.Sign(Input.GetAxis("Horizontal"));
+		var sign = Mathf.Sign(Input.GetAxisRaw("Horizontal"));
 		var direction = (facingRight) ? 1 : -1;
 		var script = interactable.GetComponent<Interactable>();
 		float force = script.force;
@@ -107,6 +107,8 @@ public class PlayerPhysics : MonoBehaviour {
 			interactable.rigidbody2D.mass = script.staticWeight;
 			return;
 		}
+
+		interactable.rigidbody2D.mass = script.dynamicWeight;
 
 		var velocity = new Vector2(sign * 3, 0);
 
@@ -119,6 +121,7 @@ public class PlayerPhysics : MonoBehaviour {
 					script.pushing = true;
 					script.pulling = false;
 				}
+				GetComponent<PlayerControl>().animator.TimeScale = Input.GetAxis("Horizontal");
 
 				if(script.movePlayer) {
 					rigidbody2D.AddForce(new Vector2(sign * force, 0));
