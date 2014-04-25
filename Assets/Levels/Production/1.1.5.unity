@@ -14438,6 +14438,8 @@ GameObject:
   - 114: {fileID: 1340749879}
   - 114: {fileID: 1340749886}
   - 114: {fileID: 1340749887}
+  - 114: {fileID: 1340749889}
+  - 114: {fileID: 1340749888}
   m_Layer: 8
   m_Name: Pushable Boulder
   m_TagString: NoLedgeGrab
@@ -14577,6 +14579,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e1c4199de05744188a0852b424e0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1340749888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1340749878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfee73b788c7d4df7864ed017389514f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1340749889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1340749878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7256255c3a729948931553ac65f045d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: .200000003
+  startup: 
+  names:
+  - roll
+  - thud
+  - robotCrash
 --- !u!1 &1352593289
 GameObject:
   m_ObjectHideFlags: 0
@@ -19936,6 +19966,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4bb0d2fc52e1546b8bf1f97071ff734d, type: 2}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4bb0d2fc52e1546b8bf1f97071ff734d, type: 2}
+      propertyPath: pushSound
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bb0d2fc52e1546b8bf1f97071ff734d, type: 2}

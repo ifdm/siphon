@@ -7,15 +7,16 @@ public class BoulderKill : MonoBehaviour {
 		if(col.gameObject.name == "Rootbot") {
 			var animator = col.transform.Find("Animation").GetComponent<RootbotAnimator>();
 			animator.One("Die");
+			GetComponent<EntityAudio>().One("robotCrash");
+			StartCoroutine(Kill(col.gameObject, 4.0f));
 
-			StartCoroutine(Kill(col.gameObject, 2.0f));
 		}
 	}
 
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.name == "Root") {
 			Destroy(col.gameObject);
-			Destroy(gameObject);
+			StartCoroutine(Kill (gameObject, 2.0f));
 		}
 	}
 

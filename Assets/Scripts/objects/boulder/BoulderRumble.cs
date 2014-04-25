@@ -8,6 +8,7 @@ public class BoulderRumble : MonoBehaviour {
 			CameraFollow cam = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
 			cam.shake = (rigidbody2D.velocity.magnitude - 10) / 20;
 			cam.shakeStrength = rigidbody2D.velocity.magnitude - 8;
+			GetComponent<EntityAudio>().Play("thud");
 		}
 	}
 }
