@@ -1,0 +1,45 @@
+{
+"bones": [
+	{ "name": "root" },
+	{ "name": "floatplantfruit", "parent": "root" }
+],
+"slots": [
+	{ "name": "floatplantfruit1_4000x4000", "bone": "floatplantfruit", "attachment": "floatplantfruit1_600x600" }
+],
+"skins": {
+	"default": {
+		"floatplantfruit1_4000x4000": {
+			"floatplantfruit1_600x600": { "x": -1216.4, "y": -144.69, "width": 600, "height": 600 }
+		}
+	}
+},
+"animations": {
+	"grow": {
+		"bones": {
+			"floatplantfruit": {
+				"scale": [
+					{
+						"time": 0,
+						"x": 0,
+						"y": 0,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{
+						"time": 0.2333,
+						"x": 1.599,
+						"y": 1.599,
+						"curve": [ 0.25, 0, 0.75, 1 ]
+					},
+					{
+						"time": 0.3666,
+						"x": 0.9,
+						"y": 0.9,
+						"curve": [ 0.25, 0, 0.618, 0.98 ]
+					},
+					{ "time": 0.5, "x": 1, "y": 1 }
+				]
+			}
+		}
+	}
+}
+}

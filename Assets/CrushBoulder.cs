@@ -6,6 +6,7 @@ public class CrushBoulder : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.name == "Rolling Boulder") {
 			StartCoroutine(Crush());
+			col.gameObject.GetComponent<EntityAudio>().One("robotCrash");
 		}
 	}
 
