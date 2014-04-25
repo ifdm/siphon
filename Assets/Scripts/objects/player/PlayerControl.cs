@@ -77,14 +77,14 @@ public class PlayerControl : MonoBehaviour {
 		p1.x -= (circle.radius * scale.x) / 1.5f;
 		p2.x -= (circle.radius * scale.x) / 1.5f;
 
-		Debug.DrawLine(p1, p2, Color.red);
+		//Debug.DrawLine(p1, p2, Color.red);
 
 		RaycastHit2D left = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
 
 		p1.x += (circle.radius * scale.x * 2) / 1.5f;
 		p2.x += (circle.radius * scale.x * 2) / 1.5f;
 
-		Debug.DrawLine(p1, p2, Color.red);
+		//Debug.DrawLine(p1, p2, Color.red);
 
 		RaycastHit2D right = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
 		
@@ -109,21 +109,21 @@ public class PlayerControl : MonoBehaviour {
 
 		p1.x -= circle.radius * scale.x;
 		p2.x -= circle.radius * scale.x;
-		//Debug.DrawLine(p1, p2, Color.red);
+		Debug.DrawLine(p1, p2, Color.red);
 		RaycastHit2D left = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		if(left){return true;}
+		if(left && !left.collider.isTrigger){return true;}
 
 		p1.x += circle.radius * scale.x;
 		p2.x += circle.radius * scale.x;
-		//Debug.DrawLine(p1, p2, Color.red);
+		Debug.DrawLine(p1, p2, Color.red);
 		RaycastHit2D center = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		if(center){return true;}
+		if(center && !center.collider.isTrigger){return true;}
 
 		p1.x += circle.radius * scale.x;
 		p2.x += circle.radius * scale.x;
-		//Debug.DrawLine(p1, p2, Color.red);
+		Debug.DrawLine(p1, p2, Color.red);
 		RaycastHit2D right = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
-		if(right){return true;}
+		if(right && !right.collider.isTrigger){return true;}
 
 		return false;
 	}
