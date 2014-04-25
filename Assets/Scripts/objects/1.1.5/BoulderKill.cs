@@ -16,7 +16,7 @@ public class BoulderKill : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col) {
 		if(col.gameObject.name == "Root") {
 			Destroy(col.gameObject);
-			StartCoroutine(Kill (gameObject, 2.0f));
+			Destroy(gameObject);
 		}
 	}
 	
