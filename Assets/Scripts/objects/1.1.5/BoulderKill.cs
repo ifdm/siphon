@@ -8,7 +8,7 @@ public class BoulderKill : MonoBehaviour {
 			var animator = col.transform.Find("Animation").GetComponent<RootbotAnimator>();
 			animator.One("Die");
 
-			StartCoroutine(Kill(col.gameObject, 2.0f));
+			Destroy(col.gameObject.GetComponent<CircleCollider2D>());
 		}
 	}
 
@@ -17,11 +17,6 @@ public class BoulderKill : MonoBehaviour {
 			Destroy(col.gameObject);
 			Destroy(gameObject);
 		}
-	}
-
-	IEnumerator Kill(GameObject gameObject, float delay) {
-		yield return new WaitForSeconds(delay);
-		Destroy(gameObject);
 	}
 	
 }
