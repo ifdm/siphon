@@ -89,6 +89,7 @@ public class Mozart : MonoBehaviour {
 	}
 
 	private bool Available(string name) {
+		if(name == null) return false;
 		return sources.ContainsKey(name);
 	}
 
