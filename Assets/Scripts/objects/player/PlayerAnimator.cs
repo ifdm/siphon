@@ -28,6 +28,7 @@ public class PlayerAnimator : Animateur {
 			{"BackHit", new AnimationType(Type.Spine, "back-hit")},
 			{"FrontHit", new AnimationType(Type.Spine, "front-hit")},
 			{"FallDeath", new AnimationType(Type.Spine, "fall-death")},
+			{"DrownDeath", new AnimationType(Type.Spine, "drown")},
 			{"Slide", new AnimationType(Type.Spine, "slide")}
 		};
 

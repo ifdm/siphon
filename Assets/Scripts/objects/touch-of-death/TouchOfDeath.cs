@@ -7,7 +7,8 @@ public class TouchOfDeath : MonoBehaviour {
 		frontHit,
 		backHit,
 		spikeDeath,
-		fallDeath
+		fallDeath,
+		drownDeath
 	};
 
 	public TouchOfDeath.DeathAnimation animation = TouchOfDeath.DeathAnimation.frontHit;
@@ -37,6 +38,10 @@ public class TouchOfDeath : MonoBehaviour {
 
 					case TouchOfDeath.DeathAnimation.fallDeath:
 						control.animator.Set("FallDeath");
+					break;
+
+					case TouchOfDeath.DeathAnimation.drownDeath:
+						control.animator.Set("DrownDeath");
 					break;
 				}
 			}
