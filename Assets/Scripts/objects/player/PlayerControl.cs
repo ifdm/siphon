@@ -216,10 +216,12 @@ public class PlayerControl : MonoBehaviour {
 		foreach(GameObject obj in ladders) {
 			Climbable climbable = obj.GetComponent<Climbable>();
 			RaycastHit2D cast;
-			if(obj.name == "Ladder"){cast = Physics2D.Linecast(climbable.startPoint + Vector3.up * 0.5f, climbable.endPoint - Vector3.up * 2.0f, 1 << LayerMask.NameToLayer("Player"));}
-			else{cast = Physics2D.Linecast(climbable.startPoint, climbable.endPoint, 1 << LayerMask.NameToLayer("Player"));}
-			if(cast && (climbable.direction == 0 || climbable.direction != Mathf.Sign(transform.lossyScale.x))) {
-				return obj;
+			if(climbable) {
+				if(obj.name == "Ladder"){cast = Physics2D.Linecast(climbable.startPoint + Vector3.up * 0.5f, climbable.endPoint - Vector3.up * 2.0f, 1 << LayerMask.NameToLayer("Player"));}
+				else{cast = Physics2D.Linecast(climbable.startPoint, climbable.endPoint, 1 << LayerMask.NameToLayer("Player"));}
+				if(cast && (climbable.direction == 0 || climbable.direction != Mathf.Sign(transform.lossyScale.x))) {
+					return obj;
+				}
 			}
 		}
 
