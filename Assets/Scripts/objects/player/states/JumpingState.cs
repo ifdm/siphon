@@ -11,7 +11,7 @@ public class JumpingState : PlayerState {
 		player.physics.AlignUpright();
 
 		grace -= Mathf.Min(grace, Time.deltaTime);
-		if(grace > 0){return;}
+		if(grace > 0 && !player.isGrounded()){return;}
 		if(player.isIdle()) {
 			player.ChangeState(PlayerState.Idling);
 		}
