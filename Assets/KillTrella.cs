@@ -3,10 +3,13 @@ using System.Collections;
 
 public class KillTrella : MonoBehaviour {
 
+	float zoomTo = 240;
+	float zoomSpeed = 2;
+
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.name == "Player") {
 			//col.rigidbody2D.isKinematic = true;
-			col.rigidbody2D.drag = 1;
+			col.rigidbody2D.drag = 4;
 			col.rigidbody2D.gravityScale = 0;
 			StartCoroutine(ZoomOut());
 		}
@@ -18,9 +21,10 @@ public class KillTrella : MonoBehaviour {
 		GameObject player = GameObject.Find("Player");
 		follow.pullTo = new Vector3(player.transform.position.x, player.transform.position.y, camera.transform.position.z);
 		follow.pullSmooth = .5f;
-		while(camera.transform.position.z > -120) {
+		//Camera.camera.backgroundColor = Color.black;
+		while(camera.transform.position.z > -zoomTo) {
 			follow.pullTo = new Vector3(player.transform.position.x, player.transform.position.y, follow.pullTo.z);
-			follow.pullTo -= Vector3.forward * Time.deltaTime;
+			follow.pullTo -= Vector3.forward * Time.deltaTime * zoomSpeed;
 
 			yield return null;
 		}

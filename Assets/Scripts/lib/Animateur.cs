@@ -43,7 +43,7 @@ public class Animateur : MonoBehaviour {
 	public void End(Spine.AnimationState state, int trackIndex) {}
 	public void Complete(Spine.AnimationState state, int trackIndex, int loop) {}
 	public void Event(Spine.AnimationState state, int trackIndex, Spine.Event e) {
-		transform.parent.gameObject.BroadcastMessage("AnimationEvent", e.String);
+		transform.parent.gameObject.BroadcastMessage("AnimationEvent", e.String, SendMessageOptions.DontRequireReceiver);
 
 	}
 

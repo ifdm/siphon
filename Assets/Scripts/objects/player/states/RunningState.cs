@@ -31,8 +31,6 @@ public class RunningState : PlayerState {
 
 	public override void Update(PlayerControl player) {
 		if(player.physics.disableControl) {
-			//player.animator.TimeScale = (Mathf.Abs(player.rigidbody2D.velocity.x) / 8) + .3f;
-			//player.animator.Set("Idle", true);
 			player.ChangeState(PlayerState.Idling);
 			return;
 		}
