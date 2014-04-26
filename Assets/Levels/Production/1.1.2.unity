@@ -4872,7 +4872,7 @@ Transform:
   m_PrefabInternal: {fileID: 899409299}
   m_GameObject: {fileID: 540939112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 92.0340729, y: 2.6249733, z: 0}
+  m_LocalPosition: {x: 152.568787, y: 1.91873503, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 966076662}
@@ -7673,6 +7673,14 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 57f637968bf4d4dc78f4bc979512d167, type: 2}
+      propertyPath: fallSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b4d901181ae74f138d54bd26ea75f42, type: 3}
+    - target: {fileID: 11400002, guid: 57f637968bf4d4dc78f4bc979512d167, type: 2}
+      propertyPath: pushSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 73ff50e000c254a87a2a76039357596b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57f637968bf4d4dc78f4bc979512d167, type: 2}
   m_RootGameObject: {fileID: 1805139155}
@@ -9144,11 +9152,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 92.0340729
+      value: 152.568787
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.6249733
+      value: 1.91873503
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: bc0f57a6ad78dd64dbd51d6da05b76ff, type: 2}
       propertyPath: m_LocalPosition.z
@@ -13543,7 +13551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallSound: {fileID: 8300000, guid: 109b9fb30148e4ef0ac7a4869c184ed4, type: 3}
-  threshold: .100000001
+  threshold: 5
   player: 0
 --- !u!50 &1282892994
 Rigidbody2D:
@@ -17808,7 +17816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7741af17e5cb7af469d32bc26784ea98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSound: {fileID: 0}
+  fallSound: {fileID: 8300000, guid: 2b4d901181ae74f138d54bd26ea75f42, type: 3}
   threshold: 10
   player: 0
 --- !u!114 &1805139158
@@ -17832,7 +17840,7 @@ MonoBehaviour:
   force: 400
   forceOffsetY: 5
   offsetX: 1.60000002
-  pushSound: {fileID: 0}
+  pushSound: {fileID: 8300000, guid: 73ff50e000c254a87a2a76039357596b, type: 3}
   pulling: 0
   pushing: 0
 --- !u!61 &1805139159
@@ -18881,6 +18889,7 @@ GameObject:
   - 114: {fileID: 1953355372}
   - 114: {fileID: 1953355371}
   - 50: {fileID: 1953355370}
+  - 114: {fileID: 1953355374}
   m_Layer: 8
   m_Name: Brace
   m_TagString: Untagged
@@ -18953,6 +18962,20 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 3.82500005, y: .5}
   m_Center: {x: 0, y: 0}
+--- !u!114 &1953355374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1953355368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7741af17e5cb7af469d32bc26784ea98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallSound: {fileID: 8300000, guid: 9378d64567b504c1e960104ca3729cf3, type: 3}
+  threshold: 8
+  player: 1
 --- !u!1 &1957898177
 GameObject:
   m_ObjectHideFlags: 0
