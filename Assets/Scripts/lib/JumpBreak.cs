@@ -9,8 +9,13 @@ public class JumpBreak : MonoBehaviour {
 		if(col.collider.tag == "Player" && col.relativeVelocity.y > 8) {
 			if(--health <= 0) {
 				GetComponent<EntityAudio>().One("Branch_Break");
-				Destroy(gameObject);
+				StartCoroutine(Kill(gameObject));
 			}
 		}
+	}
+
+	IEnumerator Kill(GameObject go){
+		yield return new WaitForSeconds (0.5f);
+		Destroy (go);
 	}
 }
