@@ -15,7 +15,6 @@ public class Mozart : MonoBehaviour {
 	private float faded;
 	private float fadeRate;
 
-	public virtual void AnimationEvent(string action) {}
 	public virtual void Awake() {}
 
 	public virtual void Start() {
