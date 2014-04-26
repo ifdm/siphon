@@ -27,7 +27,8 @@ public class PlayerAnimator : Animateur {
 			{"SpikeDeath", new AnimationType(Type.Spine, "spike-death")},
 			{"BackHit", new AnimationType(Type.Spine, "back-hit")},
 			{"FrontHit", new AnimationType(Type.Spine, "front-hit")},
-			{"FallDeath", new AnimationType(Type.Spine, "fall-death")}
+			{"FallDeath", new AnimationType(Type.Spine, "fall-death")},
+			{"Slide", new AnimationType(Type.Spine, "slide")}
 		};
 
 		particleType = "dust";

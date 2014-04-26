@@ -211,7 +211,5 @@ public class PlayerPhysics : MonoBehaviour {
 		}
 	}
 
-	public void Slide() {
-		// Maybe we'll do something here?
-	}
+	public void Slide() {}
 }
