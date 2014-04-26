@@ -19,6 +19,7 @@ public class KillTrella : MonoBehaviour {
 		follow.pullTo = new Vector3(player.transform.position.x, player.transform.position.y, camera.transform.position.z);
 		follow.pullSmooth = .5f;
 		while(camera.transform.position.z > -120) {
+			follow.pullTo = new Vector3(player.transform.position.x, player.transform.position.y, follow.pullTo.z);
 			follow.pullTo -= Vector3.forward * Time.deltaTime;
 
 			yield return null;

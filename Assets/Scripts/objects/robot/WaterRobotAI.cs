@@ -12,6 +12,7 @@ public class WaterRobotAI : MonoBehaviour {
 	public Transform rightWaypoint;
 	public Transform stopWaypoint;
 
+	private bool sucking = false;
 	private int direction = 1;
 	private int pause = 0;
 	private bool left = true;
@@ -19,14 +20,15 @@ public class WaterRobotAI : MonoBehaviour {
 	private bool stopped = false;
 	private Interactable interactable;
 	private EntityAudio audio;
+	private WaterRobotAnimator animator;
 
 	// Use this for initialization
 	void Start () {
+		animator = transform.Find("Animateur").GetComponent<WaterRobotAnimator>();
 		interactable = GetComponentInChildren<Interactable>();
 		audio = GetComponent<EntityAudio>();
 		audio.One("WaterRobot_Idle", 1f, true);
 		audio.One("WaterRobot_Move", 1f, true);
-
 	}
 
 	// Update is called once per frame
@@ -50,6 +52,18 @@ public class WaterRobotAI : MonoBehaviour {
 			return;
 		}
 		if(pause > 0){
+			// Animation toggle
+			if(pause == pauseTime) {
+				if(sucking) {
+					animator.Set("Dump", true);
+					sucking = false;
+				}
+				else {
+					animator.Set("Suck", true);
+					sucking = true;
+				}
+			}
+
 			pause--;
 			if(pause == 0) {
 				Vector3 theScale = transform.localScale;
@@ -57,10 +71,10 @@ public class WaterRobotAI : MonoBehaviour {
 				transform.localScale = theScale;
 				direction *= -1;
 				audio.One("WaterRobot_Move", 1f, true);
+				animator.Set("Travel", true);
 			}
 			return;
 		}
-
 
 		if(x < leftWaypoint.position.x && !left) {
 			left = !left;
@@ -76,9 +90,7 @@ public class WaterRobotAI : MonoBehaviour {
 		rigidbody2D.AddForce(Vector2.right * this.direction * 100f);
 		x = direction * Mathf.Min (speed, Mathf.Abs(rigidbody2D.velocity.x));
 		float y = rigidbody2D.velocity.y;
-		//Debug.Log (x + " " + rigidbody2D.velocity.x + " " + speed + " " + direction);
 		rigidbody2D.velocity = new Vector2(x,y);
-
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
