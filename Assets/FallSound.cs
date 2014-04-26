@@ -5,7 +5,9 @@ public class FallSound : MonoBehaviour {
 
 	private AudioSource audio;
 	public AudioClip fallSound;
-	private int stallFor = 100;
+	private int stallFor = 50;
+	public float threshold = 10f;
+	public bool player = false;
 	// Use this for initialization
 	void Start () {
 		audio = gameObject.AddComponent<AudioSource>();
@@ -17,7 +19,7 @@ public class FallSound : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-    if (stallFor < 0 && collision.relativeVelocity.magnitude > 10 && collision.gameObject.tag != "Player"){
+    if (stallFor < 0 && collision.relativeVelocity.magnitude > threshold && (collision.gameObject.tag != "Player" || player)){
         audio.Play();
       }
   }
