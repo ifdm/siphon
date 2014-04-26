@@ -3,7 +3,10 @@ using System.Collections;
 
 public class RunningState : PlayerState {
 	public override void HandleInput(PlayerControl player) {
-		if(!player.isGrounded() || Input.GetButtonDown("Jump")) {
+		if(!player.isGrounded() && player.rigidbody2D.velocity.y < 0) {
+			player.ChangeState(PlayerState.Falling);
+		}
+		else if(!player.isGrounded() || Input.GetButtonDown("Jump")) {
 			player.ChangeState(PlayerState.Jumping);
 		}
 		else if(player.isSliding()) {
