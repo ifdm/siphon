@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class PlayerPhysics : MonoBehaviour {
 	[HideInInspector] public bool facingRight = true;
@@ -15,6 +16,12 @@ public class PlayerPhysics : MonoBehaviour {
 	[HideInInspector] public bool airMove = true;
 	[HideInInspector] public float timeSinceFall = 0;
 	[HideInInspector] public bool disableControl = false;
+
+	private PlayerAnimator animator;
+
+	public void Start() {
+		animator = transform.Find("Animation").GetComponent<PlayerAnimator>();
+	}
 
 	public void Move(float factor = 1.0f) {
 		if(disableControl){return;}
@@ -204,7 +211,5 @@ public class PlayerPhysics : MonoBehaviour {
 		}
 	}
 
-	public void Slide() {
-		// Maybe we'll do something here?
-	}
+	public void Slide() {}
 }
