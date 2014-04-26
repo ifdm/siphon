@@ -56,7 +56,6 @@ public class CameraFollow : MonoBehaviour {
 		else {
 			target = pullTo;
 			s = pullSmooth;
-			Debug.Log(s);
 		}
 
 		transform.position = Vector3.SmoothDamp(transform.position, target, ref posVel, s);

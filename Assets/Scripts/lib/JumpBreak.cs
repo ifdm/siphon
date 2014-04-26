@@ -10,7 +10,7 @@ public class JumpBreak : MonoBehaviour {
 			var animator = transform.Find("Animation").GetComponent<BraceAnimator>();
 
 			if(--health <= 0) {
-				GetComponent<EntityAudio>().One("Branch_Break");
+				StartCoroutine(Kill(gameObject));
 				animator.Set("Break");
 				Destroy(gameObject.GetComponent<BoxCollider2D>());
 			}
@@ -19,5 +19,10 @@ public class JumpBreak : MonoBehaviour {
 				animator.Set("Crack");
 			}
 		}
+	}
+
+	IEnumerator Kill(GameObject go){
+		yield return new WaitForSeconds (0.5f);
+		Destroy (go);
 	}
 }

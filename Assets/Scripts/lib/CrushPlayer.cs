@@ -7,7 +7,6 @@ public class CrushPlayer : MonoBehaviour {
 
 	public void OnCollisionEnter2D(Collision2D col) {
 		if(col.collider.tag == "Player") {
-			Debug.Log(col.relativeVelocity);
 			if(col.relativeVelocity.y < -3 && rigidbody2D.velocity.magnitude > velocityThreshold) {
 				TouchOfDeath touchOfDeath = (TouchOfDeath)gameObject.AddComponent("TouchOfDeath");
 				if(Mathf.Sign(col.relativeVelocity.x) == Mathf.Sign(col.transform.lossyScale.x)) {
