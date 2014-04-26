@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 5629ba6829dec4b7eacbabd784d48b9b, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 8bcbaaf7fa247475696b644eba98e9f9, type: 2}
   initialSkinName: default
   timeScale: 1
   calculateNormals: 1
@@ -270,7 +270,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 0cfdf5cdce0b245528f2d93c4b1971ad, type: 2}
+  - {fileID: 2100000, guid: 326ee536f81f44ff5ac56bc8cd4cdba4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -327,7 +327,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: .200000003
   startup: Mushroom_Grow
-  names: []
+  names:
+  - Mushroom_Bounce
 --- !u!1 &21114764
 GameObject:
   m_ObjectHideFlags: 0
@@ -5256,7 +5257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceForce: 20
   horizontalForce: 0
-  adjustTrigger: 1
+  adjustTrigger: 0
 --- !u!4 &368004935
 Transform:
   m_ObjectHideFlags: 0
@@ -5282,7 +5283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: .200000003
   startup: Mushroom_Grow
-  names: []
+  names:
+  - Mushroom_Bounce
 --- !u!1 &372761010
 GameObject:
   m_ObjectHideFlags: 0
@@ -6347,6 +6349,19 @@ Prefab:
       propertyPath: adjustTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: m_Name
+      value: Static Giant Mushroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8bcbaaf7fa247475696b644eba98e9f9,
+        type: 2}
+    - target: {fileID: 2300000, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 326ee536f81f44ff5ac56bc8cd4cdba4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
   m_RootGameObject: {fileID: 1083328041}
@@ -7611,6 +7626,50 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 8c7b4de636cad4ffeba0180ccc87d1b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1001 &570867951
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 973196089}
+    m_Modifications:
+    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -.0829944611
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .638606071
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300000, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
+  m_RootGameObject: {fileID: 1745721013}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &580767556
 GameObject:
   m_ObjectHideFlags: 0
@@ -8627,7 +8686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceForce: 20
   horizontalForce: 0
-  adjustTrigger: 1
+  adjustTrigger: 0
 --- !u!114 &630922984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8642,7 +8701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: .200000003
   startup: Mushroom_Grow
-  names: []
+  names:
+  - Mushroom_Bounce
 --- !u!1001 &633385482
 Prefab:
   m_ObjectHideFlags: 0
@@ -12256,7 +12316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceForce: 20
   horizontalForce: 0
-  adjustTrigger: 1
+  adjustTrigger: 0
 --- !u!4 &947943748
 Transform:
   m_ObjectHideFlags: 0
@@ -12282,7 +12342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: .200000003
   startup: Mushroom_Grow
-  names: []
+  names:
+  - Mushroom_Bounce
 --- !u!1001 &949200314
 Prefab:
   m_ObjectHideFlags: 0
@@ -12881,13 +12942,13 @@ Transform:
   m_Children:
   - {fileID: 21114767}
   - {fileID: 1083328042}
-  - {fileID: 103119990}
   - {fileID: 1527138327}
-  - {fileID: 1374381626}
-  - {fileID: 1630644819}
-  - {fileID: 1780071392}
-  - {fileID: 1745721016}
   - {fileID: 176788948}
+  - {fileID: 1745721016}
+  - {fileID: 103119990}
+  - {fileID: 1630644819}
+  - {fileID: 1374381626}
+  - {fileID: 1780071392}
   m_Father: {fileID: 553991058}
 --- !u!1 &976754096
 GameObject:
@@ -14291,7 +14352,7 @@ GameObject:
   - 114: {fileID: 1083328044}
   - 61: {fileID: 1083328043}
   m_Layer: 0
-  m_Name: Static Mushroom
+  m_Name: Static Giant Mushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19667,7 +19728,7 @@ SpriteRenderer:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1438835147}
@@ -19690,7 +19751,7 @@ GameObject:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1438835146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.5055027, y: -2.38950157, z: 0}
@@ -19702,7 +19763,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400006, guid: debb8f4b94831c141b804971e4bc75a2,
     type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1438835146}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -19716,7 +19777,7 @@ GUITexture:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 13100000, guid: debb8f4b94831c141b804971e4bc75a2,
     type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1438835146}
   m_Enabled: 1
   m_Texture: {fileID: 2800000, guid: cb56769fb01a74f97ba9dd52f49cac7c, type: 3}
@@ -19736,7 +19797,7 @@ BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6100002, guid: debb8f4b94831c141b804971e4bc75a2,
     type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1438835146}
   m_Enabled: 1
   m_Material: {fileID: 0}
@@ -19748,7 +19809,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400004, guid: debb8f4b94831c141b804971e4bc75a2,
     type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1438835146}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -19768,7 +19829,7 @@ Renderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 2300000, guid: debb8f4b94831c141b804971e4bc75a2,
     type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1438835146}
   m_Enabled: 1
   m_CastShadows: 1
@@ -19790,7 +19851,7 @@ MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 3300000, guid: debb8f4b94831c141b804971e4bc75a2,
     type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1438835146}
   m_Mesh: {fileID: 0}
 --- !u!114 &1438835154
@@ -19798,7 +19859,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400002, guid: debb8f4b94831c141b804971e4bc75a2,
     type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1438835146}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -19813,7 +19874,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400008, guid: debb8f4b94831c141b804971e4bc75a2,
     type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1438835146}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -19822,7 +19883,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: .200000003
   startup: Mushroom_Grow
-  names: []
+  names:
+  - Mushroom_Bounce
 --- !u!1 &1443141820
 GameObject:
   m_ObjectHideFlags: 0
@@ -22314,7 +22376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceForce: 20
   horizontalForce: 0
-  adjustTrigger: 1
+  adjustTrigger: 0
 --- !u!114 &1618604679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22329,7 +22391,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: .200000003
   startup: Mushroom_Grow
-  names: []
+  names:
+  - Mushroom_Bounce
 --- !u!1 &1630644816
 GameObject:
   m_ObjectHideFlags: 0
@@ -23072,7 +23135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceForce: 20
   horizontalForce: 0
-  adjustTrigger: 1
+  adjustTrigger: 0
 --- !u!114 &1677305955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23087,7 +23150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: .200000003
   startup: Mushroom_Grow
-  names: []
+  names:
+  - Mushroom_Bounce
 --- !u!1 &1680402415
 GameObject:
   m_ObjectHideFlags: 0
@@ -23953,62 +24017,6 @@ SpriteRenderer:
   m_SortingLayerID: 1408507349
   m_Sprite: {fileID: 21300000, guid: c042daf11c2ed49b293698202b185b48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1001 &1739733779
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 973196089}
-    m_Modifications:
-    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -.0829944611
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: .638606071
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3300000, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 21.5055027
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -2.38950157
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-      propertyPath: adjustTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-  m_RootGameObject: {fileID: 1745721013}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &1740625645
 GameObject:
   m_ObjectHideFlags: 0
@@ -24163,7 +24171,7 @@ SpriteRenderer:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1745721016}
@@ -24181,7 +24189,7 @@ BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6100000, guid: debb8f4b94831c141b804971e4bc75a2,
     type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1745721013}
   m_Enabled: 1
   m_Material: {fileID: 0}
@@ -24193,7 +24201,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400000, guid: debb8f4b94831c141b804971e4bc75a2,
     type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1745721013}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -24205,7 +24213,7 @@ MonoBehaviour:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400002, guid: debb8f4b94831c141b804971e4bc75a2, type: 2}
-  m_PrefabInternal: {fileID: 1739733779}
+  m_PrefabInternal: {fileID: 570867951}
   m_GameObject: {fileID: 1745721013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.0829944611, y: .638606071, z: 0}
@@ -29716,7 +29724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceForce: 20
   horizontalForce: 0
-  adjustTrigger: 1
+  adjustTrigger: 0
 --- !u!4 &2077776331
 Transform:
   m_ObjectHideFlags: 0
@@ -29742,7 +29750,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fade: .200000003
   startup: Mushroom_Grow
-  names: []
+  names:
+  - Mushroom_Bounce
 --- !u!1 &2078399036
 GameObject:
   m_ObjectHideFlags: 0
