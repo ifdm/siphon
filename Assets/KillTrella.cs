@@ -12,6 +12,7 @@ public class KillTrella : MonoBehaviour {
 			//col.rigidbody2D.isKinematic = true;
 			col.rigidbody2D.drag = 4;
 			col.rigidbody2D.gravityScale = .8f;
+			col.GetComponent<PlayerPhysics>().maxSpeed = 0;
 			StartCoroutine(ZoomOut());
 		}
 	}
@@ -71,5 +72,8 @@ public class KillTrella : MonoBehaviour {
 			xx = Mathf.Min(xx + Time.deltaTime * .002f, 0.009f);
 			yield return new WaitForSeconds(0);
 		}
+
+		yield return new WaitForSeconds(1);
+		Application.LoadLevel("Menu");
 	}
 }
