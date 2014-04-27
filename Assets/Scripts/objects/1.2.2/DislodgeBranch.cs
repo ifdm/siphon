@@ -5,10 +5,17 @@ public class DislodgeBranch : MonoBehaviour {
 
 	private bool dirty = false;
 
-	void OnTriggerEnter2D(Collider2D col) {
-		if(col.tag == "Player" && !dirty) {
-			StartCoroutine(dislodge());
-			dirty = true;
+	void Update() {
+		if(!dirty) {
+			foreach(Transform child in transform) {
+				// Each trigger contains a script that keeps triggered state
+				FirstEncounterTrigger script = child.gameObject.GetComponent<FirstEncounterTrigger>();
+				// Check if we have a child with the script and a triggered state
+				if(script && script.triggered) {
+					StartCoroutine(dislodge());
+					dirty = true;
+				}
+			}
 		}
 	}
 
@@ -20,5 +27,8 @@ public class DislodgeBranch : MonoBehaviour {
 		branch.transform.Find("leftEdge").GetComponent<BoxCollider2D>().isTrigger = true;
 		branch.transform.Find("rightEdge").GetComponent<BoxCollider2D>().isTrigger = true;
 		branch.transform.Find("bottomEdge").GetComponent<BoxCollider2D>().isTrigger = true;
+		yield return new WaitForSeconds(1.7f);
+		GameObject.Find("Main Camera").GetComponent<CameraFollow>().shake = .5f;
+		GameObject.Find("Main Camera").GetComponent<CameraFollow>().shakeStrength = 2;
 	}
 }
