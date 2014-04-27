@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 8
-  smooth: 1
+  smooth: .800000012
   disableControl: 0
 --- !u!212 &68959394
 SpriteRenderer:
@@ -1177,8 +1177,8 @@ Transform:
   m_PrefabInternal: {fileID: 1676957083}
   m_GameObject: {fileID: 68959391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.0854111, y: -3.77780151, z: -.03515625}
-  m_LocalScale: {x: 4.84768391, y: 4.73223782, z: 2.88992023}
+  m_LocalPosition: {x: 36.7420654, y: -1.71776009, z: -.03515625}
+  m_LocalScale: {x: 4.57944822, y: 6.34164619, z: 2.88992023}
   m_Children: []
   m_Father: {fileID: 493375493}
 --- !u!1 &71238845
@@ -4907,7 +4907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 8
-  smooth: 3
+  smooth: 2
 --- !u!61 &302001842
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21618,6 +21618,68 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 2, y: 2}
   m_Center: {x: 0, y: 0}
+--- !u!1 &1269313407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1269313408}
+  - 108: {fileID: 1269313409}
+  m_Layer: 0
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1269313408
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1269313407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 39.1448746, y: -31.696558, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1595818737}
+--- !u!108 &1269313409
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1269313407}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: .422312349, g: .345588207, b: 1, a: 1}
+  m_Intensity: .600000024
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &1277306065
 GameObject:
   m_ObjectHideFlags: 0
@@ -21930,7 +21992,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 4b31710cc9f1bf248a1bf82deddb71fe, type: 2}
       propertyPath: smooth
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b31710cc9f1bf248a1bf82deddb71fe, type: 2}
@@ -26851,6 +26913,7 @@ Transform:
   m_Children:
   - {fileID: 1389735950}
   - {fileID: 228030694}
+  - {fileID: 1269313408}
   m_Father: {fileID: 1281123477}
 --- !u!1 &1595834123
 GameObject:
@@ -28662,11 +28725,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 37.0854111
+      value: 36.7420654
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.77780151
+      value: -1.71776009
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
       propertyPath: m_LocalPosition.z
@@ -28690,15 +28753,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4.84768391
+      value: 4.57944822
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
       propertyPath: m_LocalScale.y
-      value: 4.73223782
+      value: 6.34164619
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
       propertyPath: smooth
-      value: 1
+      value: .800000012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c2ec271060911e418cd1e0e6f51e7ee, type: 2}
