@@ -19,6 +19,7 @@ public class Menu : MonoBehaviour {
 	}
 	
 	void MenuChangePage(string newPage) {
+		BroadcastMessage("MenuMouseBlur", null, SendMessageOptions.DontRequireReceiver);
 		transform.Find("Pages").Find(page).gameObject.SetActive(false);
 		if(newPage == "Previous") {
 			newPage = prevPage;

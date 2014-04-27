@@ -16,12 +16,12 @@ public class MenuHover : MonoBehaviour {
 		if(col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(mouse))) {
 			if(col.gameObject == gameObject) {
 				if(Input.GetMouseButtonDown(0)) {
-					SendMessage("MenuMouseClick");
+					SendMessage("MenuMouseClick", null, SendMessageOptions.DontRequireReceiver);
 					return;
 				}
 				else {
 					if(!hovering) {
-						SendMessage("MenuMouseFocus");
+						SendMessage("MenuMouseFocus", null, SendMessageOptions.DontRequireReceiver);
 					}
 
 					hovering = true;
@@ -31,7 +31,7 @@ public class MenuHover : MonoBehaviour {
 		}
 
 		if(hovering) {
-			SendMessage("MenuMouseBlur");
+			SendMessage("MenuMouseBlur", null, SendMessageOptions.DontRequireReceiver);
 		}
 
 		hovering = false;

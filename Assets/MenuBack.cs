@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuBack : MonoBehaviour {
+public class MenuControlsBack : MonoBehaviour {
 
 	void MenuMouseClick() {
 		SendMessageUpwards("MenuChangePage", "Previous");
