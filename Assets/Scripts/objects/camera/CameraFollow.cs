@@ -68,6 +68,6 @@ public class CameraFollow : MonoBehaviour {
 
 		CameraZoom.dirty = false;
 
-		RenderSettings.ambientLight = Color.Lerp(RenderSettings.ambientLight, targetAmbient, ambientSmooth * Time.deltaTime);
+		RenderSettings.ambientLight = Color.Lerp(RenderSettings.ambientLight, targetAmbient, Mathf.Clamp(ambientSmooth * Time.deltaTime, 0, 1));
 	}
 }

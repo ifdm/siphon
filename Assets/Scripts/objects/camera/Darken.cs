@@ -27,6 +27,7 @@ public class Darken : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D col) {
 		if(col.gameObject.name == "Player" && !col.gameObject.rigidbody2D.isKinematic) {
 			camera.targetAmbient = originalColor;
+			camera.ambientSmooth = speed;
 		}
 	}
 }
