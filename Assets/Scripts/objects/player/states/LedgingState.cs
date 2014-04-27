@@ -45,7 +45,7 @@ public class LedgingState : PlayerState {
 		RaycastHit2D cast = Physics2D.Linecast(p1, p2, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
 		float diff = cast.point.x - (player.transform.position.x + (box.size.x * scale.x * .75f));
 		float y = player.transform.position.y;
-		if(cast.rigidbody && cast.rigidbody.velocity.y != 0){y += Mathf.Sign(cast.rigidbody.velocity.y * .3f);}
+		//if(cast.rigidbody && cast.rigidbody.velocity.y != 0){y += Mathf.Sign(cast.rigidbody.velocity.y * .3f);}
 		player.transform.position = new Vector3(player.transform.position.x + diff, y, player.transform.position.z);
 		
 		jumpTimer = player.physics.ledgeDuration;

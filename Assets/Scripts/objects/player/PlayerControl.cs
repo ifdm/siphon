@@ -135,7 +135,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 	
 	public bool isIdle() {
-		return isGrounded() && Input.GetAxisRaw("Horizontal") == 0 && rigidbody2D.velocity.y == 0 && rigidbody2D.velocity.x == 0;
+		return isGrounded() && Input.GetAxisRaw("Horizontal") == 0;
 	}
 
 	public bool isRunning() {
