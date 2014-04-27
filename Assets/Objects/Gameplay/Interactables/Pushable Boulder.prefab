@@ -14,6 +14,7 @@ GameObject:
   - 58: {fileID: 5800000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
   m_Layer: 8
   m_Name: Pushable Boulder
   m_TagString: Ground
@@ -93,11 +94,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pull: 0
   push: 1
+  moved: 0
   staticWeight: 100000
   dynamicWeight: 5
-  torqued: 0
+  movePlayer: 0
+  force: 50
+  forceOffsetY: 0
+  offsetX: .200000003
+  pushSound: {fileID: 0}
   pulling: 0
   pushing: 0
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3c475376105434d8f40db7f5bd1045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
