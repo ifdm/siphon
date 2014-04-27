@@ -25,7 +25,14 @@ public class ActiveBucket : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
-		if(col.gameObject.tag == "Player") up(false);
+		if(col.gameObject.tag == "Player") {
+			if(gameObject.name == "Bucket Left") {
+				up(false);
+			}
+			else {
+				down(false);
+			}
+		}
 	}
 
 	public void up(bool external) {
