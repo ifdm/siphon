@@ -28,5 +28,6 @@ public class TankbotDeath : MonoBehaviour {
 
 		Destroy(transform.Find("Point light").gameObject);
 		GameObject.Find("RobotSteam").GetComponent<ParticleSystem>().Stop();
+		GameObject.Find("Dead Grass").SendMessage("GrowGrass");
 	}
 }
