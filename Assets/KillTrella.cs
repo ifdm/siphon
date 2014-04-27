@@ -22,6 +22,7 @@ public class KillTrella : MonoBehaviour {
 		GameObject player = GameObject.Find("Player");
 		GameObject sun = GameObject.Find("The Sun");
 		GameObject logo = GameObject.Find("siphonLogoCredits");
+		logo.GetComponent<SpriteRenderer>().enabled = true;
 		CameraFollow follow = camera.GetComponent<CameraFollow>();
 		follow.pullTo = new Vector3(player.transform.position.x, player.transform.position.y, camera.transform.position.z);
 		follow.pullSmooth = .5f;
