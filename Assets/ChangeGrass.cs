@@ -21,7 +21,7 @@ public class ChangeGrass : MonoBehaviour {
 
 	public void GrowGrass() {
 		growing = true;
-		//transform.Find("Animation").gameObject.animation.Play();
+		transform.Find("Animation").GetComponent<Animator>().SetTrigger("Grow");
 	}
 
 }
