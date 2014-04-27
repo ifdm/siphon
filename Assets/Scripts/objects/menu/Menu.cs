@@ -7,15 +7,25 @@ public class Menu : MonoBehaviour {
 	public string page = "Main";
 	public Texture2D cursor;
 
+	private string prevPage = "";
+
 	void Start() {
 		StartCoroutine(SetCursor());
+		Transform pages = transform.Find("Pages");
+		for(int i = 0; i < pages.childCount; i++) {
+			pages.GetChild(i).gameObject.SetActive(false);
+		}
 		MenuChangePage(page);
 	}
 	
 	void MenuChangePage(string newPage) {
-		transform.Find(page).gameObject.SetActive(false);
+		transform.Find("Pages").Find(page).gameObject.SetActive(false);
+		if(newPage == "Previous") {
+			newPage = prevPage;
+		}
+		prevPage = page;
 		page = newPage;
-		transform.Find(page).gameObject.SetActive(true);
+		transform.Find("Pages").Find(page).gameObject.SetActive(true);
 	}
 
 	IEnumerator SetCursor() {
