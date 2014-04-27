@@ -7,11 +7,11 @@ public class ScreenShakeArea : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D col) {
 		CameraFollow follow = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
-		if(follow.shake > 0) {
+		//if(follow.shake > 0) {
 			if(col.gameObject.name == "Player") {
-				follow.shake = Mathf.Max(follow.shake, .3f);
+				follow.shake = .3f;
 				follow.shakeStrength = strength;
 			}
-		}
+		//}
 	}
 }
