@@ -31,7 +31,7 @@ public class GrappleVine : MonoBehaviour {
 
 		Transform animation = transform.Find("Animation");
 		animation.position = new Vector3(animation.position.x, endPoint.y - 4.4f, animation.position.z);
-		animation.localScale = new Vector2(animation.localScale.x, 0.5f);
+		animation.localScale = new Vector2(animation.localScale.x, animation.localScale.y);
 	}
 		
 	void Update() {
