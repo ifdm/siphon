@@ -7,6 +7,8 @@ public class CrushBoulder : MonoBehaviour {
 		if(col.gameObject.name == "Rolling Boulder") {
 			StartCoroutine(Crush());
 			col.gameObject.GetComponent<EntityAudio>().One("robotCrash");
+			GameObject.Find("Main Camera").GetComponent<CameraFollow>().shake = .3f;
+			GameObject.Find("Main Camera").GetComponent<CameraFollow>().shakeStrength = 3;
 		}
 	}
 

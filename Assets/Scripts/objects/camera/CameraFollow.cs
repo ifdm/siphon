@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour {
 	[HideInInspector] public Vector3 pullTo = Vector3.zero;
 	[HideInInspector] public float pullSmooth;
 	[HideInInspector] public float shake = 0;
-	[HideInInspector] public float shakeStrength = 4;
+	[HideInInspector] public float shakeStrength = 0;
 	[HideInInspector] public Color targetAmbient;
 	[HideInInspector] public float ambientSmooth = 5;
 
@@ -26,6 +26,7 @@ public class CameraFollow : MonoBehaviour {
 		zStart = z;
 		transform.position = new Vector3(player.transform.position.x, player.transform.position.y, z);
 		shake = 0;
+		shakeStrength = 0;
 		targetAmbient = RenderSettings.ambientLight;
 
 		camera.transparencySortMode = TransparencySortMode.Orthographic;

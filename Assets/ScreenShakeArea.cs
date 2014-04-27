@@ -3,11 +3,15 @@ using System.Collections;
 
 public class ScreenShakeArea : MonoBehaviour {
 
+	public float strength = .2f;
+
 	void OnTriggerStay2D(Collider2D col) {
 		CameraFollow follow = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
-		if(col.gameObject.name == "Player") {
-			follow.shake = .3f;
-			follow.shakeStrength = .2f;
+		if(follow.shake > 0) {
+			if(col.gameObject.name == "Player") {
+				follow.shake = Mathf.Max(follow.shake, .3f);
+				follow.shakeStrength = strength;
+			}
 		}
 	}
 }
