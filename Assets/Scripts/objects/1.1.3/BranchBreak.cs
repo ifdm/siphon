@@ -23,7 +23,7 @@ public class BranchBreak : MonoBehaviour {
 
 	IEnumerator breakBranch() {
 		yield return new WaitForSeconds(.6f);
-		branch.rigidbody2D.AddForceAtPosition(new Vector2(0, -100), new Vector2(4, 0));
+		branch.rigidbody2D.AddForceAtPosition(new Vector2(0, -100), (Vector2)branch.transform.position + Vector2.right * 4);
 		Destroy(branch.GetComponent<HingeJoint2D>());
 		branch.GetComponent<BoxCollider2D>().isTrigger = true;
 	}
