@@ -26,7 +26,7 @@ public class InteractingState : PlayerState {
 		if(interactable == null){player.ChangeState(PlayerState.Idling);}
 
 		bool s = Input.GetAxisRaw("Horizontal") == Mathf.Sign(player.transform.localScale.x);
-		if(!s && animationGrace == 0) {
+		if(((!s && interactable.push) || (s && interactable.pull)) && animationGrace == 0) {
 			player.animator.TimeScale = Mathf.Lerp(player.animator.TimeScale, 0, 5 * Time.deltaTime);
 		}
 		animationGrace -= Mathf.Min(animationGrace, Time.deltaTime);
