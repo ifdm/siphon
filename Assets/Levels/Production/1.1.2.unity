@@ -438,7 +438,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 3
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_SortingLayerID: 1408507349
   m_Sprite: {fileID: 21300000, guid: 935cda52e24584c82a8946aadbcf5e4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1318,7 +1318,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 3
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_SortingLayerID: 1408507349
   m_Sprite: {fileID: 21300000, guid: a1f6aecea9acf46c68bd92ae5197fca8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2399,7 +2399,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 378626944}
   - 212: {fileID: 378626943}
-  - 114: {fileID: 378626945}
   m_Layer: 12
   m_Name: mossground_1000x250
   m_TagString: Untagged
@@ -2419,7 +2418,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 563309643a8c8034d9cbc655e09321ab, type: 2}
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2437,21 +2436,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 378626942}
   m_LocalRotation: {x: 0, y: 0, z: .0200174227, w: .999799669}
-  m_LocalPosition: {x: 23.6121597, y: -29.9888897, z: 0}
+  m_LocalPosition: {x: -9.38493729, y: -3.22148323, z: 0}
   m_LocalScale: {x: .729090273, y: .784843206, z: 1}
   m_Children: []
-  m_Father: {fileID: 821843715}
---- !u!114 &378626945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 378626942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d05b6fd735378a243a7de5e73989bdcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Father: {fileID: 473422893}
 --- !u!1 &381733188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3255,6 +3243,48 @@ SpriteRenderer:
   m_SortingLayerID: 1408507349
   m_Sprite: {fileID: 21300000, guid: c042daf11c2ed49b293698202b185b48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &473422892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 473422893}
+  - 114: {fileID: 473422894}
+  m_Layer: 0
+  m_Name: Dead Grass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &473422893
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473422892}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.997097, y: -26.7674065, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1349455508}
+  - {fileID: 378626944}
+  - {fileID: 1829746975}
+  m_Father: {fileID: 996391812}
+--- !u!114 &473422894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473422892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d365790ca14647cc80746f3a4e2646d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorEnd: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &477114326
 GameObject:
   m_ObjectHideFlags: 0
@@ -5335,7 +5365,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 642238826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.3554897, y: -33.3881149, z: -2}
+  m_LocalPosition: {x: 31.2839355, y: -33.3881149, z: -2}
   m_LocalScale: {x: 1.7982583, y: 1.79825878, z: 1}
   m_Children: []
   m_Father: {fileID: 821843715}
@@ -7521,9 +7551,6 @@ Transform:
   - {fileID: 2079907189}
   - {fileID: 13175339}
   - {fileID: 1760993208}
-  - {fileID: 378626944}
-  - {fileID: 1349455508}
-  - {fileID: 1829746975}
   - {fileID: 38804216}
   - {fileID: 1068733188}
   - {fileID: 1164664867}
@@ -8068,7 +8095,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_SortingLayerID: 1408507349
   m_Sprite: {fileID: 21300000, guid: 07f9cbdcbc4d1402f908837844b9a17f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9044,6 +9071,7 @@ Transform:
   - {fileID: 1953355369}
   - {fileID: 987592527}
   - {fileID: 449307467}
+  - {fileID: 473422893}
   - {fileID: 1740354075}
   - {fileID: 778156423}
   - {fileID: 2050368471}
@@ -13103,7 +13131,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1349455508}
   - 212: {fileID: 1349455507}
-  - 114: {fileID: 1349455509}
   m_Layer: 12
   m_Name: mossground_1000x250
   m_TagString: Untagged
@@ -13123,7 +13150,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 563309643a8c8034d9cbc655e09321ab, type: 2}
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -13141,21 +13168,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1349455506}
   m_LocalRotation: {x: 0, y: 0, z: .0220571775, w: .999756753}
-  m_LocalPosition: {x: 30.1142254, y: -29.6421204, z: 0}
-  m_LocalScale: {x: .729090691, y: .729089677, z: 1}
+  m_LocalPosition: {x: -2.88286781, y: -3.01685715, z: 0}
+  m_LocalScale: {x: .729090631, y: .729089737, z: 1}
   m_Children: []
-  m_Father: {fileID: 821843715}
---- !u!114 &1349455509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1349455506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d05b6fd735378a243a7de5e73989bdcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Father: {fileID: 473422893}
 --- !u!1 &1354012096
 GameObject:
   m_ObjectHideFlags: 0
@@ -13559,7 +13575,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_SortingLayerID: 1408507349
   m_Sprite: {fileID: 21300000, guid: d7b02e64cd37c4277818bf197288527f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17027,7 +17043,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1829746975}
   - 212: {fileID: 1829746974}
-  - 114: {fileID: 1829746976}
   m_Layer: 12
   m_Name: mossground_1000x250
   m_TagString: Untagged
@@ -17047,7 +17062,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 563309643a8c8034d9cbc655e09321ab, type: 2}
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -17065,21 +17080,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1829746973}
   m_LocalRotation: {x: 0, y: 0, z: .0200174227, w: .999799669}
-  m_LocalPosition: {x: 21.6065559, y: -30.0412102, z: 0}
+  m_LocalPosition: {x: -11.3905411, y: -3.27380371, z: 0}
   m_LocalScale: {x: .729090273, y: .784843206, z: 1}
   m_Children: []
-  m_Father: {fileID: 821843715}
---- !u!114 &1829746976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1829746973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d05b6fd735378a243a7de5e73989bdcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Father: {fileID: 473422893}
 --- !u!1 &1847310658
 GameObject:
   m_ObjectHideFlags: 0
@@ -17776,7 +17780,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_SortingLayerID: 1408507349
   m_Sprite: {fileID: 21300000, guid: 935cda52e24584c82a8946aadbcf5e4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
