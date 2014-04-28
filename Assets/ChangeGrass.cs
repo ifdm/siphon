@@ -22,6 +22,14 @@ public class ChangeGrass : MonoBehaviour {
 	public void GrowGrass() {
 		growing = true;
 		transform.Find("Animation").GetComponent<Animator>().SetTrigger("Grow");
+		StartCoroutine(GrowSeed(1.87f));
+	}
+
+	private IEnumerator GrowSeed(float delay) {
+		yield return new WaitForSeconds(delay);
+		GameObject plant = GameObject.Find("Floating Plant");
+		plant.transform.localScale = new Vector3(-1, 1, 1);
+		plant.transform.Find("Animation").GetComponent<FloatingPlantAnimator>().Set("Grow");
 	}
 
 }
