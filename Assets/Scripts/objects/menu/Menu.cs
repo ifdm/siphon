@@ -16,6 +16,10 @@ public class Menu : MonoBehaviour {
 			pages.GetChild(i).gameObject.SetActive(false);
 		}
 		MenuChangePage(page);
+
+		if(PlayerPrefs.GetInt("OptionsMusic") == 0) {
+			AudioListener.pause = true;
+		}
 	}
 	
 	void MenuChangePage(string newPage) {

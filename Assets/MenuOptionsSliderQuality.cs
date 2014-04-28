@@ -3,13 +3,9 @@ using System.Collections;
 
 public class MenuOptionsSliderQuality : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	int quality = 3;
+
+	void MenuOptionsSliderChange(int level) {
+
 	}
 }
