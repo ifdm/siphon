@@ -31,7 +31,7 @@ public class GrappleVineGrowth : Plant {
 	}
 	
 	public override bool canPlant(RaycastHit2D cast) {
-		if(!cast){return false;}
+		if(!cast || cast.normal.y < 0){return false;}
 		if(
 			(cast.transform.parent != null && cast.transform.parent.gameObject.GetComponent<Unplantable>() != null) ||
 			(cast.transform.gameObject.GetComponent<Unplantable>() != null)
