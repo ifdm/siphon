@@ -25,23 +25,23 @@ public class TouchOfDeath : MonoBehaviour {
 				control.ChangeState(PlayerState.Dying);
 				switch(animation) {
 					case TouchOfDeath.DeathAnimation.frontHit:
-						control.animator.Set("FrontHit");
+						control.animator.Set("Front Hit");
 					break;
 
 					case TouchOfDeath.DeathAnimation.backHit:
-						control.animator.Set("BackHit");
+						control.animator.Set("Back Hit");
 					break;
 
 					case TouchOfDeath.DeathAnimation.spikeDeath:
-						control.animator.Set("SpikeDeath");
+						control.animator.Set("Spike Death");
 					break;
 
 					case TouchOfDeath.DeathAnimation.fallDeath:
-						control.animator.Set("FallDeath");
+						control.animator.Set("Fall Death " + (Mathf.Ceil(Random.value * 3)));
 					break;
 
 					case TouchOfDeath.DeathAnimation.drownDeath:
-						control.animator.Set("DrownDeath");
+						control.animator.Set("Drown Death");
 					break;
 				}
 			}

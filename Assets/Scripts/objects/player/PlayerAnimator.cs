@@ -24,11 +24,13 @@ public class PlayerAnimator : Animateur {
 			{"Pull", new AnimationType(Type.Spine, "pull")},
 			{"Turn", new AnimationType(Type.Spine, "turn-around")},
 			{"Edge", new AnimationType(Type.Spine, "near-edge")},
-			{"SpikeDeath", new AnimationType(Type.Spine, "spike-death")},
-			{"BackHit", new AnimationType(Type.Spine, "back-hit")},
-			{"FrontHit", new AnimationType(Type.Spine, "front-hit")},
-			{"FallDeath", new AnimationType(Type.Spine, "fall-death")},
-			{"DrownDeath", new AnimationType(Type.Spine, "drown")},
+			{"Spike Death", new AnimationType(Type.Spine, "spike-death")},
+			{"Back Hit", new AnimationType(Type.Spine, "back-hit")},
+			{"Front Hit", new AnimationType(Type.Spine, "front-hit")},
+			{"Fall Death 1", new AnimationType(Type.Spine, "fall-death-one")},
+			{"Fall Death 2", new AnimationType(Type.Spine, "fall-death-two")},
+			{"Fall Death 3", new AnimationType(Type.Spine, "fall-death-three")},
+			{"Drown Death", new AnimationType(Type.Spine, "drown")},
 			{"Slide", new AnimationType(Type.Spine, "slide")}
 		};
 
