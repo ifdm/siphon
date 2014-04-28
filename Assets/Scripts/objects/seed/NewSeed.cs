@@ -14,6 +14,8 @@ public class NewSeed : MonoBehaviour {
 		z = camera.camera.farClipPlane;
 		StartCoroutine(fadeIn());
 		renderer.material.color = new Color(1, 1, 1, 0);
+		GameObject.Find("Player").GetComponent<PlayerControl>().ChangeState(PlayerState.Idling);
+		GameObject.Find("Player").GetComponent<PlayerPhysics>().disableControl = true;
 	}
 
 	void Update() {
@@ -48,6 +50,8 @@ public class NewSeed : MonoBehaviour {
 	IEnumerator fadeOut() {
 		yield return new WaitForSeconds(1.35f);
 		snap = false;
+
+		GameObject.Find("Player").GetComponent<PlayerPhysics>().disableControl = false;
 
 		while(true) {
 			alpha = Mathf.Lerp(alpha, 0, 10 * Time.deltaTime);
