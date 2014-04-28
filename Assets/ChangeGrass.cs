@@ -28,7 +28,6 @@ public class ChangeGrass : MonoBehaviour {
 	private IEnumerator GrowSeed(float delay) {
 		yield return new WaitForSeconds(delay);
 		GameObject plant = GameObject.Find("Floating Plant");
-		plant.transform.localScale = new Vector3(-1, 1, 1);
 		plant.transform.Find("Animation").GetComponent<FloatingPlantAnimator>().Set("Grow");
 	}
 
