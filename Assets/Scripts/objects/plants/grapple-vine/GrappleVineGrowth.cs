@@ -19,6 +19,7 @@ public class GrappleVineGrowth : Plant {
 			transform.position = new Vector3(transform.position.x, transform.position.y + (24 * Time.deltaTime), transform.position.z);
 			RaycastHit2D cast;
 			if(cast = Physics2D.Linecast(transform.position, transform.position + (1.5f * Vector3.up), 1 << LayerMask.NameToLayer("Ground"))) {
+				transform.position = cast.point;
 				child = (GameObject)Instantiate(GrappleVine, startPoint, Quaternion.identity);
 				cast.transform.gameObject.SendMessage("Hooked", SendMessageOptions.DontRequireReceiver);
 			}
