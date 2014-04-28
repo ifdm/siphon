@@ -9,7 +9,7 @@ public class IntroducePillars : MonoBehaviour {
 		if(!dirty && col.gameObject.name == "Player") {
 			col.gameObject.GetComponent<PlayerPhysics>().disableControl = true;
 			StartCoroutine(GiveControlBack());
-			dirty = false;
+			dirty = true;
 		}
 	}
 
