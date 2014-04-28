@@ -9,6 +9,11 @@ public class BoulderKill : MonoBehaviour {
 			animator.One("Die");
 			GetComponent<EntityAudio>().One("robotCrash");
 
+			var particles = animator.GetComponentsInChildren<ParticleSystem>();
+			foreach(ParticleSystem particle in particles) {
+				particle.Stop();
+			}
+
 			Destroy(col.gameObject.GetComponent<CircleCollider2D>());
 		}
 	}
