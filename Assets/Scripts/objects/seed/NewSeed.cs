@@ -35,7 +35,7 @@ public class NewSeed : MonoBehaviour {
 					z = 15;
 					camera.GetComponent<CameraFollow>().shake = 0.5f;
 					camera.GetComponent<CameraFollow>().shakeStrength = 1.0f;
-					camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, camera.transform.position.z - 1);
+					//camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, camera.transform.position.z - 1);
 					StartCoroutine(fadeOut());
 					break;
 				}
