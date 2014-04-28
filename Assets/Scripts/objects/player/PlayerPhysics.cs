@@ -151,6 +151,7 @@ public class PlayerPhysics : MonoBehaviour {
 					script.pulling = true;
 					script.pushing = false;
 				}
+				GetComponent<PlayerControl>().animator.TimeScale = Input.GetAxis("Horizontal");
 
 				interactable.rigidbody2D.AddForce(new Vector2(sign * force * 4, 0));
 
