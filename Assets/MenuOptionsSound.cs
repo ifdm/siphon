@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuOptionsMusic : MonoBehaviour {
+public class MenuOptionsSound : MonoBehaviour {
 
 	void MenuToggleState(bool activated) {
 		if(activated) {

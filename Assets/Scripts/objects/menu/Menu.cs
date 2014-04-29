@@ -17,8 +17,13 @@ public class Menu : MonoBehaviour {
 		}
 		MenuChangePage(page);
 
-		if(PlayerPrefs.HasKey("OptionsMusic") && PlayerPrefs.GetInt("OptionsMusic") == 0) {
+		if(PlayerPrefs.GetInt("OptionsSound", 1) == 0) {
 			AudioListener.pause = true;
+		}
+
+		if(PlayerPrefs.HasKey("OptionsQuality")) {
+			QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("OptionsQuality"));
+			Debug.Log(QualitySettings.names[QualitySettings.GetQualityLevel()]);
 		}
 	}
 	

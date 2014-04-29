@@ -35,6 +35,7 @@ public class MenuToggle : MonoBehaviour {
 
 		if(prefName != "") {
 			PlayerPrefs.SetInt(prefName, activated ? 1 : 0);
+			PlayerPrefs.Save();
 		}
 	}
 }
