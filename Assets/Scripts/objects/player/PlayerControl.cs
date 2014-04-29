@@ -16,6 +16,9 @@ public class PlayerControl : MonoBehaviour {
 		animator = transform.Find("Animation").GetComponent<PlayerAnimator>();
 		mozart = GetComponent<PlayerAudio>();
 
+		RaycastHit2D ground = Physics2D.Linecast(transform.position, (Vector3.up * -100) + transform.position, (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("One-Way Ground")));
+		if(ground) transform.position = ground.point;
+
 		ChangeState(PlayerState.Idling);
 	}
 
