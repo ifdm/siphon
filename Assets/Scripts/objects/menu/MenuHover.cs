@@ -5,15 +5,11 @@ public class MenuHover : MonoBehaviour {
 
 	private bool hovering = false;
 
-	void Start() {
-		
-	}
-	
 	void Update() {
 		Collider2D col;
 		Vector3 mouse = Input.mousePosition;
-		mouse.z = -Camera.main.transform.position.z;
-		if(col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(mouse))) {
+		mouse.z = Mathf.Abs(Camera.main.transform.position.z);
+		if(col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, mouse.z)))) {
 			if(col.gameObject == gameObject) {
 				if(Input.GetMouseButtonDown(0)) {
 					SendMessage("MenuMouseClick", null, SendMessageOptions.DontRequireReceiver);

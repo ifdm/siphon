@@ -8,8 +8,12 @@ public class DyingState : PlayerState {
 	private float dyingTimer = 0;
 
 	public override void HandleInput(PlayerControl player) {
+		Time.timeScale = Mathf.Lerp(Time.timeScale, .5f, 10 * Time.deltaTime);
 		dyingTimer -= Time.deltaTime;
-		if(dyingTimer <= 0){Application.LoadLevel(Application.loadedLevel);}
+		if(dyingTimer <= 0) {
+			Time.timeScale = 1;
+			Application.LoadLevel(Application.loadedLevel);
+		}
 	}
 
 	public override void Enter(PlayerControl player, PlayerState from) {
