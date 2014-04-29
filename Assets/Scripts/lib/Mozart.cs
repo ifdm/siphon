@@ -31,6 +31,13 @@ public class Mozart : MonoBehaviour {
 		var removal = tracks.Where(key => !sources[key.Value].isPlaying).ToArray();
 		foreach(var item in removal){tracks.Remove(item.Key);}
 	}
+	
+	public AudioSource GetAudioSource(string name){
+		if(Available(name)){
+			return sources[name];
+		}
+		return null;
+	}
 
 	public void Play(string name, float volume = 1f, bool loop = false, int track = 0, ulong delay = 0) {
 		if(Available(name)) {

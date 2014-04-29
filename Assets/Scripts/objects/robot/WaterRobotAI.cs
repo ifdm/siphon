@@ -28,8 +28,17 @@ public class WaterRobotAI : MonoBehaviour {
 		animator = transform.Find("Animateur").GetComponent<WaterRobotAnimator>();
 		interactable = GetComponentInChildren<Interactable>();
 		audio = GetComponent<EntityAudio>();
-		audio.One("WaterRobot_Idle", 1f, true);
-		audio.One("WaterRobot_Move", 1f, true);
+		audio.GetAudioSource("WaterRobot_Idle").minDistance = 20f;
+		audio.GetAudioSource("WaterRobot_Idle").maxDistance = 60f;
+		audio.GetAudioSource("WaterRobot_Idle").rolloffMode = AudioRolloffMode.Linear;
+		audio.GetAudioSource("WaterRobot_Move").minDistance = 20f;
+		audio.GetAudioSource("WaterRobot_Move").maxDistance = 60f;
+		audio.GetAudioSource("WaterRobot_Move").rolloffMode = AudioRolloffMode.Linear;
+		audio.GetAudioSource("WaterRobot_Kill").minDistance = 20f;
+		audio.GetAudioSource("WaterRobot_Kill").maxDistance = 60f;
+		audio.GetAudioSource("WaterRobot_Kill").rolloffMode = AudioRolloffMode.Linear;
+		audio.One("WaterRobot_Idle", 0.05f, true);
+		audio.One("WaterRobot_Move", 0.05f, true);
 	}
 
 	// Update is called once per frame
@@ -53,7 +62,6 @@ public class WaterRobotAI : MonoBehaviour {
 		if(stopping){
 			rigidbody2D.mass = 10000000f;
 			interactable.dynamicWeight = 100000000f;
-			audio.One("WaterRobot_Stopping");
 			audio.Stop("WaterRobot_Move");
 			audio.Stop("WaterRobot_Idle");
 			return;
@@ -77,7 +85,7 @@ public class WaterRobotAI : MonoBehaviour {
 				theScale.x *= -1;
 				transform.localScale = theScale;
 				direction *= -1;
-				audio.One("WaterRobot_Move", 1f, true);
+				audio.One("WaterRobot_Move", 0.05f, true);
 				animator.Set("Travel", true);
 			}
 			return;
@@ -106,7 +114,7 @@ public class WaterRobotAI : MonoBehaviour {
 
 			PlayerControl player = coll.gameObject.GetComponent<PlayerControl>();
 			player.ChangeState(PlayerState.Dying);
-			audio.One("WaterRobot_Kill");
+			audio.One("WaterRobot_Kill", 0.05f);
 		}
 	}
 
