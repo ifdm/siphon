@@ -20,8 +20,15 @@ public class DislodgeBranch : MonoBehaviour {
 	}
 
 	IEnumerator dislodge() {
-		yield return new WaitForSeconds(2.3f);
 		GameObject branch = GameObject.Find("Broken Branch");
+		yield return new WaitForSeconds(1.51f);
+		GameObject.Find("Player").GetComponent<PlayerPhysics>().disableControl = true;
+		if(GameObject.Find("Player").transform.localScale.x < 0) {
+			GameObject.Find("Player").GetComponent<PlayerPhysics>().ChangeDirection();
+		}
+		yield return new WaitForSeconds(.5f);
+		branch.transform.Find("CameraPull").gameObject.SetActive(true);
+		yield return new WaitForSeconds(1f);
 		branch.rigidbody2D.isKinematic = false;
 		branch.transform.Find("body").GetComponent<BoxCollider2D>().isTrigger = true;
 		branch.transform.Find("leftEdge").GetComponent<BoxCollider2D>().isTrigger = true;
@@ -30,5 +37,6 @@ public class DislodgeBranch : MonoBehaviour {
 		yield return new WaitForSeconds(1.7f);
 		GameObject.Find("Main Camera").GetComponent<CameraFollow>().shake = .5f;
 		GameObject.Find("Main Camera").GetComponent<CameraFollow>().shakeStrength = 2;
+		GameObject.Find("Player").GetComponent<PlayerPhysics>().disableControl = false;
 	}
 }
