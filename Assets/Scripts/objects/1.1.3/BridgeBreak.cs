@@ -30,9 +30,9 @@ public class BridgeBreak : MonoBehaviour {
 		GameObject.Find("Board2").GetComponent<BoxCollider2D>().isTrigger = true;
 		GameObject.Find("Board3").GetComponent<BoxCollider2D>().isTrigger = true;
 		GameObject.Find("BoardEdgeL").GetComponent<BoxCollider2D>().isTrigger = true;
-		GameObject.Find("BoardEdgeL").GetComponent<CircleCollider2D>().isTrigger = true;
+		//GameObject.Find("BoardEdgeL").GetComponent<CircleCollider2D>().isTrigger = true;
 		GameObject.Find("BoardEdgeR").GetComponent<BoxCollider2D>().isTrigger = true;
-		GameObject.Find("BoardEdgeR").GetComponent<CircleCollider2D>().isTrigger = true;
+		//GameObject.Find("BoardEdgeR").GetComponent<CircleCollider2D>().isTrigger = true;
 
 		GameObject.Find("Branch").GetComponent<BoxCollider2D>().isTrigger = true;
 
