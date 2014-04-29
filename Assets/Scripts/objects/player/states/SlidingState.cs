@@ -11,7 +11,7 @@ public class SlidingState : PlayerState {
 	}
 
 	public override void Update(PlayerControl player) {
-		if(Mathf.Sign(player.rigidbody2D.velocity.x) != Mathf.Sign(player.transform.lossyScale.x)) {
+		if(Mathf.Sign(player.transform.localScale.x) != Mathf.Sign(player.normal().x)) {
 			player.physics.ChangeDirection();
 		}
 	}

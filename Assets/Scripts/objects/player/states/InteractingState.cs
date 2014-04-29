@@ -46,7 +46,7 @@ public class InteractingState : PlayerState {
 		target.rigidbody2D.mass = interactable.dynamicWeight;
 		player.animator.Set("Push");
 		player.animator.TimeScale = 1;
-		animationGrace = .5f;
+		animationGrace = 0.5f;
 		interactable.moved = true;
 		interactable.audio.Play();
 	}
