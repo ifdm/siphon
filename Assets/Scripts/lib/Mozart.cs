@@ -74,11 +74,12 @@ public class Mozart : MonoBehaviour {
 		if(tracks.ContainsKey(trackIndex)) {
 			string name = tracks[trackIndex];
 			StartCoroutine(Fader(name, to, duration));
+			
 		}
 		else {
 			StartCoroutine(Fader(null, to, duration));
 		}
-
+		tracks[trackIndex] = to;
 		Play(to, 0.2f, true, 1);
 	}
 
