@@ -48,10 +48,10 @@
 	{ "name": "rightHumerus", "bone": "rightArm", "attachment": "rightHumerus" },
 	{ "name": "rightSleeve", "bone": "rightSleeve", "attachment": "rightSleeve" },
 	{ "name": "rightForearm", "bone": "rightForearm", "attachment": "rightForearm" },
-	{ "name": "rightWrist", "bone": "rightWrist", "attachment": "grab-right" },
-	{ "name": "rightIndex", "bone": "rightWrist", "attachment": "blank" },
-	{ "name": "rightPinky", "bone": "rightWrist", "attachment": "blank" },
-	{ "name": "rightThumb", "bone": "rightWrist" },
+	{ "name": "rightWrist", "bone": "rightWrist", "attachment": "rightWrist" },
+	{ "name": "rightIndex", "bone": "rightWrist", "attachment": "rightIndex" },
+	{ "name": "rightPinky", "bone": "rightWrist", "attachment": "rightPinky" },
+	{ "name": "rightThumb", "bone": "rightWrist", "attachment": "rightThumb" },
 	{ "name": "turn-around", "bone": "root" }
 ],
 "skins": {
@@ -165,6 +165,7 @@
 	"throw": {}
 },
 "animations": {
+	"BACON": {},
 	"back-hit": {
 		"slots": {
 			"rightIndex": {
@@ -1233,40 +1234,62 @@
 			"leftIndex": {
 				"attachment": [
 					{ "time": 0, "name": null },
+					{ "time": 0.6666, "name": null },
 					{ "time": 1, "name": null }
 				]
 			},
 			"leftPinky": {
 				"attachment": [
 					{ "time": 0, "name": null },
+					{ "time": 0.6666, "name": null },
 					{ "time": 1, "name": null }
 				]
 			},
 			"leftThumb": {
 				"attachment": [
 					{ "time": 0, "name": null },
+					{ "time": 0.6666, "name": null },
 					{ "time": 1, "name": null }
 				]
 			},
 			"leftWrist": {
 				"attachment": [
 					{ "time": 0, "name": "grab-left" },
+					{ "time": 0.6666, "name": "grab-left" },
 					{ "time": 1, "name": "grab-left" }
+				]
+			},
+			"rightForearm": {
+				"attachment": [
+					{ "time": 0.6666, "name": "rightForearm" }
 				]
 			},
 			"rightIndex": {
 				"attachment": [
-					{ "time": 0, "name": "blank" }
+					{ "time": 0, "name": "blank" },
+					{ "time": 0.6666, "name": "blank" },
+					{ "time": 1, "name": "blank" }
 				]
 			},
 			"rightPinky": {
 				"attachment": [
-					{ "time": 0, "name": "blank" }
+					{ "time": 0, "name": "blank" },
+					{ "time": 0.6666, "name": "blank" },
+					{ "time": 1, "name": "blank" }
 				]
 			},
 			"rightThumb": {
 				"attachment": [
-					{ "time": 0, "name": null }
+					{ "time": 0, "name": null },
+					{ "time": 0.6666, "name": null },
+					{ "time": 1, "name": null }
+				]
+			},
+			"rightWrist": {
+				"attachment": [
+					{ "time": 0, "name": "grab-right" },
+					{ "time": 0.6666, "name": "grab-right" },
+					{ "time": 1, "name": "grab-right" }
 				]
 			}
 		},
@@ -6051,6 +6074,11 @@
 			"rightFoot": {
 				"rotate": [
 					{ "time": 0, "angle": -39.75 }
+				]
+			},
+			"leftSleeve": {
+				"rotate": [
+					{ "time": 0, "angle": -35.96 }
 				]
 			}
 		}
