@@ -11,6 +11,7 @@ public class WaterRobotAI : MonoBehaviour {
 	public Transform leftWaypoint;
 	public Transform rightWaypoint;
 	public Transform stopWaypoint;
+	public float maxOffsetX = 10;
 
 	private bool sucking = false;
 	private int direction = 1;
@@ -36,6 +37,12 @@ public class WaterRobotAI : MonoBehaviour {
 		if(stopped) return;
 
 		float x = transform.position.x;
+
+		if(x > rightWaypoint.position.x + maxOffsetX) {
+			transform.position = Vector3.Lerp(transform.position, new Vector3(rightWaypoint.position.x + maxOffsetX, transform.position.y, transform.position.z), 4 * Time.deltaTime);
+		}
+
+		x = transform.position.x;
 
 		if(x > stopWaypoint.position.x && !stopped) {
 			stopping = true;
@@ -101,5 +108,9 @@ public class WaterRobotAI : MonoBehaviour {
 			player.ChangeState(PlayerState.Dying);
 			audio.One("WaterRobot_Kill");
 		}
+	}
+
+	void OnDrawGizmos() {
+		Debug.DrawLine(rightWaypoint.position + Vector3.right * maxOffsetX - Vector3.up, rightWaypoint.position + Vector3.right * maxOffsetX + Vector3.up, Color.red);
 	}
 }
