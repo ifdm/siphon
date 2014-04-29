@@ -164,7 +164,7 @@ public class PlayerControl : MonoBehaviour {
 
 	public bool isSliding() {
 		Vector2 n = normal();
-		return isGrounded() && n.x > .5 && rigidbody2D.velocity.y < 0 && rigidbody2D.velocity.x != 0;
+		return isGrounded() && n.x > .5 && rigidbody2D.velocity.y < 0 && rigidbody2D.velocity.x != 0 && rigidbody2D.velocity.magnitude > 2.5;
 	}
 
 	public bool canLedgeGrab() {
