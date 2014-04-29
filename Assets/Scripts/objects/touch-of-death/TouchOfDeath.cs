@@ -24,6 +24,8 @@ public class TouchOfDeath : MonoBehaviour {
 				col.gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
 				col.gameObject.GetComponent<PlayerAudio>().Play("Death");
 				control.ChangeState(PlayerState.Dying);
+				GameObject cam = GameObject.Find("Main Camera");
+				cam.GetComponent<CameraFollow>().pullTo = new Vector3(col.transform.position.x, col.transform.position.y, cam.transform.position.z);
 				switch(animation) {
 					case TouchOfDeath.DeathAnimation.frontHit:
 						control.animator.Set("Front Hit");
