@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour {
 		}
 		MenuChangePage(page);
 
-		if(PlayerPrefs.GetInt("OptionsMusic") == 0) {
+		if(PlayerPrefs.HasKey("OptionsMusic") && PlayerPrefs.GetInt("OptionsMusic") == 0) {
 			AudioListener.pause = true;
 		}
 	}

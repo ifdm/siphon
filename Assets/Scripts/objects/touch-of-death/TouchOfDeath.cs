@@ -11,13 +11,14 @@ public class TouchOfDeath : MonoBehaviour {
 		drownDeath
 	};
 
+	public bool fallThrough = false;
 	public TouchOfDeath.DeathAnimation animation = TouchOfDeath.DeathAnimation.frontHit;
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.tag == "Player") {
 			PlayerControl control = col.gameObject.GetComponent<PlayerControl>();
 			if(control.state != PlayerState.Dying) {
-				col.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+				col.gameObject.GetComponent<Rigidbody2D>().isKinematic = !fallThrough;
 				col.gameObject.GetComponent<EdgeCollider2D>().isTrigger = true;
 				col.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
 				col.gameObject.GetComponent<CircleCollider2D>().isTrigger = true;

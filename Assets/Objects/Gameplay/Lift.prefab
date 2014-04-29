@@ -60,6 +60,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400002}
   - 50: {fileID: 5000000}
+  - 114: {fileID: 11400004}
   m_Layer: 8
   m_Name: Lift
   m_TagString: NoLedgeGrab
@@ -155,15 +156,15 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.9939499, y: 14.8630447, z: 0}
-  m_LocalScale: {x: 3.20389891, y: .296133995, z: 1}
+  m_LocalPosition: {x: 65.1269531, y: 12.3023567, z: 0}
+  m_LocalScale: {x: 2.50029492, y: .198287055, z: 1}
   m_Children:
+  - {fileID: 400012}
   - {fileID: 400002}
   - {fileID: 400010}
   - {fileID: 400008}
   - {fileID: 400004}
   - {fileID: 400000}
-  - {fileID: 400012}
   m_Father: {fileID: 0}
 --- !u!4 &400008
 Transform:
@@ -194,8 +195,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .010961053, y: -9.4086895, z: 0}
-  m_LocalScale: {x: .0598697886, y: .64773649, z: 1}
+  m_LocalPosition: {x: .0169840809, y: -9.74482059, z: 0}
+  m_LocalScale: {x: .0599999987, y: .600000024, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
 --- !u!50 &5000000
@@ -292,11 +293,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loop: 0
   playerEnabled: 1
-  breaks: 0
-  distance: -18
+  breaks: 1
+  distance: -11
   speed: -2
   cachedSpeed: 0
   running: 0
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3c475376105434d8f40db7f5bd1045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -332,7 +344,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 563309643a8c8034d9cbc655e09321ab, type: 2}
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
