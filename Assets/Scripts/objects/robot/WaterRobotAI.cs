@@ -38,7 +38,7 @@ public class WaterRobotAI : MonoBehaviour {
 		audio.GetAudioSource("WaterRobot_Kill").maxDistance = 60f;
 		audio.GetAudioSource("WaterRobot_Kill").rolloffMode = AudioRolloffMode.Linear;
 		audio.One("WaterRobot_Idle", 0.05f, true);
-		audio.One("WaterRobot_Move", 0.05f, true);
+		//audio.One("WaterRobot_Move", 0.05f, true);
 	}
 
 	// Update is called once per frame
@@ -62,7 +62,7 @@ public class WaterRobotAI : MonoBehaviour {
 		if(stopping){
 			rigidbody2D.mass = 10000000f;
 			interactable.dynamicWeight = 100000000f;
-			audio.Stop("WaterRobot_Move");
+			//audio.Stop("WaterRobot_Move");
 			audio.Stop("WaterRobot_Idle");
 			return;
 		}
@@ -85,21 +85,16 @@ public class WaterRobotAI : MonoBehaviour {
 				theScale.x *= -1;
 				transform.localScale = theScale;
 				direction *= -1;
-				audio.One("WaterRobot_Move", 0.05f, true);
+				audio.One("WaterRobot_Idle", 0.05f, true);
 				animator.Set("Travel", true);
 			}
 			return;
 		}
 
-		if(x < leftWaypoint.position.x && !left) {
+		if((x < leftWaypoint.position.x && !left) || (x > rightWaypoint.position.x && left)) {
 			left = !left;
 			pause = pauseTime;
-			audio.Stop("WaterRobot_Move");
-		}
-		else if(x > rightWaypoint.position.x && left) {
-			left = !left;
-			pause = pauseTime;
-			audio.Stop("WaterRobot_Move");
+			audio.Stop("WaterRobot_Idle");
 		}
 
 		rigidbody2D.AddForce(Vector2.right * this.direction * 100f);
