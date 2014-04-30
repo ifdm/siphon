@@ -42,17 +42,15 @@ public class KillTrella : MonoBehaviour {
 			yield return new WaitForSeconds(0);
 		}
 
-		yield return new WaitForSeconds(2.5f);
+		yield return new WaitForSeconds(2.6f);
 
 		GameObject credits = GameObject.Find("siphonLogoCreditsTree");
 		GameObject fadeIn1 = GameObject.Find("CreditTreeBaseFadeIn");
-		GameObject fadeIn2 = GameObject.Find("CreditTreeBase2FadeIn");
-		GameObject fadeIn3 = GameObject.Find("CreditTreeGroundFadeIn");
+		GameObject fadeIn2 = GameObject.Find("CreditTreeGroundFadeIn");
 		Color c = new Color(1, 1, 1, 0);
 		fadeIn1.renderer.material.color = c;
 		fadeIn2.renderer.material.color = c;
-		fadeIn3.renderer.material.color = c;
-		camera.transform.position = new Vector3(credits.transform.position.x, credits.transform.position.y, credits.transform.position.z - 11);
+		camera.transform.position = new Vector3(credits.transform.position.x, credits.transform.position.y, credits.transform.position.z - 11.2f);
 		follow.pullTo = camera.transform.position;
 		while(c.a < 1) {
 			c = new Color(c.r, c.g, c.b, c.a + Time.deltaTime / 2);
@@ -64,17 +62,37 @@ public class KillTrella : MonoBehaviour {
 
 		float orig = camera.transform.position.y;
 		float xx = .008f;
-		targetY = camera.transform.position.y + 495f;
+		targetY = camera.transform.position.y + 488f;
 		Vector3 posVel = Vector3.zero;
 		while(camera.transform.position.y < targetY) {
-			follow.pullTo += Vector3.up * Time.deltaTime * .6f;
+			follow.pullTo += Vector3.up * Time.deltaTime * .68f;
 			//follow.pullTo += Vector3.right * Mathf.Sin((follow.pullTo.y - orig) / 10) * .002f;
-			follow.pullTo += Vector3.right * xx * Time.deltaTime;
-			xx = Mathf.Min(xx + Time.deltaTime * .002f, 0.009f);
+			//follow.pullTo += Vector3.right * xx * Time.deltaTime;
+			//xx = Mathf.Min(xx + Time.deltaTime * .002f, 0.009f);
 			yield return new WaitForSeconds(0);
 		}
 
-		yield return new WaitForSeconds(1);
+		float t = 0;
+		while(t < 4) {
+			follow.pullTo = new Vector3(follow.pullTo.x, follow.pullTo.y, follow.pullTo.z - Time.deltaTime);
+			t += Time.deltaTime;
+			yield return new WaitForSeconds(0);
+		}
+
+		yield return new WaitForSeconds(2);
+
+		orig = follow.pullTo.y;
+		while(follow.pullTo.z > -100) {
+			follow.pullTo = Vector3.Lerp(follow.pullTo, new Vector3(follow.pullTo.x, orig + 40f, -100.01f), Mathf.Clamp(Time.deltaTime, 0, 1));
+			yield return new WaitForSeconds(0);
+		}
+
+		yield return new WaitForSeconds(2);
+		
+		GameObject.Find("Main Camera").GetComponent<FadeOut>().StartFade(Color.black, 5.0f);
+
+		yield return new WaitForSeconds(5);
+
 		Application.LoadLevel("Menu");
 	}
 }
