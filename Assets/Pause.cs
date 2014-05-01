@@ -41,6 +41,13 @@ public class Pause : MonoBehaviour {
 	void TogglePause() {
 		paused = !paused;
 		alpha = paused ? 0 : 1;
+		if(paused) {
+			transform.Find("Pages").gameObject.SetActive(true);
+			SendMessage("MenuChangePage", "Pause");
+		}
+		else {
+			transform.Find("Pages").gameObject.SetActive(false);
+		}
 		foreach(SpriteRenderer graphic in graphics) {
 			graphic.material.color = new Color(1, 1, 1, alpha);
 		}
