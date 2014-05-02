@@ -103,7 +103,7 @@ public class Mozart : MonoBehaviour {
 		return sources.ContainsKey(name);
 	}
 
-	private IEnumerator Fader(string from, string to, float duration, float volume) {
+	private IEnumerator Fader(string from, string to, float duration, float volume = 1) {
 		float maxDuration = duration;
 		sources[to].volume = 0f;
 
