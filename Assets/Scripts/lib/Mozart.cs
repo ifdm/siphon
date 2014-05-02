@@ -70,17 +70,20 @@ public class Mozart : MonoBehaviour {
 		}
 	}
 
-	public void CrossFade(string to, float duration, int trackIndex = 0) {
+	public void CrossFade(string to, float duration, int trackIndex = 0, float volume) {
 		if(tracks.ContainsKey(trackIndex)) {
 			string name = tracks[trackIndex];
-			StartCoroutine(Fader(name, to, duration));
+			if(name == to){
+				return;
+			}
+			StartCoroutine(Fader(name, to, duration, volume));
 			
 		}
 		else {
-			StartCoroutine(Fader(null, to, duration));
+			StartCoroutine(Fader(null, to, duration, volume));
 		}
 		tracks[trackIndex] = to;
-		Play(to, 0.2f, true, 1);
+		Play(to, volume, true, 1);
 	}
 
 	public void Schedule(string name, float time) {
@@ -100,13 +103,13 @@ public class Mozart : MonoBehaviour {
 		return sources.ContainsKey(name);
 	}
 
-	private IEnumerator Fader(string from, string to, float duration) {
+	private IEnumerator Fader(string from, string to, float duration, float volume) {
 		float maxDuration = duration;
 		sources[to].volume = 0f;
 
 		while(duration > 0) {
 			if(Available(from)) sources[from].volume -= Mathf.Max(Time.deltaTime / maxDuration, 0f);
-			sources[to].volume += Mathf.Min(Time.deltaTime / maxDuration, 1f);
+			sources[to].volume += Mathf.Min(Time.deltaTime / maxDuration, volume);
 
 			duration -= Time.deltaTime;
 			//Debug.Log(duration);
