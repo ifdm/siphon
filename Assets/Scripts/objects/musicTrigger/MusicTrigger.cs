@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class MusicTrigger : MonoBehaviour {
 
 	public string track;
+	public float volume;
 
 	private bool triggered;
 	private GameObject player;
@@ -19,7 +20,7 @@ public class MusicTrigger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.Equals(player) && !triggered) {
 			triggered = true;
-			cameraAudio.CrossFade(track, 4f, 0);
+			cameraAudio.CrossFade(track, 4f, 0, volume);
 		}
 	}
 
