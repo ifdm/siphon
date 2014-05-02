@@ -28,6 +28,7 @@ public class Menu : MonoBehaviour {
 	}
 	
 	void MenuChangePage(string newPage) {
+		GetComponent<AudioSource> ().Play ();
 		BroadcastMessage("MenuMouseBlur", null, SendMessageOptions.DontRequireReceiver);
 		if(page != "") {
 			transform.Find("Pages").Find(page).gameObject.SetActive(false);
