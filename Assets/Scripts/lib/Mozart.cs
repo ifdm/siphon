@@ -70,7 +70,7 @@ public class Mozart : MonoBehaviour {
 		}
 	}
 
-	public void CrossFade(string to, float duration, int trackIndex = 0, float volume) {
+	public void CrossFade(string to, float duration, int trackIndex = 0, float volume = 1) {
 		if(tracks.ContainsKey(trackIndex)) {
 			string name = tracks[trackIndex];
 			if(name == to){
