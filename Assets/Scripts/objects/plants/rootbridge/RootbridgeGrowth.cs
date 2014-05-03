@@ -8,6 +8,8 @@ public class RootbridgeGrowth : Plant {
 		extents = Vector2.Scale(extents, transform.lossyScale);
 
 		Transform animation = transform.Find("Animation");
+		animation.GetComponent<Animator>().speed = 2.0f;
+		
 		if(cast.normal.x < 0) {
 			transform.position = new Vector3(transform.position.x - extents.x, transform.position.y, transform.position.z);
 			animation.rotation = new Quaternion(0, -180, 0, 1);
