@@ -3,10 +3,9 @@ using System.Collections;
 
 public class GVCut : MonoBehaviour {
 
-	public void Hooked() {
-		transform.parent.Find("Vines").GetComponent<Animator>().SetTrigger("Kill");
-		transform.parent.Find("Long Vines").GetComponent<Animator>().SetTrigger("Kill");
-		Destroy(gameObject);
+	void Hooked() {
+		transform.parent.parent.Find("Vines").GetComponent<Animator>().SetTrigger("Kill");
+		transform.parent.parent.Find("Long Vines").GetComponent<Animator>().SetTrigger("Kill");
+		Destroy(transform.parent.gameObject);
 	}
-
 }
