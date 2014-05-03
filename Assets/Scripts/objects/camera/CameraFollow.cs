@@ -16,6 +16,7 @@ public class CameraFollow : MonoBehaviour {
 
 	private float z;
 	public float zStart;
+	public GameObject checkpointController;
 	private float zVel = 0;
 	private Vector3 posVel = Vector3.zero;
 	private Vector3 shakeVel = Vector3.zero;
@@ -30,6 +31,9 @@ public class CameraFollow : MonoBehaviour {
 		targetAmbient = RenderSettings.ambientLight;
 
 		camera.transparencySortMode = TransparencySortMode.Orthographic;
+		if(!CheckpointController.instance) {
+			Instantiate(checkpointController);
+		}
 	}
 
 	void Update() {
