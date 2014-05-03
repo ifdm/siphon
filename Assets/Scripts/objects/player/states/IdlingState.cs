@@ -23,11 +23,6 @@ public class IdlingState : PlayerState {
 			PlayerState.Interacting.target = target;
 			player.ChangeState(PlayerState.Interacting);
 		}
-
-		if(player.isIdle() && player.isUnbalanced() && player.isGrounded() && !edging) {
-			player.animator.Set("Edge", true);
-			edging = true;
-		}
 		
 		player.physics.AlignSlope();
 	}
@@ -38,10 +33,7 @@ public class IdlingState : PlayerState {
 
 	public override void Enter(PlayerControl player, PlayerState from) {
 		player.animator.Add("Idle", true);
-		edging = false;
 	}
 
-	public override void Exit(PlayerControl player, PlayerState to) {
-		edging = false;
-	}
+	public override void Exit(PlayerControl player, PlayerState to) {}
 }
