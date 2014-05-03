@@ -11,11 +11,9 @@ public class GiantBoulder : MonoBehaviour {
 				x /= 2;
 			}
 			if(GameObject.Find("Main Camera").GetComponent<CameraFollow>().shake > 0) {
-				x /= 6;
+				x /= 3.5f;
 			}
 			col.gameObject.rigidbody2D.velocity = new Vector2(x, col.gameObject.rigidbody2D.velocity.y);
-
-			//col.gameObject.rigidbody2D.AddForce(new Vector2(10, 0));
 		}
 	}
 }
