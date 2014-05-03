@@ -5,9 +5,11 @@ public class ActiveBucket : MonoBehaviour {
 
 	ActiveBucket sibling;
 	SliderJoint2D joint;
+	private float targetSpeed;
 
 	void Start() {
 		joint = gameObject.GetComponent<SliderJoint2D>();
+		targetSpeed = joint.motor.motorSpeed;
 
 		foreach(Transform child in transform.parent) {
 			if(
@@ -20,8 +22,14 @@ public class ActiveBucket : MonoBehaviour {
 		}
 	}
 
+	void Update() {
+		var motor = joint.motor;
+		motor.motorSpeed = Mathf.Lerp(motor.motorSpeed, targetSpeed, Mathf.Clamp(1 * Time.deltaTime, 0, 1));
+		joint.motor = motor;
+	}
+
 	void OnTriggerEnter2D(Collider2D col) {
-		if(col.gameObject.tag == "Player") down(false);
+		if(col.gameObject.tag == "Player")down(false);
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
@@ -36,20 +44,17 @@ public class ActiveBucket : MonoBehaviour {
 	}
 
 	public void up(bool external) {
-		toggle(Mathf.Abs(joint.motor.motorSpeed));
+		toggle(Mathf.Abs(targetSpeed));
 		if(!external) sibling.down(true);
 	}
 
 	public void down(bool external) {
-		toggle(-Mathf.Abs(joint.motor.motorSpeed));
+		toggle(-Mathf.Abs(targetSpeed));
 		if(!external) sibling.up(true);
 	}
 
 	void toggle(float speed) {
-		var motor = joint.motor;
-		motor.motorSpeed = speed; 
-
-		joint.motor = motor;
+		targetSpeed = speed;
 	}
 
 }
