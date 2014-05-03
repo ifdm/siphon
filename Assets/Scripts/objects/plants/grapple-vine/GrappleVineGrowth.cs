@@ -10,7 +10,7 @@ public class GrappleVineGrowth : Plant {
 
 	public void Start() {
 		startPoint = transform.position;
-		transform.position = new Vector3(transform.position.x, transform.position.y - .3f, transform.position.z);
+		transform.position = new Vector3(transform.position.x, transform.position.y + .3f, transform.position.z);
 	}
 
 	public void Update() {
@@ -21,7 +21,7 @@ public class GrappleVineGrowth : Plant {
 			if(cast = Physics2D.Linecast(transform.position, transform.position + (1.5f * Vector3.up), 1 << LayerMask.NameToLayer("Ground"))) {
 				transform.position = cast.point;
 				child = (GameObject)Instantiate(GrappleVine, startPoint, Quaternion.identity);
-				cast.transform.gameObject.SendMessage("Hooked", SendMessageOptions.DontRequireReceiver);
+				cast.transform.gameObject.SendMessage("Hooked", gameObject, SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}
