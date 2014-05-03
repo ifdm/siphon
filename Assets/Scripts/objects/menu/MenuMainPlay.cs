@@ -6,7 +6,9 @@ public class MenuMainPlay : MonoBehaviour {
 	void MenuMouseClick() {
 		if(CheckpointController.instance) {
 			Destroy(CheckpointController.instance);
-			Destroy(CheckpointController.gameObject);
+			if(GameObject.Find("Checkpoint Controller")) {
+				Destroy(GameObject.Find("Checkpoint Controller"));
+			}
 		}
 		Application.LoadLevel("Siphon");
 	}
