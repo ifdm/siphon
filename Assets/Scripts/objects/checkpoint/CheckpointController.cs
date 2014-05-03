@@ -5,7 +5,7 @@ public class CheckpointController : MonoBehaviour {
 	
 	[HideInInspector] public Vector3 position;
 	[HideInInspector] public Plant[] slots;
-	private static CheckpointController instance = null;
+	public static CheckpointController instance = null;
 
 	void Awake() {
 		if(instance) {

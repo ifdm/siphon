@@ -4,6 +4,9 @@ using System.Collections;
 public class MenuMainPlay : MonoBehaviour {
 
 	void MenuMouseClick() {
+		if(CheckpointController.instance) {
+			Destroy(CheckpointController.instance);
+		}
 		Application.LoadLevel("Siphon");
 	}
 }

@@ -70,30 +70,33 @@ public class KillTrella : MonoBehaviour {
 		float xx = .008f;
 		targetY = camera.transform.position.y + 488f;
 		Vector3 posVel = Vector3.zero;
+		int skip = 0;
 		while(camera.transform.position.y < targetY) {
 			follow.pullTo += Vector3.up * Time.deltaTime * .68f;
+			if(skip < 2 && Input.anyKey) {
+				skip++;
+				if(skip == 2) {
+					follow.pullTo = new Vector3(follow.pullTo.x, targetY + .01f, follow.pullTo.z);
+				}
+			}
 			//follow.pullTo += Vector3.right * Mathf.Sin((follow.pullTo.y - orig) / 10) * .002f;
 			//follow.pullTo += Vector3.right * xx * Time.deltaTime;
 			//xx = Mathf.Min(xx + Time.deltaTime * .002f, 0.009f);
 			yield return new WaitForSeconds(0);
 		}
 
+		yield return new WaitForSeconds(.5f);
+
 		float t = 0;
-		while(t < 4) {
-			follow.pullTo = new Vector3(follow.pullTo.x, follow.pullTo.y, follow.pullTo.z - Time.deltaTime);
+		float zrate = 0;
+		while(t < 10) {
+			follow.pullTo = new Vector3(follow.pullTo.x, follow.pullTo.y + 0.78f * Time.deltaTime, follow.pullTo.z - zrate * Time.deltaTime);
+			zrate = Mathf.Min(zrate + Time.deltaTime * .5f, 1.5f);
 			t += Time.deltaTime;
 			yield return new WaitForSeconds(0);
 		}
 
-		yield return new WaitForSeconds(2);
-
-		orig = follow.pullTo.y;
-		while(follow.pullTo.z > -100) {
-			follow.pullTo = Vector3.Lerp(follow.pullTo, new Vector3(follow.pullTo.x, orig + 40f, -100.01f), Mathf.Clamp(Time.deltaTime, 0, 1));
-			yield return new WaitForSeconds(0);
-		}
-
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(3);
 		
 		GameObject.Find("Main Camera").GetComponent<FadeOut>().StartFade(Color.black, 5.0f);
 
