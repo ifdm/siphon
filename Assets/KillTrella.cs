@@ -9,7 +9,6 @@ public class KillTrella : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.name == "Player") {
-			//col.rigidbody2D.isKinematic = true;
 			col.rigidbody2D.drag = 4;
 			col.rigidbody2D.gravityScale = .8f;
 			col.GetComponent<PlayerPhysics>().maxSpeed = 0;
@@ -73,7 +72,7 @@ public class KillTrella : MonoBehaviour {
 		int skip = 0;
 		while(camera.transform.position.y < targetY) {
 			follow.pullTo += Vector3.up * Time.deltaTime * .68f;
-			if(skip < 2 && Input.anyKey) {
+			if(skip < 2 && Input.anyKeyDown) {
 				skip++;
 				if(skip == 2) {
 					follow.pullTo = new Vector3(follow.pullTo.x, targetY + .01f, follow.pullTo.z);
