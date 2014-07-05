@@ -12,6 +12,8 @@ public class PlayerPhysics : MonoBehaviour {
 	public float lethalVelocity = 85;
 	public float ledgeDuration = .4f;
 	public float alignSpeed = 4;
+	public PhysicsMaterial2D groundedMaterial;
+	public PhysicsMaterial2D airborneMaterial;
 
 	[HideInInspector] public bool airMove = true;
 	[HideInInspector] public float timeSinceFall = 0;
@@ -33,9 +35,33 @@ public class PlayerPhysics : MonoBehaviour {
 			if(normal != Vector2.zero && normal.y < 1 && ((facingRight && normal.x < 0) || (!facingRight && normal.x > 0))) {
 				factor = (3 * Mathf.Cos(normal.y));
 			}
+
+			GetComponent<EdgeCollider2D>().sharedMaterial = groundedMaterial;
+			GetComponent<BoxCollider2D>().sharedMaterial = groundedMaterial;
+			GetComponent<CircleCollider2D>().sharedMaterial = groundedMaterial;
+
+			GetComponent<EdgeCollider2D>().enabled = false;
+			GetComponent<BoxCollider2D>().enabled = false;
+			GetComponent<CircleCollider2D>().enabled = false;
+
+			GetComponent<EdgeCollider2D>().enabled = true;
+			GetComponent<BoxCollider2D>().enabled = true;
+			GetComponent<CircleCollider2D>().enabled = true;
 		}
 		else {
 			factor *= 0.4f;
+
+			GetComponent<EdgeCollider2D>().sharedMaterial = airborneMaterial;
+			GetComponent<BoxCollider2D>().sharedMaterial = airborneMaterial;
+			GetComponent<CircleCollider2D>().sharedMaterial = airborneMaterial;
+
+			GetComponent<EdgeCollider2D>().enabled = false;
+			GetComponent<BoxCollider2D>().enabled = false;
+			GetComponent<CircleCollider2D>().enabled = false;
+
+			GetComponent<EdgeCollider2D>().enabled = true;
+			GetComponent<BoxCollider2D>().enabled = true;
+			GetComponent<CircleCollider2D>().enabled = true;
 		}
 
 		if(airMove) {
