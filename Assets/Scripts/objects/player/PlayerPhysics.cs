@@ -15,7 +15,6 @@ public class PlayerPhysics : MonoBehaviour {
 	public PhysicsMaterial2D groundedMaterial;
 	public PhysicsMaterial2D airborneMaterial;
 
-	[HideInInspector] public bool airMove = true;
 	[HideInInspector] public float timeSinceFall = 0;
 	[HideInInspector] public bool disableControl = false;
 
@@ -30,54 +29,39 @@ public class PlayerPhysics : MonoBehaviour {
 
 		bool grounded = GetComponent<PlayerControl>().isGrounded();
 		if(grounded) {
-			airMove = true;
 			Vector2 normal = GetComponent<PlayerControl>().normal();
 			if(normal != Vector2.zero && normal.y < 1 && ((facingRight && normal.x < 0) || (!facingRight && normal.x > 0))) {
 				factor = (3 * Mathf.Cos(normal.y));
 			}
 
-			GetComponent<EdgeCollider2D>().sharedMaterial = groundedMaterial;
-			GetComponent<BoxCollider2D>().sharedMaterial = groundedMaterial;
-			GetComponent<CircleCollider2D>().sharedMaterial = groundedMaterial;
-
-			GetComponent<EdgeCollider2D>().enabled = false;
-			GetComponent<BoxCollider2D>().enabled = false;
-			GetComponent<CircleCollider2D>().enabled = false;
-
-			GetComponent<EdgeCollider2D>().enabled = true;
-			GetComponent<BoxCollider2D>().enabled = true;
-			GetComponent<CircleCollider2D>().enabled = true;
+			foreach(Collider2D col in GetComponents<Collider2D>()) {
+				col.sharedMaterial = groundedMaterial;
+				col.enabled = false;
+				col.enabled = true;
+			}
 		}
 		else {
 			factor *= 0.4f;
 
-			GetComponent<EdgeCollider2D>().sharedMaterial = airborneMaterial;
-			GetComponent<BoxCollider2D>().sharedMaterial = airborneMaterial;
-			GetComponent<CircleCollider2D>().sharedMaterial = airborneMaterial;
-
-			GetComponent<EdgeCollider2D>().enabled = false;
-			GetComponent<BoxCollider2D>().enabled = false;
-			GetComponent<CircleCollider2D>().enabled = false;
-
-			GetComponent<EdgeCollider2D>().enabled = true;
-			GetComponent<BoxCollider2D>().enabled = true;
-			GetComponent<CircleCollider2D>().enabled = true;
+			foreach(Collider2D col in GetComponents<Collider2D>()) {
+				col.sharedMaterial = airborneMaterial;
+				col.enabled = false;
+				col.enabled = true;
+			}
 		}
 
-		if(airMove) {
-			float h = Input.GetAxisRaw("Horizontal");
+		float h = Input.GetAxisRaw("Horizontal");
 
-			if(h != 0) {
-				rigidbody2D.AddForce(Vector2.right * h * moveForce * factor);
-			}
+		if(h != 0) {
+			rigidbody2D.AddForce(Vector2.right * h * moveForce * factor);
+		}
 
-			if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed) {
-				rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
-			}
+		if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed) {
+			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
+		}
 
-			if((h > 0 && !facingRight) || (h < 0 && facingRight)) {
-				ChangeDirection();
-			}
+		if((h > 0 && !facingRight) || (h < 0 && facingRight)) {
+			ChangeDirection();
 		}
 	}
 

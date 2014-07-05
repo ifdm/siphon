@@ -38,10 +38,6 @@ public class RunningState : PlayerState {
 		player.animator.TimeScale = (Mathf.Abs(player.rigidbody2D.velocity.x) / 8) + .3f;
 		player.physics.Move();
 
-		if(Input.GetAxisRaw("Horizontal") == 0) {
-			player.rigidbody2D.velocity = new Vector2(0, player.rigidbody2D.velocity.y);
-		}
-
 		player.physics.LedgeCompensate();
 	}
 
