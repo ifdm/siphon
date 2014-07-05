@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 [RequireComponent(typeof(EntityAudio))]
+
 public class Mushroom : Plant {
 
 	public float bounceForce = 20f;
@@ -9,8 +11,6 @@ public class Mushroom : Plant {
 
 	private float bounceTimer = 0;
 	private MushroomAnimator animator;
-
-
 
 	void Start() {
 		animator = GetComponent<MushroomAnimator>();
@@ -31,12 +31,12 @@ public class Mushroom : Plant {
 		if(adjustTrigger) {
 			BoxCollider2D box = GetComponent<BoxCollider2D>();
 			GameObject player = GameObject.Find("Player");
-			if(player.GetComponent<PlayerControl>().isGrounded()) {
+			if(false && player.GetComponent<PlayerControl>().isGrounded()) {
 				box.size = new Vector2(250, 10);
 				box.center = new Vector2(35 * player.rigidbody2D.velocity.x, 10);
 			}
 			else {
-				box.size = new Vector2(400, 10 + (10 * Mathf.Abs(player.rigidbody2D.velocity.y)));
+				box.size = new Vector2(400, 20 + (10 * Mathf.Abs(player.rigidbody2D.velocity.y)));
 				box.center = new Vector2(0, 10 + (5 * Mathf.Abs(player.rigidbody2D.velocity.y)));
 			}
 		}
