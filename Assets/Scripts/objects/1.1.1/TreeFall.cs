@@ -36,9 +36,10 @@ public class TreeFall : MonoBehaviour {
 		yield return new WaitForSeconds(0.5f);
 		transform.Find("Darken").gameObject.GetComponent<Darken>().speed = .06f;
 		player.GetComponent<PlayerPhysics>().disableControl = false;
+		BoxCollider2D box = tree.GetComponent<BoxCollider2D>();
 		tree.AddComponent("TouchOfDeath");
 		tree.rigidbody2D.isKinematic = false;
-		tree.rigidbody2D.AddTorque(-9000000);
+		tree.rigidbody2D.AddForceAtPosition(new Vector2(20, 0), new Vector2(0, tree.transform.position.y - (box.size.y * tree.transform.localScale.y)), ForceMode2D.Impulse);
 		audio.One("Tree_Fall_Heavy");
 		tree.transform.Find("Renderer").GetComponent<SpriteRenderer>().sprite = ravagedTreeSprite;
 	}
